@@ -369,7 +369,7 @@ p {
 }
 
 .inner-container {
-    height: 2965px;
+    height: 3100px;
     display: flex;
     flex-flow: column wrap;
     column-gap: 36px;
