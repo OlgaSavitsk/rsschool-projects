@@ -112,10 +112,6 @@ width: 804px;
     display: flex;
 }
 
-.welcome_image {
-   
-}
-
 .welcome-content {
     padding: 0 0 60px;
     width: 100%;
@@ -123,7 +119,7 @@ width: 804px;
     display: flex;
     flex-direction: column;
     background: #030303;
-    background-image: url("/assets/img/welcome.jpg");
+    background-image: url(assets/img/welcome.jpg);
     background-repeat: no-repeat;
     background-position: calc(100%) calc(100% - 62px);
     height: 750px;
@@ -373,7 +369,7 @@ p {
 }
 
 .inner-container {
-    height: 2965px;
+    height: 3100px;
     display: flex;
     flex-flow: column wrap;
     column-gap: 36px;
