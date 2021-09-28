@@ -45,6 +45,24 @@
                         <p>From the castle to the museum</p>
                         <a href="tours/tour7.html" target="_blank">
                             <button type="button" class="welcome_button">Discover the Louvre</button></a>
+                            <div class="dots-welcome">
+                                <span class="dots-text">01 | 05</span>
+                                <span class="dots-slide-welcome active"></span>
+                                <span class="dots-slide-welcome"></span>
+                                <span class="dots-slide-welcome"></span>
+                                <span class="dots-slide-welcome"></span>
+                                <span class="dots-slide-welcome"></span>
+                                <button class="dots_button-welcome">
+                                    <svg width="30" height="8" viewBox="0 0 30 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5.72254 8C3.90173 6.31339 1.99422 5.08262 0 4.30769V3.69231C1.99422 2.89459 3.90173 1.66382 5.72254 0H7.23988C6.37283 1.4359 5.53468 2.52991 4.72543 3.28205H30V4.71795H4.72543C5.53468 5.47009 6.37283 6.5641 7.23988 8H5.72254Z" fill="white"/>
+                                        </svg>
+                                </button>
+                                <button class="dots_button-welcome">
+                                    <svg width="30" height="8" viewBox="0 0 30 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M24.2775 1.97284e-06C26.0983 1.68661 28.0058 2.91738 30 3.69231L30 4.30769C28.0058 5.10541 26.0983 6.33618 24.2775 8L22.7601 8C23.6272 6.5641 24.4653 5.47009 25.2746 4.71795L3.48964e-07 4.71795L5.01636e-07 3.28205L25.2746 3.28205C24.4653 2.52992 23.6272 1.4359 22.7601 1.86378e-06L24.2775 1.97284e-06Z" fill="white"/>
+                                        </svg>
+                                </button>
+                            </div>
                     </div>
                     <div class="welcome_image"></div>
                 </div>
@@ -167,21 +185,7 @@
                                     <img class="prew-image" src="assets/video/poster2.jpg" alt="">
                                 </div>
                             </div>
-                            <!-- <div class="video-slide">
-                                <iframe width="452" height="254" src="https://www.youtube.com/embed/NOhDysLnTvY" loading="lazy" srcdoc="<style>*{padding:0;margin:0;overflow:hidden}
-                                    html,body{height:100%}
-                                    img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}
-                                    span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}
-                                    </style>
-                                    <a href=https://www.youtube.com/embed/NOhDysLnTvY
-                                    <img src=https://www.youtube.com/embed/zp1BXPX8jcU/hqdefault.jpg alt='Demo video'>
-                                    <span>▶</span>
-                                    </a>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                <div class="prew">
-                                    <img src="assets/video/poster3.jpg" alt="">
-                                </div>
-                            </div> -->
-                        
+                           
                         </div>
                         <div class="dots">
                             <button class="dots_button">
@@ -189,7 +193,7 @@
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M5.4777 0.219168C5.87773 0.564178 5.94259 1.19347 5.62256 1.62473L2.37578 6.00004L5.62256 10.3753C5.94259 10.8066 5.87773 11.4359 5.4777 11.7809C5.07766 12.1259 4.49394 12.056 4.17391 11.6247L0 6.00004L4.17391 0.375342C4.49394 -0.0559202 5.07766 -0.125842 5.4777 0.219168ZM9.65184 0.219168C10.0519 0.564178 10.1167 1.19347 9.7967 1.62473L6.54992 6.00004L9.7967 10.3753C10.1167 10.8066 10.0519 11.4359 9.65184 11.7809C9.2518 12.1259 8.66808 12.056 8.34805 11.6247L4.17414 6.00004L8.34805 0.375342C8.66808 -0.0559202 9.2518 -0.125842 9.65184 0.219168Z" fill="#999999"/>
                                     </svg>
                             </button>
-                            <span class="dots-slide"></span>
+                            <span class="dots-slide active-video"></span>
                             <span class="dots-slide"></span>
                             <span class="dots-slide"></span>
                             <span class="dots-slide"></span>
@@ -243,17 +247,17 @@
                             <div class="counter">
                                 <button class="minus">-</button>
                                 <div class="form-counter">
-                                    <input type="number" min="0" max="20" value="1" readonly class="number">
+                                    <input type="number" min="0" max="20" value="1" class="number">
                                 </div>
                                 <button class="plus">+</button>
                             </div>
                             <span class="count-subtitle">Senior 65+</span>
                             <div class="counter">
-                                <button class="minus">-</button>
+                                <button class="minus seniorMinus">-</button>
                                 <div class="form-counter">
-                                    <input type="number" min="0" max="20" value="1" readonly class="number">
+                                    <input type="number" min="0" max="20" value="1" readonly class="number seniorInput">
                                 </div>
-                                <button class="plus">+</button>
+                                <button class="plus seniorPlus">+</button>
                             </div>
                             <span class="total">Total €220</span>
                             <button type="button" class="tickets__button">Buy Now</button>
@@ -328,6 +332,72 @@
             </div>           
         </div>
     </footer>
+    <div class="tickets-modal">
+        <div class="container modal-container">
+            <div class="modal-content">
+                <img src="assets/svg/logo_tickets.svg" alt="">
+                <h2 class="title-modal">Booking tickets</h2>
+                <p class="modal-subtitle">Tour to Louvre</p>
+                <form action="">
+                    <div class="date">
+                        <input name="data" type="text" placeholder="Date"
+                        onfocus="(this.type='date')" class="date-input data">
+                        <input type="text" type="text" placeholder="Time"
+                        onfocus="(this.type='time')" class="date-input data">
+                    </div>
+                    <input type="text" name="text" placeholder="Name" class="date-input text">
+                    <input type="email" placeholder="Email" class="date-input text">
+                    <input type="tel" placeholder="Phone" class="date-input text">
+                    <select name="tickets" class="date-input text"  placeholder="Ticket Type">
+                        <option value="tickets">Ticket Type</option>
+                    </select>
+                    <div class="modal-count">
+                        <p class="count-title-modal">Entry ticket</p>
+                        <div class="age">
+                            <span class="count-subtitle-modal">Basic 18+ (20&euro;)</span>
+                           
+                            <div class="form-counter-modal">
+                                <button class="minus modal">-</button>
+                                <input type="number" min="0" max="20" value="2" class="number modal-number">
+                                <button class="plus modal">+</button>
+                            </div>
+                           
+                        </div>
+                        <div class="counter-modal">
+                            <span class="count-subtitle-modal">Senior 65+ (10&euro;)</span>
+                           
+                            <div class="form-counter-modal">
+                                <button class="minus modal">-</button>
+                                <input type="number" min="0" max="20" value="2" class="number modal-number">
+                                <button class="plus modal">+</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+
+            <div class="card">
+                <img class="modal-image" src="assets/img/card.jpg" alt="">
+                <button class="modal-button">Book</button>
+            </div>
+            <div class="close">
+                <?xml version="1.0" encoding="iso-8859-1"?>
+    <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20"
+         viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve">
+    <g>
+        <g>
+            <path d="M284.286,256.002L506.143,34.144c7.811-7.811,7.811-20.475,0-28.285c-7.811-7.81-20.475-7.811-28.285,0L256,227.717
+                L34.143,5.859c-7.811-7.811-20.475-7.811-28.285,0c-7.81,7.811-7.811,20.475,0,28.285l221.857,221.857L5.858,477.859
+                c-7.811,7.811-7.811,20.475,0,28.285c3.905,3.905,9.024,5.857,14.143,5.857c5.119,0,10.237-1.952,14.143-5.857L256,284.287
+                l221.857,221.857c3.905,3.905,9.024,5.857,14.143,5.857s10.237-1.952,14.143-5.857c7.811-7.811,7.811-20.475,0-28.285
+                L284.286,256.002z"/>
+        </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+            </div>
+        </div>
+    </div>
+    <div class="cover" id="cover"></div>
     <script src="index.js"></script>
     <script src="gallery.js"></script> 
 </body>
