@@ -143,11 +143,12 @@ width: 804px;
     border-radius: 10px;
     font-weight: 300;
     font-size: 22px;
-    line-height: 26px;
+    line-height: 70px;
     text-align: center;
     letter-spacing: 2px;
     color: #FFFFFF;
     border-style: none;
+    text-decoration: none;
 }
 
 .welcome_button:hover {
@@ -1127,6 +1128,8 @@ align-self: flex-end;
   transform: translate(-115%);
   z-index: 2;
   transition: 0.3s;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .cover{
@@ -1149,6 +1152,8 @@ align-self: flex-end;
   .move {
     transform: translate(0);
     transition: 0.5s;
+    opacity: 1;
+    visibility: visible;
   }
 
   .close {
