@@ -506,10 +506,18 @@ p {
 .inner-container {
     position: relative;
     height: 3100px;
+   
+	align-items: flex-start;
+
     display: flex;
     flex-flow: column wrap;
     column-gap: 36px;
     row-gap: 24px;
+}
+
+.inner-container:first-child {
+    align-self: center;
+    margin-top: 50px;
 }
 
 .inner-container:after {
@@ -999,13 +1007,6 @@ input[type="time"] {
     background-position: 13px 1rem;
 }
 
-input[type="text"] {
-    background-image: url(assets/svg/name.svg);
-    background-size: 13px 15px;
-    background-repeat: no-repeat;
-    background-position: 13px 1rem;
-}
-
 input[type="email"] {
     background-image: url(assets/svg/email.svg);
     background-size: 15px 11px;
@@ -1021,15 +1022,36 @@ input[type="tel"] {
 }
 
 select[name="tickets"] {
+    position: relative;
     background-image: url(assets/svg/ballot.svg);
     background-size: 15px 15px;
     background-repeat: no-repeat;
     background-position: 13px 1rem;
     width: 400px;
+  /*   background-image: url(assets/svg/arrow.svg);
+    background-size: 17px 17px;
+    background-repeat: no-repeat;
+    background-position: 50px 1rem; */
+}
+
+.date-input:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    background-image: url(assets/svg/arrow.svg);
+    width: 17px;
+    height: 17px;
+    background-size: 17px 17px;
+    background-repeat: no-repeat;
+    background-position: 50px 1rem;
 }
 
 .text {
     width: 346px;
+    background-image: url(assets/svg/name.svg);
+    background-size: 13px 15px;
+    background-repeat: no-repeat;
+    background-position: 13px 1rem;
 }
 
 .age {
@@ -1098,14 +1120,13 @@ margin-top: 13px;
     width: 220px;
     height: 45px;
     font-family: Roboto;
-font-style: normal;
-font-weight: normal;
-font-size: 22px;
-line-height: 26px;
-color: #FFFFFF;
-align-self: flex-end;
-    margin-right: 31px;
-    margin-top: 20px
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 26px;
+    color: #FFFFFF;
+    align-self: flex-end;
+    margin-right: 30px;
 }
 
 .modal-button:hover {
@@ -1222,8 +1243,10 @@ margin-top: 50px;
     font-style: normal;
     font-weight: 300;
     font-size: 18px;
-    line-height: 21px;   
+    line-height: 21px; 
+    letter-spacing: 1;  
     color: #030303;
+    margin-bottom: 5px;
   }
 
   .card-image {
@@ -1234,15 +1257,16 @@ margin-top: 50px;
 
   .card-cost {
       max-width: 470px;
-border-bottom: 2px solid #740C11;
 width: 100%;
 display: flex;
 flex-direction: column;
+margin-top: 17px;
   }
 
   .cost-container {
       display: flex;
-      align-items: center;
+      align-items: center;    
+    margin-bottom: 6px;
   }
 
   .cost-text {
@@ -1258,6 +1282,9 @@ flex-direction: column;
   .cost-total {
       display: flex;
       justify-content: space-between;
+      border-top: 2px solid #740C11;
+      margin-top: 4px;
+      padding: 9px 0 0px;
   }
 
   .cost-total-text {
@@ -1270,17 +1297,17 @@ flex-direction: column;
   }
 
   .cost-number {
-    width: 32px;
+    width: 33px;
     height: 20px;
     background: #030303;
     border-radius: 4px;
     font-family: Roboto;
-font-style: normal;
-font-weight: normal;
-font-size: 18px;
-line-height: 21px;
-margin-right: 10px;
-color: #A4A4A3;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    margin-right: 10px;
+    color: #A4A4A3;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1300,7 +1327,7 @@ color: #A4A4A3;
       background-position: 0% 0%;
       background-repeat: no-repeat;
       width: 320px;
-      height: 281px;
+      height: 211px;
       display: flex;
       flex-direction: column;
       z-index: 2;
@@ -1308,16 +1335,19 @@ color: #A4A4A3;
 
   .pay-form {
       position: relative;
-      height: 274px;
+      height: 241px;
       max-width: 470px;
       width: 100%;
       margin-top: 10px;
+      margin-bottom: 24px;
   }
   .back {
-      position: relative;
-      bottom: 180px;
-      display: flex;
-      align-self: flex-end;
+    position: relative;
+    bottom: 211px;
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+    align-items: flex-end;
     width: 100%;
     background-image: url(assets/img/card_back.jpg);
     background-position: 100% 10%;
@@ -1336,17 +1366,65 @@ select[name="date"],
 select[name="year"] {
 width: 100px;
 height: 35px;
+margin-top: 5px;
 }
+
+select[name="date"] {
+    margin-right: 17px;
+    }
 
 .card-date {
     display: flex;
     align-items: flex-end;
+    margin-top: 12px;
 }
 
 label[for="card-number"],
-label[for="Expiration"] {
+label[for="Expiration"],
+label[for="name"] {
     display: flex;
     flex-flow: column;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    color: #161615;
+}
+
+label[for="name"] {
+    margin-top: 15px;
+}
+
+label[for="code"] {  
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    margin: 65px 16px 0 0;
+    color: #161615; 
+}
+
+.code {
+    width: 75px;
+    height: 35px;
+    display: flex;
+    flex-flow: column;
+    margin-top: 6px;
+    background: #FFFFFF;
+    border: 0.5px solid #A4A4A3
+}
+
+.code-text {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+    width: 55px;
+    margin: 6px 25px 0 0;
+    color: #161615;
 }
 
 .card-name {
