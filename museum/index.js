@@ -34,7 +34,7 @@ minus.addEventListener('click', function() {
   count.value --;
   if(count.value < 1) {
     count.value = 0
-  } 
+  }  
 })
 
 plusSenior.addEventListener('click', function() {
