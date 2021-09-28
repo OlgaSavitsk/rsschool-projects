@@ -26,28 +26,28 @@ progressVol.addEventListener('input', function() {
 plus.addEventListener('click', function() {
   count.value ++;
   if(count.value > 19) {
-    plus.setAttribute("disabled", true)
+    count.value = 20
   } 
 })
 
 minus.addEventListener('click', function() {
   count.value --;
   if(count.value < 1) {
-    minus.setAttribute("disabled", "disabled")
+    count.value = 0
   } 
 })
 
 plusSenior.addEventListener('click', function() {
   countSenior.value ++;
   if(countSenior.value > 19) {
-    plusSenior.setAttribute("disabled", true)
+    countSenior.value = 20
   } 
 })
 
 minusSenior.addEventListener('click', function() {
   countSenior.value --;
   if(countSenior.value < 1) {
-    minusSenior.setAttribute("disabled", "disabled")
+    countSenior.value = 0
   } 
 })
 
