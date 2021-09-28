@@ -1152,7 +1152,12 @@ align-self: flex-end;
   }
 
   .close {
-    margin-top: 20px;
+    margin-top: 92px;
     cursor: pointer;
+  }
+
+  .welcome-link {
+      color: #eee;
+      text-decoration: none;
   }
 
