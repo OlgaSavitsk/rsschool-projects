@@ -741,6 +741,7 @@ color: #000000;
     line-height: 26px;
     text-align: center;
     letter-spacing: 2px;
+    border: none;
     color: #FFFFFF;
     cursor: pointer;
 }
@@ -1077,7 +1078,6 @@ margin-top: 13px;
     width: 100%;
     height: 663px;
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
     background: #FFFFFF;
@@ -1189,6 +1189,7 @@ margin-top: 50px;
       flex-direction: row;
       justify-content: space-between;
       width: 100%;
+      padding-top: 27px;
   }
 
   .card-content {
@@ -1207,12 +1208,22 @@ margin-top: 50px;
   }
 
   .card-subtitle {
+      margin-bottom: 15px;
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
     font-size: 22px;
     line-height: 26px;
     color: #740C11;
+  }
+
+  .card-text {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;   
+    color: #030303;
   }
 
   .card-image {
@@ -1283,16 +1294,19 @@ color: #A4A4A3;
 
   .front {
       position: relative;
+      padding: 15px 20px;
       width: 100%;
       background-image: url(assets/img/card_front.jpg);
       background-position: 0% 0%;
       background-repeat: no-repeat;
-      width: 360px;
-      height: 211px;
+      width: 320px;
+      height: 281px;
+      display: flex;
+      flex-direction: column;
       z-index: 2;
   }
 
-  .pay {
+  .pay-form {
       position: relative;
       height: 274px;
       max-width: 470px;
@@ -1308,7 +1322,37 @@ color: #A4A4A3;
     background-image: url(assets/img/card_back.jpg);
     background-position: 100% 10%;
     background-repeat: no-repeat;
-    height: 211px;
-    
+    height: 211px;   
+}
+
+.card-number {
+    width: 215px;
+    height: 35px;
+    background: #FFFFFF;
+    border: 0.5px solid #A4A4A3;
+}
+
+select[name="date"],
+select[name="year"] {
+width: 100px;
+height: 35px;
+}
+
+.card-date {
+    display: flex;
+    align-items: flex-end;
+}
+
+label[for="card-number"],
+label[for="Expiration"] {
+    display: flex;
+    flex-flow: column;
+}
+
+.card-name {
+    width: 100%;
+    height: 35px;
+    background: #FFFFFF;
+    border: 0.5px solid #A4A4A3;
 }
 
