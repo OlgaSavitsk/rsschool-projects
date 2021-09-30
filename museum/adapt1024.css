@@ -1,0 +1,415 @@
+@media (max-width: 1120px) {
+    .contacts-image {
+        width: calc(100vw - 330px);
+        height: calc(65vw - 212px);
+    }
+   /*  .hidden {
+        display: none;
+    } */
+}
+@media (max-width: 1024px) {
+    .container {
+        max-width: 984px;
+        margin: 0 auto;
+    }
+    .header-wrapper {
+        height: 130px;
+    }
+    .navigation {
+        display: none;
+    } 
+
+    #menu__toggle {
+        opacity: 0;
+      }
+      
+      #menu__toggle:checked ~ .menu__btn > span {
+        transform: rotate(45deg);
+      }
+      #menu__toggle:checked ~ .menu__btn > span::before {
+        top: 0;
+        transform: rotate(0);
+      }
+      #menu__toggle:checked ~ .menu__btn > span::after {
+        top: 0;
+        transform: rotate(90deg);
+      }
+      #menu__toggle:checked ~ .navigation {
+          display: block;
+        visibility: visible !important;
+        left: 0;
+      }
+      input[type="checkbox"]::-webkit-outer-spin-button,
+    input[type="checkbox"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+}
+      
+      .menu__btn {
+        display: flex;
+        align-items: center;
+        position: fixed;
+        top: 7%;
+        right: 3%;
+        width: 26px;
+        height: 26px;
+        cursor: pointer;
+        z-index: 11;
+      }
+      
+      .menu__btn > span,
+      .menu__btn > span::before,
+      .menu__btn > span::after {
+        display: block;
+        position: absolute;     
+        width: 100%;
+        height: 2px;     
+        background-color: #616161;     
+        transition-duration: .25s;
+      }
+      .menu__btn > span::before {
+        content: '';
+        top: -8px;
+      }
+      .menu__btn > span::after {
+        content: '';
+        top: 8px;
+      }
+        .navigation {
+            display: block;
+            visibility: hidden;
+            width: 300px;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 80px 0;
+            background-color: #333;
+            opacity: 0.7;
+            transition-duration: 0.25s;
+            z-index: 10;
+        }
+        
+        .navbar_toggle {
+            position: relative;
+            display: block;
+            padding: 9px 10px;
+            border-color: #fff;
+            border-radius: 0;
+            position: fixed;
+            top: 50px;
+            right: 40px;
+            background-color: transparent;
+            background-image: none;
+            z-index: 2;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+    
+        .navigation-list {
+          flex-direction: column;
+        }
+    
+        li {
+          padding: 10px 0;
+        }
+        
+        .icon {
+            display: block;
+            width: 22px;
+            height: 2px;
+            border-radius: 1px;
+            border: 1px solid #333;
+            margin-top: 3px;
+            background: #333 
+        }
+    
+        .navbar-toggle span {
+            background: #333 !important;
+        }
+    
+        #menu_toggle:checked ~ .navigation {
+          visibility: visible;
+        }
+
+        .section-title {
+            font-size: 50px;
+            margin-top: 50px;
+        }
+        .welcome_button {
+            margin-top: 44px;
+            width: 300px;
+            height: 60px;
+            font-size: 20px;
+        }
+        p {
+            font-size: 24px;
+        }
+        .project-image {
+            width: 700px;
+            height: 525px;
+        }
+
+        .welcome-content {
+            height: 525px;
+        }
+        .dots-welcome {
+            width: 700px;
+            justify-content: flex-end;
+        }
+        .right {
+            margin-right: 76px;
+        }
+
+        .left {
+            margin-right: 0;
+        }
+
+        .carousel {
+            width: 700px;
+            height: 525px;
+            right: 0;
+        }
+
+        .dots-text {
+            font-size: 20px;
+            margin-right: 49px;
+        }
+
+        .dots-slide-welcome {
+            width: 12px;
+            height: 12px;
+            margin-right: 23px;
+        }
+
+        .dots_button-welcome {
+            padding-left: 22px;
+        }
+
+        .item img {
+            width: 330px;
+            height: 215px;
+        }
+
+        .item-title {
+            font-size: 28px;
+            letter-spacing: 1px;
+            margin-top: 19px;
+        }
+
+        .item-title:after {
+            width: 46%;
+        }
+
+        .item-text {
+            font-size: 20px;
+            margin-top: 8px;
+        }
+
+        .second-text {
+            letter-spacing: -2px;
+        }
+
+        .section {
+            padding: 0 0 60px;
+        }
+
+        .title-visiting {
+            padding-bottom: 15px;
+        }
+
+        .items-container {
+            padding-top: 60px;
+            row-gap: 59px;
+            max-width: 768px;
+            column-gap: 108px;
+            margin: 0 auto;
+        }
+
+        .spasing {
+            letter-spacing: 3px;
+        }
+
+        .explore {
+            flex-direction: column;
+        }
+
+        .explore-content {
+            margin-top: 3px;
+            max-width: 984px;
+        }
+
+        .title-explore {
+            padding-bottom: 12px;
+            margin-bottom: 59px;
+        }
+
+        .explore-text {
+            font-size: 20px;
+            margin-top: 0;
+        }
+        .hidden {
+            display: none;
+        }
+
+        .explore-slider {
+            margin-top: 58px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .explore-section {
+            padding-bottom: 60px;
+        }
+
+        .progress {
+            max-width: 564px;
+        }
+
+        .progress-bar {
+            height: 60px;
+            bottom: 51px;
+        }
+        .video-content {
+            margin-bottom: 35px;
+        }
+
+        .main-iframe {
+            width: 984px;
+            height: 504px;
+        }
+
+        .slider-iframe {
+            width: 300px;
+            height: 170px;
+        }
+
+        .video-slider {
+            margin-top: -11px;
+        }
+
+        .video-secrion {
+            padding-bottom: 36px;
+        }
+
+        .dots {
+            padding-bottom: 15px;
+        }
+
+        .galery {
+            padding-top: 0;
+            margin-top: 0;
+        }
+
+        .galery-title {
+            margin-top: 16px;
+            padding-top: 53px;
+        }
+
+        .inner-container {
+            height: 2050px;
+        }
+
+        .picture {
+            max-width: 304px;
+        }
+
+        .inner-container:after {
+          max-width: 984px;
+          width: 100%;
+          top: 855px;
+        }
+
+        .picture-container {
+            height: 1240px;
+        }
+
+        .inner-container:first-child {
+            margin-top: 26px;
+        }
+
+        .content-container {
+            max-width: 700px;
+            width: 100%;
+            height: 440px;
+        }
+
+        .tickets-content {
+            margin-top: 61px;
+        }
+
+        .tickets-image {
+            width: 100%;
+            height: 100%;
+        }
+
+        .amount {
+            width: 21%;
+            align-items: flex-start;
+        }
+
+        .count-subtitle {
+            margin: 32px 0 7px 4px;
+        }
+
+        .counter {
+            margin-bottom: 0;
+        }
+
+        .total {
+            margin-top: 24px;
+            letter-spacing: 3px;
+        }
+
+        .tickets__button {
+            margin-top: 68px;
+        }
+
+        .contacts-image {
+            width: calc(100vw - 330px);
+            height: calc(65vw - 212px);
+          }
+
+          .contacts-content {
+              margin-top: 60px;
+          }
+
+          h5 {
+              font-size: 24px;
+              width: 72%;
+              line-height: 29px;
+              margin-bottom: 31px;
+          }
+
+          .adress-link {
+              font-size: 20px;
+              line-height: 36px;
+              margin: 0;
+          }
+
+          .contacts-section {
+              padding-bottom: 63px;
+          }
+          .footer-container {
+            padding: 62px 0 41px
+          }
+
+          .footer-content {
+              gap: 43px;
+          }
+
+          .footer-list {
+            column-gap: 121px;
+            row-gap: 22px;
+            height: 138px;
+            width: 0;
+          }
+
+          .footer-item {
+              padding: 2px 0;
+          }
+
+          .conf-container {
+              max-width: 984px;
+          }
+  }

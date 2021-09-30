@@ -12,6 +12,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Forum&family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
     <title>Museum</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="adapt1024.css"/>
+    <link rel="stylesheet" href="adapt768.css"/>
+    <link rel="stylesheet" href="adapt420.css"/>
     <link rel="icon" href="assets/favicon.ico">
 </head>
 
@@ -23,6 +26,12 @@
                 <img src="assets/svg/logo.svg" alt="">
                 <div class="logo-title">louvre</div>
             </div>
+            <div class="hamburger-menu">
+                <input id="menu__toggle" type="checkbox" />
+                <label class="menu__btn" for="menu__toggle">
+                    <span></span>
+                </label>
+             </div>
             <nav class="navigation">
                 <ul class="navigation-list">
                     <li class="navigation-item">
@@ -44,28 +53,39 @@
                         <h2 class="section-title">Welcome <br>
                             to the Louvre</h2>
                         <p>From the castle to the museum</p>
-                        <a class="welcome_button" href="tours/tour7.html" target="_blank">Discover the Louvre</a>
-                            <div class="dots-welcome">
-                                <span class="dots-text">01 | 05</span>
-                                <span class="dots-slide-welcome active"></span>
-                                <span class="dots-slide-welcome"></span>
-                                <span class="dots-slide-welcome"></span>
-                                <span class="dots-slide-welcome"></span>
-                                <span class="dots-slide-welcome"></span>
-                                <button class="dots_button-welcome">
-                                    <svg width="30" height="8" viewBox="0 0 30 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5.72254 8C3.90173 6.31339 1.99422 5.08262 0 4.30769V3.69231C1.99422 2.89459 3.90173 1.66382 5.72254 0H7.23988C6.37283 1.4359 5.53468 2.52991 4.72543 3.28205H30V4.71795H4.72543C5.53468 5.47009 6.37283 6.5641 7.23988 8H5.72254Z" fill="white"/>
-                                        </svg>
-                                </button>
-                                <button class="dots_button-welcome">
-                                    <svg width="30" height="8" viewBox="0 0 30 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M24.2775 1.97284e-06C26.0983 1.68661 28.0058 2.91738 30 3.69231L30 4.30769C28.0058 5.10541 26.0983 6.33618 24.2775 8L22.7601 8C23.6272 6.5641 24.4653 5.47009 25.2746 4.71795L3.48964e-07 4.71795L5.01636e-07 3.28205L25.2746 3.28205C24.4653 2.52992 23.6272 1.4359 22.7601 1.86378e-06L24.2775 1.97284e-06Z" fill="white"/>
-                                        </svg>
-                                </button>
-                            </div>
+                        <a class="welcome_button unvisibled" href="tours/tour7.html" target="_blank">Discover the Louvre</a>
+                            
                     </div>
-                   
-                   <div class="welcome_image"></div>
+                    <div class="carousel">
+                        <div class="slides-container">
+                          
+                              <img class="project-image" src="assets/img/welc1.jpg" alt="project">
+
+                              <img class="project-image" src="assets/img/welc2.jpg" alt="project">
+                          
+                              <img class="project-image" src="assets/img/welc3.jpg" alt="project">
+                          
+                        </div>
+                        <div class="dots-welcome">
+                            <span class="dots-text">01 | 05</span>
+                            <span class="dots-slide-welcome active"></span>
+                            <span class="dots-slide-welcome"></span>
+                            <span class="dots-slide-welcome"></span>
+                            <span class="dots-slide-welcome"></span>
+                            <span class="dots-slide-welcome"></span>
+                            <button class="dots_button-welcome left">
+                                <svg width="30" height="8" viewBox="0 0 30 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.72254 8C3.90173 6.31339 1.99422 5.08262 0 4.30769V3.69231C1.99422 2.89459 3.90173 1.66382 5.72254 0H7.23988C6.37283 1.4359 5.53468 2.52991 4.72543 3.28205H30V4.71795H4.72543C5.53468 5.47009 6.37283 6.5641 7.23988 8H5.72254Z" fill="white"/>
+                                    </svg>
+                            </button>
+                            <button class="dots_button-welcome right">
+                                <svg width="30" height="8" viewBox="0 0 30 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M24.2775 1.97284e-06C26.0983 1.68661 28.0058 2.91738 30 3.69231L30 4.30769C28.0058 5.10541 26.0983 6.33618 24.2775 8L22.7601 8C23.6272 6.5641 24.4653 5.47009 25.2746 4.71795L3.48964e-07 4.71795L5.01636e-07 3.28205L25.2746 3.28205C24.4653 2.52992 23.6272 1.4359 22.7601 1.86378e-06L24.2775 1.97284e-06Z" fill="white"/>
+                                    </svg>
+                            </button>
+                        </div>
+                    </div>
+                   <!--  <div class="welcome_image"></div> -->
                 </div>
             </section>
             <section id="visiting" class="welcome section">
@@ -88,7 +108,7 @@
                     </a>
                     <a href="tours/tour3.html" target="_blank" class="item">
                         <img src="assets/img/3.jpg" alt="">
-                        <h3 class="item-title border">Colonnade Perrault</h3>
+                        <h3 class="item-title border spasing">Colonnade Perrault</h3>
                         <p class="item-text">360° Virtual Tour</p>
                         <p class="item-text second-text">Google Street Panorama View</p>
                     </a>
@@ -100,13 +120,13 @@
                     </a>
                     <a href="tours/tour5.html" target="_blank" class="item">
                         <img src="assets/img/5.jpg" alt="">
-                        <h3 class="item-title border">Mona Lisa</h3>
+                        <h3 class="item-title border spasing">Mona Lisa</h3>
                         <p class="item-text">360° Virtual Tour</p>
                         <p class="item-text second-text">Google Street Panorama View</p>
                     </a>
                     <a href="tours/tour6.html" target="_blank" class="item">
                         <img src="assets/img/6.jpg" alt="">
-                        <h3 class="item-title border">Night Palace</h3>
+                        <h3 class="item-title border spasing">Night Palace</h3>
                         <p class="item-text">360° Virtual Tour</p>
                         <p class="item-text second-text">Google Street Panorama View</p>
                     </a>
@@ -117,9 +137,9 @@
                 <div class="container explore">
                     <div class="explore-content">
                         <h2 class="section-title title-explore">Picture explore</h2>
-                        <p class="explore-text">Las Meninas is a 1656 painting by Diego Velázquez, the leading artist of the Spanish Golden Age.</p>
-                        <p class="explore-text">It was cleaned in 1984 to remove a <span class="yellow">"yellow veil"</span> of dust that had gathered since the previous restoration in the 19th century.</p>
-                        <p class="explore-text">The cleaning provoked furious protests, not because the picture had been damaged in any way, but because it looked different.</p>
+                        <p class="explore-text unvisibled">Las Meninas is a 1656 painting by Diego Velázquez, the leading artist of the Spanish Golden Age.</p>
+                        <p class="explore-text unvisibled">It was cleaned in 1984 to remove a <span class="yellow">"yellow veil"</span> of dust that had gathered since the previous restoration in the 19th century.</p>
+                        <p class="explore-text hidden unvisibled">The cleaning provoked furious protests, not because the picture had been damaged in any way, but because it looked different.</p>
                     </div>
                     <div class="explore-slider">
                         <img class="explore-image" src="assets/img/explore.jpg" alt="">
@@ -130,37 +150,33 @@
                 <div class="container">
                     <div class="video-content">
                         <h2 class="section-title title-video">Video journey</h2>
-                        <p class="video-text">Enter and visit one of the most famous museums in the world and enjoy masterpieces such as Mona Lisa or Hammurabi's Code</p>
+                        <p class="video-text hidden">Enter and visit one of the most famous museums in the world and enjoy masterpieces such as Mona Lisa or Hammurabi's Code</p>
                     </div>
                     <div class="video">
-                        <img src="assets/img/video.jpg" alt="">
+                        <div class="main-video">
+                            <iframe class="main-iframe" width="1440" height="735" src="https://www.youtube.com/embed/zp1BXPX8jcU" loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
                         <div class="progress-bar">
                             <img src="assets/svg/play.svg" alt="play">
-                            <input type="range" value="54" min="0" max="100" class="progress" step="1">
+                            <input type="range" value="54" min="0" max="100" class="progress unvisibled" step="1">
+                            <input type="range" value="31" min="0" max="100" class="progress disabled" step="1">
                             <img src="assets/svg/volume.svg" alt="volume">
-                            <input type="range" value="44" min="0" max="100" class="progress-volume">
+                            <input type="range" value="44" min="0" max="100" class="progress-volume unvisibled">
+                            <input type="range" value="39" min="0" max="100" class="progress-volume disabled">
                             <img src="assets/svg/scale.svg" alt="scale">
                         </div>                      
                     </div>
                     <div class="video-slider">
                         <div class="slider">
                             <div class="video-slide">
-                                <iframe width="452" height="254" src="https://www.youtube.com/embed/zp1BXPX8jcU" loading="lazy" srcdoc="<style>*{padding:0;margin:0;overflow:hidden}
-                                    html,body{height:100%}
-                                    img,span{position:absolute;width:20px;padding:0 29px 0 25px;top:0;bottom:0;left:0;right:0;margin:auto;cursor:pointer;border:4px solid white;border-radius:50%}
-                                    span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black;}
-                                    span:hover{color:#710707;border-color:#710707;transition:.3s}
-                                </style>
-                                    <a href=https://www.youtube.com/embed/zp1BXPX8jcU
-                                    <img src=https://www.youtube.com/embed/zp1BXPX8jcU/hqdefault.jpg alt='Demo video'>
-                                    <span>▶</span>
-                                    </a>" style="border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                <div class="prew">
+                                <iframe class="slider-iframe" width="452" height="254" src="https://www.youtube.com/embed/zp1BXPX8jcU" loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <!-- <div class="prew">
                                     <img class="prew-image" src="assets/video/poster0.jpg" alt="">
-                                </div>
+                                </div> -->
                             </div>
                             <div class="video-slide">
-                                <iframe width="452" height="254" src="https://www.youtube.com/embed/Vi5D6FKhRmo" loading="lazy" srcdoc="<style>*{padding:0;margin:0;overflow:hidden}
+                                <iframe class="slider-iframe" width="452" height="254" src="https://www.youtube.com/embed/Vi5D6FKhRmo" loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                               <!--  <iframe class="iframe" width="452" height="254" src="https://www.youtube.com/embed/Vi5D6FKhRmo" loading="lazy" srcdoc="<style>*{padding:0;margin:0;overflow:hidden}
                                     html,body{height:100%}
                                     img,span{position:absolute;width:20px;padding:0 29px 0 25px;top:0;bottom:0;left:0;right:0;margin:auto;cursor:pointer;border:4px solid white;border-radius:50%}
                                     span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black;}
@@ -169,13 +185,14 @@
                                     <a href=https://www.youtube.com/embed/Vi5D6FKhRmo
                                     <img src=https://www.youtube.com/embed/zp1BXPX8jcU/hqdefault.jpg alt='Demo video'>
                                     <span>▶</span>
-                                    </a>" style="border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                <div class="prew">
+                                    </a>" style="border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+                                <!-- <div class="prew">
                                     <img class="prew-image" src="assets/video/poster1.jpg" alt="">
-                                </div>
+                                </div> -->
                             </div>
                             <div class="video-slide">
-                                <iframe width="452" height="254" src="https://www.youtube.com/embed/NOhDysLnTvY" loading="lazy" srcdoc="<style>*{padding:0;margin:0;overflow:hidden}
+                                <iframe class="slider-iframe unvisibled" width="560" height="315" src="https://www.youtube.com/embed/NOhDysLnTvY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <!-- <iframe class="iframe" width="452" height="254" src="https://www.youtube.com/embed/NOhDysLnTvY" loading="lazy" srcdoc="<style>*{padding:0;margin:0;overflow:hidden}
                                     html,body{height:100%}
                                     img,span{position:absolute;width:20px;padding:0 29px 0 25px;top:0;bottom:0;left:0;right:0;margin:auto;cursor:pointer;border:4px solid white;border-radius:50%}
                                     span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}
@@ -184,10 +201,10 @@
                                     <a href=https://www.youtube.com/embed/NOhDysLnTvY
                                     <img src=https://www.youtube.com/embed/zp1BXPX8jcU/hqdefault.jpg alt='Demo video'>
                                     <span>▶</span>
-                                    </a>" style="border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                <div class="prew">
+                                    </a>" style="border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+                                <!-- <div class="prew">
                                     <img class="prew-image" src="assets/video/poster2.jpg" alt="">
-                                </div>
+                                </div> -->
                             </div>
                            
                         </div>
@@ -228,7 +245,7 @@
                     <div class="tickets-content">
                         <div class="content-container">
                             <img class="tickets-image" src="assets/img/tickets.jpg" alt="">
-                            <div class="tickets-type">
+                            <div class="tickets-type hidden">
                                 <h4>Ticket Type</h4>
                                 <label class="container-type">Permanent exhibition
                                     <input type="radio" checked="checked" name="radio">
@@ -263,7 +280,7 @@
                                 </div>
                                 <button class="plus seniorPlus">+</button>
                             </div>
-                            <span class="total">Total €220</span>
+                            <span class="total">Total € 220</span>
                             <button type="button" class="tickets__button">Buy Now</button>
                         </div>
                     </div>

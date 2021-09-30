@@ -10,11 +10,14 @@ const button = document.querySelector('.tickets__button');
 const modal = document.querySelector('.tickets-modal');
 const opacity = document.querySelector('.cover');
 const closeBtn = document.querySelector('.close');
-
+const screenWidth = window.screen.width
   
 progress.addEventListener('input', function() {
   const value = this.value;
-  this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #fff ${value}%, white 100%)`
+  this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #fff ${value}%, white 100%)`;
+  if(screenWidth <= 768) {
+    this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #fff ${value}%, white 100%)`;
+  }
 })
 
   
@@ -65,3 +68,20 @@ opacity.addEventListener('click', function() {
   modal.classList.remove('move');
   opacity.classList.remove('visible')
 });
+
+const images = document.querySelectorAll('.carousel .slides-container img')
+const slidesContainer = document.querySelector('.slides-container')
+
+let count = 0;
+let width;
+
+function init() {
+  width = document.querySelector('.carousel').offsetWidth;
+  slidesContainer.style.width = width * images.length + 'px';
+  images.forEach(image => {
+    image.style.width = width + 'px';
+    image.style.height = 'auto';
+  })
+}
+
+window.addEventListener('resize', init())
