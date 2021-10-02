@@ -1,3 +1,9 @@
+@media (max-width: 945px) {
+    .video-slider {
+        margin-top: 50px;
+    }
+    }
+
 @media (max-width: 768px) {
     .container {
         max-width: 728px;
@@ -253,20 +259,33 @@
         }
 
         .slider {
-            column-gap: 0;
+        margin-top: 20px;
             display: flex;
-            justify-content: space-between;
-            max-width: 728px;
-            width: 100%;
+    transition: all ease 1s;
+    transition-duration: 0ms;
+   /*  transform: translate3d(-1000px, 0px, 0px); */
+    position: relative;
+    width: 1102px;
+    z-index: 0;
+    display: flex;
+    transition-property: transform;
+    box-sizing: content-box;
         }
 
         .video-slider {
-            margin-top: 20px;
+        
+            max-width: 728px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            overflow: hidden;
+            padding: 0;
+            z-index: 0;
         }
 
         .video-slide {
-            padding: 0 0 27.25% 0;
-        }
+            padding: 0 0 20.25% 0;
+        } 
 
         .video-secrion {
             padding-bottom: 49px;

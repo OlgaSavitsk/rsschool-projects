@@ -7,6 +7,7 @@
         display: none;
     } */
 }
+
 @media (max-width: 1024px) {
     .container {
         max-width: 984px;
@@ -268,7 +269,7 @@
 
         .progress-bar {
             height: 60px;
-            bottom: 51px;
+            bottom: 0;
         }
         .video-content {
             margin-bottom: 35px;
@@ -285,7 +286,7 @@
         }
 
         .video-slider {
-            margin-top: -11px;
+            margin-top: 50px;
         }
 
         .video-secrion {

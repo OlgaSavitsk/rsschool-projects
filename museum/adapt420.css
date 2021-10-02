@@ -1,3 +1,13 @@
+@media (max-width: 650px) {
+.footer-list {
+    column-gap: 20px;
+}
+
+.footer-content {
+    gap: 40px;
+}
+}
+
 @media (max-width: 420px) {
     .container {
         max-width: 380px;
@@ -94,14 +104,35 @@
             height: 100%;
         }
         .dots-welcome {
-            width: 380px;
             height: 80px;
             justify-content: flex-end;
             z-index: 10;
             bottom: 23px;
         }
         .right {
-            margin-right: 163px;
+            margin-right: 75px;
+            padding-left: 14px;
+        }
+
+        .dots_button-welcome {
+            padding-left: 15px;
+        }
+
+        .dots_button-welcome svg {
+            width: 20px;
+            height: 8px;
+            padding-left: 0;
+        }
+
+        .dots-text {
+            font-size: 14px;
+            margin-right: 22px;
+        }
+
+        .dots-slide-welcome {
+            width: 7px;
+            height: 7px; 
+            margin-right: 10px;
         }
 
         .carousel {
@@ -152,13 +183,13 @@
         }
 
         #visiting {
-            padding-bottom: 83px;
+            padding-bottom: 42px;
             height: 100%;
         }
 
         .title-visiting {
             margin-top: 38px;
-            padding-bottom: 17px;
+            padding-bottom: 18px;
             text-align: left;
         }
 
@@ -169,7 +200,7 @@
         .items-container {  
             justify-content: center;       
             padding-top: 43px;
-            row-gap: 43px;
+            row-gap: 44px;
             max-width: 616px;
             column-gap: 56px;
         }
@@ -179,12 +210,12 @@
         }
 
         .explore-content {
-            margin-top: 42px;
+            margin-top: 39px;
         }
 
         .title-explore {
             text-align: left;
-            padding-bottom: 22px;
+            padding-bottom: 17px;
             margin-bottom: -17px;
         }
 
@@ -202,13 +233,13 @@
         }
 
         .explore-image {
-            max-width: 728px;
+            max-width: 380px;
             width: 100%;
-            height: 705px;
+            height: 368px;
         }
 
         .explore-section {
-            padding-bottom: 38px;
+            padding-bottom: 40px;
         }
 
         .progress {
@@ -217,13 +248,13 @@
             top: -2px;
             width: 100%;
             height: 5px;
-            max-width: 728px;
+            max-width: 380px;
         }
 
         .progress-volume {
             background: linear-gradient(to right, #710707 0%, #710707 40%, #fff 40%, #fff 100%);
             height: 4px;
-            max-width: 486px;
+            max-width: 200px;
             width: 100%;
         }
 
@@ -238,7 +269,7 @@
           }
 
         .progress-bar {
-            height: 57px;
+            height: 54px;
             bottom: 0;
         }
 
@@ -247,48 +278,71 @@
         }
 
         img {
-            width: 27px;
+            width: 18px;
         }
         .video-content {
-            margin-top: 42px;
-            margin-bottom: 23px;
+            margin-top: 35px;
+            margin-bottom: 17px;
         }
 
         .main-video {
-            padding: 0px 0 53% 0;
+            padding: 0px 0 60% 0;
         }
 
         .main-iframe {
-            width: 728px;
+            width: 380px;
+            height: 226px;
         }
 
         .slider-iframe {
-            width: 354px;
-            height: 199px;
+            width: 180px;
+            height: 101px;
         }
 
         .slider {
-            column-gap: 0;
-            display: flex;
-            justify-content: space-between;
-            max-width: 728px;
-            width: 100%;
-        }
-
-        .video-slider {
             margin-top: 20px;
-        }
-
-        .video-slide {
-            padding: 0 0 27.25% 0;
-        }
+                display: flex;
+        transition: all ease 1s;
+        transition-duration: 0ms;
+       /*  transform: translate3d(-1000px, 0px, 0px); */
+        position: relative;
+        width: 585px;
+        column-gap: 16px;
+        z-index: 0;
+        display: flex;
+        transition-property: transform;
+        box-sizing: content-box;
+            }
+    
+            .video-slider {
+                margin-top: 19px;
+                max-width: 380px;
+                width: 100%;
+                height: 100%;
+                margin-left: auto;
+                margin-right: auto;
+                overflow: hidden;
+                padding: 0;
+                z-index: 0;
+            }
+    
+            .video-slide {
+                width: 110%;
+                padding: 0 0 18.25% 0;
+            } 
 
         .video-secrion {
-            padding-bottom: 49px;
+            padding-bottom: 6px;
         }
 
         .dots {
-            margin-top: 21px;
+            margin-top: 33px;
+            gap: 16px;
+        }
+
+        .dots-slide {
+            width: 8px;
+            height: 8px;
         }
 
         .galery {
@@ -303,12 +357,13 @@
         }
 
         .inner-container {
-            height: 3000px;
+            height: 2300px;
             column-gap: 26px;
         }
 
         .picture {
-            max-width: 352px;
+            max-width: 178px;
+            width: 100%;
         }
 
         .inner-container:after {
@@ -318,17 +373,17 @@
         }
 
         .picture-container {
-            height: 1122px;
+            height: 672px;
         }
 
         .inner-container:first-child {
-            margin-top: 93px;
+            margin-top: 85px;
         }
 
         .content-container {
-            max-width: 444px;
+            max-width: 380px;
             width: 100%;
-            height: 340px;
+            height: 160px;
         }
 
         .tickets {
@@ -336,7 +391,22 @@
         }
 
         .tickets-content {
-            margin-top: 42px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 40px;
+           ;
+        }
+
+        .amount {
+            margin-top: 33px;
+            max-width: 175px;
+            width: 100%;
+            align-items: center;
+        }
+
+        .amount-title {
+            font-size: 16px;
         }
 
         .tickets-image {
@@ -344,26 +414,25 @@
             height: 100%;
         }
 
-        .amount {
-            width: 31%;
-            align-items: flex-start;
-        }
-
         .count-subtitle {
-            margin: 36px 0 7px 4px;
+            font-size: 16px;
+            margin: 10px 0 11px 0px;
         }
 
         .counter {
-            margin-bottom: -5px;
+            margin-bottom: 6px;
+            width: 167px;
         }
 
         .total {
-            margin-top: 43px;
-            letter-spacing: 3px;
+            margin-top: 26px;
+            font-size: 16px;
+            letter-spacing: 0;
         }
 
         .tickets__button {
-            margin-top: 39px;
+            margin-top: 33px;
+            font-size: 16px;
         }
 
         .parallax {
@@ -372,7 +441,7 @@
 
         .contacts-image {
             margin-top: 32px;
-            width: calc(95vw);
+            width: calc(90vw);
             height: calc(62vw);
           }
 
@@ -383,52 +452,58 @@
           }
 
           h5 {
-              font-size: 20px;
-              width: 65%;
-              line-height: 24px;
-              margin-bottom: 34px;
+              font-size: 16px;
+              width: 58%;
+              line-height: 21px;
+              margin-bottom: 29px;
           }
 
           .adress {
-              width: 35%;
+              width: 59%;
           }
 
           .adress-link {
-              font-size: 18px;
+              font-size: 16px;
               line-height: 36px;
               margin: 0;
               text-align: left;
           }
 
           .contacts-section {
-              padding-bottom: 66px;
+              padding-bottom: 24px;
           }
           .footer-container {
-            padding: 49px 0 41px;
+            padding: 35px 0 14px;
             flex-direction: column;
           }
 
           .footer-content {
-              gap: 98px;
+              gap: 28px;
+              flex-direction: column;
           }
 
           .footer-list {
-              max-width: 393px;
-              width: 100%;
+            max-width: 380px;
+            width: 100%;
             row-gap: 18px;
-            height: 171px;
-            column-gap: 184px;
+            height: 86px;
+            column-gap: 89px;
           }
 
           .social {
-            margin-right: 90px;
+            margin-right: 0;
+            width: 260px;
             display: flex;
             padding-bottom: 0px;
-            justify-content: flex-end;
+            margin: 27px auto;
+        }
+
+        .social-list {
+            gap: 5px;
         }
 
           .footer-link {
-            font-size: 18px;
+            font-size: 16px;
           }
 
           .footer-item {
@@ -439,8 +514,16 @@
               height: 100px;
           }
 
+          .conf-text {
+              font-size: 16px;
+          }
+
           .conf-container {
-              max-width: 728px;
+              max-width: 380px;
               margin-top: 37px;
+          }
+
+          .rss {
+              display: none;
           }
   }
