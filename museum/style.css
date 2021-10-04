@@ -78,6 +78,11 @@ main {
     transform: uppercase;
 }
 
+/* .hamburger-menu {
+    opacity: 0;
+    visibility: hidden;
+} */
+
 .navigation {
 width: 804px;
 }
@@ -122,33 +127,67 @@ width: 804px;
 }
 
 .welcome_wrapper {
+    position: relative;
     display: flex;
 }
 
 .welcome-content {
+    position: relative;
     padding: 0 0 60px;
     width: 100%;
     height: 810px;
     display: flex;
     flex-direction: column;
     background: #030303;
-    background-image: url(assets/img/welcome.jpg);
+   /*  background-image: url(assets/img/welcome.jpg);
     background-repeat: no-repeat;
-    background-position: calc(100%) calc(100% - 62px); 
+    background-position: calc(100%) calc(100% - 62px);  */
     height: 750px;
 }
 
 .carousel {
     position: absolute;
     top: 0;
-    right: 0;
-    width: 100%;
+    right: 40px;
+    width: 1000px;
+    height: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    padding: 0;
+    z-index: 0;
 }
 
 .slides-container {
-    position: relative;
     display: flex;
+    transition: all ease 1s;
+    transition-duration: 0ms;
+   /*  transform: translate3d(-1000px, 0px, 0px); */
+    position: relative;
     width: 100%;
+    z-index: 0;
+    display: flex;
+    transition-property: transform;
+    box-sizing: content-box;
+}
+
+.slide {
+    display: none;
+    animation: .5s ease-in-out;
+}
+.active-slide {
+    display: block;
+}
+
+.slides-container:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1000px;
+    height: 750px;
+    background: linear-gradient(90deg, #000000 0%, rgba(0, 0, 0, 0.5) 16.19%, rgba(0, 0, 0, 0) 30.73%);
+    z-index: 0;
 }
 
 .welcome_button {
@@ -165,6 +204,7 @@ width: 804px;
     color: #FFFFFF;
     border-style: none;
     text-decoration: none;
+    z-index: 1;
 }
 
 .welcome_button:hover {
@@ -173,12 +213,15 @@ width: 804px;
 }
 
 .dots-welcome {
-    transform: translate(140%, 127%);
+    position: absolute;
+    bottom: 0;
+    right: 0;
     display: flex;
     align-items: center;
-    max-width: 600px;
+    width: 600px;
     height: 120px;
     background: #030303;
+    z-index: 1;
 }
 
 .dots_button-welcome {
@@ -198,12 +241,12 @@ width: 804px;
     margin: 0 52px 0 74px;
     letter-spacing: 2px;
     font-family: Roboto;
-font-style: normal;
-font-weight: normal;
-font-size: 22px;
-line-height: 40px;
-text-transform: uppercase;
-color: #FFFFFF;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 40px;
+    text-transform: uppercase;
+    color: #FFFFFF;
 }
 
 .dots-slide-welcome {
@@ -233,6 +276,7 @@ color: #FFFFFF;
     letter-spacing: 5px;
     text-transform: uppercase;  
     color: #FFFFFF;
+    z-index: 1;
 }
 
 p {
@@ -243,6 +287,7 @@ p {
     line-height: 33px;
     letter-spacing: 2px;
     color: #FFFFFF;
+    z-index: 1;
 }
 
 .title-visiting {
@@ -251,6 +296,8 @@ p {
     color: #9D8665;
     width: 1440px;
     border-bottom: 3px solid #710707;
+    display: block;
+    width: 100%;
 }
 
 .items-container {
@@ -350,7 +397,8 @@ p {
 }
 
 .explore-image {
-    width: 720px;
+    max-width: 720px;
+    width: 100%;
     height: 700px;
 }
 
@@ -393,22 +441,67 @@ p {
 }
 
 .video {
+    position: relative;
   font-size: 0;
 }
 
+.main-video {
+    position:relative;
+    padding: 0 0 56.25% 0;
+    height:0;
+    overflow:hidden;
+}
+
+.maim-iframe {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+}
+
+.video-slide {
+    position:relative;
+    padding: 0 0 17.25% 0;
+    height:0;
+    width: 100%;
+    overflow:hidden;
+}
+
+.disabled {
+    display: none;
+}
+
+.slider-iframe {
+    position:absolute;
+    top:0;
+    left:0;
+    width:452px;
+    height:254px;
+} 
+
 .progress-bar {
-    width: 1440px;
+    position: absolute;
+    bottom: 0;  
+    width: 100%;
+    background: #000000;
+}
+
+.progress-bar_container {
+    max-width: 1380px;
     height: 85px;
+    width: 100%;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background: #000000;
 }
 
 .progress { 
     background: linear-gradient(to right, #710707 0%, #710707 54%, #fff 54%, #fff 100%); 
     height: 8px;
-    width: 929px;
+    max-width: 929px;
+    width: 100%;
     outline: none;
     transition: 450ms ease-in;
     border: none;
@@ -425,8 +518,7 @@ p {
     background: #FFFFFF;
   }
 
-  .progress-volume {
-     
+  .progress-volume {    
       background: linear-gradient(to right, #710707 0%, #710707 44%, #fff 44%, #fff 100%); 
     height: 8px;
     width: 155px;
@@ -447,6 +539,8 @@ p {
   }
 
 .video-slider {
+    max-width: 1440px;
+    width: 100%;
     margin-top: 40px;
 }
 
@@ -548,6 +642,7 @@ p {
 
 .picture {
     max-width: 455px;
+    width: 100%;
     height: auto;
     object-fit: contain;
 }
@@ -573,6 +668,7 @@ p {
 
 .content-container {
     max-width: 1050px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
 }
@@ -580,8 +676,6 @@ p {
 .tickets-type {
 display: flex;
 flex-direction: column;
-width: 100%;
-padding-left: 57px;
 }
 
 h4 {
@@ -760,7 +854,8 @@ color: #000000;
 
 .tickets__button {
     margin-top: 60px;
-    width: 175px;
+    max-width: 175px;
+    width: 100%;
     height: 50px;
     background: #000000;
     border-radius: 2px;
@@ -831,7 +926,7 @@ letter-spacing: 0;
 }
 
 .contacts-image {
-    width: 960px;
+    width: 100%;
     height: 620px;
 }
 
@@ -889,7 +984,10 @@ text-decoration: none;
 
 .social-item {
     width: 48px;
-    height: 48px;
+    height: 48px;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 1px solid #666666;
     box-sizing: border-box;
     filter: drop-shadow(0px 0px 0px #666666);
@@ -902,10 +1000,6 @@ text-decoration: none;
 
 .social-item:hover > .social-link svg path {
     fill:#9D8665;
-}
-
-.social-link svg {
-    transform: translate(50%, 50%);
 }
 
 .conf-container {
@@ -1163,10 +1257,10 @@ select[name="tickets"] {
     width: 1440px;
     top: calc(50vh - 422.5px);
     left: calc(50vw - 730px);
-    transform: translate(-115%);
+    transform: translate(-150%);
     z-index: 2;
+    opacity: 1;
     transition: 0.3s;
-    opacity: 0;
     visibility: hidden;
 }
 
@@ -1178,7 +1272,7 @@ select[name="tickets"] {
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
-    opacity: 0;
+    opacity: 1;
     visibility: hidden;
   }
 
@@ -1450,4 +1544,3 @@ label[for="code"] {
     background: #FFFFFF;
     border: 0.5px solid #A4A4A3;
 }
-
