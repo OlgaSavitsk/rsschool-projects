@@ -10,7 +10,11 @@ const button = document.querySelector('.tickets__button');
 const modal = document.querySelector('.tickets-modal');
 const opacity = document.querySelector('.cover');
 const closeBtn = document.querySelector('.close');
-const screenWidth = window.screen.width
+const screenWidth = window.screen.width;
+const images = document.querySelectorAll('.carousel .slides-container img')
+const slidesContainer = document.querySelector('.slides-container')
+
+let width;
   
 progress.addEventListener('input', function() {
   const value = this.value;
@@ -69,11 +73,6 @@ opacity.addEventListener('click', function() {
   opacity.classList.remove('visible')
 });
 
-const images = document.querySelectorAll('.carousel .slides-container img')
-const slidesContainer = document.querySelector('.slides-container')
-
-let count = 0;
-let width;
 
 function init() {
   width = document.querySelector('.carousel').offsetWidth;

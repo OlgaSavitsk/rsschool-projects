@@ -6,6 +6,10 @@
 .footer-content {
     gap: 40px;
 }
+
+.amout {
+    width: 48%;
+}
 }
 
 @media (max-width: 420px) {
@@ -29,6 +33,7 @@
     }     
       .menu__btn {
         top: 6%;
+        right: 5%;
       }
         .navigation {
             display: block;
@@ -337,7 +342,7 @@
 
         .dots {
             margin-top: 33px;
-            gap: 16px;
+            gap: 20px;
         }
 
         .dots-slide {
@@ -527,3 +532,9 @@
               display: none;
           }
   }
+
+  @media (max-width: 400px) {
+    .footer-list {
+        column-gap: 6px;
+        }
+    }

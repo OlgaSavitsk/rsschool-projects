@@ -31,18 +31,20 @@
                 <label class="menu__btn" for="menu__toggle">
                     <span></span>
                 </label>
+                <nav class="navigation">
+                    <ul class="navigation-list">
+                        <li class="navigation-item">
+                            <a href="#visiting" class="navigation_link">Visiting</a>
+                        </li>
+                        <li class="navigation-item"><a href="#explore" class="navigation_link">Explore</a></li>
+                        <li class="navigation-item"><a href="#video" class="navigation_link">Video</a></li>
+                        <li class="navigation-item"><a href="#gallery" class="navigation_link">Gallery</a></li>
+                        <li class="navigation-item"><a href="#tickets" class="navigation_link">Tickets</a></li>
+                        <li class="navigation-item navigation_contacts"> <a href="#contacts" class="navigation_link">Contacts</a></li>
+                    </ul>
+                </nav>
              </div>
-            <nav class="navigation">
-                <ul class="navigation-list">
-                    <li class="navigation-item">
-                        <a href="#visiting" class="navigation_link">Visiting</a></li>
-                    <li class="navigation-item"><a href="#explore" class="navigation_link">Explore</a></li>
-                    <li class="navigation-item"><a href="#video" class="navigation_link">Video</a></li>
-                    <li class="navigation-item"><a href="#gallery" class="navigation_link">Gallery</a></li>
-                    <li class="navigation-item"><a href="#tickets" class="navigation_link">Tickets</a></li>
-                    <li class="navigation-item navigation_contacts"> <a href="#contacts" class="navigation_link">Contacts</a></li>
-                </ul>
-            </nav>
+            
         </div>
     </header>
     <main>
@@ -157,6 +159,7 @@
                             <iframe class="main-iframe" width="1440" height="735" src="https://www.youtube.com/embed/zp1BXPX8jcU" loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                         <div class="progress-bar">
+                            <div class="progress-bar_container">
                             <img src="assets/svg/play.svg" alt="play">
                             <input type="range" value="54" min="0" max="100" class="progress unvisibled" step="1">
                             <input type="range" value="31" min="0" max="100" class="progress disabled" step="1">
@@ -164,6 +167,7 @@
                             <input type="range" value="44" min="0" max="100" class="progress-volume unvisibled">
                             <input type="range" value="39" min="0" max="100" class="progress-volume disabled">
                             <img src="assets/svg/scale.svg" alt="scale">
+                        </div>
                         </div>                      
                     </div>
                     <div class="video-slider">
@@ -356,7 +360,7 @@
     <div class="tickets-modal">
         <div class="container modal-container">
             <div class="modal-content">
-                <img src="assets/svg/logo_tickets.svg" alt="">
+                <img class="madal-logo" src="assets/svg/logo_tickets.svg" alt="">
                 <h2 class="title-modal">Booking tickets</h2>
                 <p class="modal-subtitle">Tour to Louvre</p>
                 <form>
