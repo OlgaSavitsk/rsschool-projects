@@ -15,7 +15,7 @@ let srcImage = [
      `<img class="picture" src="assets/img/galery12.jpg" alt="galery1">`,
      `<img class="picture" src="assets/img/galery13.jpg" alt="galery1">`,
      `<img class="picture" src="assets/img/galery14.jpg" alt="galery1">`,
-     `<img class="picture" src="assets/img/galery15.jpg" alt="galery1">`,
+     /* `<img class="picture" src="assets/img/galery15.jpg" alt="galery1">`, */
 ]
 
 window.onload = () => (
