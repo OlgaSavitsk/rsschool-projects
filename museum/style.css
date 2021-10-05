@@ -613,7 +613,12 @@ p {
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
 }
 
+#menu__toggle {
+    opacity: 0;
+  }
+
 .inner-container {
+    position: relative;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;

@@ -21,7 +21,8 @@
     }
 
     .logo {
-        width: 139px;
+        width: 135px;
+        height: 28px;
     }
 
     .logo-title {
@@ -32,7 +33,7 @@
         height: 26px;
     }     
       .menu__btn {
-        top: 6%;
+        top: 8%;
         right: 5%;
       }
         .navigation {
@@ -363,7 +364,8 @@
 
         .inner-container {
             height: 2300px;
-            column-gap: 26px;
+            column-gap: 12px;
+            margin-top: 12px;
         }
 
         .picture {
@@ -382,7 +384,7 @@
         }
 
         .inner-container:first-child {
-            margin-top: 85px;
+            margin-top: 12px;
         }
 
         .content-container {
@@ -500,7 +502,8 @@
             width: 260px;
             display: flex;
             padding-bottom: 0px;
-            margin: 27px auto;
+            margin: 31px auto;
+            margin-bottom: 26px;
         }
 
         .social-list {

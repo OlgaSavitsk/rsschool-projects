@@ -5,6 +5,10 @@
     }
 
 @media (max-width: 768px) {
+    .logo {
+        height: 22px;
+    }
+
     .container {
         max-width: 728px;
     }
@@ -16,7 +20,8 @@
     }
       
       .menu__btn {
-        top: 6%;
+        top: 10%;
+        right: 3%;
       }
         .navigation {
             display: block;
@@ -60,7 +65,7 @@
             font-size: 40px;
             margin-top: 50px;
             text-align: center;
-            line-height: 56px;
+            line-height: 60px;
             margin: 0;
         }
        .unvisibled {
@@ -69,6 +74,7 @@
         p {
             font-size: 20px;
             text-align: center;
+            margin-top: 20px;
         }
         .project-image {
             width: 728px;
@@ -91,6 +97,15 @@
             justify-content: flex-end;
             z-index: 10;
         }
+
+        .dots-text {
+            margin-right: 45px;
+        }
+
+        .dots-slide-welcome {
+            margin-right: 24px;
+        }
+
         .right {
             margin-right: 163px;
         }
@@ -115,8 +130,9 @@
         }
 
         .item-title {
-            letter-spacing: 0px;
+            letter-spacing: 3px;
             margin-top: 15px;
+            font-size: 22px;
         }
 
         .item-title:after {
@@ -144,8 +160,8 @@
         }
 
         .title-visiting {
-            margin-top: 43px;
-            padding-bottom: 20px;
+            margin-top: 41px;
+            padding-bottom: 18px;
             text-align: left;
         }
 
@@ -154,14 +170,14 @@
         }
 
         .items-container {         
-            padding-top: 43px;
+            padding-top: 39px;
             row-gap: 43px;
             max-width: 616px;
             column-gap: 56px;
         }
 
         .spasing {
-            letter-spacing: 0px;
+            letter-spacing: 3px;
         }
 
         .explore-content {
@@ -243,7 +259,7 @@
         }
         .video-content {
             margin-top: 42px;
-            margin-bottom: 23px;
+            margin-bottom: 17px;
         }
 
         .main-video {
@@ -271,6 +287,7 @@
     display: flex;
     transition-property: transform;
     box-sizing: content-box;
+    column-gap: 20px;
         }
 
         .video-slider {
@@ -309,11 +326,12 @@
 
         .inner-container {
             height: 3100px;
-            column-gap: 26px;
+            column-gap: 14px;
         }
 
         .picture {
             max-width: 352px;
+            width: 100%;
         }
 
         .inner-container:after {
@@ -323,7 +341,7 @@
         }
 
         .picture-container {
-            height: 1122px;
+            height: 1117px;
         }
 
         .inner-container:first-child {

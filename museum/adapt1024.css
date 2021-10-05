@@ -9,6 +9,9 @@
 }
 
 @media (max-width: 1024px) {
+
+    
+    
     .container {
         max-width: 984px;
         margin: 0 auto;
@@ -56,9 +59,9 @@
         display: flex;
         align-items: center;
         position: fixed;
-        top: 5%;
+        top: 13%;
         right: 2%;
-        width: 29px;
+        width: 31px;
         height: 26px;
         cursor: pointer;
         z-index: 11;
@@ -367,6 +370,7 @@
 
         .inner-container {
             height: 2050px;
+            column-gap: 0;
         }
 
         .picture {
