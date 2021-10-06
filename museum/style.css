@@ -179,7 +179,7 @@ width: 804px;
     display: block;
 }
 
-.slides-container:before {
+.carousel:after {
     content: "";
     position: absolute;
     top: 0;
@@ -188,6 +188,10 @@ width: 804px;
     height: 750px;
     background: linear-gradient(90deg, #000000 0%, rgba(0, 0, 0, 0.5) 16.19%, rgba(0, 0, 0, 0) 30.73%);
     z-index: 0;
+}
+
+.dots-container {
+    display: flex;
 }
 
 .welcome_button {
@@ -257,7 +261,7 @@ width: 804px;
     cursor: pointer;
 }
 
-.active {
+.active-dot {
     background: #9D8665;
 }
 
@@ -1593,4 +1597,57 @@ label[for="code"] {
     height: 35px;
     background: #FFFFFF;
     border: 0.5px solid #A4A4A3;
+}
+
+.project-image {
+    position: relative;
+    display: none;
+    animation: 0.5s ease-in-out;
+}
+
+.active,
+.next {
+    display: block;
+}
+
+.next {
+    position: absolute;
+    top: 0;
+    width: 100%;
+} 
+
+.to-left {
+    animation-name: left;
+}
+
+.to-right {
+    animation-name: right;
+    animation-direction: reverse;
+}
+
+.from-left {
+    animation-name: left;
+    animation-direction: reverse;
+}
+
+.from-right {
+    animation-name: right;
+}
+
+@keyframes left {
+    from {
+        left: 0;
+    }
+    to {
+        left: -100%;
+    }
+}
+
+@keyframes right {
+    from {
+        left: 100%;
+    }
+    to {
+        left: 0;
+    }
 }
