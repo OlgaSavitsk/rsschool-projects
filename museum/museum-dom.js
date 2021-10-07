@@ -1,5 +1,6 @@
 const items = document.querySelectorAll('.project-image')
 const dots = document.querySelectorAll('.dots-slide-welcome')
+const dotsContainer = document.querySelector('.dots-container')
 const slideNumber = document.querySelector('.dots-text')
 
 let currentItem = 0;
@@ -50,22 +51,22 @@ function nextItem(n) {
         }
     });
 
-dots.forEach((dot, index) => {
-    
-    dot.addEventListener('click', function() {
-        slideNumber.innerHTML = `0${index+1} / 05`;
-        this.classList.add('active-dot')
-        console.log(index)
-        if(isEnabled){
-            nextItem(index)
-        }  
-        this.previousElementSibling.classList.remove('active-dot')
-       /*  if(index === 0) {
-            this.classList.add('active-dot')
-        }  */ 
-       
-    }) 
-})
+dotsContainer.addEventListener('mousedown', function(event) {
+   if(event.target.className != 'dots-slide-welcome') return 
+    dots.forEach((dot, index) => {
+            dot.classList.remove('active-dot')
+            dot.addEventListener('click', () => {
+                slideNumber.innerHTML = `0${index+1} / 05`;
+                console.log(index)
+                if(isEnabled){
+                    hideItem('to-left')
+                    changeCurrentItem(index)
+                    showItem('from-right')             
+                }  
+            })                    
+        }) 
+        event.target.classList.add('active-dot');
+})  
 
 
 const swipedetect = (el) => {
@@ -75,21 +76,21 @@ let startY = 0;
 let distX = 0;
 let distY = 0;
 let threshold = 100;
-let restrain = 100;
+let restrain = 750;
 let startTime = 0;
 let elapsedTime = 0;
 let allowedTime = 300;
 
 surface.addEventListener('mousedown', function(e) {
-    console.log('ok')
+    console.log(e.pageY)
 startX = e.pageX;
 startY = e.pageY;
 startTime = new Date().getTime();
 e.preventDefault()
 })
 
-
 surface.addEventListener('mouseup', function(e) {
+    console.log(restrain)
     distX = e.pageX - startX;
     distY = e.pageY - startY;
     elapsedTime = new Date().getTime() - startTime;
@@ -98,10 +99,12 @@ surface.addEventListener('mouseup', function(e) {
             if(distX > 0) {
                 if(isEnabled) {
                     previouseItem(currentItem);
+                    slideNumber.innerHTML = `0${currentItem+1} / 05`;
                 }
             } else {
                 if(isEnabled) {
                     nextItem(currentItem)
+                    slideNumber.innerHTML = `0${currentItem+1} / 05`;
                 }
             }
         }
@@ -111,3 +114,18 @@ surface.addEventListener('mouseup', function(e) {
 }
 var el = document.querySelector('.carousel')
 swipedetect(el)
+
+const iframes = document.querySelectorAll('.slider-iframe')
+const videoSlider = document.querySelector('.slider')
+
+videoSlider.addEventListener('mousedown', function(event) {
+    if(event.target.className != 'slider-iframe') return 
+    iframes.forEach((iframe) => {
+
+        iframe.setAttribute('src', '')
+        iframe.addEventListener('click', () => {          
+            let link = iframe.getAttribute('src')
+             })                    
+         }) 
+         event.target.setAttribute('src', link)
+ })  
