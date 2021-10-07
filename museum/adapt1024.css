@@ -185,6 +185,7 @@
         }
         .dots-welcome {
             width: 700px;
+            bottom: 0;
             justify-content: flex-end;
         }
         .right {
@@ -355,7 +356,9 @@
         }
 
         .dots {
-            padding-bottom: 15px;
+            padding-bottom: 9px;
+            margin-top: 41px;
+
         }
 
         .galery {
@@ -380,15 +383,15 @@
         .inner-container:after {
           max-width: 984px;
           width: 100%;
-          top: 855px;
+          top: 904px;
         }
 
         .picture-container {
-            height: 1242px;
+            height: 1318px;
         }
 
         .inner-container:first-child {
-            margin-top: 26px;
+            margin-top: 53px;
         }
 
         .content-container {
