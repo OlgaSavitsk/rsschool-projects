@@ -78,6 +78,7 @@ main {
     transform: uppercase;
 }
 
+.gh-pages
 .navigation {
 width: 804px;
 }
@@ -145,7 +146,6 @@ width: 804px;
     height: 750px;
     margin-left: auto;
     margin-right: auto;
-    overflow: hidden;
     padding: 0;
     z-index: 0;
 }
@@ -160,6 +160,7 @@ width: 804px;
     display: flex;
     transition-property: transform;
     box-sizing: content-box;
+    overflow-x: hidden;
 }
 
 .slide {
@@ -209,7 +210,7 @@ width: 804px;
 
 .dots-welcome {
     position: absolute;
-    bottom: 0;
+    bottom: -60px;
     right: 0;
     display: flex;
     align-items: center;
@@ -441,13 +442,6 @@ p {
   font-size: 0;
 }
 
-.main-video {
-    position:relative;
-    width: 1440px;
-    height: 650px;
-    overflow:hidden;
-}
-
 .maim-iframe {
     position:absolute;
     top:0;
@@ -669,6 +663,9 @@ video {
 }
 
 .dots {
+    margin-top: 46px;
+}
+  .gh-pages
     display: flex;
     align-items: center;
     justify-content: center;
@@ -792,6 +789,7 @@ video {
 }
 
 .picture {
+    width: 31.25%;
     /* max-width: 455px;
     width: 100%; */
     height: auto;
@@ -804,7 +802,7 @@ video {
 
 .galery-title {
     margin: 0;
-    margin-bottom: 75px;
+    margin-bottom: 0;
 }
 
 .tickets {
@@ -818,7 +816,7 @@ video {
 }
 
 .content-container {
-    max-width: 1050px;
+    max-width: 1025px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -906,6 +904,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .amount {
+    width: 12%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -1077,7 +1076,7 @@ letter-spacing: 0;
 }
 
 .contacts-image {
-    width: 100%;
+    width: 67%;
     height: 620px;
 }
 
