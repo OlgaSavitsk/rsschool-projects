@@ -16,19 +16,19 @@ const slidesContainer = document.querySelector('.slides-container')
 
 let width;
   
-progress.addEventListener('input', function() {
+/* progress.addEventListener('input', function() {
   const value = this.value;
   this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #fff ${value}%, white 100%)`;
   if(screenWidth <= 768) {
     this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #fff ${value}%, white 100%)`;
   }
-})
+}) */
 
   
 progressVol.addEventListener('input', function() {
   const value = this.value;
   this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #fff ${value}%, white 100%)`
-})
+}) 
 
 plus.addEventListener('click', function() {
   count.value ++;
@@ -85,7 +85,7 @@ opacity.addEventListener('click', function() {
 
 window.addEventListener('resize', init()) */
 
-console.log(`143 балл
+/* console.log(`143 балл
 Отзыв по пунктам ТЗ:
 Не выполненные/не засчитанные пункты:
 1) Форма покупки билетов 
@@ -133,4 +133,4 @@ console.log(`143 балл
 35) YouTube-видео в плейлисте в секции Video, маленькие видео выровнены по краям большого 
 36) карты 
 37) при нажатии на бургер-иконку меню появляется, плавно выдвигаясь слева, бургер-иконка изменяется на крестик. При нажатии на крестик меню исчезает, плавно возвращаясь назад, иконка крестика превращается в бургер-иконку 
-38) ссылки в меню работают, обеспечивая плавную прокрутку по якорям`)
+38) ссылки в меню работают, обеспечивая плавную прокрутку по якорям`) */

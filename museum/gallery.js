@@ -25,4 +25,3 @@ window.onload = () => (
         pictureInnerContainer.innerHTML = srcImageNew.join('')
     })
 ) 
-

@@ -78,10 +78,7 @@ main {
     transform: uppercase;
 }
 
-.hamburger-menu {
-    display: flex;
-}
-
+.gh-pages
 .navigation {
 width: 804px;
 }
@@ -138,9 +135,6 @@ width: 804px;
     display: flex;
     flex-direction: column;
     background: #030303;
-   /*  background-image: url(assets/img/welcome.jpg);
-    background-repeat: no-repeat;
-    background-position: calc(100%) calc(100% - 62px);  */
     height: 750px;
 }
 
@@ -177,7 +171,7 @@ width: 804px;
     display: block;
 }
 
-.slides-container:before {
+.carousel:after {
     content: "";
     position: absolute;
     top: 0;
@@ -186,6 +180,10 @@ width: 804px;
     height: 750px;
     background: linear-gradient(90deg, #000000 0%, rgba(0, 0, 0, 0.5) 16.19%, rgba(0, 0, 0, 0) 30.73%);
     z-index: 0;
+}
+
+.dots-container {
+    display: flex;
 }
 
 .welcome_button {
@@ -265,6 +263,8 @@ width: 804px;
 }
 
 .section-title {
+    max-width: 670px;
+    width: 100%;
     margin: 149px 0 0;
     font-family: Forum;
     font-style: normal;
@@ -375,7 +375,6 @@ p {
 .title-explore {
     padding-bottom: 25px;
     margin: 0 0 75px;
-   /*  width: 50%; */
     color: #9D8665;
     border-bottom: 3px solid #710707;
 }
@@ -443,13 +442,6 @@ p {
   font-size: 0;
 }
 
-.main-video {
-    position:relative;
-    padding: 0 0 51% 0;
-    height:0;
-    overflow:hidden;
-}
-
 .maim-iframe {
     position:absolute;
     top:0;
@@ -460,10 +452,26 @@ p {
 
 .video-slide {
     position:relative;
-    padding: 0 0 17.25% 0;
-    height:0;
+   /*  padding: 0 0 15.25% 0; */
+    height: 254px;
+    max-width: 452px;
     width: 100%;
     overflow:hidden;
+}
+
+.overlay{
+    top:0;
+    left:0;
+    width:452px;
+    height:100%;
+    position: absolute;
+    /* opacity: 0;
+    visibility: visible; */
+}
+
+.unvisible {
+    opacity: 0;
+    visibility: hidden;
 }
 
 .disabled {
@@ -536,19 +544,103 @@ p {
     background: #FFFFFF;
   }
 
+  .container-video {
+      position: relative;
+  }
+
+  .video-secrion {
+    padding-bottom: 75px;
+}
+
 .video-slider {
+   /*  position: fixed;
+    top: 0; */
     max-width: 1440px;
     width: 100%;
     margin-top: 40px;
+    position: absolute;
+    top: 899px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    padding: 0;
+    z-index: 0;
 }
 
 .slider {
-    display: flex;
+    width: 3907px;
     column-gap: 42px;
+    display: flex;
+    transition: all ease 1s;
+    transition-duration: 0ms;
+    position: relative;
+    z-index: 0;
+    display: flex;
+    transition-property: transform;
+    box-sizing: content-box;
+   
+}
+
+video {
+    position: relative;
+    width: 1440px;
+    height: 735px;
+    background: #000000;
 }
 
 .video-slide {
     position: relative;
+}
+
+.toggle {
+    width: 37px;
+    height: 37px;
+    background: transparent;
+    color: white;
+}
+
+.playButton {
+    position: absolute;
+    top: 30%;
+    right: 45%;
+    margin: 0 auto;
+}
+
+.scale {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.fullscreen {
+	width: 40px;
+	height: 40px;
+	border: 0;
+	outline: 0;
+    background: #000000;
+	background-size: contain;
+	transition: 0.3s;
+	cursor: pointer;
+	background-image: url(assets/svg/scale.svg);
+}
+
+:-webkit-full-screen .fullscreen {
+	background-image: url(assets/svg/fullscreen_exit.svg);
+}
+
+.fullscreen-exit {
+    display: none;
+}
+
+.fixed {
+    max-width: 2900px;
+}
+
+.mute {
+    display: none;
 }
 
 .prew {
@@ -564,13 +656,21 @@ p {
     width: 100%;
 }
 
+.dots-video-container {
+    display: flex;
+    justify-content: space-between;
+    width: 140px;
+}
+
 .dots {
     margin-top: 46px;
+}
+  .gh-pages
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 20px;
-    padding-bottom: 75px;
+    padding-top: 350px;
 }
 
 .dots-slide {   
@@ -1593,4 +1693,57 @@ label[for="code"] {
     height: 35px;
     background: #FFFFFF;
     border: 0.5px solid #A4A4A3;
+}
+
+.project-image {
+    position: relative;
+    display: none;
+    animation: 0.5s ease-in-out;
+}
+
+.active,
+.next {
+    display: block;
+}
+
+.next {
+    position: absolute;
+    top: 0;
+    width: 100%;
+} 
+
+.to-left {
+    animation-name: left;
+}
+
+.to-right {
+    animation-name: right;
+    animation-direction: reverse;
+}
+
+.from-left {
+    animation-name: left;
+    animation-direction: reverse;
+}
+
+.from-right {
+    animation-name: right;
+}
+
+@keyframes left {
+    from {
+        left: 0;
+    }
+    to {
+        left: -100%;
+    }
+}
+
+@keyframes right {
+    from {
+        left: 100%;
+    }
+    to {
+        left: 0;
+    }
 }
