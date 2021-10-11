@@ -10,7 +10,7 @@
 .amout {
     width: 48%;
 }
-
+  
 .counter {
     max-width: 90px;
 }
@@ -200,6 +200,7 @@
         .title-visiting {
             margin-top: 38px;
             padding-bottom: 18px;
+            letter-spacing: 5px;
             text-align: left;
         }
 
@@ -384,7 +385,7 @@
         }
 
         .picture-container {
-            height: 672px;
+            height: 677px;
         }
 
         .inner-container:first-child {
@@ -432,7 +433,8 @@
 
         .counter {
             margin-bottom: 6px;
-            width: 167px;
+            max-width: 167px;
+            width: 100%;
         }
 
         .total {

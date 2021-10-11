@@ -95,7 +95,7 @@
             width: 728px;
             height: 104px;
             justify-content: flex-end;
-            z-index: 10;
+            bottom: -3px;
         }
 
         .dots-text {
@@ -306,7 +306,7 @@
         } 
 
         .video-secrion {
-            padding-bottom: 49px;
+            padding-bottom: 55px;
         }
 
         .dots {
@@ -345,7 +345,7 @@
         }
 
         .inner-container:first-child {
-            margin-top: 93px;
+            margin-top: 15px;
         }
 
         .content-container {
