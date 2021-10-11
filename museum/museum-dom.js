@@ -36,7 +36,12 @@ function previouseItem(n) {
 document.querySelector('.dots_button-welcome.left').addEventListener('click', function() {
     if(isEnabled){
         previouseItem(currentItem)
+        dots[currentItem].classList.toggle('active-dot')      
+        if(currentItem === dots.length-1) {
+            dots[0].classList.remove('active-dot')
+        }
     }
+    dots[currentItem + 1].classList.remove('active-dot')
 })
 
 function nextItem(n) {
@@ -48,7 +53,12 @@ function nextItem(n) {
     document.querySelector('.dots_button-welcome.right').addEventListener('click', function() {
         if(isEnabled){
             nextItem(currentItem)
+            dots[currentItem].classList.toggle('active-dot')      
+            if(currentItem === 0) {
+                dots[dots.length-1].classList.remove('active-dot')
+            }
         }
+        dots[currentItem - 1].classList.remove('active-dot')
     });
 
 dotsContainer.addEventListener('mousedown', function(event) {
@@ -65,7 +75,51 @@ dotsContainer.addEventListener('mousedown', function(event) {
             })                    
         }) 
     event.target.classList.add('active-dot');
-})  
+}) 
+
+const swipedetect = (el) => {
+    let surface = el;
+    let startX = 0;
+    let startY = 0;
+    let distX = 0;
+    let distY = 0;
+    let threshold = 100;
+    let restrain = 750;
+    let startTime = 0;
+    let elapsedTime = 0;
+    let allowedTime = 300;
+    
+    surface.addEventListener('mousedown', function(e) {
+    startX = e.pageX;
+    startY = e.pageY;
+    startTime = new Date().getTime();
+    e.preventDefault()
+    })
+    
+    surface.addEventListener('mouseup', function(e) {
+        distX = e.pageX - startX;
+        distY = e.pageY - startY;
+        elapsedTime = new Date().getTime() - startTime;
+        if(elapsedTime <= allowedTime) {
+            if(Math.abs(distX) > threshold && Math.abs(distY) <= restrain) {
+                if(distX > 0) {
+                    if(isEnabled) {
+                        previouseItem(currentItem);
+                        slideNumber.innerHTML = `0${currentItem+1} / 05`;
+                    }
+                } else {
+                    if(isEnabled) {
+                        nextItem(currentItem)
+                        slideNumber.innerHTML = `0${currentItem+1} / 05`;
+                    }
+                }
+            }
+        }
+        e.preventDefault()
+        })
+    }
+    var el = document.querySelector('.carousel')
+    swipedetect(el)
 
 //const iframe = document.querySelector('.slider-iframe')
 const overlays = document.querySelectorAll('.overlay')
@@ -121,7 +175,6 @@ const previouseSlide = () => {
     videoItems = document.querySelectorAll('.video-slide')
     if(index <=0) return
     index--
-    console.log(index)
     slider.style.transform = `translateX(${-slideWidth * index}px)`
     slider.style.transition = '.7s'  
 }
@@ -136,8 +189,10 @@ document.querySelector('.dots_button.rigth').addEventListener('click', function(
                      slider.style.transform = `translateX(${0 * index}px)`
                  }
              })  
-         const video = videoItems[index].children[0].getAttribute('src');
+         const video = videoItems[index].children[0].getAttribute('data-src');
+         const poster = videoItems[index].children[0].getAttribute('poster');
         mainCam.src = video; 
+        mainCam.poster = poster; 
 });
 
 document.querySelector('.dots_button.left').addEventListener('click', function() {
@@ -274,65 +329,57 @@ videoDotsContainer.addEventListener('mousedown', function(event) {
       
 flSc.addEventListener('mousedown', toggleFullScreen)
 
- mainCam.addEventListener('click', togglePlay)
- mainCam.addEventListener('play', toggleButton)
- mainCam.addEventListener('pause', toggleButton)
+mainCam.addEventListener('click', togglePlay)
+mainCam.addEventListener('play', toggleButton)
+mainCam.addEventListener('pause', toggleButton)
 
- toggle.addEventListener('click', playVideo)
- 
- playButton.addEventListener('click', playVideo)
- volume.addEventListener('change', handleRange)
- volume.addEventListener('mousemove', handleRange)
- mainCam.addEventListener('timeupdate', handleProgress)
+toggle.addEventListener('click', playVideo)
 
- let mousedown = false;
- progressRate.addEventListener('click', scrub)
- progressRate.addEventListener('mousemove', (e) => mousedown && scrub(e))
- progressRate.addEventListener('mousedown', () => mousedown = true)
- progressRate.addEventListener('mouseup', () => mousedown = false)
+playButton.addEventListener('click', playVideo)
+volume.addEventListener('change', handleRange)
+volume.addEventListener('mousemove', handleRange)
+mainCam.addEventListener('timeupdate', handleProgress)
 
-const swipedetect = (el) => {
-let surface = el;
-let startX = 0;
-let startY = 0;
-let distX = 0;
-let distY = 0;
-let threshold = 100;
-let restrain = 750;
-let startTime = 0;
-let elapsedTime = 0;
-let allowedTime = 300;
+let mousedown = false;
+progressRate.addEventListener('click', scrub)
+progressRate.addEventListener('mousemove', (e) => mousedown && scrub(e))
+progressRate.addEventListener('mousedown', () => mousedown = true)
+progressRate.addEventListener('mouseup', () => mousedown = false)
 
-surface.addEventListener('mousedown', function(e) {
-    console.log(e.pageY)
-startX = e.pageX;
-startY = e.pageY;
-startTime = new Date().getTime();
-e.preventDefault()
-})
-
-surface.addEventListener('mouseup', function(e) {
-    console.log(restrain)
-    distX = e.pageX - startX;
-    distY = e.pageY - startY;
-    elapsedTime = new Date().getTime() - startTime;
-    if(elapsedTime <= allowedTime) {
-        if(Math.abs(distX) > threshold && Math.abs(distY) <= restrain) {
-            if(distX > 0) {
-                if(isEnabled) {
-                    previouseItem(currentItem);
-                    slideNumber.innerHTML = `0${currentItem+1} / 05`;
-                }
-            } else {
-                if(isEnabled) {
-                    nextItem(currentItem)
-                    slideNumber.innerHTML = `0${currentItem+1} / 05`;
-                }
-            }
-        }
+let isMute = false
+let pressed = new Set()
+player.addEventListener('keydown', (e) => {
+    //console.log(e)
+    if(e.keyCode === 77) {   
+    mainCam.volume = 0
+    volumeMute.style.display = 'block'
+    volumeIcon.style.display = 'none'
+    isMute = !isMute
     }
-    e.preventDefault()
-    })
-}
-var el = document.querySelector('.carousel')
-swipedetect(el)
+    if(e.keyCode === 77 && !isMute) {
+        isMute = isMute
+        mainCam.volume = volume.value
+        volumeMute.style.display = 'none'
+        volumeIcon.style.display = 'block'
+    }
+    if(e.keyCode === 70) {   
+        toggleFullScreen()
+    }
+
+    pressed.add(e.keyCode)
+    console.log(pressed)
+    //if(pressed.e.keyCode)) return;
+    pressed[e.keyCode] = true;
+    //mainCam.playbackRate = 2
+        //mainCam.currentTime += 60
+
+        for(let keyCode of pressed.values()) {
+            console.log(keyCode)
+        }
+            if(keyCode === 16 && keyCode === 188) {
+                mainCam.playbackRate = 2
+               // if(mainCam.playbackRate === 8) return
+                //mainCam.currentTime += 60
+                console.log('ok')
+            }        
+})
