@@ -197,6 +197,7 @@ videoDotsContainer.addEventListener('mousedown', function(event) {
  const playButton = document.querySelector('.playButton')
  const flSc = document.querySelector('.fullscreen')
  const progressBar = document.querySelector('.progress-bar')
+ const progressContainer = document.querySelector('.progress-bar_container')
 
  function togglePlay() {
      if(mainCam.paused) {
@@ -263,11 +264,11 @@ videoDotsContainer.addEventListener('mousedown', function(event) {
         if (!document.fullscreenElement) {
             player.requestFullscreen();
             mainCam.classList.add('scale')
-            progressBar.classList.add('fixed')
+            progressContainer.classList.add('fixed')
         } else {
             document.exitFullscreen();
             mainCam.classList.remove('scale');
-            progressBar.classList.remove('fixed')
+            progressContainer.classList.remove('fixed')
         }
       }
       
