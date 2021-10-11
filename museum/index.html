@@ -70,27 +70,28 @@
                               <img class="project-image" src="assets/img/welc5.jpg" alt="project">
                           
                         </div>
-                        <div class="dots-welcome">
-                            <div id="dots-text" class="dots-text">01/ 05</div>
-                            <div class="dots-container">
-                                <span class="dots-slide-welcome active-dot"></span>
-                                <span class="dots-slide-welcome"></span>
-                                <span class="dots-slide-welcome"></span>
-                                <span class="dots-slide-welcome"></span>
-                                <span class="dots-slide-welcome"></span>
-                            </div>
-                            
-                            <button class="dots_button-welcome left">
-                                <svg width="30" height="8" viewBox="0 0 30 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5.72254 8C3.90173 6.31339 1.99422 5.08262 0 4.30769V3.69231C1.99422 2.89459 3.90173 1.66382 5.72254 0H7.23988C6.37283 1.4359 5.53468 2.52991 4.72543 3.28205H30V4.71795H4.72543C5.53468 5.47009 6.37283 6.5641 7.23988 8H5.72254Z" fill="white"/>
-                                    </svg>
-                            </button>
-                            <button class="dots_button-welcome right">
-                                <svg width="30" height="8" viewBox="0 0 30 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M24.2775 1.97284e-06C26.0983 1.68661 28.0058 2.91738 30 3.69231L30 4.30769C28.0058 5.10541 26.0983 6.33618 24.2775 8L22.7601 8C23.6272 6.5641 24.4653 5.47009 25.2746 4.71795L3.48964e-07 4.71795L5.01636e-07 3.28205L25.2746 3.28205C24.4653 2.52992 23.6272 1.4359 22.7601 1.86378e-06L24.2775 1.97284e-06Z" fill="white"/>
-                                    </svg>
-                            </button>
+                        
+                    </div>
+                    <div class="dots-welcome">
+                        <div id="dots-text" class="dots-text">01/ 05</div>
+                        <div class="dots-container">
+                            <span class="dots-slide-welcome active-dot"></span>
+                            <span class="dots-slide-welcome"></span>
+                            <span class="dots-slide-welcome"></span>
+                            <span class="dots-slide-welcome"></span>
+                            <span class="dots-slide-welcome"></span>
                         </div>
+                        
+                        <button class="dots_button-welcome left">
+                            <svg width="30" height="8" viewBox="0 0 30 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.72254 8C3.90173 6.31339 1.99422 5.08262 0 4.30769V3.69231C1.99422 2.89459 3.90173 1.66382 5.72254 0H7.23988C6.37283 1.4359 5.53468 2.52991 4.72543 3.28205H30V4.71795H4.72543C5.53468 5.47009 6.37283 6.5641 7.23988 8H5.72254Z" fill="white"/>
+                                </svg>
+                        </button>
+                        <button class="dots_button-welcome right">
+                            <svg width="30" height="8" viewBox="0 0 30 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24.2775 1.97284e-06C26.0983 1.68661 28.0058 2.91738 30 3.69231L30 4.30769C28.0058 5.10541 26.0983 6.33618 24.2775 8L22.7601 8C23.6272 6.5641 24.4653 5.47009 25.2746 4.71795L3.48964e-07 4.71795L5.01636e-07 3.28205L25.2746 3.28205C24.4653 2.52992 23.6272 1.4359 22.7601 1.86378e-06L24.2775 1.97284e-06Z" fill="white"/>
+                                </svg>
+                        </button>
                     </div>
                    <!--  <div class="welcome_image"></div> -->
                 </div>
@@ -159,33 +160,40 @@
                         <h2 class="section-title title-video">Video journey</h2>
                         <p class="video-text hidden">Enter and visit one of the most famous museums in the world and enjoy masterpieces such as Mona Lisa or Hammurabi's Code</p>
                     </div>
-                    <div class="video">
-                        <div class="main-video">
-                            <iframe class="main-iframe" width="1440" height="735" src="https://www.youtube.com/embed/zp1BXPX8jcU" loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
+                    <div class="video">                 
+                            <video class="main-iframe" src="assets/video/video0.mp4" poster="assets/video/poster0.jpg" controls></video>  
+                            <img class="playButton" src="assets/svg/Frame.svg" alt="">                                             
                         <div class="progress-bar">
                             <div class="progress-bar_container">
-                            <img src="assets/svg/play.svg" alt="play">
-                            <input type="range" value="54" min="0" max="100" class="progress unvisibled" step="1">
-                            <input type="range" value="31" min="0" max="100" class="progress disabled" step="1">
-                            <img src="assets/svg/volume.svg" alt="volume">
-                            <input type="range" value="44" min="0" max="100" class="progress-volume unvisibled">
-                            <input type="range" value="39" min="0" max="100" class="progress-volume disabled">
-                            <img src="assets/svg/scale.svg" alt="scale">
+                                <button class="toggle">
+                                    &#x23F5;
+                                   <!--  <img src="assets/svg/play.svg" alt="play"> -->
+                                </button>
+                            
+                            <input type="range" name="playRate" value="54" min="0" max="100" class="progress unvisibled" step="0.1">
+                           <!--  <input type="range" name="playRate" value="31" min="0" max="100" class="progress disabled" step="0.1"> -->
+                            <img src="assets/svg/volume.svg" class="volume-icon" alt="volume">
+                            <img src="assets/svg/mute.svg" class="mute" alt="volume">
+                            <input type="range" name="volume" value="0.4" min="0" max="1" step="0.05" class="progress-volume unvisibled">
+                           <!--  <input type="range" name="volume" value="39" min="0" max="100" step="0.05" class="progress-volume disabled"> -->
+                            <button class="fullscreen"></button>
+                            <!-- <img src="assets/svg/fullscreen_exit.svg" class="fullscreen-exit" alt="scale"> -->
                         </div>
                         </div>                      
                     </div>
                     <div class="video-slider">
                         <div class="slider">
                             <div class="video-slide">
-                                <iframe class="slider-iframe" width="452" height="254" src="https://www.youtube.com/embed/zp1BXPX8jcU" loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <iframe class="slider-iframe" width="452" height="254" src="https://www.youtube.com/embed/zp1BXPX8jcU?enablejsapi=1" loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <div class="overlay"></div>
                                 <!-- <div class="prew">
                                     <img class="prew-image" src="assets/video/poster0.jpg" alt="">
                                 </div> -->
                             </div>
                             <div class="video-slide">
-                                <iframe class="slider-iframe" width="452" height="254" src="https://www.youtube.com/embed/Vi5D6FKhRmo" loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                               <!--  <iframe class="iframe" width="452" height="254" src="https://www.youtube.com/embed/Vi5D6FKhRmo" loading="lazy" srcdoc="<style>*{padding:0;margin:0;overflow:hidden}
+                                <iframe class="slider-iframe" width="452" height="254" src="https://www.youtube.com/embed/Vi5D6FKhRmo?enablejsapi=1" loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <div class="overlay"></div>
+                                <!--  <iframe class="iframe" width="452" height="254" src="https://www.youtube.com/embed/Vi5D6FKhRmo" loading="lazy" srcdoc="<style>*{padding:0;margin:0;overflow:hidden}
                                     html,body{height:100%}
                                     img,span{position:absolute;width:20px;padding:0 29px 0 25px;top:0;bottom:0;left:0;right:0;margin:auto;cursor:pointer;border:4px solid white;border-radius:50%}
                                     span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black;}
@@ -200,31 +208,38 @@
                                 </div> -->
                             </div>
                             <div class="video-slide">
-                                <iframe class="slider-iframe" width="560" height="315" src="https://www.youtube.com/embed/NOhDysLnTvY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                
+                                <iframe id="player2" class="slider-iframe" width="452" height="254" src="https://www.youtube.com/embed/NOhDysLnTvY?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <div class="overlay"></div>
                             </div>
                             <div class="video-slide">
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/2OR0OCr6uRE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <iframe id="player3" width="452" height="254" src="https://www.youtube.com/embed/2OR0OCr6uRE?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <div class="overlay"></div>
+                            </div>
+                            <div class="video-slide">
+                                <iframe width="452" height="254" src="https://www.youtube.com/embed/aWmJ5DgyWPI?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <div class="overlay"></div>
                             </div>
                            
                         </div>
-                        <div class="dots">
-                            <button class="dots_button">
-                                <svg width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.4777 0.219168C5.87773 0.564178 5.94259 1.19347 5.62256 1.62473L2.37578 6.00004L5.62256 10.3753C5.94259 10.8066 5.87773 11.4359 5.4777 11.7809C5.07766 12.1259 4.49394 12.056 4.17391 11.6247L0 6.00004L4.17391 0.375342C4.49394 -0.0559202 5.07766 -0.125842 5.4777 0.219168ZM9.65184 0.219168C10.0519 0.564178 10.1167 1.19347 9.7967 1.62473L6.54992 6.00004L9.7967 10.3753C10.1167 10.8066 10.0519 11.4359 9.65184 11.7809C9.2518 12.1259 8.66808 12.056 8.34805 11.6247L4.17414 6.00004L8.34805 0.375342C8.66808 -0.0559202 9.2518 -0.125842 9.65184 0.219168Z" fill="#999999"/>
-                                    </svg>
-                            </button>
+                    </div>
+                    <div class="dots">
+                        <button class="dots_button left">
+                            <svg width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.4777 0.219168C5.87773 0.564178 5.94259 1.19347 5.62256 1.62473L2.37578 6.00004L5.62256 10.3753C5.94259 10.8066 5.87773 11.4359 5.4777 11.7809C5.07766 12.1259 4.49394 12.056 4.17391 11.6247L0 6.00004L4.17391 0.375342C4.49394 -0.0559202 5.07766 -0.125842 5.4777 0.219168ZM9.65184 0.219168C10.0519 0.564178 10.1167 1.19347 9.7967 1.62473L6.54992 6.00004L9.7967 10.3753C10.1167 10.8066 10.0519 11.4359 9.65184 11.7809C9.2518 12.1259 8.66808 12.056 8.34805 11.6247L4.17414 6.00004L8.34805 0.375342C8.66808 -0.0559202 9.2518 -0.125842 9.65184 0.219168Z" fill="#999999"/>
+                                </svg>
+                        </button>
+                        <div class="dots-video-container">
                             <span class="dots-slide active-video"></span>
                             <span class="dots-slide"></span>
                             <span class="dots-slide"></span>
                             <span class="dots-slide"></span>
                             <span class="dots-slide"></span>
-                            <button class="dots_button">
-                                <svg width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.348163 0.219168C0.748196 -0.125842 1.33192 -0.0559202 1.65195 0.375342L5.82586 6.00004L1.65194 11.6247C1.33192 12.056 0.748195 12.1259 0.348162 11.7809C-0.0518709 11.4359 -0.116729 10.8066 0.203297 10.3753L3.45008 6.00004L0.203298 1.62473C-0.116728 1.19347 -0.05187 0.564177 0.348163 0.219168ZM4.5223 0.219168C4.92234 -0.125841 5.50606 -0.0559197 5.82609 0.375342L10 6.00004L5.82609 11.6247C5.50606 12.056 4.92234 12.1259 4.5223 11.7809C4.12227 11.4359 4.05741 10.8066 4.37744 10.3753L7.62422 6.00004L4.37744 1.62473C4.05741 1.19347 4.12227 0.564178 4.5223 0.219168Z" fill="#999999"/>
-                                    </svg>
-                            </button>
-                        </div>
+                        </div>                      
+                        <button class="dots_button rigth">
+                            <svg width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0.348163 0.219168C0.748196 -0.125842 1.33192 -0.0559202 1.65195 0.375342L5.82586 6.00004L1.65194 11.6247C1.33192 12.056 0.748195 12.1259 0.348162 11.7809C-0.0518709 11.4359 -0.116729 10.8066 0.203297 10.3753L3.45008 6.00004L0.203298 1.62473C-0.116728 1.19347 -0.05187 0.564177 0.348163 0.219168ZM4.5223 0.219168C4.92234 -0.125841 5.50606 -0.0559197 5.82609 0.375342L10 6.00004L5.82609 11.6247C5.50606 12.056 4.92234 12.1259 4.5223 11.7809C4.12227 11.4359 4.05741 10.8066 4.37744 10.3753L7.62422 6.00004L4.37744 1.62473C4.05741 1.19347 4.12227 0.564178 4.5223 0.219168Z" fill="#999999"/>
+                                </svg>
+                        </button>
                     </div>
                 </div>
             </section>

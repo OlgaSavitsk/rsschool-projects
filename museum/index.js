@@ -16,19 +16,19 @@ const slidesContainer = document.querySelector('.slides-container')
 
 let width;
   
-progress.addEventListener('input', function() {
+/* progress.addEventListener('input', function() {
   const value = this.value;
   this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #fff ${value}%, white 100%)`;
   if(screenWidth <= 768) {
     this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #fff ${value}%, white 100%)`;
   }
-})
+}) */
 
   
 progressVol.addEventListener('input', function() {
   const value = this.value;
   this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #fff ${value}%, white 100%)`
-})
+}) 
 
 plus.addEventListener('click', function() {
   count.value ++;
