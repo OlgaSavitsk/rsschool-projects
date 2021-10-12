@@ -545,6 +545,20 @@ p {
     visibility: visible; */
 }
 
+.tooltip {
+    display: none;
+    position: absolute;
+    line-height: 60px;
+    top: 10%;
+    left: 47%;
+    width: 100px;
+    height: 60px;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.8);
+}
+
 .unvisible {
     opacity: 0;
     visibility: hidden;
@@ -580,7 +594,7 @@ p {
 }
 
 .progress { 
-    background: linear-gradient(to right, #710707 0%, #710707 54%, #fff 54%, #fff 100%); 
+    background: linear-gradient(to right, #710707 0%, #710707 54%, #fff 54%, #fff 100%);
     height: 8px;
     max-width: 929px;
     width: 100%;
@@ -592,6 +606,7 @@ p {
 }
 
 .progress::-webkit-slider-thumb {
+    -webkit-appearance: none;
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -601,7 +616,7 @@ p {
   }
 
   .progress-volume {    
-      background: linear-gradient(to right, #710707 0%, #710707 44%, #fff 44%, #fff 100%); 
+    background: linear-gradient(to right, #710707 0%, #710707 44%, #fff 44%, #fff 100%); 
     height: 8px;
     width: 155px;
     outline: none;
