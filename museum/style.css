@@ -833,7 +833,22 @@ video {
 }
 
 .picture {
+    position: relative;
+    transform: translateY(150px);
+    opacity: 0;
     width: 31.5%;
+    height: auto;
+    object-fit: contain;
+    transition: all 2s ease;
+    transform: scale(0.95);
+}
+
+
+.active-galery {
+ transform: translate(0px);
+ opacity: 1;
+ transform: scale(1);
+
 }
 
 .inner-container::before, .inner-container::after {
@@ -879,13 +894,6 @@ video {
     left: 0px;
     top: 1600px;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
-}
-
-.picture {
-    /* max-width: 455px;
-    width: 100%; */
-    height: auto;
-    object-fit: contain;
 }
 
 .galery {
