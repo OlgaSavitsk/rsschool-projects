@@ -36,6 +36,7 @@ function previouseItem(n) {
 document.querySelector('.dots_button-welcome.left').addEventListener('click', function() {
     if(isEnabled){
         previouseItem(currentItem)
+        slideNumber.innerHTML = `0${currentItem + 1} / 05`;
         dots[currentItem].classList.toggle('active-dot')      
         if(currentItem === dots.length-1) {
             dots[0].classList.remove('active-dot')
@@ -53,6 +54,7 @@ function nextItem(n) {
     document.querySelector('.dots_button-welcome.right').addEventListener('click', function() {
         if(isEnabled){
             nextItem(currentItem)
+            slideNumber.innerHTML = `0${currentItem + 1} / 05`;
             dots[currentItem].classList.toggle('active-dot')      
             if(currentItem === 0) {
                 dots[dots.length-1].classList.remove('active-dot')
@@ -204,7 +206,11 @@ document.querySelector('.dots_button.left').addEventListener('click', function()
                 index = 5                  
                  slider.style.transform = `translateX(${-2470}px)`
              }
-         })    
+         }) 
+         const video = videoItems[index].children[0].getAttribute('data-src');
+         const poster = videoItems[index].children[0].getAttribute('poster');
+        mainCam.src = video; 
+        mainCam.poster = poster;    
 });
 
 slider.addEventListener('transitionend', () => {
@@ -235,8 +241,10 @@ videoDotsContainer.addEventListener('mousedown', function(event) {
                          slider.style.transform = `translateX(${0 * index}px)`
                      }
                 })  
-                const video = videoItems[index].children[0].getAttribute('src');
-                mainCam.src = video; 
+                const video = videoItems[index].children[0].getAttribute('data-src');
+                const poster = videoItems[index].children[0].getAttribute('poster');
+               mainCam.src = video; 
+               mainCam.poster = poster; 
             })                    
     })  
      event.target.classList.add('active-video');   
