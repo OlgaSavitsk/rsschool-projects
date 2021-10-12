@@ -367,8 +367,7 @@ p {
 
 .explore {
     display: flex;
-    display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
 .title-explore {
@@ -393,6 +392,17 @@ p {
 }
 
 .explore-image {
+    position: absolute;
+    width: auto;
+    height: auto;
+    overflow: hidden;
+   /*  max-width: 720px;
+    width: 100%;
+    height: 700px; */
+}
+
+.explore-image img {
+    display: block;
     max-width: 720px;
     width: 100%;
     height: 700px;
@@ -403,8 +413,68 @@ p {
     max-width: 659px;
 }
 
-.explore-slider {
-    margin-top: 90px;
+.slider-range {
+    position: absolute;
+    z-index: 9;
+    cursor: ew-resize;
+    width: 40px;
+    height: 40px;
+    background-color: #2196F3;
+    opacity: 0.7;
+    border-radius: 50%;
+}
+
+ .explore-slider {
+    position: relative;
+    max-width: 700px;
+    width: 100%;
+    height: 720px;
+    display: flex;
+    background: url(assets/img/before.jpg) no-repeat;
+    background-position: 0 center;
+    margin-top: 90px; 
+    background-size: cover;
+} 
+
+.range-input {
+    -webkit-appearance: none;
+    width: 100%;
+    background: none;
+    z-index: 10;
+    position: absolute;
+}
+
+.range-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 10px;
+    height: 720px;
+    background: transparent;
+    cursor: ew-resize;
+    position: relative;
+} 
+
+
+.original-image {
+    position: absolute;
+    left: 0;
+    width: 20%;
+    height: 720px;
+    border-right: 5px solid #fff;
+    box-sizing: border-box;
+    background: url(assets/img/after.jpg);
+    background-position: 0 center;
+    background-size: cover; 
+}
+
+.original-image:after {
+    content: '';
+    position: absolute;
+    top: 45%;
+    right: -30px;
+    width: 40px;
+    height: 40px;
+    background:  #fff;
+    border-radius: 50%;
 }
 
 .video-secrion {
@@ -726,7 +796,7 @@ video {
     flex-flow: column wrap;
     margin: 75px 0 0;
     padding: 0;
-    height: 2900px;
+    height: 3000px;
     -webkit-column-gap: 18px;
     column-gap: 18px;
     row-gap: 24px;

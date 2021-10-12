@@ -265,8 +265,6 @@ videoDotsContainer.addEventListener('mousedown', function(event) {
          'pause'
          playButton.style.display = 'block'
      }
-     //const method = video.paused ? 'play' : 'pause';
-    // mainCam[method]()
  }
 
  function playVideo() {
@@ -349,7 +347,6 @@ progressRate.addEventListener('mouseup', () => mousedown = false)
 let isMute = false
 let pressed = new Set()
 player.addEventListener('keydown', (e) => {
-    //console.log(e)
     if(e.keyCode === 77) {   
     mainCam.volume = 0
     volumeMute.style.display = 'block'
@@ -377,9 +374,13 @@ player.addEventListener('keydown', (e) => {
             console.log(keyCode)
         }
             if(keyCode === 16 && keyCode === 188) {
-                mainCam.playbackRate = 2
+                mainCam.playbackRate = mainCam.playbackRate + 0,5
                // if(mainCam.playbackRate === 8) return
                 //mainCam.currentTime += 60
                 console.log('ok')
             }        
+})
+
+document.querySelector('.range-input').addEventListener('input', function() {
+    document.querySelector('.original-image').style.width = this.value + "%";
 })
