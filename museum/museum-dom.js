@@ -123,13 +123,14 @@ const swipedetect = (el) => {
     var el = document.querySelector('.carousel')
     swipedetect(el)
 
-//const iframe = document.querySelector('.slider-iframe')
+
 const overlays = document.querySelectorAll('.overlay')
 let videoItems = document.querySelectorAll('.video-slide')
 const videoDots = document.querySelectorAll('.dots-slide')
 const videoDotsContainer = document.querySelector('.dots-video-container')
 const carousel = document.querySelector('.video-slider')
 const slider = document.querySelector('.slider')
+const progressRate = document.querySelector('.progress')
 
 const mainCam = document.querySelector('.main-iframe');
 const mainContainer = document.querySelector('.main-video')
@@ -153,8 +154,7 @@ const startSlide = () => {
     if(index >= videoItems.length - 1) return
     index++
     slider.style.transform = `translateX(${-slideWidth * index}px)`
-    slider.style.transition = '.7s'  
-    videoDots[index - 1].classList.toggle('active-video')
+    slider.style.transition = '.7s'   
 }
 
 const previouseSlide = () => {
@@ -163,11 +163,6 @@ const previouseSlide = () => {
     index--
     slider.style.transform = `translateX(${-slideWidth * index}px)`
     slider.style.transition = '.7s' 
-    videoDots[index].classList.toggle('active-video')
-    console.log(index)
-   /*  if(index === 0) {
-        videoDots[videoDots.length - 1].classList.add('active-video') 
-    }   */ 
 }
 
 function toggleMainVideo(index) {
@@ -180,10 +175,10 @@ function toggleMainVideo(index) {
 document.querySelector('.dots_button.rigth').addEventListener('click', function() {
         startSlide()  
         onPauseVideo()
-        if(index === 1) {
-            videoDots[videoDots.length - 1].classList.remove('active-video') 
-        }  
-        //videoDots[index - 2].classList.remove('active-video')    
+        toggle.textContent = '\u23F5'
+        playButton.style.display = 'block'
+        progressRate.carrentTime = 0
+        progressRate.setAttribute('value', '1')  
             slider.addEventListener('transitionend', () => {
                 videoItems = document.querySelectorAll('.video-slide')
                  if(videoItems[index].nextElementSibling.id === firstClone.id) {
@@ -198,11 +193,8 @@ document.querySelector('.dots_button.rigth').addEventListener('click', function(
 document.querySelector('.dots_button.left').addEventListener('click', function() {
     previouseSlide()  
     onPauseVideo()
-    if(index === videoDots.length - 1) {
-        videoDots[0].classList.remove('active-video') 
-        videoDots[videoDots.length - 1].classList.add('active-video') 
-    }  
-   // videoDots[index + 1].classList.remove('active-video')       
+    toggle.textContent = '\u23F5'
+    playButton.style.display = 'block'      
         slider.addEventListener('transitionend', () => {
             videoItems = document.querySelectorAll('.video-slide')
              if(videoItems[index].id === lastClone.id) {
@@ -228,11 +220,12 @@ videoDotsContainer.addEventListener('mousedown', function(event) {
     videoDots.forEach((dot, index) => {
              dot.classList.remove('active-video')
              onPauseVideo()
+             playButton.style.display = 'block'
+             progressRate.value = 0
              dot.addEventListener('click', () => {
                 videoItems = document.querySelectorAll('.video-slide')
                 if(index >= videoItems.length - 1) return
                 index++
-                console.log(index)
                 slider.style.transform = `translateX(${-slideWidth * index}px)`
                 slider.style.transition = '.7s' 
                 slider.addEventListener('transitionend', () => {
@@ -272,11 +265,11 @@ function onPauseVideo() {
  const volume = player.querySelector('.progress-volume')
  const volumeMute = player.querySelector('.mute')
  const volumeIcon = player.querySelector('.volume-icon')
- const progressRate = document.querySelector('.progress')
  const playButton = document.querySelector('.playButton')
  const flSc = document.querySelector('.fullscreen')
  const progressBar = document.querySelector('.progress-bar')
  const progressContainer = document.querySelector('.progress-bar_container')
+ const speedTooltip = document.querySelector('.tooltip')
 
  function togglePlay() {
      if(mainCam.paused) {
@@ -304,7 +297,6 @@ function onPauseVideo() {
 
  function toggleButton() {
      const icon = this.paused ? '\u23F5' : '\u23F8' 
-     console.log(icon)
      toggle.textContent = icon
  }
 
@@ -350,6 +342,7 @@ function onPauseVideo() {
 flSc.addEventListener('mousedown', toggleFullScreen)
 
 mainCam.addEventListener('click', togglePlay)
+mainCam.addEventListener('click', playVideo)
 mainCam.addEventListener('play', toggleButton)
 mainCam.addEventListener('pause', toggleButton)
 
@@ -372,6 +365,9 @@ volumeMute.addEventListener('click', function() {
     volumeIcon.style.display = 'block'
 })
 mainCam.addEventListener('timeupdate', handleProgress)
+mainCam.addEventListener('ended', function () {
+    mainCam.currentTime = 0;
+}, false);
 
 let mousedown = false;
 progressRate.addEventListener('click', scrub)
@@ -379,8 +375,8 @@ progressRate.addEventListener('mousemove', (e) => mousedown && scrub(e))
 progressRate.addEventListener('mousedown', () => mousedown = true)
 progressRate.addEventListener('mouseup', () => mousedown = false)
 
-let pressed = new Set()
-player.addEventListener('keydown', (e) => {
+let downKeys = {};
+document.addEventListener('keydown', function(e) {
     if(e.keyCode === 77) {   
     mainCam.volume = 0
     volumeMute.style.display = 'block'
@@ -396,24 +392,34 @@ player.addEventListener('keydown', (e) => {
     if(e.keyCode === 70) {   
         toggleFullScreen()
     }
-
-    pressed.add(e.keyCode)
-    console.log(pressed)
-    //if(pressed.e.keyCode)) return;
-    pressed[e.keyCode] = true;
-    //mainCam.playbackRate = 2
-        //mainCam.currentTime += 60
-
-        for(let keyCode of pressed.values()) {
-            console.log(keyCode)
-        }
-            if(keyCode === 16 && keyCode === 188) {
-                mainCam.playbackRate = mainCam.playbackRate + 0,5
-               // if(mainCam.playbackRate === 8) return
-                //mainCam.currentTime += 60
-                console.log('ok')
-            }        
+    downKeys[e.keyCode] = true
+    if(downKeys[16] && downKeys[188]) {
+        if(mainCam.playbackRate === 2) {
+            mainCam.playbackRate = 2
+        } else {
+            mainCam.playbackRate += 0.25
+            speedTooltip.style.display = 'block'
+            speedTooltip.innerHTML = `x${mainCam.playbackRate}`
+        }       
+    }   
+    if(downKeys[16] && downKeys[190]) {
+        if(mainCam.playbackRate === 0.25) {
+            mainCam.playbackRate = 0.25
+        } else {
+        mainCam.playbackRate -= 0.25
+        speedTooltip.style.display = 'block'
+        speedTooltip.innerHTML = `x${mainCam.playbackRate}`
+        }     
+    }  
 })
+
+document.addEventListener('keyup', event => {
+    downKeys[event.keyCode] = false;
+    setTimeout(() => {
+        speedTooltip.style.display = 'none'
+    }, 1000)
+   
+});
 
 document.querySelector('.range-input').addEventListener('input', function() {
     document.querySelector('.original-image').style.width = this.value + "%";

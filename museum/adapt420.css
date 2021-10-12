@@ -254,7 +254,7 @@
         }
 
         .progress {
-            background: linear-gradient(to right, #710707 0%, #710707 31%, #fff 31%, #fff 100%); 
+           /*  background: linear-gradient(to right, #710707 0%, #710707 31%, #fff 31%, #fff 100%); */ 
             position: absolute;
             top: -2px;
             width: 100%;
