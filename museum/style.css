@@ -620,6 +620,10 @@ p {
     background: #FFFFFF;
   }
 
+  .volume-icon {
+      cursor: pointer;
+  }
+
   .container-video {
       position: relative;
   }
@@ -716,6 +720,7 @@ video {
 }
 
 .mute {
+    cursor: pointer;
     display: none;
 }
 

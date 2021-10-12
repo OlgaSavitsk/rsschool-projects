@@ -136,22 +136,6 @@ const mainContainer = document.querySelector('.main-video')
 let gap = 42
 let index = 1;
 
-overlays.forEach(item => {    
-    item.addEventListener('click', function(event) {   
-        onPauseVideo() 
-        event.target.previousElementSibling.contentWindow.postMessage('{"event": "command", "func": "playVideo", "args": ""}','*')
-        event.target.classList.add('unvisible')  
-        //event.target.focus()                   
-    })   
-})
-
-function onPauseVideo() {
-    overlays.forEach(item => {
-        item.classList.remove('unvisible') 
-        item.previousElementSibling.contentWindow.postMessage('{"event": "command", "func": "pauseVideo", "args": ""}','*')  
-    })
-}  
-
 const firstClone = videoItems[0].cloneNode(true)
 const lastClone = videoItems[videoItems.length - 1].cloneNode(true)
 
@@ -165,24 +149,41 @@ const slideWidth = videoItems[index].clientWidth + gap;
 slider.style.transform = `translateX(${-slideWidth * index}px)`;
 
 const startSlide = () => {
-        videoItems = document.querySelectorAll('.video-slide')
-        if(index >= videoItems.length - 1) return
-        index++
-        console.log(index)
-        slider.style.transform = `translateX(${-slideWidth * index}px)`
-        slider.style.transition = '.7s'  
+    videoItems = document.querySelectorAll('.video-slide')
+    if(index >= videoItems.length - 1) return
+    index++
+    slider.style.transform = `translateX(${-slideWidth * index}px)`
+    slider.style.transition = '.7s'  
+    videoDots[index - 1].classList.toggle('active-video')
 }
 
 const previouseSlide = () => {
     videoItems = document.querySelectorAll('.video-slide')
-    if(index <=0) return
+    if(index <= 0) return
     index--
     slider.style.transform = `translateX(${-slideWidth * index}px)`
-    slider.style.transition = '.7s'  
+    slider.style.transition = '.7s' 
+    videoDots[index].classList.toggle('active-video')
+    console.log(index)
+   /*  if(index === 0) {
+        videoDots[videoDots.length - 1].classList.add('active-video') 
+    }   */ 
+}
+
+function toggleMainVideo(index) {
+    const video = videoItems[index].children[0].getAttribute('data-src');
+    const poster = videoItems[index].children[0].getAttribute('poster');
+   mainCam.src = video; 
+   mainCam.poster = poster; 
 }
 
 document.querySelector('.dots_button.rigth').addEventListener('click', function() {
-        startSlide()       
+        startSlide()  
+        onPauseVideo()
+        if(index === 1) {
+            videoDots[videoDots.length - 1].classList.remove('active-video') 
+        }  
+        //videoDots[index - 2].classList.remove('active-video')    
             slider.addEventListener('transitionend', () => {
                 videoItems = document.querySelectorAll('.video-slide')
                  if(videoItems[index].nextElementSibling.id === firstClone.id) {
@@ -191,14 +192,17 @@ document.querySelector('.dots_button.rigth').addEventListener('click', function(
                      slider.style.transform = `translateX(${0 * index}px)`
                  }
              })  
-         const video = videoItems[index].children[0].getAttribute('data-src');
-         const poster = videoItems[index].children[0].getAttribute('poster');
-        mainCam.src = video; 
-        mainCam.poster = poster; 
+             toggleMainVideo(index)
 });
 
 document.querySelector('.dots_button.left').addEventListener('click', function() {
-    previouseSlide()       
+    previouseSlide()  
+    onPauseVideo()
+    if(index === videoDots.length - 1) {
+        videoDots[0].classList.remove('active-video') 
+        videoDots[videoDots.length - 1].classList.add('active-video') 
+    }  
+   // videoDots[index + 1].classList.remove('active-video')       
         slider.addEventListener('transitionend', () => {
             videoItems = document.querySelectorAll('.video-slide')
              if(videoItems[index].id === lastClone.id) {
@@ -207,10 +211,7 @@ document.querySelector('.dots_button.left').addEventListener('click', function()
                  slider.style.transform = `translateX(${-2470}px)`
              }
          }) 
-         const video = videoItems[index].children[0].getAttribute('data-src');
-         const poster = videoItems[index].children[0].getAttribute('poster');
-        mainCam.src = video; 
-        mainCam.poster = poster;    
+         toggleMainVideo(index)  
 });
 
 slider.addEventListener('transitionend', () => {
@@ -226,6 +227,7 @@ videoDotsContainer.addEventListener('mousedown', function(event) {
     if(event.target.className != 'dots-slide') return 
     videoDots.forEach((dot, index) => {
              dot.classList.remove('active-video')
+             onPauseVideo()
              dot.addEventListener('click', () => {
                 videoItems = document.querySelectorAll('.video-slide')
                 if(index >= videoItems.length - 1) return
@@ -241,14 +243,28 @@ videoDotsContainer.addEventListener('mousedown', function(event) {
                          slider.style.transform = `translateX(${0 * index}px)`
                      }
                 })  
-                const video = videoItems[index].children[0].getAttribute('data-src');
-                const poster = videoItems[index].children[0].getAttribute('poster');
-               mainCam.src = video; 
-               mainCam.poster = poster; 
+                toggleMainVideo(index)
             })                    
     })  
      event.target.classList.add('active-video');   
  }) 
+
+ overlays.forEach(item => {    
+    item.addEventListener('click', function(event) {   
+        onPauseVideo() 
+        console.log(event.target)
+        event.target.previousElementSibling.contentWindow.postMessage('{"event": "command", "func": "playVideo", "args": ""}','*')
+        event.target.classList.add('unvisible')  
+        //event.target.focus()                   
+    })   
+})
+
+function onPauseVideo() {
+    overlays.forEach(item => {
+        item.classList.remove('unvisible') 
+        item.previousElementSibling.contentWindow.postMessage('{"event": "command", "func": "pauseVideo", "args": ""}','*')  
+    })
+}  
  
  const player = document.querySelector('.video')
  const mainPlayer = document.querySelector('.main-video')
@@ -264,12 +280,10 @@ videoDotsContainer.addEventListener('mousedown', function(event) {
 
  function togglePlay() {
      if(mainCam.paused) {
-       // mainCam.play()
          'play';
          playButton.style.display = 'none'
      } 
      else {
-       // mainCam.pause()
          'pause'
          playButton.style.display = 'block'
      }
@@ -344,6 +358,19 @@ toggle.addEventListener('click', playVideo)
 playButton.addEventListener('click', playVideo)
 volume.addEventListener('change', handleRange)
 volume.addEventListener('mousemove', handleRange)
+let isMute = false
+volumeIcon.addEventListener('click', function() {     
+    mainCam.volume = 0
+    volumeMute.style.display = 'block'
+    volumeIcon.style.display = 'none'
+    isMute = !isMute
+    })
+volumeMute.addEventListener('click', function() {
+    isMute = isMute
+    mainCam.volume = volume.value
+    volumeMute.style.display = 'none'
+    volumeIcon.style.display = 'block'
+})
 mainCam.addEventListener('timeupdate', handleProgress)
 
 let mousedown = false;
@@ -352,7 +379,6 @@ progressRate.addEventListener('mousemove', (e) => mousedown && scrub(e))
 progressRate.addEventListener('mousedown', () => mousedown = true)
 progressRate.addEventListener('mouseup', () => mousedown = false)
 
-let isMute = false
 let pressed = new Set()
 player.addEventListener('keydown', (e) => {
     if(e.keyCode === 77) {   
