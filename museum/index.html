@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Forum&family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Forum&family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
     <title>Museum</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="adapt1024.css"/>
     <link rel="stylesheet" href="adapt768.css"/>
     <link rel="stylesheet" href="adapt420.css"/>
     <link rel="icon" href="assets/favicon.ico">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js"></script>
 </head>
 
 <body>
@@ -148,13 +150,7 @@
                     </div>
                     <div class="explore-slider">
                         <div class="original-image"></div>
-                        <input class="range-input" type="range" value="20" max="100">
-                        <!-- <div class="explore-image">
-                            <img src="assets/img/after.jpg" alt="">
-                        </div>
-                        <div class="explore-image image-overlay">
-                            <img src="assets/img/before.jpg" alt="">
-                        </div>  -->                
+                        <input class="range-input" type="range" value="20" max="100">            
                     </div>
                 </div>
             </section>
@@ -312,7 +308,8 @@
                             <a class="adress-link" href="tel:+330140205050">phone: +33(0) 1 40 20 50 50</a>
                             <a class="adress-link" href="mailto:info@louvre.fr">mail: info@louvre.fr</a>
                         </div>
-                        <img class="contacts-image" src="assets/img/map.jpg" alt="map">
+                        <div id="map" class="contacts-image"></div>
+                       <!--  <img class="contacts-image" src="assets/img/map.jpg" alt="map"> -->
                     </div>
                 </div>
             </section>
@@ -515,5 +512,6 @@
     <script src="index.js"></script>
     <script src="gallery.js"></script> 
     <script src="museum-dom.js"></script> 
+    <script src="map.js"></script> 
 </body>
 </html>
