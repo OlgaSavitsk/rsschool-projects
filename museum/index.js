@@ -14,10 +14,13 @@ const screenWidth = window.screen.width;
 const images = document.querySelectorAll('.carousel .slides-container img')
 const slidesContainer = document.querySelector('.slides-container')
 const totalText = document.querySelector('.total')
-const radio = document.getElementsByName('radio')
+
+const inputs = document.querySelectorAll('input')
+const radioType = document.getElementsByName('radio')
 
 
 let width;
+let basePrice = 30
   
 progress.addEventListener('input', function() {
   const value = this.value;
@@ -32,39 +35,59 @@ progressVol.addEventListener('input', function() {
   this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #fff ${value}%, white 100%)`
 }) 
 
-function totalCount(countValue, countValueSeniore) {
-  let total = []
-  let value
-  for(let i = 0; i<radio.length; i++) {
-    if(radio[i].checked) {
-      console.log(radio[i].checked)
-      value = radio[i].value 
-    }  
+
+
+function calculate() {
+  let tickets = []
+  let totalSum = basePrice 
+  //var tickets = localStorage.getItem("tickets");
+  //tickets = JSON.parse(tickets || []);
+  for(const radio of radioType) {
+    if(radio.checked) {   
+      totalSum = parseInt(radio.value * count.value) +  parseFloat(radio.value/2 * countSenior.value)
+    }
+    const Tickets = {
+      type: radio.checked,
+      cost: totalSum,
+      basic: count.value,
+      senior: countSenior.value
+    }
+   tickets.push(Tickets)
+    localStorage.setItem('tickets', JSON.stringify(tickets))
 }
-  let totalSumBasic = (value * countValue) + (value * countValueSeniore)
-  let totalSumSenior = value * countValueSeniore
-  total.push(totalSumBasic, totalSumSenior)
-  console.log(total)
-  totalSum = total.reduce(function(a, b) {
-    return a + b
-  })
-  console.log(totalSum)
-  totalText.innerHTML = `Total €${totalSum}`
+  totalText.innerText = `Total €${totalSum}` 
 }
 
+calculate()
+
+for(const input of inputs) { 
+  input.addEventListener('input', () => {  
+    calculate()    
+  })
+}
+
+function load(){
+  var valueofstore= JSON.parse(localStorage.getItem('tickets'));
+  console.log(valueofstore)
+  if (valueofstore){
+    document.querySelector('.number').value= valueofstore.basic;
+  }
+}
+window.onload = load;
+
 document.addEventListener("DOMContentLoaded", () => {
-  radio.forEach(item => {
-    let totalSum = (item.value/2 * 1) + (item.value/2 * 1)
-    totalText.innerHTML = `Total €${totalSum}`
-    item.addEventListener('input', () => {
-     totalCount(1, 1)
-    })   
-  }) 
+  totalText.innerText = `Total €${basePrice}` 
 }); 
+
+const chooseTickets = JSON.parse(localStorage.getItem('tickets') || '[]')
+console.log(chooseTickets)
 
 plus.addEventListener('click', function() {
   count.value ++;
-  totalCount(count.value, 0)
+  calculate()
+  if(count.value > 0) {
+    minus.removeAttribute('disabled')
+  }
   if(count.value > 19) {
     count.value = 20
   } 
@@ -72,23 +95,32 @@ plus.addEventListener('click', function() {
 
 minus.addEventListener('click', function() {
   count.value --;
+  calculate()
   if(count.value < 1) {
     count.value = 0
+    minus.setAttribute('disabled', 'disabled')
   }  
 })
 
 plusSenior.addEventListener('click', function() {
   countSenior.value ++;
-  totalCount(0, countSenior.value)
+  calculate()
+  if(countSenior.value > 0) {
+    minusSenior.removeAttribute('disabled')
+  }
   if(countSenior.value > 19) {
     countSenior.value = 20
   } 
 })
 
-minusSenior.addEventListener('click', function() {
+minusSenior.addEventListener('click', function(event) {
   countSenior.value --;
+  console.log(countSenior.value)
+  calculate()
+  minusSenior.disabled = false
   if(countSenior.value < 1) {
     countSenior.value = 0
+    minusSenior.setAttribute('disabled', 'disabled')
   } 
 })
 
@@ -108,7 +140,7 @@ opacity.addEventListener('click', function() {
 });
 
 console.log(`
-Ваша оценка - 99 баллов 
+Ваша оценка - 103 баллов 
 Отзыв по пунктам ТЗ:
 Не выполненные/не засчитанные пункты:
 1) при обновлении страницы сохраняется выбранное ранее количество билетов Basic и Senior, выбранный тип билета, общая цена за них 
@@ -149,10 +181,6 @@ console.log(`
 2) при перелистывании слайдов буллет активного слайда подсвечивается (выделяется стилем) 
 
 3) если основное видео проигрывалось при перелистывании слайдера, проигрывание видео останавливается, прогресс бар сдвигается к началу, иконки "Play" на панели управления и по центру видео меняются на первоначальные 
-
-4) при изменении количества билетов Basic и Senior пересчитывается общая цена за них 
-
-5) у каждого типа билетов своя цена (20 €, 25 €, 40 € для Basic и половина этой стоимости для Senior). При изменении типа билета пересчитывается общая цена за них 
 
 Выполненные пункты:
 1) есть возможность перелистывания слайдов влево и вправо кликами по стрелкам 
@@ -231,6 +259,10 @@ console.log(`
 
 38) если прокрутить страницу вверх и затем снова прокручивать вниз, анимация появления картин повторяется 
 
-39) при обновлении страницы, если она к тому моменту была прокручена до секции Galery, анимация картин повторяется 
+39) при обновлении страницы, если она к тому моменту была прокручена до секции Galery, анимация картин повторяется
+
+4) при изменении количества билетов Basic и Senior пересчитывается общая цена за них 
+
+5) у каждого типа билетов своя цена (20 €, 25 €, 40 € для Basic и половина этой стоимости для Senior). При изменении типа билета пересчитывается общая цена за них 
 
 `)
