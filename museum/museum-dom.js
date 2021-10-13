@@ -389,6 +389,14 @@ document.addEventListener('keydown', function(e) {
         volumeMute.style.display = 'none'
         volumeIcon.style.display = 'block'
     }
+    if(e.keyCode === 32) {   
+        mainCam.pause()
+        isMute = !isMute
+        }
+        if(e.keyCode === 32 && !isMute) {   
+            mainCam.play()
+            isMute = isMute
+            }
     if(e.keyCode === 70) {   
         toggleFullScreen()
     }
