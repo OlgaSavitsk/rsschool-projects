@@ -35,30 +35,22 @@ progressVol.addEventListener('input', function() {
   this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #fff ${value}%, white 100%)`
 }) 
 
-
-
 function calculate() {
-  let tickets = []
   let totalSum = basePrice 
-  //var tickets = localStorage.getItem("tickets");
-  //tickets = JSON.parse(tickets || []);
   for(const radio of radioType) {
     if(radio.checked) {   
       totalSum = parseInt(radio.value * count.value) +  parseFloat(radio.value/2 * countSenior.value)
-    }
-    const Tickets = {
-      type: radio.checked,
-      cost: totalSum,
-      basic: count.value,
-      senior: countSenior.value
-    }
-   tickets.push(Tickets)
-    localStorage.setItem('tickets', JSON.stringify(tickets))
+      const Tickets = {
+        type: radio.value,
+        cost: totalSum,
+        basic: count.value,
+        senior: countSenior.value
+      }
+      localStorage.setItem('tickets', JSON.stringify(Tickets))
+    }   
 }
   totalText.innerText = `Total €${totalSum}` 
 }
-
-calculate()
 
 for(const input of inputs) { 
   input.addEventListener('input', () => {  
@@ -66,21 +58,22 @@ for(const input of inputs) {
   })
 }
 
-function load(){
-  var valueofstore= JSON.parse(localStorage.getItem('tickets'));
-  console.log(valueofstore)
-  if (valueofstore){
-    document.querySelector('.number').value= valueofstore.basic;
-  }
+function reloadData() {
+  let storageValue = JSON.parse(localStorage.getItem('tickets') || '[]')
+  count.value = storageValue.basic
+  countSenior.value = storageValue.senior
+  totalText.innerText = `Total €${storageValue.cost}`
+  for(const radio of radioType) {
+    if(radio.value === storageValue.type) {
+      radio.setAttribute('checked', 'checked')
+    }
+  } 
 }
-window.onload = load;
 
 document.addEventListener("DOMContentLoaded", () => {
   totalText.innerText = `Total €${basePrice}` 
+  reloadData()
 }); 
-
-const chooseTickets = JSON.parse(localStorage.getItem('tickets') || '[]')
-console.log(chooseTickets)
 
 plus.addEventListener('click', function() {
   count.value ++;
