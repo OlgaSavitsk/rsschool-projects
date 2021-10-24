@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Forum&family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Forum&family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
     <title>Museum</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="adapt1024.css"/>
     <link rel="stylesheet" href="adapt768.css"/>
     <link rel="stylesheet" href="adapt420.css"/>
     <link rel="icon" href="assets/favicon.ico">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js"></script>
 </head>
 
 <body>
@@ -62,9 +64,7 @@
                         <div class="slides-container">
                           
                               <img class="project-image active" src="assets/img/welc1.jpg" alt="project">
-
                               <img class="project-image" src="assets/img/welc2.jpg" alt="project">
-                          
                               <img class="project-image" src="assets/img/welc3.jpg" alt="project">
                               <img class="project-image" src="assets/img/welc4.jpg" alt="project">
                               <img class="project-image" src="assets/img/welc5.jpg" alt="project">
@@ -93,7 +93,6 @@
                                 </svg>
                         </button>
                     </div>
-                   <!--  <div class="welcome_image"></div> -->
                 </div>
             </section>
             <section id="visiting" class="welcome section">
@@ -150,7 +149,8 @@
                         <p class="explore-text hidden unvisibled">The cleaning provoked furious protests, not because the picture had been damaged in any way, but because it looked different.</p>
                     </div>
                     <div class="explore-slider">
-                        <img class="explore-image" src="assets/img/explore.jpg" alt="">
+                        <div class="original-image"></div>
+                        <input class="range-input" type="range" value="20" max="100">            
                     </div>
                 </div>
             </section>
@@ -161,8 +161,9 @@
                         <p class="video-text hidden">Enter and visit one of the most famous museums in the world and enjoy masterpieces such as Mona Lisa or Hammurabi's Code</p>
                     </div>
                     <div class="video">                 
-                            <video class="main-iframe" src="assets/video/video0.mp4" poster="assets/video/poster0.jpg" controls></video>  
-                            <img class="playButton" src="assets/svg/Frame.svg" alt="">                                             
+                            <video class="main-iframe" src="assets/video/video0.mp4" poster="assets/video/poster0.jpg"></video>  
+                            <img class="playButton" src="assets/svg/Frame.svg" alt="">  
+                            <div class="tooltip">x0.25</div>                                           
                         <div class="progress-bar">
                             <div class="progress-bar_container">
                                 <button class="toggle">
@@ -171,27 +172,22 @@
                                 </button>
                             
                             <input type="range" name="playRate" value="54" min="0" max="100" class="progress unvisibled" step="0.1">
-                           <!--  <input type="range" name="playRate" value="31" min="0" max="100" class="progress disabled" step="0.1"> -->
                             <img src="assets/svg/volume.svg" class="volume-icon" alt="volume">
                             <img src="assets/svg/mute.svg" class="mute" alt="volume">
                             <input type="range" name="volume" value="0.4" min="0" max="1" step="0.05" class="progress-volume unvisibled">
                            <!--  <input type="range" name="volume" value="39" min="0" max="100" step="0.05" class="progress-volume disabled"> -->
                             <button class="fullscreen"></button>
-                            <!-- <img src="assets/svg/fullscreen_exit.svg" class="fullscreen-exit" alt="scale"> -->
                         </div>
                         </div>                      
                     </div>
                     <div class="video-slider">
                         <div class="slider">
                             <div class="video-slide">
-                                <iframe class="slider-iframe" width="452" height="254" src="https://www.youtube.com/embed/zp1BXPX8jcU?enablejsapi=1" loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <iframe class="slider-iframe" width="452" height="254" src="https://www.youtube.com/embed/zp1BXPX8jcU?enablejsapi=1" data-src="assets/video/video0.mp4" poster="assets/video/poster0.jpg" loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 <div class="overlay"></div>
-                                <!-- <div class="prew">
-                                    <img class="prew-image" src="assets/video/poster0.jpg" alt="">
-                                </div> -->
                             </div>
                             <div class="video-slide">
-                                <iframe class="slider-iframe" width="452" height="254" src="https://www.youtube.com/embed/Vi5D6FKhRmo?enablejsapi=1" loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <iframe class="slider-iframe" width="452" height="254" src="https://www.youtube.com/embed/Vi5D6FKhRmo?enablejsapi=1" data-src="assets/video/video1.mp4" poster="assets/video/poster1.jpg" loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 <div class="overlay"></div>
                                 <!--  <iframe class="iframe" width="452" height="254" src="https://www.youtube.com/embed/Vi5D6FKhRmo" loading="lazy" srcdoc="<style>*{padding:0;margin:0;overflow:hidden}
                                     html,body{height:100%}
@@ -208,15 +204,15 @@
                                 </div> -->
                             </div>
                             <div class="video-slide">
-                                <iframe id="player2" class="slider-iframe" width="452" height="254" src="https://www.youtube.com/embed/NOhDysLnTvY?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <iframe id="player2" class="slider-iframe" width="452" height="254" src="https://www.youtube.com/embed/NOhDysLnTvY?enablejsapi=1" data-src="assets/video/video2.mp4" poster="assets/video/poster2.jpg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 <div class="overlay"></div>
                             </div>
                             <div class="video-slide">
-                                <iframe id="player3" width="452" height="254" src="https://www.youtube.com/embed/2OR0OCr6uRE?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <iframe id="player3" class="slider-iframe" width="452" height="254" src="https://www.youtube.com/embed/2OR0OCr6uRE?enablejsapi=1" data-src="assets/video/video4.mp4" poster="assets/video/poster4.jpg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 <div class="overlay"></div>
                             </div>
                             <div class="video-slide">
-                                <iframe width="452" height="254" src="https://www.youtube.com/embed/aWmJ5DgyWPI?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <iframe width="452" class="slider-iframe" height="254" src="https://www.youtube.com/embed/aWmJ5DgyWPI?enablejsapi=1" data-src="assets/video/video3.mp4" poster="assets/video/poster3.jpg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 <div class="overlay"></div>
                             </div>
                            
@@ -263,15 +259,15 @@
                             <div class="tickets-type hidden">
                                 <h4>Ticket Type</h4>
                                 <label class="container-type">Permanent exhibition
-                                    <input type="radio" checked="checked" name="radio">
+                                    <input type="radio" checked="checked" name="radio" value="20">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="container-type">Temporary exhibition
-                                <input type="radio" name="radio">
+                                <input type="radio" name="radio" value="25">
                                 <span class="checkmark"></span>
                                 </label>
                                 <label class="container-type">Combined Admission
-                                    <input type="radio" name="radio">
+                                    <input type="radio" name="radio" value="40">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
@@ -312,7 +308,8 @@
                             <a class="adress-link" href="tel:+330140205050">phone: +33(0) 1 40 20 50 50</a>
                             <a class="adress-link" href="mailto:info@louvre.fr">mail: info@louvre.fr</a>
                         </div>
-                        <img class="contacts-image" src="assets/img/map.jpg" alt="map">
+                        <div id="map" class="contacts-image"></div>
+                       <!--  <img class="contacts-image" src="assets/img/map.jpg" alt="map"> -->
                     </div>
                 </div>
             </section>
@@ -515,5 +512,6 @@
     <script src="index.js"></script>
     <script src="gallery.js"></script> 
     <script src="museum-dom.js"></script> 
+    <script src="map.js"></script> 
 </body>
 </html>
