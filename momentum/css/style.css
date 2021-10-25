@@ -36,6 +36,12 @@ body {
   display: flex;
 }
 
+.player {
+  opacity: 0;
+  visibility: hidden; 
+  transition: 0.3s ease-in-out;
+}
+
 .player-controls {
   display: flex;
   align-items: center;
@@ -132,6 +138,9 @@ body {
   row-gap: 5px;
   min-height: 180px;  
   text-align: left;
+  opacity: 0;
+  visibility: hidden; 
+  transition: 0.3s ease-in-out;
 }
 
 .weather-error {
@@ -197,18 +206,24 @@ body {
   background-image: url("../assets/svg/slider-next.svg");
 }
 
-#time {
+.time {
   min-height: 124px;
   margin-bottom: 10px;
   font-family: 'Arial-MT';
   font-size: 100px;
-  letter-spacing: -4px;  
+  letter-spacing: -4px; 
+  opacity: 0;
+  visibility: hidden; 
+  transition: 0.3s ease-in-out;
 }
 
 .date {
   min-height: 28px;
   font-size: 24px;
   margin-bottom: 20px;
+  opacity: 0;
+  visibility: hidden; 
+  transition: 0.3s ease-in-out;
 }
 
 .greeting-container {
@@ -225,6 +240,9 @@ body {
   flex: 1;  
   padding: 10px;
   text-align: right;
+  opacity: 0;
+  visibility: hidden; 
+  transition: 0.3s ease-in-out;
 }
 
 .name {
@@ -249,7 +267,7 @@ body {
    position: relative;
 }
 
-.quote-container {
+.quotes {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -258,6 +276,9 @@ body {
   height: 30vh;
   min-height: 160px;  
   padding: 20px;
+  opacity: 0;
+  visibility: hidden; 
+  transition: 0.3s ease-in-out;
 }
 
 .setting {
@@ -330,10 +351,9 @@ body {
   display: block;
 }
 
-.hidden-block {
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.3s ease-in-out;
+.show {
+  opacity: 1;
+  visibility: visible;
 }
 
 .change-quote {
@@ -341,7 +361,7 @@ body {
   background-image: url("../assets/svg/reload.svg");  
 }
 
-.quotes {
+.quote {
   min-height: 32px;
 }
 
@@ -350,7 +370,7 @@ body {
 }
 
 @media (max-width: 768px) {
-  #time {
+  .time {
     min-height: 80px;
     font-size: 72px;    
   }
@@ -482,6 +502,10 @@ cursor: pointer;
   margin-right: 5px;
   padding: 7px;
   cursor: pointer;
+}
+
+.colorset {
+  border-color: #AE25DE;
 }
 
 .hide {
