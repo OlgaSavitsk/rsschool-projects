@@ -33,6 +33,9 @@ function setBg() {
     toggleImage = !toggleImage
     const bgNum = getRandomNum(1, 20).toString().padStart(2, '0')
     styleBg(bgNum)
+    toggleImage = true
+    toggleImageFlickr = false
+    toggleImageUnsplash = false
 }
 
 function getSlideNext() {
@@ -76,9 +79,14 @@ async function getLinksToImage() {
     img.onload = () => {
         body.style.backgroundImage = `url(${img.src})`; 
         }
+    toggleImageUnsplash = true
+    toggleImageFlickr = false
+    toggleImage = false
+   
 }
 
 async function getLinksToImageFlickr(number) {
+    
     const img = new Image(); 
     const timeOfDay = getTimeOfDay()
     const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=f796ef77418cdd74e342ac3a1892461f&tags=${timeOfDay}&extras=url_l&format=json&nojsoncallback=1`
@@ -90,6 +98,9 @@ async function getLinksToImageFlickr(number) {
     img.onload = () => {
         body.style.backgroundImage = `url(${img.src})`; 
     }
+    toggleImageFlickr = true
+    toggleImage = false
+    toggleImageUnsplash = false
 }
 
 function setSettingPage() {
@@ -100,23 +111,17 @@ function setSettingPage() {
 
 githubhBtn.addEventListener('click', () => {
     setBg()
-    toggleImage = true
-    toggleImageFlickr = false
-    toggleImageUnsplash = false
+    setSettingPage()
 })
 
 unsplashBtn.addEventListener('click', () => {
      getLinksToImage()
-     toggleImageUnsplash = true
-     toggleImageFlickr = false
-     toggleImage = false
+     setSettingPage()
 })
 
-flickrBtn.addEventListener('click', () => {
-    getLinksToImageFlickr(0)
-    toggleImageFlickr = !toggleImageFlickr
-    toggleImage = false
-    toggleImageUnsplash = false
+flickrBtn.addEventListener('click', async() => {
+    await getLinksToImageFlickr(0)
+    setSettingPage()
 })
 
 nextBtn.addEventListener('click', () => {
@@ -132,9 +137,9 @@ nextBtn.addEventListener('click', () => {
     }
   
 })
-prevBtn.addEventListener('click', () => {
+prevBtn.addEventListener('click', async() => {
     if(toggleImageFlickr === true) {
-        getFlickrPrev()
+        await getFlickrPrev()
     }
     if(toggleImage === true) {
         getSlidePrev()
@@ -144,4 +149,4 @@ prevBtn.addEventListener('click', () => {
     }
 })
 
-export {setBg, styleBg, setSettingPage}
+export {setBg, styleBg, setSettingPage, getLinksToImage, getLinksToImageFlickr}

@@ -1,12 +1,11 @@
 import settingTranslation from './setting-translate.js'
-import {setSettingPage} from './slider.js'
 
 const settingViews = document.querySelectorAll('.setting-view')
 const settingContainer = document.querySelector('.setting-modal')
 const toggleBtn = document.querySelector('.toggle')
+const backgroundContainer = document.querySelector('.background')
 const backgroundBtn = document.querySelectorAll('.background-btn')
-const translateBtns = document.querySelectorAll('.translate-btn')
-const hideContainer = document.querySelector('.hide')
+const hiddenBlocks = document.querySelectorAll('.show')
 
 function setting() {
     document.querySelectorAll('.nav-list li').forEach((item, index) => {
@@ -34,49 +33,24 @@ for(let key in settingTranslation) {
     }
 }
 
-function hiddenBlock(event) {
-   
-    const blocks = ['time', 'date', 'greeting', 'quote', 'weather', 'player', 'links']
+function hiddenBlock(event) {  
+    const blocks = ['time', 'date', 'greeting', 'quotes', 'weather', 'player', 'links']
+    let blocksValue = []
     for(let block of blocks) {
-        if(hidden && event.target === document.querySelector(`.background-btn.lng-${block}`)) {
-            document.querySelector(`.${block}`).classList.add('hidden-block') 
-            console.log(block)
-           // hidden = true
-            return block
+        if(event.target === document.querySelector(`.background-btn.lng-${block}`)) {
+            document.querySelector(`.${block}`).classList.toggle('show') 
+            document.querySelector(`.background-btn.lng-${block}`).classList.toggle('colorset')
         } 
-       if(!hidden && event.target === document.querySelector(`.background-btn.lng-${block}`)) {    
-        document.querySelector(`.${block}`).classList.remove('hidden-block')
-        }
-        
     }
-}
-
-function setLocalStorageSetting() {
-    translateBtns.forEach(translateBtn => {
-        if(translateBtn.classList.contains('color')) {
-            const lang = translateBtn.textContent
-            return lang
+    for(let hiddenBlock of hiddenBlocks) {
+        if(!hiddenBlock.classList.contains('show')) {         
+            blocksValue.push(hiddenBlock.classList.value)
         }
-    })
-    const state = {
-        language: lang,
-        photoSource: setSettingPage(),
-        blocks: hiddenBlock()
     }
-    
-    localStorage.setItem('state', state)
-}
-
-async function getLocalStorageSetting() {
-     if(localStorage.getItem('state')) {
-        settingState = localStorage.getItem('state')
-        lang = state.language
-        await getWeather(city.value)
-    } 
+     return blocksValue
 }
 
 let toggle = false
-let hidden = false
 
 toggleBtn.addEventListener('click', () => {
     toggle = !toggle 
@@ -88,18 +62,26 @@ toggleBtn.addEventListener('click', () => {
     }
 })
 
+backgroundContainer.addEventListener('click', (event) => {
+    if(event.target.classList.contains('background-btn')) {
+        for(let btn of backgroundBtn) {
+            btn.classList.remove('colorset')
+        }
+        event.target.classList.add('colorset')
+    }
+})
+
 backgroundBtn.forEach(btn => {
     btn.addEventListener('click', () => {
         toggle = !toggle 
-        settingContainer.style.display = 'none'
-    })
+        settingContainer.style.display = 'none'    
+    }) 
 })
 
 backgroundBtn.forEach(btn => {   
     btn.addEventListener('click', (event) => {
-     hidden = !hidden
         hiddenBlock(event)  
-})
+    })
 })
 
-export {setting, changeSettingLang}
+export {setting, changeSettingLang, hiddenBlock}

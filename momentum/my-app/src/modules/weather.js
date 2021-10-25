@@ -4,8 +4,10 @@ const weatherDescription = document.querySelector('.weather-description')
 const wind = document.querySelector('.wind')
 const humidity = document.querySelector('.humidity')
 const error = document.querySelector('.weather-error')
+const city = document.querySelector('.city')
 
 async function getWeather(cityValue, lang) { 
+    city.value = cityValue
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityValue}&lang=${lang}&appid=bd09335c53afb6c7e669e2f8a2de2400&units=metric`
     const res = await fetch(url)
     const data = await res.json()

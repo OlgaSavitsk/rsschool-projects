@@ -1,4 +1,4 @@
-const quoteText = document.querySelector('.quotes')
+const quoteText = document.querySelector('.quote')
 const authorText = document.querySelector('.author')
 const quotesBtn = document.querySelector('.change-quote')
 const translateBtn = document.querySelectorAll('.translate-btn ')

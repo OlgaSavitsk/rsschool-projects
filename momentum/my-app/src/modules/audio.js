@@ -9,10 +9,9 @@ let isPlay = false
 let playNum = 0
 
 const audio = new Audio()
+audio.src = playList[playNum].src 
 
-function playAudio() {
-    audio.src = playList[playNum].src
-    audio.currentTime = 0   
+function playAudio() {       
     audio.setAttribute('autoplay', 'autoplay')  
     isPlay = !isPlay 
     if(!isPlay) {
