@@ -54,7 +54,7 @@ let toggle = false
 
 toggleBtn.addEventListener('click', () => {
     toggle = !toggle 
-    if(toggle === true && event.target.className === 'toggle') {
+    if(toggle === true) {
         settingContainer.style.display = 'block'
     }      
     if(toggle === false) {
