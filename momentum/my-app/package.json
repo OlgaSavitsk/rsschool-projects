@@ -10,5 +10,5 @@
   "devDependencies": {
     "rss-scripts": "^0.2.4"
   },
-  "proxy": "https://rolling-scopes-school.github.io/olgasavitsk-JSFE2021Q3/momentum"
+  "proxy": "https://github.com/rolling-scopes-school/olgasavitsk-JSFE2021Q3/tree/gh-pages/momentum"
 }

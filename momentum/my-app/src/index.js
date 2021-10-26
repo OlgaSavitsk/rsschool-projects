@@ -56,7 +56,7 @@ function setLocalStorageSetting(event) {
         photoSource: setSettingPage(),
         blocks: hiddenBlock(event)
     }  
-    localStorage.setItem('state', JSON.stringify(state))   
+    window.localStorage.setItem('state', JSON.stringify(state))   
 }
 
 async function getLocalStorageSetting() {
