@@ -11,7 +11,7 @@ const name = document.querySelector('.name')
 const city = document.querySelector('.city')
 const enBtns = document.querySelectorAll('.en')
 const ruBtns = document.querySelectorAll('.ru')
-//const activeLangBtn = document.querySelectorAll('.color')
+const activeLangBtn = document.querySelectorAll('.color')
 const translateBtns = document.querySelectorAll('.translate-btn')
 const unsplashBtn = document.querySelector('.unsplash')
 const githubhBtn = document.querySelector('.github')
@@ -109,6 +109,9 @@ enBtns.forEach(enBtn => {
         setQuotesTranslate('en')
         changeSettingLang('en')
         event.target.classList.add('color')
+        enBtns.forEach(enBtn => {
+            enBtn.classList.add('color')
+        })
         ruBtns.forEach(ruBtn => {
             ruBtn.classList.remove('color')
         })       
@@ -122,6 +125,9 @@ ruBtns.forEach(ruBtn => {
         setQuotesTranslate('ru')
         changeSettingLang('ru')
         event.target.classList.add('color')
+        ruBtns.forEach(ruBtn => {
+            ruBtn.classList.add('color')
+        })
         enBtns.forEach(enBtn => {
             enBtn.classList.remove('color')
         })

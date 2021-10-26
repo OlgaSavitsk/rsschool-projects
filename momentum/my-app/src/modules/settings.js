@@ -6,6 +6,7 @@ const toggleBtn = document.querySelector('.toggle')
 const backgroundContainer = document.querySelector('.background')
 const backgroundBtn = document.querySelectorAll('.background-btn')
 const hiddenBlocks = document.querySelectorAll('.show')
+const body = document.querySelector('.body')
 
 function setting() {
     document.querySelectorAll('.nav-list li').forEach((item, index) => {
@@ -28,10 +29,8 @@ function setting() {
     })
 }
 
-function changeSettingLang(lang) {
-for(let key in settingTranslation) {
-    document.querySelector(`.lng-${key}`).textContent = settingTranslation[key][lang]
-    }
+function changeSettingLang(lng) {  
+    document.querySelector(`.lng-lang`).textContent = settingTranslation.lang[lng]
 }
 
 function hiddenBlock(event) {  
@@ -55,13 +54,13 @@ let toggle = false
 
 toggleBtn.addEventListener('click', () => {
     toggle = !toggle 
-    if(toggle === true) {
+    if(toggle === true && event.target.className === 'toggle') {
         settingContainer.style.display = 'block'
     }      
     if(toggle === false) {
         settingContainer.style.display = 'none' 
     }
-})
+})  
 
 backgroundContainer.addEventListener('click', (event) => {
     if(event.target.classList.contains('background-btn')) {
@@ -72,17 +71,17 @@ backgroundContainer.addEventListener('click', (event) => {
     }
 })
 
-backgroundBtn.forEach(btn => {
+/* backgroundBtn.forEach(btn => {
     btn.addEventListener('click', () => {
         toggle = !toggle 
         settingContainer.style.display = 'none'    
     }) 
-})
+}) */
 
 backgroundBtn.forEach(btn => {   
     btn.addEventListener('click', (event) => {
         hiddenBlock(event)  
     })
-})
+}) 
 
 export {setting, changeSettingLang, hiddenBlock}
