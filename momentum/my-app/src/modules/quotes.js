@@ -45,7 +45,7 @@ async function getSlideQuotes() {
     for(let btn of translateBtn) {
         if(btn.classList.contains('color')) {  
             let lng = btn.textContent   
-            setQuotesTranslate(lng) 
+            await setQuotesTranslate(lng) 
         } 
     } 
 } 

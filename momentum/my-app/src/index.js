@@ -59,14 +59,14 @@ function setLocalStorageSetting(event) {
     localStorage.setItem('state', JSON.stringify(state))   
 }
 
-async function getLocalStorageSetting(event) {
+async function getLocalStorageSetting() {
      if(localStorage.getItem('state')) {
         let settingState = JSON.parse(localStorage.getItem('state'))
         lang = settingState.language
         changeLang(lang)
         getWeather(city.value, lang)
         getTime.showTime(lang)
-        setQuotesTranslate(lang)
+        await setQuotesTranslate(lang)
         changeSettingLang(lang)
         if(document.querySelector(`.${lang}`)) {
             if(document.querySelector(`.color`)) {
@@ -217,6 +217,6 @@ console.log(`Ваша оценка - 145.5 балла
 
 36) Скрытие и отображение блоков происходит плавно, не влияя на другие элементы, которые находятся на странице, или плавно смещая их 
 
-37) Настройки приложения сохраняются при перезагрузке страницы (не сохраняются скрытые блоки)
+37) Настройки приложения сохраняются при перезагрузке страницы
 
 `)
