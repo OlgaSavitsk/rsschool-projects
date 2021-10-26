@@ -18,6 +18,7 @@ function setting() {
             }
             if(index === 0) {
                 settingViews[index].nextElementSibling.style.display = 'none' 
+                settingViews[settingViews.length - 1].style.display = 'none'
             }
             if(index === settingViews.length - 1) {
                 settingViews[index].previousElementSibling.style.display = 'none'

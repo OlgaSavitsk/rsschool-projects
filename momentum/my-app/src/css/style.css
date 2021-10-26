@@ -226,7 +226,7 @@ body {
   transition: 0.3s ease-in-out;
 }
 
-.greeting-container {
+.greeting {
   display: flex;
   flex-wrap: wrap;
   justify-content: stretch;
@@ -234,15 +234,15 @@ body {
   min-height: 48px;
   width: 100vw;
   font-size: 40px;
-}
-
-.greeting {
-  flex: 1;  
-  padding: 10px;
-  text-align: right;
   opacity: 0;
   visibility: hidden; 
   transition: 0.3s ease-in-out;
+}
+
+.greeting-text {
+  flex: 1;  
+  padding: 10px;
+  text-align: right;
 }
 
 .name {

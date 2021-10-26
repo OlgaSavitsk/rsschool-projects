@@ -1,9 +1,7 @@
 import greetingTranslation from './translate.js'
 
-const gteetingText = document.querySelector('.greeting')
+const gteetingText = document.querySelector('.greeting-text')
 const name = document.querySelector('.name')
-const enBtn = document.querySelector('.en')
-const ruBtn = document.querySelector('.ru')
 
 function getTimeOfDay() {
     const date = new Date()

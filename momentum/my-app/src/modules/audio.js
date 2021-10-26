@@ -5,8 +5,10 @@ const nextBtn = document.querySelector('.play-next')
 const prevBtn = document.querySelector('.play-prev')
 const playlistContainer = document.querySelector('.play-list')
 const playerTimer = document.querySelector('.player-timer')
+const playerItems = document.querySelectorAll('.play-item')
 let isPlay = false
 let playNum = 0
+let itemPlay = false
 
 const audio = new Audio()
 audio.src = playList[playNum].src 
@@ -32,7 +34,8 @@ function playNext() {
     }
     audio.src = playList[playNum].src
     audio.play()
-    toggleItem()
+   toggleItem()
+   
 }
 
 function playPrev() {
@@ -133,9 +136,45 @@ function handleProgress() {
    progress.addEventListener('click', scrub)
    progress.addEventListener('mousemove', (e) => mousedown && scrub(e))
    progress.addEventListener('mousedown', () => mousedown = true)
-   progress.addEventListener('mouseup', () => mousedown = false)   
+   progress.addEventListener('mouseup', () => mousedown = false)  
+
+   playlistContainer.addEventListener('click', (event) => {
+    
+       if(event.target.closest('li')) {
+           let audioSrc = event.target.closest('li').textContent
+        audio.src = `./assets/sounds/${audioSrc}.mp3`        
+        audio.play()  
+        itemPlay = true   
+        playBtn.classList.add('pause')
+       
+        document.querySelectorAll('.play-item').forEach(element => {
+            if(audioSrc === element.textContent) {
+                element.classList.add('item-active') 
+            } else {
+                element.classList.remove('item-active') 
+            }
+        });
+        playerTitle.textContent = `${audioSrc}` 
+        
+       // playerTitle.textContent = `${audioSrc}` 
+       }
+      
+   })
   
-playBtn.addEventListener('click', playAudio)
+playBtn.addEventListener('click', () => {
+    playAudio()
+    if(itemPlay === true ) {
+        audio.pause()
+       
+        playBtn.classList.remove('pause') 
+        itemPlay = false 
+    } else if(itemPlay === false) {
+        audio.play()
+        itemPlay = true
+        playBtn.classList.add('pause')
+        playerTitle.textContent = `${document.querySelector('.item-active').textContent}`
+    }
+})
 nextBtn.addEventListener('click', playNext)
 prevBtn.addEventListener('click', playPrev)
 audio.addEventListener('ended', playNext)
