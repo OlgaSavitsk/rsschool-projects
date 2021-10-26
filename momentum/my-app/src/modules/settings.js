@@ -6,7 +6,7 @@ const toggleBtn = document.querySelector('.toggle')
 const backgroundContainer = document.querySelector('.background')
 const backgroundBtn = document.querySelectorAll('.background-btn')
 const hiddenBlocks = document.querySelectorAll('.show')
-const body = document.querySelector('.body')
+
 
 function setting() {
     document.querySelectorAll('.nav-list li').forEach((item, index) => {
@@ -29,8 +29,12 @@ function setting() {
     })
 }
 
-function changeSettingLang(lng) {  
-    document.querySelector(`.lng-lang`).textContent = settingTranslation.lang[lng]
+function changeSettingLang(lng) {
+    for(let key in settingTranslation) {
+        console.log(document.querySelector(`.lng-${key}`))
+        document.querySelector(`.lng-${key}`).textContent = settingTranslation[key][lng]
+    }  
+   
 }
 
 function hiddenBlock(event) {  
@@ -52,7 +56,7 @@ function hiddenBlock(event) {
 
 let toggle = false
 
-toggleBtn.addEventListener('click', () => {
+/* toggleBtn.addEventListener('click', () => {
     toggle = !toggle 
     if(toggle === true) {
         settingContainer.style.display = 'block'
@@ -60,7 +64,33 @@ toggleBtn.addEventListener('click', () => {
     if(toggle === false) {
         settingContainer.style.display = 'none' 
     }
-})  
+})   */
+
+document.addEventListener('click', (event) => {
+    
+   const classlist = ['background-btn', 'nav-link', 'setting-modal']
+console.log(event.target)
+        
+         if(event.target !== document.querySelector('.setting-view-container') && 
+         event.target !== document.querySelector('.toggle')) {
+            //settingContainer.classList.remove('visibled')
+            settingContainer.classList.add('visibled')
+           
+        } 
+
+        if(event.target === document.querySelector('.toggle')) {
+            settingContainer.classList.toggle('visibled')
+            
+        }
+        
+        for(let i = 0; i < classlist.length; i++) {
+            if(event.target.classList.contains(classlist[i])) {
+                settingContainer.classList.remove('visibled') 
+            }
+        }
+       
+   
+})
 
 backgroundContainer.addEventListener('click', (event) => {
     if(event.target.classList.contains('background-btn')) {

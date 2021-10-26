@@ -68,12 +68,13 @@ async function getLocalStorageSetting() {
         getTime.showTime(lang)
         await setQuotesTranslate(lang)
         changeSettingLang(lang)
-        if(document.querySelector(`.${lang}`)) {
+        
+        if(document.querySelectorAll(`.${lang}`)) {
             if(document.querySelector(`.color`)) {
                 document.querySelector(`.color`).classList.remove('color')
             }
         document.querySelector(`.${lang}`).classList.add('color')          
-        }
+        } 
         if(settingState.photoSource === 'github') {
             setBg()
             githubhBtn.classList.add('colorset')

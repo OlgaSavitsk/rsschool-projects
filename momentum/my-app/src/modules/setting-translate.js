@@ -11,10 +11,6 @@ const settingTranslation = {
         "en": 'Hide / Show',
         "ru": 'Показать / Скрыть',
         },
-    "links": {
-        "en": 'Links',
-        "ru": 'Ссылки',
-        },
     "time": {
         "en": 'Time',
         "ru": 'Время',
