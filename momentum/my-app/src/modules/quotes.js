@@ -5,7 +5,7 @@ const translateBtn = document.querySelectorAll('.translate-btn ')
 let randomIndex
 
 async function getQuotes() {
-    const response = await fetch('../assets/data.json');
+    const response = await fetch('data.json');
     const dataQuots = await response.json();
    return dataQuots  
 } 
