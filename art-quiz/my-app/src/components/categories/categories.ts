@@ -8,11 +8,13 @@ export class Categories extends Control {
         super(parentNode, 'div', 'category', '')
         this.artistsCategory = new Control(this.node, 'div', 'artists', '')
         this.artistsCategory.node.innerHTML = `<div class="card-container">
+        <a href="#categories">
             <div class="card">
                 <div class="card__front card-artists">
                     <div class="card-title">artists <span>quiz</span></div>
                 </div>
             </div>
+        </a>
         </div>`
         this.picturesCategory = new Control(this.node, 'div', 'pictures', '')
         this.picturesCategory.node.innerHTML = ` <div class="card-container">

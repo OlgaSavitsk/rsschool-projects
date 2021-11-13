@@ -38,6 +38,11 @@ h3 {
     padding: 0 10px 10px;
 }
 
+.link {
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .container {
     max-width: 1000px;
     width: 100%;
@@ -128,6 +133,7 @@ h3 {
     color: $white;
     margin: 0 auto;
     border: none;
+    cursor: pointer;
     
     .set {
         background-image: url(./assets/svg/setting.svg);
@@ -277,6 +283,7 @@ h3 {
     background: $white;
     border: 1px solid #ccc;
     border-radius: 5px;
+    cursor: pointer;
 
     .number {
         font-weight: bold;

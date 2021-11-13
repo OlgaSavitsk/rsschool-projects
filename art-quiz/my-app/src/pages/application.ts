@@ -10,6 +10,9 @@ export class Application extends Control {
         const logo = new Logo(this.node)
         const categories = new Categories(this.node)
         this.buttonSettings = new Control(this.node, 'button', 'settings', '')
-        this.buttonSettings.node.innerHTML = `<span class="settings-icon set"></span>settings`
+        this.buttonSettings.node.innerHTML = `
+            <a class="settings link" href="#setting">
+            <span class="settings-icon set"></span>settings
+            </a>`
     }
 }

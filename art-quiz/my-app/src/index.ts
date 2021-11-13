@@ -5,31 +5,52 @@ import { QuestionsArtistPage } from "./pages/question-artist-page";
 import { SettingPage } from "./pages/settings-page";
 
 const app = new Application(document.body)
-new QuestionsArtistPage(app.node)
-new CategoriesPage(app.node)
+//new QuestionsArtistPage(app.node)
+//new CategoriesPage(app.node)
 //new SettingPage(document.body)
-//new Footer(app.node)
-//(window as any).app = app
+new Footer(app.node)
 
+window.onpopstate = () => {
+ 
+  const currentRoutName = window.location.hash.slice(1);
+  const currentRoute = routes.find(p => p.name === currentRoutName);
+  if (!currentRoute) throw Error('CurrentRoute root element not found');
 
+  while (document.body.firstElementChild) {
+    document.body.removeChild(document.body.firstElementChild);
+  } 
+  currentRoute.component()
+};
 
-
-
-/* import image from './assets/favicon.png';
-
-const createImage = (src: string) => new Promise<HTMLImageElement>((res, rej) => {
-  const img = new Image();
-  img.onload = () => res(img);
-  img.onerror = rej;
-  img.src = src;
-});
-
-async function render() {
-  const subHeader = document.createElement('h2');
-  subHeader.innerHTML = 'This elements was created by js';
-  const myImage = await createImage(image);
-  document.body.appendChild(subHeader);
-  document.body.appendChild(myImage);
-}
-
-render(); */
+const routes = [
+  {
+    "name": '',
+    "component": () => {
+      new Application(document.body)   
+    }
+  },
+  {
+    "name": 'categories',
+    "component": () => {
+      new CategoriesPage(document.body)
+     }
+  },
+  {
+    "name": 'categories/:id',
+    "component": () => {
+      new QuestionsArtistPage(document.body)
+     }
+  },
+  {
+    "name": 'setting',
+    "component": () => {
+      new SettingPage(document.body)
+     }
+  },
+  {
+    "name": 'questions',
+    "component": () => {
+      new QuestionsArtistPage(document.body)
+     }
+  },
+];

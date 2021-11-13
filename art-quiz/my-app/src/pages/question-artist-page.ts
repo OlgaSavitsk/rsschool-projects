@@ -11,7 +11,7 @@ export class QuestionsArtistPage extends Control {
         super(parentNode, 'div', 'container', '')
         const headerQuestions = new HeaderQuestions(this.node)
         this.setImage()
-        this.setAnswer()
+        this.setAnswers()
     }
 
     async getData() {
@@ -25,7 +25,7 @@ export class QuestionsArtistPage extends Control {
         const questionsImage = new QuestionsImage(this.node, this.imageNumber!)
    } 
 
-   async setAnswer() {
+   async setAnswers() {
     let set: Set<string> = new Set()
     await this.getData().then(res => set.add(res[this.indexImage].author))
     await this.getData().then(res => {
