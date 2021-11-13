@@ -1,9 +1,11 @@
 import { Footer } from "./components/footer/footer";
 import { Application } from "./pages/application";
 import { CategoriesPage } from "./pages/categories-page";
+import { QuestionsArtistPage } from "./pages/question-artist-page";
 import { SettingPage } from "./pages/settings-page";
 
 const app = new Application(document.body)
+new QuestionsArtistPage(app.node)
 new CategoriesPage(app.node)
 //new SettingPage(document.body)
 //new Footer(app.node)

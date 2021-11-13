@@ -5,7 +5,7 @@ export class CategoriesCardField extends Control {
     private cards: CategoriesCard[] = [];
 
     constructor(parentNode: HTMLElement) {
-        super(parentNode, 'div', 'settings-container', '')
+        super(parentNode, 'div', 'categories-container', '')
     }
 
     addCards(cards: CategoriesCard[]): void {
