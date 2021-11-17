@@ -16,5 +16,9 @@ export class TimeSettings extends Control {
         this.node.insertAdjacentElement('beforeend', this.timeInput.node)
         this.node.insertAdjacentHTML('beforeend', `<span>on/off</span>
             <span class="settings-title">time game</span>`)
+            this.timeInput.node.checked = true
+           /*  this.timeInput.node.onclick = () => {
+                this.timeInput.node.checked = true
+            }  */  
     }
 }

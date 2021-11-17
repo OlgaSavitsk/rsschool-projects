@@ -1,9 +1,11 @@
 import Control from "../common/control";
+import { CategoriesCard } from "../components/cards/categories-card";
 import { Categories } from "../components/categories/categories";
 import { Logo } from "../components/logo/logo";
 
 export class Application extends Control {
    private buttonSettings: Control<HTMLButtonElement>;
+   categoryCards!: CategoriesCard
 
     constructor(parentNode: HTMLElement) {
         super(parentNode, 'div', 'container', '')

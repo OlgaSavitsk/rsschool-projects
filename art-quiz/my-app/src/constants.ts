@@ -1,0 +1,1 @@
+export const MODAL_SHOW_DELAY: number = 1000;

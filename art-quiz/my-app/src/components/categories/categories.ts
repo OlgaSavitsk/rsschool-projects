@@ -3,6 +3,7 @@ import Control from "../../common/control";
 export class Categories extends Control {
     artistsCategory: Control<HTMLElement>;
     picturesCategory: Control<HTMLElement>;
+    onPathToCategories!: () => void
 
     constructor(parentNode: HTMLElement) {
         super(parentNode, 'div', 'category', '')
