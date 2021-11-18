@@ -1,6 +1,5 @@
 import Control from "../common/control"
 import { ButtonCategories } from "../components/button-categories/button-categories"
-import { ButtonCongratulation } from "../components/button-congratulation/button-congratulation"
 import { CategoriesCard } from "../components/cards/categories-card"
 import { CategoriesCardField } from "../components/cards/categories-cardfield"
 import { Categories } from "../components/categories/categories"
@@ -14,13 +13,14 @@ export class CategoriesPage extends Control {
     name!: string
     index!: number
     categoriesButton!: Categories
-    //buttonCongratulation!: ButtonCongratulation
+    newArr: string[]
 
     constructor(parentNode: HTMLElement) {
         super(parentNode, 'div', 'container', '')
         const logo = new Logo(this.node)
-        const categoriesPanel = new ButtonCategories(this.node)
+        const categoriesPanel = new ButtonCategories(this.node, 'categories')
         this.cardField = new CategoriesCardField(this.node)
+        this.newArr = []
         this.start()
     }
 

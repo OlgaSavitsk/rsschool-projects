@@ -19,7 +19,7 @@ export class VolumeSettings extends Control {
         this.node.insertAdjacentHTML('beforeend', '<span class="settings-title">volume</span>')
         this.volumeRange.node.value = '0.4'
         document.body.onclick = () => {
-            const audio = new Audio('./assets/sounds/correct.mp3')
+            const audio = new Audio()
             audio.play()
             audio.volume = +this.volumeRange.node.value
           }

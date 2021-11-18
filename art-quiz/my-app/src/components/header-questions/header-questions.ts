@@ -8,7 +8,7 @@ export class HeaderQuestions extends Control {
         super(parentNode, 'div', 'header-questions', '')
         const logo = new Logo(this.node)
         logo.node.classList.add('questions')
-        this.node.insertAdjacentHTML('beforeend', '<h2 class="question-title">Who is the author of this picture ?</h2>')
+        this.node.insertAdjacentHTML('beforeend', '<h2 class="question-title"Кто автор данной картины ?</h2>')
         this.timer = new Control(this.node, 'div', 'timer-container', '')
         this.timer.node.innerHTML = `<span class="timer-icon"></span>
             <span class="timer">00:00</span>`

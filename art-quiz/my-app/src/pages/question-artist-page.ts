@@ -13,14 +13,14 @@ export class QuestionsArtistPage extends Control {
     indexImage: number
     setAnswer: Set<any>
     isCorrect!: boolean
-    //isChangeAnswer!: boolean
     indexCategory: number
     questionsImage!: QuestionsImage
     answer!: AnswerContainer
     answerArr: IImageModel[]
     correctAnswer: Set<any>
-    correct: any
-    
+    correct: string[]
+    answerStorage: string[]
+    storageValue: any  
 
     constructor(parentNode: HTMLElement, indexCategory: number) {
         super(parentNode, 'div', 'container', '')
@@ -33,6 +33,14 @@ export class QuestionsArtistPage extends Control {
         this.answerArr = new Array()
         this.indexCategory = indexCategory
         this.correct = []
+        this.answerStorage = []
+        this.storageValue = new Array(10)
+        this.storageValue = JSON.parse(localStorage.getItem('answers')!) || []
+    }
+
+    playAudio(url: string) {
+        const audio = new Audio(url)
+        audio.play()
     }
 
     async getData() {
@@ -101,10 +109,15 @@ export class QuestionsArtistPage extends Control {
             authorName.node.classList.add('match')
             this.isCorrect = true
             this.correct.push(correctAnswer[0].author)
+            this.playAudio('./assets/sounds/correct.mp3')
+            this.answerStorage.push(correctAnswer[0].imageNum)
         }  else {
             authorName.node.classList.add('unmatch')
             this.isCorrect = false
-        } 
+            this.playAudio('./assets/sounds/error.mp3')
+            this.answerStorage.push('wrong')
+        }  
+    
         await delay(MODAL_SHOW_DELAY) 
         const modal = new ModalImageInformation(this.node, this.isCorrect, correctAnswer[0])
         modal.onNextButtonClick = () => {
@@ -121,6 +134,9 @@ export class QuestionsArtistPage extends Control {
         this.setAnswers()
         if(this.indexImage === 10) {
             new ModalCongratulation(this.node, this.indexCategory, this.correct.length)
+            this.playAudio('./assets/sounds/success.mp3')          
+            this.storageValue[this.indexCategory] = this.answerStorage
+            localStorage.setItem('answers', JSON.stringify(this.storageValue)) 
         }
     }
 }
