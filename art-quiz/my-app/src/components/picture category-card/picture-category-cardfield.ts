@@ -1,14 +1,14 @@
 import Control from "../../common/control";
-import { StoreCard } from "./store-card";
+import { PictureCategoriesCard } from "./picture-category-card";
 
-export class ScoreCardField extends Control {
-    private cards: StoreCard[] = [];
+export class PictureCategoriesCardField extends Control {
+    private cards: PictureCategoriesCard[] = [];
 
     constructor(parentNode: HTMLElement) {
         super(parentNode, 'div', 'categories-container', '')
     }
 
-    addCards(cards: StoreCard[]): void {
+    addCards(cards: PictureCategoriesCard[]): void {
         this.cards = cards;
         this.cards.forEach(card => this.node.appendChild(card.node));
     }

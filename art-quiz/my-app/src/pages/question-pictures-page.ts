@@ -7,24 +7,26 @@ import { delay } from "../common/delay"
 import { ModalImageInformation } from "../components/modal-image-information/modal-image-information"
 import { MODAL_SHOW_DELAY } from "../constants"
 import { ModalCongratulation } from "../components/modal-congratulation/modal-congratulation"
+import { AnswerPictureContainer } from "../components/answer-picture-container/answer-picture-container"
 
-export class QuestionsArtistPage extends Control {
-    imageNumber!: number
+export class QuestionsPicturesPage extends Control {
+    imageAuthor!: string
     indexImage: number
     setAnswer: Set<any>
     isCorrect!: boolean
     indexCategory: number
     questionsImage!: QuestionsImage
-    answer!: AnswerContainer
     answerArr: IImageModel[]
     correctAnswer: Set<any>
     correct: string[]
     answerStorage: string[]
     storageValue: any  
+    answer!: AnswerPictureContainer
+    headerQuestions!: HeaderQuestions
 
     constructor(parentNode: HTMLElement, indexCategory: number) {
         super(parentNode, 'div', 'container', '')
-        const headerQuestions = new HeaderQuestions(this.node, 'Кто автор данной картины ?')
+        const pictureContainer = new AnswerPictureContainer(this.node)
         this.indexImage = 0
         this.setImage(indexCategory, this.indexImage)
         this.setAnswers()
@@ -46,7 +48,7 @@ export class QuestionsArtistPage extends Control {
     async getData() {
         const response = await fetch('/images.json');
         const categories = await response.json();
-        const questionByAuthor: IImageModel[] = []
+       /*  const questionByAuthor: IImageModel[] = []
         const questionByPicture: IImageModel[] = []
         categories.forEach((item: IImageModel, index: number) => {
             if(index % 2 === 0) {
@@ -55,7 +57,8 @@ export class QuestionsArtistPage extends Control {
             if(index % 2 !== 0) {
                 questionByPicture.push(item)
             }
-        })      
+        })  
+        console.log(categories)  */   
         return categories
     }
 
@@ -64,23 +67,25 @@ export class QuestionsArtistPage extends Control {
         ...Array(chunks),
       ].map((_, c) => arr.filter((n, index) => index % chunks === c)); 
       await this.getData().then(res => {
-        const newQuestionByAuthor = splitArr(res, 24)
-        return newQuestionByAuthor
+        const questionByPicture = splitArr(res, 24).slice(12)
+        console.log('questionByPicture', questionByPicture)
+        return questionByPicture
       }).then(res => {
        console.log('res1',res)
         return res[indexCategory]
     }).then(category => {
-        this.imageNumber = category[indexImage].imageNum
+        this.imageAuthor = category[indexImage].author
         this.correctAnswer.forEach(item => {
             if(item !== category[indexImage]) {
                 this.correctAnswer.delete(item)
-                this.setAnswer.delete(category[indexImage].author)
+                this.setAnswer.delete(category[indexImage].imageNum)
             }
         })
         this.correctAnswer.add(category[indexImage])
-        this.setAnswer.add(category[indexImage].author)
+        console.log('correct', this.correctAnswer)
+        this.setAnswer.add(category[indexImage].imageNum)
     })
-        this.questionsImage = new QuestionsImage(this.node, this.imageNumber!)
+    this.headerQuestions = new HeaderQuestions(this.node, `Какую картину написал ${this.imageAuthor} ?`)
    } 
 
    async setAnswers() {     
@@ -88,11 +93,11 @@ export class QuestionsArtistPage extends Control {
         const authors = res.map((cat: IImageModel[]) => cat);
         let randomAuthor = authors.sort(() => Math.random() - 0.5)
             for(let i= 0; i <= 2; i++) {
-                this.setAnswer.add(randomAuthor[i].author)
+                this.setAnswer.add(randomAuthor[i].imageNum)
             }
             this.answerArr = Array.from(this.setAnswer).slice(-4)         
-            this.answer = new AnswerContainer(this.node)
-            this.answer.getRandomAnswer(this.answerArr)
+            this.answer = new AnswerPictureContainer(this.node)
+            this.answer.getRandomAnswerPicture(this.answerArr)        
             this.answer.onAnswerClick = (answer) => {
                 this.answerHandler(answer)
             }
@@ -100,9 +105,10 @@ export class QuestionsArtistPage extends Control {
     }
 
     async answerHandler(authorName: any) { 
-        console.log('authorName', authorName.node) 
+        console.log('authorName', authorName.node.innerHTML) 
         const correctAnswer = Array.from(this.correctAnswer.values()).map(item => item) 
-        if(authorName.node.innerHTML === correctAnswer[0].author) {
+        console.log('correctAnswer', correctAnswer) 
+        if(authorName.node.innerHTML === correctAnswer[0].imageNum) {
             authorName.node.classList.add('match')
             this.isCorrect = true
             this.correct.push(correctAnswer[0].author)
@@ -123,8 +129,8 @@ export class QuestionsArtistPage extends Control {
     }
 
     nextQuestion() {
-        this.questionsImage.destroy()
         this.answer.destroy()
+        this.headerQuestions.destroy()
         this.indexImage++
         this.setImage(this.indexCategory, this.indexImage)
         this.setAnswers()
@@ -132,7 +138,7 @@ export class QuestionsArtistPage extends Control {
             new ModalCongratulation(this.node, this.indexCategory, this.correct.length)
             this.playAudio('./assets/sounds/success.mp3')          
             this.storageValue[this.indexCategory] = this.answerStorage
-            localStorage.setItem('answers', JSON.stringify(this.storageValue)) 
+            localStorage.setItem('answers-picture', JSON.stringify(this.storageValue)) 
         }
     }
 }

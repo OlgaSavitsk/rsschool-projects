@@ -1,23 +1,20 @@
 import Control from "../../common/control";
 
-export class StoreCard extends Control {
+export class ScoreCard extends Control {
     imageScore: Control<HTMLElement>;
-    indexCategory: any;
-    //imageScore: Control<HTMLElement>;
-   /* 
-    public onChangeCategoryQuestions!: (() => void) */
+    indexCategory: number;
+    isPictureCategory: boolean;
 
-    constructor(parentNode: HTMLElement, readonly image: any, indexCategory) {
+    constructor(parentNode: HTMLElement, readonly image: any, indexCategory: number, isPictureCategory: boolean) {
         super(parentNode, 'div', 'score-card', '')
+        this.isPictureCategory = isPictureCategory
         this.image = image
         this.indexCategory = indexCategory
         this.node.innerHTML = `<h3 class="score-title">bbbb</h3>`;
         this.imageScore = new Control(this.node, 'div', 'score-image grayscale', '')
         this.styleBg()
-        this.getLocalStorageAnswer(this.image)
-      /*   this.node.onclick = () => {
-            this.onChangeCategoryQuestions()
-        } */
+        this.setScoreCard()
+        //this.getLocalStorageAnswer(this.image)
     }
 
     async styleBg() {
@@ -28,12 +25,18 @@ export class StoreCard extends Control {
         } 
     } 
 
-    getLocalStorageAnswer(image) {
-        const storageValue = JSON.parse(localStorage.getItem('answers')!) || []
+    async getLocalStorageAnswer(localStorageName: string) {
+        const storageValue = await JSON.parse(localStorage.getItem(localStorageName)!) || []
         storageValue[this.indexCategory].map((item: number) => {
-            if(item === image.imageNum) {
+            if(item === this.image.imageNum) {
                 this.imageScore.node.classList.remove('grayscale')
             }
         }) 
+    }
+
+    setScoreCard() {
+        if(this.isPictureCategory === true) {
+            this.getLocalStorageAnswer('answers-picture')
+        } else  this.getLocalStorageAnswer('answers')
     }
 }

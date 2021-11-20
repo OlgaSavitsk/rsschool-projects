@@ -1,6 +1,6 @@
 import Control from "../../common/control";
 
-export class CategoriesCard extends Control {
+export class PictureCategoriesCard extends Control {
     public onChangeCategoryQuestions!: (() => void)
     correctAnswerNumber!: number;
     scoreInfo: Control<HTMLElement>;
@@ -11,7 +11,7 @@ export class CategoriesCard extends Control {
         super(parentNode, 'div', 'categories-card', '')
         this.image = image
         this.categoryCardLink = new Control(this.node, 'a', 'categories-card link', '') 
-        this.categoryCardLink.node.setAttribute('href', `#categories/${number}`)
+        this.categoryCardLink.node.setAttribute('href', `#picture/${number}`)
         this.categoryCardLink.node.innerHTML = `
             <div class="card-score">
                 <span class="number">${number}</span>
@@ -23,7 +23,7 @@ export class CategoriesCard extends Control {
         this.categoryImage = new Control(this.node, 'div', 'category-image grayscale', '') 
         this.categoryCardLink.node.insertAdjacentElement('beforeend', this.categoryImage.node)  
         this.scoreInfo = new Control(this.node, 'a', 'score-info link', '')
-        this.scoreInfo.node.setAttribute('href', `#score/${number}`)
+        this.scoreInfo.node.setAttribute('href', `#score-picture/${number}`)
         this.scoreInfo.node.innerHTML = `<div>Score</div>`
         if(this.correctAnswerNumber === 0) {
             this.scoreInfo.destroy()

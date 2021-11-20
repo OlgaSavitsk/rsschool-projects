@@ -10,8 +10,6 @@ export class QuestionsImage extends Control {
         super(parentNode, 'div', 'settings-container', '')
         this.i = i
         this.imageContainer = new Control(this.node, 'div', 'question-image', '')
-       // this.node.insertAdjacentElement('afterbegin', this.imageContainer.node)
-      // this.node.innerHTML = `<div class="question-image"></div>`
        this.dotsContainer = new Control(this.node, 'div', 'dots-container', '')
        this.dot = new Control(this.node, 'span', 'dot', '')
        this.dotsContainer.node.appendChild(this.dot.node)

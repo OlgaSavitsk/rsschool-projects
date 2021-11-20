@@ -1,11 +1,15 @@
 import { Footer } from "./components/footer/footer";
 import { Application } from "./pages/application";
 import { CategoriesPage } from "./pages/categories-page";
+import { CategoriesPicturesPage } from "./pages/categories-picture-page";
 import { QuestionsArtistPage } from "./pages/question-artist-page";
+import { QuestionsPicturesPage } from "./pages/question-pictures-page";
 import { ScorePage } from "./pages/score-page";
+import { ScorePicturePage } from "./pages/score-picture-page";
 import { SettingPage } from "./pages/settings-page";
 
 const app = new Application(document.body)
+//new QuestionsPicturesPage(app.node, 0, '')
 new Footer(app.node)
 let currentRouteId: number
 
@@ -42,9 +46,27 @@ const routes = [
      }
   },
   {
+    "name": 'pictures',
+    "component": () => {
+      new CategoriesPicturesPage(document.body)
+     }
+  },
+  {
+    "name": `pictures/:id`,
+    "component": () => {
+      new QuestionsPicturesPage(document.body, currentRouteId)
+     }
+  },
+  {
     "name": `score/:id`,
     "component": () => {
       new ScorePage(document.body, currentRouteId)
+     }
+  },
+  {
+    "name": `score-picture/:id`,
+    "component": () => {
+      new ScorePicturePage(document.body, currentRouteId)
      }
   },
   {
@@ -60,8 +82,16 @@ const setRoutId = (id) => {
     routes[2]['component'] = () => {
       new QuestionsArtistPage(document.body, id - 1)
     }
-    routes[3]['name'] = `score/${id}`
-    routes[3]['component'] = () => {
+    routes[4]['name'] = `picture/${id}`
+    routes[4]['component'] = () => {
+      new QuestionsPicturesPage(document.body, id - 1)
+    }
+    routes[5]['name'] = `score/${id}`
+    routes[5]['component'] = () => {
       new ScorePage(document.body, id - 1)
+    }
+    routes[6]['name'] = `score-picture/${id}`
+    routes[6]['component'] = () => {
+      new ScorePicturePage(document.body, id - 1)
     }
 }

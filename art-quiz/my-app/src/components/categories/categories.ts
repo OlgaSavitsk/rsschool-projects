@@ -19,11 +19,13 @@ export class Categories extends Control {
         </div>`
         this.picturesCategory = new Control(this.node, 'div', 'pictures', '')
         this.picturesCategory.node.innerHTML = ` <div class="card-container">
+        <a href="#pictures">
             <div class="card">
                 <div class="card__front card-pictures">
                     <div class="card-title">pictures <span>quiz</span></div>
                 </div>
             </div>
+        </a>
         </div>`
     }
 }
