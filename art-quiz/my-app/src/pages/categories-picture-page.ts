@@ -1,6 +1,7 @@
 import Control from "../common/control"
 import { ButtonCategories } from "../components/button-categories/button-categories"
 import { CategoriesCardField } from "../components/cards/categories-cardfield"
+import { Footer } from "../components/footer/footer"
 import { Logo } from "../components/logo/logo"
 import { PictureCategoriesCard } from "../components/picture category-card/picture-category-card"
 import { PictureCategoriesCardField } from "../components/picture category-card/picture-category-cardfield"
@@ -19,6 +20,7 @@ export class CategoriesPicturesPage extends Control {
         const logo = new Logo(this.node)
         const categoriesPanel = new ButtonCategories(this.node, 'categories')
         this.pictureCardField = new PictureCategoriesCardField(this.node)
+        const footer = new Footer(this.node)
         this.newArr = []
         this.start()
     }

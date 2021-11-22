@@ -4,6 +4,8 @@ export class ScoreCard extends Control {
     imageScore: Control<HTMLElement>;
     indexCategory: number;
     isPictureCategory: boolean;
+    scoreInfo: any;
+    onClickInformation!: () => void
 
     constructor(parentNode: HTMLElement, readonly image: any, indexCategory: number, isPictureCategory: boolean) {
         super(parentNode, 'div', 'score-card', '')
@@ -12,9 +14,12 @@ export class ScoreCard extends Control {
         this.indexCategory = indexCategory
         this.node.innerHTML = `<h3 class="score-title">bbbb</h3>`;
         this.imageScore = new Control(this.node, 'div', 'score-image grayscale', '')
+        
         this.styleBg()
         this.setScoreCard()
-        //this.getLocalStorageAnswer(this.image)
+       /*  if(this.imageScore.node.classList.contains('grayscale')) {
+            this.scoreInfo.destroy()
+        } */
     }
 
     async styleBg() {
@@ -30,6 +35,10 @@ export class ScoreCard extends Control {
         storageValue[this.indexCategory].map((item: number) => {
             if(item === this.image.imageNum) {
                 this.imageScore.node.classList.remove('grayscale')
+                this.scoreInfo = new Control(this.node, 'div', 'score-info-card', '')
+        this.scoreInfo.node.innerHTML = `<div>${this.image.name}</div>
+        <div>${this.image.author}</div>
+        <div>${this.image.year}</div>`
             }
         }) 
     }

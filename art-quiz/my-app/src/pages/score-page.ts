@@ -1,5 +1,6 @@
 import Control from "../common/control"
 import { ButtonScore } from "../components/button-score/button-score"
+import { Footer } from "../components/footer/footer"
 import { Logo } from "../components/logo/logo"
 import { ScoreCard } from "../components/score-card/score-card"
 import { ScoreCardField } from "../components/score-card/score-cardfield"
@@ -14,6 +15,7 @@ export class ScorePage extends Control {
         const logo = new Logo(this.node)
         const categoriesPanel = new ButtonScore(this.node, 'categories')
         this.cardField = new ScoreCardField(this.node)
+        const footer = new Footer(this.node)
         this.indexCategory = indexCategory
         this.setCard(this.indexCategory)
     }

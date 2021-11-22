@@ -17,9 +17,7 @@ export class PictureCategoriesCard extends Control {
                 <span class="number">${number}</span>
                 <span class="score">${this.setcorrectAnswer(correctAnswer)} / 10</span>
             </div>
-            <div class="card-score">
-                <h3>${title}</h3>
-            </div>`; 
+                <h3>${title}</h3>`; 
         this.categoryImage = new Control(this.node, 'div', 'category-image grayscale', '') 
         this.categoryCardLink.node.insertAdjacentElement('beforeend', this.categoryImage.node)  
         this.scoreInfo = new Control(this.node, 'a', 'score-info link', '')
@@ -31,7 +29,7 @@ export class PictureCategoriesCard extends Control {
             this.categoryImage.node.classList.remove('grayscale')  
         }
         this.styleBg(this.image)
-        this.node.onclick = () => {
+        this.categoryCardLink.node.onclick = () => {
             this.onChangeCategoryQuestions()
         }
     }

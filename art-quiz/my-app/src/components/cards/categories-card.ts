@@ -1,4 +1,5 @@
 import Control from "../../common/control";
+import { ScoreCard } from "../score-card/score-card";
 
 export class CategoriesCard extends Control {
     public onChangeCategoryQuestions!: (() => void)
@@ -6,6 +7,7 @@ export class CategoriesCard extends Control {
     scoreInfo: Control<HTMLElement>;
     categoryImage: Control<HTMLElement>;
     categoryCardLink: Control<HTMLElement>;
+    scoreCard!: ScoreCard
 
     constructor(parentNode: HTMLElement, readonly image: string, number: number, title: string, correctAnswer: number|undefined) {
         super(parentNode, 'div', 'categories-card', '')
@@ -17,22 +19,24 @@ export class CategoriesCard extends Control {
                 <span class="number">${number}</span>
                 <span class="score">${this.setcorrectAnswer(correctAnswer)} / 10</span>
             </div>
-            <div class="card-score">
-                <h3>${title}</h3>
-            </div>`; 
+                <h3>${title}</h3>`
         this.categoryImage = new Control(this.node, 'div', 'category-image grayscale', '') 
         this.categoryCardLink.node.insertAdjacentElement('beforeend', this.categoryImage.node)  
         this.scoreInfo = new Control(this.node, 'a', 'score-info link', '')
         this.scoreInfo.node.setAttribute('href', `#score/${number}`)
-        this.scoreInfo.node.innerHTML = `<div>Score</div>`
+        this.scoreInfo.node.innerHTML = `
+        <div>Score</div>`
         if(this.correctAnswerNumber === 0) {
             this.scoreInfo.destroy()
         } else {
             this.categoryImage.node.classList.remove('grayscale')  
         }
         this.styleBg(this.image)
-        this.node.onclick = () => {
+        this.categoryCardLink.node.onclick = () => {
             this.onChangeCategoryQuestions()
+        }
+        this.scoreInfo.node.onclick = (info) => {
+           // this.scoreCard
         }
     }
 

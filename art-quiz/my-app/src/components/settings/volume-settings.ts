@@ -3,6 +3,7 @@ import Control from "../../common/control";
 export class VolumeSettings extends Control {
     volumeRange: Control<HTMLInputElement>;
     volumeContainer: Control<HTMLElement>;
+    volumeValue: any;
 
     constructor(parentNode: HTMLElement) {
         super(parentNode, 'div', 'settings-card', '')
@@ -13,19 +14,33 @@ export class VolumeSettings extends Control {
         this.volumeRange.node.setAttribute('value', '0.4')  
         this.volumeRange.node.setAttribute('min', '0') 
         this.volumeRange.node.setAttribute('max', '1')  
-        this.volumeRange.node.setAttribute('step', '0.05')      
+        this.volumeRange.node.setAttribute('step', '0.05') 
+        this.volumeRange.node.value = '0.4'  
+        this.volumeRangeBgd()   
         this.node.innerHTML = `<span class="volume-icon"></span>`
         this.node.insertAdjacentElement('beforeend', this.volumeContainer.node)
-        this.node.insertAdjacentHTML('beforeend', '<span class="settings-title">volume</span>')
-        this.volumeRange.node.value = '0.4'
-        document.body.onclick = () => {
-            const audio = new Audio()
+        this.node.insertAdjacentHTML('beforeend', '<span class="settings-title">volume</span>')  
+        this.volumeRange.node.onclick = () => {
+            const audio = new Audio('./assets/sounds/correct.mp3')
             audio.play()
             audio.volume = +this.volumeRange.node.value
-          }
+          }     
         this.volumeRange.node.onchange = () => {  
-            const value = +this.volumeRange.node.value * 100;
-            this.volumeRange.node.style.background = `linear-gradient(to right, #660033 0%, #660033 ${value}%, #E5E5E5 ${value}%, #E5E5E5 100%)`
+            this.volumeRangeBgd()
         }
+        this.getVolumeLocalStorage()
+    }
+
+    async getVolumeLocalStorage() {
+        this.volumeValue = await JSON.parse(localStorage.getItem('volume')!) || []      
+        if(this.volumeValue) {
+            this.volumeRange.node.value = this.volumeValue
+        } else  this.volumeRange.node.value = '0.4'
+       this.volumeRangeBgd()
+    }
+
+    volumeRangeBgd() {
+        const value = +this.volumeRange.node.value * 100;
+        this.volumeRange.node.style.background = `linear-gradient(to right, #660033 0%, #660033 ${value}%, #E5E5E5 ${value}%, #E5E5E5 100%)`
     }
 }

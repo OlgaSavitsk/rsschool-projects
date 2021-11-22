@@ -9,8 +9,6 @@ import { ScorePicturePage } from "./pages/score-picture-page";
 import { SettingPage } from "./pages/settings-page";
 
 const app = new Application(document.body)
-//new QuestionsPicturesPage(app.node, 0, '')
-new Footer(app.node)
 let currentRouteId: number
 
 window.onpopstate = () => {

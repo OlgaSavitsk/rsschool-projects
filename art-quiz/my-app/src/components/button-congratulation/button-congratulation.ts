@@ -5,7 +5,7 @@ export class ButtonCongratulation extends Control {
    private buttonNextQuiz: Control<HTMLButtonElement>;
    indexCategory: number;
 
-    constructor(parentNode: HTMLElement, indexCategory: number) {
+    constructor(parentNode: HTMLElement, indexCategory: number, pathToCategory: string) {
         super(parentNode, 'div', 'button-container', '')
         this.indexCategory = indexCategory + 2
         this.buttonHome = new Control(this.node, 'button', 'settings', 'home')
@@ -15,12 +15,6 @@ export class ButtonCongratulation extends Control {
             </a>`
         this.buttonNextQuiz = new Control(this.node, 'button', 'settings', 'next quiz')
         this.buttonNextQuiz.node.innerHTML = `
-        <a class="settings link" href="#categories">next quiz</a>`    
-       /*  this.buttonNextQuiz.node.innerHTML = `
-        <a class="settings link" href="#categories/${this.indexCategory}">next quiz</a>`    
-            this.buttonNextQuiz.node.onclick = () => {
-                this.indexCategory++
-               console.log('ind',indexCategory)
-            } */
+        <a class="settings link" href="#${pathToCategory}">next quiz</a>`    
     }
 }
