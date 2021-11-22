@@ -14,12 +14,8 @@ export class ScoreCard extends Control {
         this.indexCategory = indexCategory
         this.node.innerHTML = `<h3 class="score-title">bbbb</h3>`;
         this.imageScore = new Control(this.node, 'div', 'score-image grayscale', '')
-        
         this.styleBg()
         this.setScoreCard()
-       /*  if(this.imageScore.node.classList.contains('grayscale')) {
-            this.scoreInfo.destroy()
-        } */
     }
 
     async styleBg() {

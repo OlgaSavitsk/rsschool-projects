@@ -24,5 +24,3 @@ export class QuestionsImage extends Control {
         } 
     }
 }
-
-//style="background-image: url('../assets/img/img/${i}.jpg')"

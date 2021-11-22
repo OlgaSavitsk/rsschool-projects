@@ -51,7 +51,7 @@ export class CategoriesCard extends Control {
 
     async styleBg(i: string) {
         const img = new Image();  
-        img.src = `../assets/${i}` 
+        img.src = `./assets/${i}` 
         img.onload = () => {
         this.categoryImage.node.style.backgroundImage = `url(${img.src})`; 
         } 
