@@ -25,19 +25,18 @@ export class QuestionsArtistPage extends Control {
     headerQuestions: HeaderQuestions
     modal!: ModalImageInformation
     secondCount!: string | null
-    setTime!: any
     correctAnsw: any
     volumeValue: any
     footer!: Footer
     timerValue: any
-    isStoppedTime: any
+    setTime!: any
+    modalCongratulation!: ModalCongratulation
 
     constructor(parentNode: HTMLElement, indexCategory: number) {
         super(parentNode, 'div', 'container', '')
         this.headerQuestions = new HeaderQuestions(this.node, 'Кто автор данной картины ?') 
         this.indexImage = 0
         this.setImage(indexCategory, this.indexImage)
-        this.stopTimer()
         this.setAnswers()  
         this.correctAnswer = new Set()
         this.setAnswer = new Set()
@@ -47,15 +46,16 @@ export class QuestionsArtistPage extends Control {
         this.answerStorage = []
         this.storageValue = new Array(10)
         this.storageValue = JSON.parse(localStorage.getItem('answers')!) || []
-        this.isStoppedTime = false
         this.getVolumeLocalStorage()
-        
+        this.timerValue = JSON.parse(localStorage.getItem('time')!) || [] 
+        if(this.timerValue.isTime === true) {
+            this.stopTimer()
+        }    
     }
 
     playAudio(url: string) {
         const audio = new Audio(url)
         audio.play()
-        console.log('0', this.volumeValue.length)
         if(this.volumeValue.length !== 0) {
             audio.volume = this.volumeValue
         } else audio.volume = 0.4
@@ -89,7 +89,6 @@ export class QuestionsArtistPage extends Control {
         const newQuestionByAuthor = splitArr(res, 24)
         return newQuestionByAuthor
       }).then(res => {
-       console.log('res1',res)
         return res[indexCategory]
     }).then(category => {
         this.imageNumber = category[indexImage].imageNum
@@ -117,26 +116,16 @@ export class QuestionsArtistPage extends Control {
             this.footer = new Footer(this.node)    
             this.answer.getRandomAnswer(this.answerArr)
             this.answer.onAnswerClick = (answer) => {
-                this.isStoppedTime = false
                 this.headerQuestions.timer.stopTimer()
                 clearTimeout(this.setTime)
+                this.clear()
                 this.answerHandler(answer)
             }
         })
     }
 
     async answerHandler(authorName: any) { 
-        console.log('stop', this.isStoppedTime)
         const correctAnsw = Array.from(this.correctAnswer.values()).map(item => item)
-        if(this.isStoppedTime === false) {
-            this.headerQuestions.timer.stopTimer()
-            clearTimeout(this.setTime)
-            this.playAudio('')
-        }  
-        if(this.isStoppedTime === true) {
-            this.isCorrect = false
-            this.playAudio('./assets/sounds/error.mp3')
-        }
         if(authorName.node.innerHTML === correctAnsw[0].author) {
             authorName.node.classList.add('match')
             this.isCorrect = true
@@ -148,19 +137,22 @@ export class QuestionsArtistPage extends Control {
             authorName.node.classList.add('unmatch')
             this.isCorrect = false
             this.playAudio('./assets/sounds/error.mp3')   
-        }  
-         
+        } 
         await delay(MODAL_SHOW_DELAY) 
-       this.showModal()
+        this.showModal()
     }
 
-    showModal() {  
+    async showModal() { 
         const correctAnsw = Array.from(this.correctAnswer.values()).map(item => item)
         this.modal = new ModalImageInformation(this.node, this.isCorrect, correctAnsw[0])
+        await delay(MODAL_SHOW_DELAY) 
+        this.modal.modalContainer.node.classList.add('visible')
         this.modal.onNextButtonClick = () => {
             this.modal.destroy()
             this.nextQuestion()
-            this.stopTimer()
+            if(this.timerValue.isTime === true) {
+                this.stopTimer()
+            } 
             if(this.indexImage === 10){
                 this.headerQuestions.timer.stopTimer()
                 clearTimeout(this.setTime)
@@ -169,27 +161,28 @@ export class QuestionsArtistPage extends Control {
     }
 
     stopTimer() { 
-        this.timerValue = JSON.parse(localStorage.getItem('time')!) || [] 
-        if(this.timerValue.isTime === true) {
-            this.headerQuestions.timer.initTimer()
-        } 
+        this.headerQuestions.timer.initTimer()
         this.setTime = setTimeout(() => {
             this.stopTimer()
         }, 1000)  
-        console.log('1', this.setTime)
         this.secondCount = this.headerQuestions.timer.node.textContent
         console.log(this.secondCount?.split(''))
         if(this.secondCount?.match(this.timerValue.timeCount)) {  
             this.headerQuestions.timer.stopTimer()
             clearTimeout(this.setTime)
-            this.isStoppedTime = true
-            this.answerHandler(this.answer)
-            //this.playAudio('./assets/sounds/error.mp3')
-           // this.showModal()
+            this.isCorrect = false  
+            this.playAudio('./assets/sounds/error.mp3')
+           this.showModal()
         } 
     }
 
-    nextQuestion() {
+    clear() {
+        for(let i=0; i < this.setTime; i++){
+            clearTimeout(i)
+        }
+    }
+
+    async nextQuestion() {
         this.questionsImage.destroy()
         this.answer.destroy()
         this.footer.destroy()
@@ -197,7 +190,9 @@ export class QuestionsArtistPage extends Control {
         this.setImage(this.indexCategory, this.indexImage)
         this.setAnswers()
         if(this.indexImage === 10) { 
-            new ModalCongratulation(this.node, this.indexCategory, this.correct.length, 'categories')  
+            this.modalCongratulation = new ModalCongratulation(this.node, this.indexCategory, this.correct.length, 'categories')
+            await delay(MODAL_SHOW_DELAY) 
+            this.modalCongratulation.modalContainer.node.classList.add('visible')  
             this.playAudio('./assets/sounds/success.mp3')          
             this.storageValue[this.indexCategory] = this.answerStorage
             localStorage.setItem('answers', JSON.stringify(this.storageValue)) 

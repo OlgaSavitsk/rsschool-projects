@@ -11,7 +11,7 @@ html {
 }
 
 body {
-    min-width: 480px;
+    min-width: 320px;
     min-height: 100vh;
     margin: 50px 0;
     font-family: 'Montserrat', sans-serif;
@@ -52,30 +52,30 @@ h3 {
     flex-direction: column;
     row-gap: 50px;
     transition: all 1s ease-in-out;
+    overflow: hidden;
 }
 
 .category {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    column-gap: 10px;
 }
 
 .card-container {
-    perspective: 500px;
     cursor: pointer; 
+    width: 100%;
+    height: 100%;
 }
  
 .card {
     position: relative;
-    transform-style: preserve-3d;
     display: flex;
     box-sizing: border-box;
-    justify-content: flex-end;
-    width: 415px;
-    height: 415px;
+    width: 100%;
+    height: 100%;
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin: 20px 25px;
     filter: drop-shadow(-10px 15px 30px rgba(0, 0, 0, 0.25));
     transition: box-shadow .25s linear,transform .7s,-webkit-transform .7s;
 
@@ -99,6 +99,13 @@ h3 {
     &-pictures {
         background-image: url(./assets/img/pictures-quiz.png);
     } 
+}
+
+.artists,
+.pictures {
+    max-width: 415px;
+    width: 100%;
+    height: 415px;
 }
   
 .card:hover {
@@ -166,6 +173,7 @@ h3 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    column-gap: 5px;
 }
 
 .settings-card {
@@ -173,13 +181,14 @@ h3 {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: 415px;
+    max-width: 415px;
+    width: 100%;
     height: 415px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    margin: 20px 25px;
-    filter: drop-shadow(0px 0px 9px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(4px 4px 9px rgba(0, 0, 0, 0.25));
     background: $white;
-    padding: 40px 0 30px;
+    padding: 40px 10px 30px;
 
     .volume-icon {
         display: inline-block;
@@ -230,11 +239,13 @@ h3 {
     justify-content: center;
     column-gap: 10px;
     margin-bottom: 60px;
+    max-width: 280px;
+    width: 100%;
   }
 
   .progress-volume {    
     background: linear-gradient(to right, $primary 0%, $primary 40%, #E5E5E5 40%, #E5E5E5 100%); 
-    width: 280px;
+    width: 100%;
     height: 5px;
     outline: none;
     transition: 450ms ease-in;
@@ -277,6 +288,7 @@ h3 {
 
 .categories-container {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
 }
@@ -414,9 +426,10 @@ h3 {
     max-width: 1000px;
     width: 100%;
     height: 650px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    //background-position: center;
+    //background-repeat: no-repeat;
+    //background-size: cover;
+    object-fit: cover;
 }
 
 .dots-container {
@@ -443,7 +456,8 @@ h3 {
 }
 
 .answer {
-    width: 260px;
+    max-width: 260px;
+    width: 100%;
     height: 79px;
     background: #FFFFFF;
     font-style: normal;
@@ -496,6 +510,8 @@ h3 {
 
 .modal-container {
     position: fixed;
+    bottom: 80%;
+    //position: fixed;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -504,9 +520,10 @@ h3 {
     width: 582px;
     height: 715px;
     left: 50%;
-    top: 50%;
-    transform: translate(-291px, -357.5px);
+   // top: 50%;
+    transform: translate(-291px, -80%);
     z-index: 100;
+    transition: bottom 0.7s ease-in-out;
 
     span {
         font-style: normal;
@@ -517,6 +534,12 @@ h3 {
         text-transform: uppercase;
         color: $primary;
     }
+}
+
+.visible {
+    bottom: 1%;
+    transform: translate(-291px, -1%);
+    transition: bottom 0.7s ease-in-out;
 }
 
 .modal-check {
@@ -658,23 +681,31 @@ h3 {
     transition: top 0.5s ease-in-out;
 }
 
+.transition-info {
+    top: 100px;
+    transition: top 0.5s ease-in-out;  
+}
+
 .grayscale {
     -webkit-filter: grayscale(100%) ;
     filter: grayscale(100%);
 }
 
 .picture-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
     max-width: 1000px;
     width: 100%;
     margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     gap: 10px;
 }
 
 .picture-image {
-    width: 495px;
+    display: flex;
+    max-width: 495px;
+    width: 100%;
     height: 325px;
     font-size: 0;
     background-position: center;
@@ -804,4 +835,233 @@ h3 {
     color: black;
     line-height: .9;
     transition: .3s;
+}
+
+@media (max-width: 1000px) {
+
+    .picture-image {
+        max-width: 360px;
+        width: 100%;
+        height: 337px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .container {
+        max-width: 750px;
+        width: 100%;
+    }
+    .card-title {
+        display: flex;
+        justify-content: center;
+    }
+
+    .category {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 40px;
+    }
+
+    .artists, .pictures {
+        max-width: 500px;
+        width: 100%;
+        height: 320px;
+    }
+
+    .card-title {
+        margin-top: 265px;
+    }
+
+    .categories-container {
+        row-gap: 5px;
+    }
+
+    .header-questions {
+        flex-flow: wrap;
+        justify-content: space-around;
+    }
+
+    .question-title {
+        order: 1;
+        margin-top: 20px;
+    } 
+
+    .settings-container {
+        flex-direction: column;
+        align-items: center;
+        row-gap: 20px;
+    }
+
+    .settings-card {
+        max-width: 500px;
+        width: 100%;
+        height: 320px;
+    }
+
+    .range-container,
+    .settings-card .time-icon,
+    .counter {
+        margin-bottom: 0;
+    }
+
+    .modal-container,
+    .modal-congratulation {
+        width: 482px;
+        height: 600px;
+        padding: 10px 10px;
+    }
+
+    .visible {
+        bottom: -1%;
+    }
+}
+
+@media (max-width: 360px) {
+
+    html {
+        font-size: 6px;
+    }
+
+    body {
+        margin-top: 10px;
+    }
+
+    .container {
+        max-width: 350px;
+        width: 100%;
+        row-gap: 20px;
+    }
+
+    .logo {
+        margin: 0 auto;
+
+        img {
+            display: block;
+            width: 100px;
+            height: 33px;
+            object-fit: contain;
+        }
+    }
+
+    .card-title {
+        display: flex;
+        justify-content: center;
+    }
+
+    .category {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 15px;
+    }
+
+    .artists, .pictures {
+        max-width: 330px;
+        width: 100%;
+        height: 213px;
+    }
+
+    .card__front {
+        background-size: cover;
+    }
+
+    .card-title {
+        margin-top: 185px;
+    }
+
+    .categories-container {
+        gap: 2px;
+    }
+
+    .settings-card .volume-icon, 
+    .settings-card .time-icon {
+        width: 67px;
+        height: 52px;
+        background-size: contain;
+        margin-bottom: 0;
+    }
+
+    .header-questions {
+        flex-flow: wrap;
+        justify-content: space-around;
+    }
+
+    .question-title {
+        order: 1;
+        margin-top: 20px;
+    } 
+
+    .settings-container {
+        flex-direction: column;
+        align-items: center;
+        row-gap: 20px;
+    }
+
+    .settings-card {
+        max-width: 336px;
+        width: 100%;
+        height: 204px;
+        padding: 15px 10px;
+    }
+
+    .counter {
+        width: 100px;
+    }
+
+    .minus, 
+    .plus {
+        width: 30px;
+        height: 30px;
+    }
+
+    .label {
+        width: 20px;
+        height: 20px;
+    }
+
+    .button-container {
+       flex-flow: wrap;
+       justify-content: space-around;
+       row-gap: 10px;
+    }
+
+    h2 {
+        order: 1;
+    }
+
+    .categories-card {
+        width: 115px;
+        height: 179px;
+    }
+
+    .question-image {
+        object-fit: contain;
+        width: 360px;
+        height: 365px;
+    }
+
+    .answer {
+        max-width: 150px;
+        width: 100%;
+    }
+
+    .picture-image {
+        width: 360px;
+        height: 90px;
+    }
+
+    .modal-container,
+    .modal-congratulation {
+        width: 340px;
+        height: 480px;
+        padding: 10px 10px;
+        transform: translate(-170px, -80%);
+    }
+
+    .visible {
+        bottom: 8%;
+        transform: translate(-170px, -8%);
+    }
 }

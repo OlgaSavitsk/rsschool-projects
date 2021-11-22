@@ -29,6 +29,7 @@ export class QuestionsPicturesPage extends Control {
     footer!: Footer
     volumeValue: any
     timerValue: any
+    modal!: ModalImageInformation
 
     constructor(parentNode: HTMLElement, indexCategory: number) {
         super(parentNode, 'div', 'container', '')
@@ -50,7 +51,6 @@ export class QuestionsPicturesPage extends Control {
     playAudio(url: string) {
         const audio = new Audio(url)
         audio.play()
-        console.log('0', this.volumeValue.length)
         if(this.volumeValue.length !== 0) {
             audio.volume = this.volumeValue
         } else audio.volume = 0.4
@@ -83,10 +83,8 @@ export class QuestionsPicturesPage extends Control {
       ].map((_, c) => arr.filter((n, index) => index % chunks === c)); 
       await this.getData().then(res => {
         const questionByPicture = splitArr(res, 24).slice(12)
-        console.log('questionByPicture', questionByPicture)
         return questionByPicture
       }).then(res => {
-       console.log('res1',res)
         return res[indexCategory]
     }).then(category => {
         this.imageAuthor = category[indexImage].author
@@ -100,7 +98,7 @@ export class QuestionsPicturesPage extends Control {
         this.setAnswer.add(category[indexImage].imageNum)
     })
     this.headerQuestions = new HeaderQuestions(this.node, `Какую картину написал ${this.imageAuthor} ?`)
-    this.showModalImage() 
+    this.showModalImage()
    } 
 
    async setAnswers() {     
@@ -117,36 +115,37 @@ export class QuestionsPicturesPage extends Control {
             this.answer.onAnswerClick = (answer) => {
                 this.headerQuestions.timer.stopTimer()
                 clearTimeout(this.setTime)
+                this.clear()
                 this.answerHandler(answer)
             }
         })
     }
 
     async answerHandler(authorName: any) { 
-        console.log('authorName', authorName.node.innerHTML) 
         const correctAnswer = Array.from(this.correctAnswer.values()).map(item => item) 
-        console.log('correctAnswer', correctAnswer) 
         if(authorName.node.innerHTML === correctAnswer[0].imageNum) {
             authorName.node.classList.add('match')
             this.isCorrect = true
             this.correct.push(correctAnswer[0].author)
             this.playAudio('./assets/sounds/correct.mp3')
             this.answerStorage.push(correctAnswer[0].imageNum)
-            this.headerQuestions.timer.stopTimer()
-            clearTimeout(this.setTime)
         } 
         if(authorName.node.innerHTML !== correctAnswer[0].imageNum) {
             authorName.node.classList.add('unmatch')
             this.isCorrect = false
             this.playAudio('./assets/sounds/error.mp3')
-            this.headerQuestions.timer.stopTimer()
-            clearTimeout(this.setTime)
         }  
-    
         await delay(MODAL_SHOW_DELAY) 
-        const modal = new ModalImageInformation(this.node, this.isCorrect, correctAnswer[0])
-        modal.onNextButtonClick = () => {
-            modal.destroy()
+        this.showModal()
+    }
+    
+    async showModal() { 
+        const correctAnsw = Array.from(this.correctAnswer.values()).map(item => item)
+        this.modal = new ModalImageInformation(this.node, this.isCorrect, correctAnsw[0])
+        await delay(MODAL_SHOW_DELAY) 
+        this.modal.modalContainer.node.classList.add('visible')
+        this.modal.onNextButtonClick = () => {
+            this.modal.destroy()
             this.headerQuestions.destroy()
             this.nextQuestion()
             if(this.indexImage === 10){
@@ -156,7 +155,33 @@ export class QuestionsPicturesPage extends Control {
         } 
     }
 
+    async showModalImage() {   
+        this.timerValue = JSON.parse(localStorage.getItem('time')!) || [] 
+        if(this.timerValue.isTime === true) {
+            this.headerQuestions.timer.initTimer()
+        }  
+         this.setTime = setTimeout(() => {
+             this.showModalImage()
+         }, 1000)  
+         this.secondCount = this.headerQuestions.timer.node.textContent
+         console.log(this.secondCount?.split(''))
+         if(this.secondCount?.match(this.timerValue.timeCount)) {  
+             this.headerQuestions.timer.stopTimer()
+             clearTimeout(this.setTime)
+             this.isCorrect = false  
+             this.playAudio('./assets/sounds/error.mp3')
+            this.showModal()
+         } 
+    } 
+
+    clear() {
+        for(let i=0; i< this.setTime; i++){
+            clearTimeout(i)
+        }
+    }
+
     nextQuestion() {
+        this.headerQuestions.destroy()
         this.answer.destroy()
         this.footer.destroy()
         this.indexImage++
@@ -169,22 +194,4 @@ export class QuestionsPicturesPage extends Control {
             localStorage.setItem('answers-picture', JSON.stringify(this.storageValue)) 
         }
     }
-
-    async showModalImage() {    
-        this.timerValue = JSON.parse(localStorage.getItem('time')!) || [] 
-        if(this.timerValue.isTime === true) {
-            this.headerQuestions.timer.initTimer()
-        } 
-        this.setTime = setTimeout(() => {
-            this.showModalImage()
-        }, 1000)  
-        console.log('1', this.setTime)
-        this.secondCount = this.headerQuestions.timer.node.textContent
-        console.log(this.secondCount?.split(''))
-        if(this.secondCount?.match(this.timerValue.timeCount)) {  
-            this.headerQuestions.timer.stopTimer()
-            clearTimeout(this.setTime)
-            this.answerHandler(this.answer)
-        }
-    } 
 }
