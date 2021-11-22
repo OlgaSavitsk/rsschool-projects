@@ -35,9 +35,6 @@ export class CategoriesCard extends Control {
         this.categoryCardLink.node.onclick = () => {
             this.onChangeCategoryQuestions()
         }
-        this.scoreInfo.node.onclick = (info) => {
-           // this.scoreCard
-        }
     }
 
     setcorrectAnswer(correctAnswer: number|undefined) {

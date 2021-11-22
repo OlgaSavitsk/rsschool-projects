@@ -22,7 +22,7 @@ export class ScorePicturePage extends Control {
     }
 
     async getData() {
-        const response = await fetch('/images.json');
+        const response = await fetch('images.json');
         const categories = await response.json();   
         return categories
     }

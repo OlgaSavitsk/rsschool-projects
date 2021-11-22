@@ -66,7 +66,7 @@ export class QuestionsArtistPage extends Control {
     } 
 
     async getData() {
-        const response = await fetch('/images.json');
+        const response = await fetch('images.json');
         const categories = await response.json();
         const questionByAuthor: IImageModel[] = []
         const questionByPicture: IImageModel[] = []

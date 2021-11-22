@@ -25,7 +25,7 @@ export class CategoriesPage extends Control {
     }
 
     async start() {
-        const response = await fetch('/category-images.json');
+        const response = await fetch('category-images.json');
         const categories: ICategoriesModel[] = await response.json();
         this.cat = categories[0];
         const images = this.cat.images.map(name => `${this.cat.category}/${name}`);
