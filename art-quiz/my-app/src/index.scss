@@ -284,6 +284,10 @@ h3 {
 
 .button-container {
     display: flex;
+    width: 100%;
+    flex-flow: wrap;
+    justify-content: center;
+    row-gap: 10px;
 }
 
 .categories-container {
@@ -444,6 +448,34 @@ h3 {
     background: #C4C4C4;
     border-radius: 50%;
     margin-bottom: 1.5rem;
+}
+
+.question-author {
+    flex-direction: column;
+    align-items: flex-end;
+    row-gap: 10px;
+}
+
+.download-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.download-icon {
+    display: inline-block;
+    background-image: url(./assets/svg/download.svg);
+    width: 40px;
+    height: 40px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.canvas {
+    opacity: 0;
+    visibility: hidden;
 }
 
 .answer-container {

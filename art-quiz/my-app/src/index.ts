@@ -7,6 +7,7 @@ import { QuestionsPicturesPage } from "./pages/question-pictures-page";
 import { ScorePage } from "./pages/score-page";
 import { ScorePicturePage } from "./pages/score-picture-page";
 import { SettingPage } from "./pages/settings-page";
+import { selfCheck } from "./components/self-check";
 
 const app = new Application(document.body)
 let currentRouteId: number
@@ -93,3 +94,5 @@ const setRoutId = (id) => {
       new ScorePicturePage(document.body, id - 1)
     }
 }
+
+selfCheck()
