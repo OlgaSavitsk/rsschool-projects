@@ -97,8 +97,11 @@ export class QuestionsPicturesPage extends Control {
         this.correctAnswer.add(category[indexImage])
         this.setAnswer.add(category[indexImage].imageNum)
     })
-    this.headerQuestions = new HeaderQuestions(this.node, `Какую картину написал ${this.imageAuthor} ?`)
-    this.showModalImage()
+    this.headerQuestions = new HeaderQuestions(this.node, `Какую картину написал <br>${this.imageAuthor} ?`)
+    this.timerValue = JSON.parse(localStorage.getItem('time')!) || [] 
+    if(this.timerValue.isTime === true) {
+        this.showModalImage()
+    } 
    } 
 
    async setAnswers() {     

@@ -19,7 +19,7 @@ export class ModalImageInformation extends Control {
             this.iconSrc = 'check-failure.svg'
         }
         this.modalContainer = new Control(this.node, 'div', 'modal-container', '')
-        this.modalContainer.node.innerHTML = `<div class="modal-check" style="background-image: url('../assets/svg/${this.iconSrc}')"></div>
+        this.modalContainer.node.innerHTML = `<div class="modal-check" style="background-image: url('./assets/svg/${this.iconSrc}')"></div>
             <div class="modal-image" style="background-image: url('./assets/img/img/${this.correctAnswer.imageNum}.jpg')"></div>
             <span>${this.correctAnswer.name}</span>
             <span>${this.correctAnswer.author}</span>
