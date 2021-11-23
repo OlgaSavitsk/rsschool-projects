@@ -187,6 +187,7 @@ export class QuestionsPicturesPage extends Control {
         this.headerQuestions.destroy()
         this.answer.destroy()
         this.footer.destroy()
+        this.modal.destroy()
         this.indexImage++
         this.setImage(this.indexCategory, this.indexImage)
         this.setAnswers()

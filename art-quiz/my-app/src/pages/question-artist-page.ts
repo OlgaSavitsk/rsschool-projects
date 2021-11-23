@@ -166,7 +166,7 @@ export class QuestionsArtistPage extends Control {
             this.stopTimer()
         }, 1000)  
         this.secondCount = this.headerQuestions.timer.node.textContent
-        console.log(this.secondCount?.split(''))
+      //  console.log(this.secondCount?.split(''))
         if(this.secondCount?.match(this.timerValue.timeCount)) {  
             this.headerQuestions.timer.stopTimer()
             clearTimeout(this.setTime)
@@ -186,6 +186,7 @@ export class QuestionsArtistPage extends Control {
         this.questionsImage.destroy()
         this.answer.destroy()
         this.footer.destroy()
+        this.modal.destroy()
         this.indexImage++
         this.setImage(this.indexCategory, this.indexImage)
         this.setAnswers()

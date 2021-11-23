@@ -15,8 +15,6 @@ export class Settings extends Control {
         this.getTimeLocalStorage()
     }
 
-    
-
     async getTimeLocalStorage() {
         const timerValue = await JSON.parse(localStorage.getItem('time')!) || []
         if(timerValue.isTime === true) {

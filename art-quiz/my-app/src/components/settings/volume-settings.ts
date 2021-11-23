@@ -15,11 +15,12 @@ export class VolumeSettings extends Control {
         this.volumeRange.node.setAttribute('min', '0') 
         this.volumeRange.node.setAttribute('max', '1')  
         this.volumeRange.node.setAttribute('step', '0.05') 
-        this.volumeRange.node.value = '0.4'  
+        //this.volumeRange.node.value = '0.4'  
         this.volumeRangeBgd()   
         this.node.innerHTML = `<span class="volume-icon"></span>`
         this.node.insertAdjacentElement('beforeend', this.volumeContainer.node)
-        this.node.insertAdjacentHTML('beforeend', '<span class="settings-title">volume</span>')  
+        this.node.insertAdjacentHTML('beforeend', '<span class="settings-title">volume</span>') 
+        this.getVolumeLocalStorage() 
         this.volumeRange.node.onclick = () => {
             const audio = new Audio('./assets/sounds/correct.mp3')
             audio.play()
@@ -28,14 +29,17 @@ export class VolumeSettings extends Control {
         this.volumeRange.node.onchange = () => {  
             this.volumeRangeBgd()
         }
-        this.getVolumeLocalStorage()
     }
 
-    async getVolumeLocalStorage() {
-        this.volumeValue = await JSON.parse(localStorage.getItem('volume')!) || []      
-        if(this.volumeValue) {
-            this.volumeRange.node.value = this.volumeValue
-        } else  this.volumeRange.node.value = '0.4'
+    getVolumeLocalStorage() {
+        this.volumeValue = JSON.parse(localStorage.getItem('volume')!) || []   
+        
+       if(this.volumeValue >= 0) {
+            this.volumeRange.node.value = this.volumeValue.toString()  
+            console.log(this.volumeRange.node.value)
+        } else {
+            this.volumeRange.node.value = '0.4'
+        } 
        this.volumeRangeBgd()
     }
 
