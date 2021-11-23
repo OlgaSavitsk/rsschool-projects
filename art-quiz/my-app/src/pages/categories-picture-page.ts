@@ -1,6 +1,5 @@
 import Control from "../common/control"
 import { ButtonCategories } from "../components/button-categories/button-categories"
-import { CategoriesCardField } from "../components/cards/categories-cardfield"
 import { Footer } from "../components/footer/footer"
 import { Logo } from "../components/logo/logo"
 import { PictureCategoriesCard } from "../components/picture category-card/picture-category-card"
@@ -39,10 +38,10 @@ export class CategoriesPicturesPage extends Control {
         }) 
     } 
 
-    getLocalStorageAnswer(index: number): (number | undefined) {
-        const storageValue = JSON.parse(localStorage.getItem('answers-picture')!) || []
+    getLocalStorageAnswer(index: number): any {
+        const storageValuePicture = JSON.parse(localStorage.getItem('answers-picture')!) || []
         try {
-            this.correctAnswerNumber = storageValue[index]
+            this.correctAnswerNumber = storageValuePicture[index]
             return this.correctAnswerNumber.length
         }catch(err) {
             console.log(err)

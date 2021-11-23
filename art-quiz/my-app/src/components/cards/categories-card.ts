@@ -7,9 +7,8 @@ export class CategoriesCard extends Control {
     scoreInfo: Control<HTMLElement>;
     categoryImage: Control<HTMLElement>;
     categoryCardLink: Control<HTMLElement>;
-    scoreCard!: ScoreCard
 
-    constructor(parentNode: HTMLElement, readonly image: string, number: number, title: string, correctAnswer: number|undefined) {
+    constructor(parentNode: HTMLElement, readonly image: string, number: number, title: string, correctAnswer: number) {
         super(parentNode, 'div', 'categories-card', '')
         this.image = image
         this.categoryCardLink = new Control(this.node, 'a', 'categories-card link', '') 
@@ -25,19 +24,23 @@ export class CategoriesCard extends Control {
         this.scoreInfo = new Control(this.node, 'a', 'score-info link', '')
         this.scoreInfo.node.setAttribute('href', `#score/${number}`)
         this.scoreInfo.node.innerHTML = `
-        <div>Score</div>`
+            <div>Score</div>`
         if(this.correctAnswerNumber === 0) {
             this.scoreInfo.destroy()
-        } else {
+        } 
+        else {
             this.categoryImage.node.classList.remove('grayscale')  
         }
+        if(correctAnswer === 0) {
+            this.categoryImage.node.classList.remove('grayscale')
+        } 
         this.styleBg(this.image)
         this.categoryCardLink.node.onclick = () => {
             this.onChangeCategoryQuestions()
         }
     }
 
-    setcorrectAnswer(correctAnswer: number|undefined) {
+    setcorrectAnswer(correctAnswer: number) {
         if(typeof(correctAnswer) === 'undefined') {
             this.correctAnswerNumber = 0 
         } else {

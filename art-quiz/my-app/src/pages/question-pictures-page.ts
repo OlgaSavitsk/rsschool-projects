@@ -30,6 +30,7 @@ export class QuestionsPicturesPage extends Control {
     volumeValue: any
     timerValue: any
     modal!: ModalImageInformation
+    modalCongratulation!: ModalCongratulation
 
     constructor(parentNode: HTMLElement, indexCategory: number) {
         super(parentNode, 'div', 'container', '')
@@ -37,7 +38,6 @@ export class QuestionsPicturesPage extends Control {
         this.indexImage = 0  
         this.setImage(indexCategory, this.indexImage)
         this.setAnswers()  
-        const pictureContainer = new AnswerPictureContainer(this.node)  
         this.setAnswer = new Set()
         this.answerArr = new Array()
         this.indexCategory = indexCategory
@@ -48,18 +48,23 @@ export class QuestionsPicturesPage extends Control {
         this.getVolumeLocalStorage() 
     }
 
+    getVolumeLocalStorage() {
+        this.volumeValue = JSON.parse(localStorage.getItem('volume')!) || []
+    } 
+  
     playAudio(url: string) {
+        this.getVolumeLocalStorage()
         const audio = new Audio(url)
         audio.play()
         if(this.volumeValue.length !== 0) {
             audio.volume = this.volumeValue
-        } else audio.volume = 0.4
+        }
+        if(this.volumeValue.length === 0) {
+            audio.volume = 0 
+        } 
+        else audio.volume = 0.4
     }
   
-    async getVolumeLocalStorage() {
-        this.volumeValue = await JSON.parse(localStorage.getItem('volume')!) || []
-    } 
-
     async getData() {
         const response = await fetch('images.json');
         const categories = await response.json();
@@ -113,7 +118,11 @@ export class QuestionsPicturesPage extends Control {
             }
             this.answerArr = Array.from(this.setAnswer).slice(-4)         
             this.answer = new AnswerPictureContainer(this.node)
-            this.footer = new Footer(this.node)  
+            this.footer = new Footer(this.node) 
+            if(this.indexImage === 10){
+                this.answer.destroy()
+                this.footer.destroy()
+            } 
             this.answer.getRandomAnswerPicture(this.answerArr)        
             this.answer.onAnswerClick = (answer) => {
                 this.headerQuestions.timer.stopTimer()
@@ -150,6 +159,8 @@ export class QuestionsPicturesPage extends Control {
         this.modal.onNextButtonClick = () => {
             this.modal.destroy()
             this.headerQuestions.destroy()
+         /*    this.answer.destroy()
+            this.footer.destroy() */
             this.nextQuestion()
             if(this.indexImage === 10){
                 this.headerQuestions.timer.stopTimer()
@@ -167,7 +178,6 @@ export class QuestionsPicturesPage extends Control {
              this.showModalImage()
          }, 1000)  
          this.secondCount = this.headerQuestions.timer.node.textContent
-         console.log(this.secondCount?.split(''))
          if(this.secondCount?.match(this.timerValue.timeCount)) {  
              this.headerQuestions.timer.stopTimer()
              clearTimeout(this.setTime)
@@ -183,7 +193,7 @@ export class QuestionsPicturesPage extends Control {
         }
     }
 
-    nextQuestion() {
+   async nextQuestion() {
         this.headerQuestions.destroy()
         this.answer.destroy()
         this.footer.destroy()
@@ -192,7 +202,12 @@ export class QuestionsPicturesPage extends Control {
         this.setImage(this.indexCategory, this.indexImage)
         this.setAnswers()
         if(this.indexImage === 10) {
-            new ModalCongratulation(this.node, this.indexCategory, this.correct.length, 'pictures')
+            this.answer.destroy()
+            this.footer.destroy()
+            this.modalCongratulation = new ModalCongratulation(this.node, this.indexCategory, this.correct.length, 'pictures')
+            await delay(MODAL_SHOW_DELAY) 
+            this.modalCongratulation.modalContainer.node.classList.add('visible')  
+            this.playAudio('./assets/sounds/success.mp3') 
             this.playAudio('./assets/sounds/success.mp3')          
             this.storageValue[this.indexCategory] = this.answerStorage
             localStorage.setItem('answers-picture', JSON.stringify(this.storageValue)) 

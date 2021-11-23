@@ -7,7 +7,7 @@ export class PictureCategoriesCard extends Control {
     categoryImage: Control<HTMLElement>;
     categoryCardLink: Control<HTMLElement>;
 
-    constructor(parentNode: HTMLElement, readonly image: string, number: number, title: string, correctAnswer: number|undefined) {
+    constructor(parentNode: HTMLElement, readonly image: string, number: number, title: string, correctAnswer: number) {
         super(parentNode, 'div', 'categories-card', '')
         this.image = image
         this.categoryCardLink = new Control(this.node, 'a', 'categories-card link', '') 
@@ -28,13 +28,17 @@ export class PictureCategoriesCard extends Control {
         } else {
             this.categoryImage.node.classList.remove('grayscale')  
         }
+        if(correctAnswer === 0) {
+            this.categoryImage.node.classList.remove('grayscale')
+            this.node.appendChild(this.scoreInfo.node)
+        } 
         this.styleBg(this.image)
         this.categoryCardLink.node.onclick = () => {
             this.onChangeCategoryQuestions()
         }
     }
 
-    setcorrectAnswer(correctAnswer: number|undefined) {
+    setcorrectAnswer(correctAnswer: number) {
         if(typeof(correctAnswer) === 'undefined') {
             this.correctAnswerNumber = 0 
         } else {

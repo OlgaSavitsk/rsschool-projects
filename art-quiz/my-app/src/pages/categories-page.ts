@@ -32,18 +32,18 @@ export class CategoriesPage extends Control {
         images.map(async (url, index) => {
             const answer = await this.getLocalStorageAnswer(index)
             const card = new CategoriesCard(this.cardField.node, url, index+1, this.cat.categories[index], answer)     
-           card.onChangeCategoryQuestions = () => {
-               new QuestionsArtistPage(this.node, index)
-           }  
+            card.onChangeCategoryQuestions = () => {
+                new QuestionsArtistPage(this.node, index)
+            }  
         }) 
     } 
 
-    getLocalStorageAnswer(index: number): (number | undefined) {
+    getLocalStorageAnswer(index: number): any {
         const storageValue = JSON.parse(localStorage.getItem('answers')!) || []
         try {
             this.correctAnswerNumber = storageValue[index]
             return this.correctAnswerNumber.length
-        }catch(err) {
+        } catch(err) {
             console.log(err)
         }
     }

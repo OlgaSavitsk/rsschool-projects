@@ -34,9 +34,9 @@ export class QuestionsArtistPage extends Control {
 
     constructor(parentNode: HTMLElement, indexCategory: number) {
         super(parentNode, 'div', 'container', '')
-        this.headerQuestions = new HeaderQuestions(this.node, 'Кто автор данной картины ?') 
+        this.headerQuestions = new HeaderQuestions(this.node, 'Кто автор данной картины ?')  
         this.indexImage = 0
-        this.setImage(indexCategory, this.indexImage)
+        this.setImage(indexCategory, this.indexImage)  
         this.setAnswers()  
         this.correctAnswer = new Set()
         this.setAnswer = new Set()
@@ -46,24 +46,29 @@ export class QuestionsArtistPage extends Control {
         this.answerStorage = []
         this.storageValue = new Array(10)
         this.storageValue = JSON.parse(localStorage.getItem('answers')!) || []
-        this.getVolumeLocalStorage()
+       
         this.timerValue = JSON.parse(localStorage.getItem('time')!) || [] 
         if(this.timerValue.isTime === true) {
             this.stopTimer()
         }    
     }
 
+    getVolumeLocalStorage() {
+        this.volumeValue = JSON.parse(localStorage.getItem('volume')!) || []
+    } 
+
     playAudio(url: string) {
+        this.getVolumeLocalStorage()
         const audio = new Audio(url)
         audio.play()
         if(this.volumeValue.length !== 0) {
             audio.volume = this.volumeValue
-        } else audio.volume = 0.4
+        }
+        if(this.volumeValue.length === 0) {
+            audio.volume = 0 
+        } 
+        else audio.volume = 0.4
     }
-  
-    async getVolumeLocalStorage() {
-        this.volumeValue = await JSON.parse(localStorage.getItem('volume')!) || []
-    } 
 
     async getData() {
         const response = await fetch('images.json');
@@ -113,13 +118,20 @@ export class QuestionsArtistPage extends Control {
             }
             this.answerArr = Array.from(this.setAnswer).slice(-4)         
             this.answer = new AnswerContainer(this.node)
-            this.footer = new Footer(this.node)    
+            this.footer = new Footer(this.node) 
+            if(this.indexImage === 10){
+                this.answer.destroy()
+                this.footer.destroy()
+            }
             this.answer.getRandomAnswer(this.answerArr)
             this.answer.onAnswerClick = (answer) => {
                 this.headerQuestions.timer.stopTimer()
                 clearTimeout(this.setTime)
                 this.clear()
                 this.answerHandler(answer)
+                if(this.indexImage === 10){
+                   this.footer.destroy()
+                }
             }
         })
     }

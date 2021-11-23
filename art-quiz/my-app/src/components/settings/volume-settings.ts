@@ -11,16 +11,15 @@ export class VolumeSettings extends Control {
         this.volumeContainer.node.innerHTML = `<img src="./assets/svg/volume-off.svg" class="volumeoff-icon" alt="volume">`
         this.volumeRange = new Control(this.volumeContainer.node, 'input', 'progress-volume', '') 
         this.volumeRange.node.setAttribute('type', 'range') 
-        this.volumeRange.node.setAttribute('value', '0.4')  
+        this.volumeRange.node.setAttribute('value', '0.5')  
         this.volumeRange.node.setAttribute('min', '0') 
         this.volumeRange.node.setAttribute('max', '1')  
         this.volumeRange.node.setAttribute('step', '0.05') 
-        //this.volumeRange.node.value = '0.4'  
+        //this.volumeRange.node.value = this.volumeValue 
         this.volumeRangeBgd()   
         this.node.innerHTML = `<span class="volume-icon"></span>`
         this.node.insertAdjacentElement('beforeend', this.volumeContainer.node)
-        this.node.insertAdjacentHTML('beforeend', '<span class="settings-title">volume</span>') 
-        this.getVolumeLocalStorage() 
+        this.node.insertAdjacentHTML('beforeend', '<span class="settings-title">volume</span>')  
         this.volumeRange.node.onclick = () => {
             const audio = new Audio('./assets/sounds/correct.mp3')
             audio.play()
@@ -29,17 +28,17 @@ export class VolumeSettings extends Control {
         this.volumeRange.node.onchange = () => {  
             this.volumeRangeBgd()
         }
+        this.getVolumeLocalStorage() 
     }
 
     getVolumeLocalStorage() {
-        this.volumeValue = JSON.parse(localStorage.getItem('volume')!) || []   
-        
-       if(this.volumeValue >= 0) {
-            this.volumeRange.node.value = this.volumeValue.toString()  
-            console.log(this.volumeRange.node.value)
-        } else {
-            this.volumeRange.node.value = '0.4'
+        this.volumeValue = JSON.parse(localStorage.getItem('volume')!) || [] 
+        if(this.volumeValue >= 0) {
+            this.volumeRange.node.value = this.volumeValue 
         } 
+        if(this.volumeValue.length === 0) {
+            this.volumeRange.node.value = '0' 
+        }
        this.volumeRangeBgd()
     }
 

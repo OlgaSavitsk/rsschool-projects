@@ -34,7 +34,7 @@ export class SettingPage extends Control {
     defaultValue() {
         localStorage.removeItem('time')
         localStorage.removeItem('volume')
-        this.settings.volumeSettings.volumeRange.node.value = '0.4'
+        this.settings.volumeSettings.volumeRange.node.value = '0.5'
         this.settings.volumeSettings.volumeRangeBgd()
         this.settings.timeSettings.timeCount.countButton.node.setAttribute('disabled', 'disabled')
         this.settings.timeSettings.timeCount.countButton.node.style.backgroundColor = '#555555'
