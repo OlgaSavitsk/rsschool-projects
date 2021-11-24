@@ -28,7 +28,8 @@ export class SettingPage extends Control {
             timeCount: +this.settings.timeSettings.timeCount.countInput.node.value
         }
         localStorage.setItem('time', JSON.stringify(time))
-        localStorage.setItem('volume', JSON.stringify(+this.settings.volumeSettings.volumeRange.node.value))
+        console.log(this.settings.volumeSettings.volumeRange.node.value)
+        localStorage.setItem('volume', JSON.stringify(this.settings.volumeSettings.volumeRange.node.value))
     }
 
     defaultValue() {

@@ -36,5 +36,8 @@ export class Settings extends Control {
         if(typeof(timerValue.isTime) === 'undefined') {
             this.timeSettings.timeCount.countInput.node.value = '5'
         }
+        if(timerValue.isTime === false) {
+            this.timeSettings.timeCount.countInput.node.value = timerValue.timeCount.toString()
+        }
     }
 }

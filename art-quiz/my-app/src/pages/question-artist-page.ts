@@ -8,6 +8,7 @@ import { ModalImageInformation } from "../components/modal-image-information/mod
 import { MODAL_SHOW_DELAY } from "../constants"
 import { ModalCongratulation } from "../components/modal-congratulation/modal-congratulation"
 import { Footer } from "../components/footer/footer"
+import { Logo } from "../components/logo/logo"
 
 export class QuestionsArtistPage extends Control {
     imageNumber!: number
@@ -50,7 +51,12 @@ export class QuestionsArtistPage extends Control {
         this.timerValue = JSON.parse(localStorage.getItem('time')!) || [] 
         if(this.timerValue.isTime === true) {
             this.stopTimer()
-        }    
+        }   
+        this.headerQuestions.logo.onToggleToHome = () => {
+            this.headerQuestions.timer.stopTimer()
+            clearTimeout(this.setTime)
+            this.clear()
+        } 
     }
 
     getVolumeLocalStorage() {
@@ -61,13 +67,12 @@ export class QuestionsArtistPage extends Control {
         this.getVolumeLocalStorage()
         const audio = new Audio(url)
         audio.play()
-        if(this.volumeValue.length !== 0) {
+        if(+this.volumeValue >= 0) {
             audio.volume = this.volumeValue
         }
         if(this.volumeValue.length === 0) {
-            audio.volume = 0 
-        } 
-        else audio.volume = 0.4
+            audio.volume = 0.5
+        }
     }
 
     async getData() {

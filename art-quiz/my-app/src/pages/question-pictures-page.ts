@@ -56,13 +56,12 @@ export class QuestionsPicturesPage extends Control {
         this.getVolumeLocalStorage()
         const audio = new Audio(url)
         audio.play()
-        if(this.volumeValue.length !== 0) {
+        if(+this.volumeValue >= 0) {
             audio.volume = this.volumeValue
         }
         if(this.volumeValue.length === 0) {
-            audio.volume = 0 
-        } 
-        else audio.volume = 0.4
+            audio.volume = 0.5
+        }
     }
   
     async getData() {

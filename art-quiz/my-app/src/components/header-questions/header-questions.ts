@@ -4,11 +4,12 @@ import { Timer } from "../timer/timer"
 
 export class HeaderQuestions extends Control {
     timer: Timer
+    logo: Logo
 
     constructor(parentNode: HTMLElement, title: string) {
         super(parentNode, 'div', 'header-questions', '')
-        const logo = new Logo(this.node)
-        logo.node.classList.add('questions')
+        this.logo = new Logo(this.node)
+        this.logo.node.classList.add('questions')
         this.node.insertAdjacentHTML('beforeend', `<h2 class="question-title">${title}</h2>`)
         this.timer = new Timer(this.node)
     }
