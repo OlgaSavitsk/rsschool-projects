@@ -1,5 +1,6 @@
 import Control from '../../common/control';
 import { IImageModel } from '../../models/image-model';
+import constants from '../../constants';
 
 export default class ScoreCard extends Control {
   imageScore: Control<HTMLElement>;
@@ -38,11 +39,17 @@ export default class ScoreCard extends Control {
   }
 
   async styleBg() {
-    const img = new Image();
-    img.src = `https://raw.githubusercontent.com/OlgaSavitsk/image-data/master/img/${this.image.imageNum}.jpg`;
-    img.onload = () => {
-      this.imageScore.node.style.backgroundImage = `url(${img.src})`;
-    };
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.src = `${constants.IMAGE_URL}/${this.image.imageNum}.jpg`;
+      img.onload = () => {
+        resolve(img.src);
+      };
+    })
+      .then((src) => {
+        this.imageScore.node.style.backgroundImage = `url(${src})`;
+        return this.imageScore.node;
+      });
   }
 
   getLocalStorageAnswer(localStorageName: string): void {

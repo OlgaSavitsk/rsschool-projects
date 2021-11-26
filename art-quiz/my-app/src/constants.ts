@@ -1,3 +1,9 @@
 const MODAL_SHOW_DELAY: number = 1000;
+const IMAGE_URL = 'https://raw.githubusercontent.com/OlgaSavitsk/image-data/master/img';
 
-export default MODAL_SHOW_DELAY;
+const constants = {
+  MODAL_SHOW_DELAY,
+  IMAGE_URL,
+};
+
+export default constants;

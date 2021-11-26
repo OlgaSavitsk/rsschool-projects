@@ -4,7 +4,7 @@ import QuestionsImage from '../components/questions-image/questions-image';
 import { IImageModel } from '../models/image-model';
 import { delay } from '../common/delay';
 import ModalImageInformation from '../components/modal-image-information/modal-image-information';
-import MODAL_SHOW_DELAY from '../constants';
+import constants from '../constants';
 import ModalCongratulation from '../components/modal-congratulation/modal-congratulation';
 import AnswerPictureContainer from '../components/answer-picture-container/answer-picture-container';
 import Footer from '../components/footer/footer';
@@ -155,14 +155,14 @@ export default class QuestionsPicturesPage extends Control {
       this.isCorrect = false;
       this.playAudio('./assets/sounds/error.mp3');
     }
-    await delay(MODAL_SHOW_DELAY);
+    await delay(constants.MODAL_SHOW_DELAY);
     this.showModal();
   }
 
   async showModal(): Promise<void> {
     const correctAnsw = Array.from(this.correctAnswer.values()).map((item) => item);
     this.modal = new ModalImageInformation(this.node, this.isCorrect, correctAnsw[0]);
-    await delay(MODAL_SHOW_DELAY);
+    await delay(constants.MODAL_SHOW_DELAY);
     this.modal.modalContainer.node.classList.add('visible');
     this.modal.onNextButtonClick = () => {
       this.modal.destroy();
@@ -211,7 +211,7 @@ export default class QuestionsPicturesPage extends Control {
       this.answer.destroy();
       this.footer.destroy();
       this.modalCongratulation = new ModalCongratulation(this.node, this.indexCategory, this.correct.length, 'pictures');
-      await delay(MODAL_SHOW_DELAY);
+      await delay(constants.MODAL_SHOW_DELAY);
       this.modalCongratulation.modalContainer.node.classList.add('visible');
       this.playAudio('./assets/sounds/success.mp3');
       this.playAudio('./assets/sounds/success.mp3');

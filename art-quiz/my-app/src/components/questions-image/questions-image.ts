@@ -1,4 +1,5 @@
 import Control from '../../common/control';
+import constants from '../../constants';
 
 export default class QuestionsImage extends Control {
   imageContainer: Control<HTMLImageElement>;
@@ -26,12 +27,18 @@ export default class QuestionsImage extends Control {
     };
   }
 
-  styleBg(i: number): void {
-    const img = new Image();
-    img.src = `https://raw.githubusercontent.com/OlgaSavitsk/image-data/master/img/${i}.jpg`;
-    img.onload = () => {
-      this.imageContainer.node.setAttribute('src', `${img.src}`);
-    };
+  async styleBg(i: number) {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.src = `${constants.IMAGE_URL}/${i}.jpg`;
+      img.onload = () => {
+        resolve(img.src);
+      };
+    })
+      .then((src) => {
+        this.imageContainer.node.setAttribute('src', `${src}`);
+        return this.imageContainer.node;
+      });
   }
 
   saveImage(): void {

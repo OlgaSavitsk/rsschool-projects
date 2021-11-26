@@ -6,7 +6,7 @@ import QuestionsImage from '../components/questions-image/questions-image';
 import { IImageModel } from '../models/image-model';
 import { delay } from '../common/delay';
 import ModalImageInformation from '../components/modal-image-information/modal-image-information';
-import MODAL_SHOW_DELAY from '../constants';
+import constants from '../constants';
 import ModalCongratulation from '../components/modal-congratulation/modal-congratulation';
 import Footer from '../components/footer/footer';
 import { ITimeModel } from '../models/time-model';
@@ -119,7 +119,7 @@ export default class QuestionsArtistPage extends Control {
     this.questionsImage = new QuestionsImage(this.node, this.imageNumber!);
   }
 
-  async setAnswers() {
+  async setAnswers(): Promise<void> {
     await QuestionsArtistPage.getData().then((res: IImageModel[]) => {
       const authors = res.map((cat: IImageModel) => cat);
       const randomAuthor = authors.sort(() => Math.random() - 0.5);
@@ -157,14 +157,14 @@ export default class QuestionsArtistPage extends Control {
       this.isCorrect = false;
       this.playAudio('./assets/sounds/error.mp3');
     }
-    await delay(MODAL_SHOW_DELAY);
+    await delay(constants.MODAL_SHOW_DELAY);
     this.showModal();
   }
 
   async showModal(): Promise<void> {
     const correctAnsw = Array.from(this.correctAnswer.values()).map((item) => item);
     this.modal = new ModalImageInformation(this.node, this.isCorrect, correctAnsw[0]);
-    await delay(MODAL_SHOW_DELAY);
+    await delay(constants.MODAL_SHOW_DELAY);
     this.modal.modalContainer.node.classList.add('visible');
     this.modal.onNextButtonClick = () => {
       this.modal.destroy();
@@ -210,7 +210,7 @@ export default class QuestionsArtistPage extends Control {
     this.setAnswers();
     if (this.indexImage === 10) {
       this.modalCongratulation = new ModalCongratulation(this.node, this.indexCategory, this.correct.length, 'categories');
-      await delay(MODAL_SHOW_DELAY);
+      await delay(constants.MODAL_SHOW_DELAY);
       this.modalCongratulation.modalContainer.node.classList.add('visible');
       this.playAudio('./assets/sounds/success.mp3');
       this.storageValue[this.indexCategory] = this.answerStorage;

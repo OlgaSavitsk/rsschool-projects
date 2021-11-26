@@ -30,20 +30,10 @@ export default class ScorePage extends Control {
   static async getData() {
     const response = await fetch('images.json');
     const categories = await response.json();
-    const questionByAuthor: IImageModel[] = [];
-    const questionByPicture: IImageModel[] = [];
-    categories.forEach((item: IImageModel, index: number) => {
-      if (index % 2 === 0) {
-        questionByAuthor.push(item);
-      }
-      if (index % 2 !== 0) {
-        questionByPicture.push(item);
-      }
-    });
     return categories;
   }
 
-  async setCard(indexCategory: number) {
+  async setCard(indexCategory: number): Promise<void> {
     const splitArr = (arr: IImageModel[], chunks: number) => [
       ...Array(chunks),
     ].map((_, c) => arr.filter((n, index) => index % chunks === c));

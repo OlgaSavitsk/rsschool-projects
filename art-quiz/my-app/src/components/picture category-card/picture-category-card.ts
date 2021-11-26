@@ -57,11 +57,17 @@ export default class PictureCategoriesCard extends Control {
     return this.correctAnswerNumber;
   }
 
-  styleBg(i: string): void {
-    const img = new Image();
-    img.src = `./assets/${i}`;
-    img.onload = () => {
-      this.categoryImage.node.style.backgroundImage = `url(${img.src})`;
-    };
+  async styleBg(i: string) {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.src = `./assets/${i}`;
+      img.onload = () => {
+        resolve(img.src);
+      };
+    })
+      .then((src) => {
+        this.categoryImage.node.style.backgroundImage = `url(${src})`;
+        return this.categoryImage.node;
+      });
   }
 }
