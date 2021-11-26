@@ -12,9 +12,7 @@ export default class CategoriesPage extends Control {
 
   newArr: string[];
 
-  correctAnswerNumber!: any;
-
-  cat: any;
+  correctAnswerNumber!: string[];
 
   isUndefined!: boolean;
 
@@ -41,14 +39,14 @@ export default class CategoriesPage extends Control {
     const categories: ICategoriesModel[] = await response.json();
     const [catAythor] = categories;
     const images = catAythor.images.map((name) => `${catAythor.category}/${name}`);
-    images.map((url, index) => {
-      const answer = this.getLocalStorageAnswer(index);
+    images.map(async (url, index) => {
+      const answer = await this.getLocalStorageAnswer(index);
       const card = new CategoriesCard(
         this.cardField.node,
         url,
         index + 1,
         catAythor.categories[index],
-        answer,
+        answer!,
       );
       card.onChangeCategoryQuestions = () => {
         this.questionsArtistPage = new QuestionsArtistPage(this.node, index);
@@ -57,10 +55,9 @@ export default class CategoriesPage extends Control {
     });
   }
 
-  // eslint-disable-next-line consistent-return
-  getLocalStorageAnswer(index: number): any {
-    const storageValue = JSON.parse(localStorage.getItem('answers')!) || [];
+  async getLocalStorageAnswer(index: number): Promise<number | undefined> {
     try {
+      const storageValue = JSON.parse(localStorage.getItem('answers')!) || [];
       this.correctAnswerNumber = storageValue[index];
       return this.correctAnswerNumber.length;
     } catch (err) {

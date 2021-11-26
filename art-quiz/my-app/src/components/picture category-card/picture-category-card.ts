@@ -48,7 +48,7 @@ export default class PictureCategoriesCard extends Control {
     };
   }
 
-  setcorrectAnswer(correctAnswer: number) {
+  setcorrectAnswer(correctAnswer: number): number {
     if (typeof (correctAnswer) === 'undefined') {
       this.correctAnswerNumber = 0;
     } else {
@@ -57,7 +57,7 @@ export default class PictureCategoriesCard extends Control {
     return this.correctAnswerNumber;
   }
 
-  async styleBg(i: string) {
+  styleBg(i: string): void {
     const img = new Image();
     img.src = `./assets/${i}`;
     img.onload = () => {

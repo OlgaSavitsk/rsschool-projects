@@ -76,11 +76,11 @@ export default class QuestionsArtistPage extends Control {
     };
   }
 
-  getVolumeLocalStorage() {
+  getVolumeLocalStorage(): void {
     this.volumeValue = JSON.parse(localStorage.getItem('volume')!) || [];
   }
 
-  playAudio(url: string) {
+  playAudio(url: string): void {
     this.getVolumeLocalStorage();
     const audio = new Audio(url);
     audio.play();
@@ -92,7 +92,7 @@ export default class QuestionsArtistPage extends Control {
     }
   }
 
-  static async getData() {
+  static async getData(): Promise<IImageModel[]> {
     const response = await fetch('images.json');
     const categories: Array<IImageModel> = await response.json();
     return categories;
@@ -143,7 +143,7 @@ export default class QuestionsArtistPage extends Control {
     });
   }
 
-  async answerHandler(authorName: Control) {
+  async answerHandler(authorName: Control): Promise<void> {
     const correctAnsw = Array.from(this.correctAnswer.values()).map((item) => item);
     if (authorName.node.innerHTML === correctAnsw[0].author) {
       authorName.node.classList.add('match');
@@ -161,7 +161,7 @@ export default class QuestionsArtistPage extends Control {
     this.showModal();
   }
 
-  async showModal() {
+  async showModal(): Promise<void> {
     const correctAnsw = Array.from(this.correctAnswer.values()).map((item) => item);
     this.modal = new ModalImageInformation(this.node, this.isCorrect, correctAnsw[0]);
     await delay(MODAL_SHOW_DELAY);
@@ -179,7 +179,7 @@ export default class QuestionsArtistPage extends Control {
     };
   }
 
-  stopTimer() {
+  stopTimer(): void {
     this.headerQuestions.timer.initTimer();
     this.setTime = setTimeout(() => {
       this.stopTimer();
@@ -194,13 +194,13 @@ export default class QuestionsArtistPage extends Control {
     }
   }
 
-  clear() {
+  clear(): void {
     for (let i = 0; i < +this.setTime; i += 1) {
       clearTimeout(i);
     }
   }
 
-  async nextQuestion() {
+  async nextQuestion(): Promise<void> {
     this.questionsImage.destroy();
     this.answer.destroy();
     this.footer.destroy();

@@ -28,7 +28,7 @@ export default class SettingPage extends Control {
     };
   }
 
-  setTimeLocalStorage() {
+  setTimeLocalStorage(): void {
     const time: ITimeModel = {
       isTime: this.settings.timeSettings.isChecked,
       timeCount: this.settings.timeSettings.timeCount.countInput.node.value,
@@ -37,7 +37,7 @@ export default class SettingPage extends Control {
     localStorage.setItem('volume', JSON.stringify(this.settings.volumeSettings.volumeRange.node.value));
   }
 
-  defaultValue() {
+  defaultValue(): void {
     localStorage.removeItem('time');
     localStorage.removeItem('volume');
     this.settings.volumeSettings.volumeRange.node.value = '0.5';

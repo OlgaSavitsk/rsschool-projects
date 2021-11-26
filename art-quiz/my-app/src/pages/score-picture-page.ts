@@ -4,6 +4,7 @@ import Footer from '../components/footer/footer';
 import Logo from '../components/logo/logo';
 import ScoreCard from '../components/score-card/score-card';
 import ScoreCardField from '../components/score-card/score-cardfield';
+import { IImageModel } from '../models/image-model';
 
 export default class ScorePicturePage extends Control {
   cardField: ScoreCardField;
@@ -36,14 +37,14 @@ export default class ScorePicturePage extends Control {
   }
 
   async setCard(indexCategory: number) {
-    const splitArr = (arr, chunks) => [
+    const splitArr = (arr: IImageModel[], chunks: number) => [
       ...Array(chunks),
     ].map((_, c) => arr.filter((n, index) => index % chunks === c));
     await ScorePicturePage.getData().then((res) => {
       const newQuestion = splitArr(res, 24).slice(12);
       return newQuestion;
     }).then((res) => res[indexCategory]).then((category) => {
-      Object.values(category).map((cat) => {
+      Object.values(category).map((cat: IImageModel) => {
         const card = new ScoreCard(
           this.cardField.node,
           cat,

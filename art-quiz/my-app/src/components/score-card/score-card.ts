@@ -1,4 +1,5 @@
 import Control from '../../common/control';
+import { IImageModel } from '../../models/image-model';
 
 export default class ScoreCard extends Control {
   imageScore: Control<HTMLElement>;
@@ -13,7 +14,7 @@ export default class ScoreCard extends Control {
 
   constructor(
     parentNode: HTMLElement,
-    readonly image: any,
+    readonly image: IImageModel,
     indexCategory: number,
     isPictureCategory: boolean,
   ) {
@@ -44,7 +45,7 @@ export default class ScoreCard extends Control {
     };
   }
 
-  getLocalStorageAnswer(localStorageName: string) {
+  getLocalStorageAnswer(localStorageName: string): void {
     const storageValue = JSON.parse(localStorage.getItem(localStorageName)!) || [];
     storageValue[this.indexCategory].map((item: number) => {
       if (item === this.image.imageNum) {
@@ -58,7 +59,7 @@ export default class ScoreCard extends Control {
     });
   }
 
-  setScoreCard() {
+  setScoreCard(): void {
     if (this.isPictureCategory === true) {
       this.getLocalStorageAnswer('answers-picture');
     } else this.getLocalStorageAnswer('answers');

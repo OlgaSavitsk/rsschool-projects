@@ -26,7 +26,7 @@ export default class QuestionsImage extends Control {
     };
   }
 
-  async styleBg(i: number) {
+  styleBg(i: number): void {
     const img = new Image();
     img.src = `https://raw.githubusercontent.com/OlgaSavitsk/image-data/master/img/${i}.jpg`;
     img.onload = () => {
@@ -34,7 +34,7 @@ export default class QuestionsImage extends Control {
     };
   }
 
-  saveImage() {
+  saveImage(): void {
     const img = new Image();
     img.setAttribute('crossOrigin', 'anonymouse');
     img.src = this.imageContainer.node.src;
@@ -47,7 +47,6 @@ export default class QuestionsImage extends Control {
       link.download = 'download.png';
       link.href = this.canvas.node.toDataURL();
       link.click();
-      // link.delete();
     };
   }
 }

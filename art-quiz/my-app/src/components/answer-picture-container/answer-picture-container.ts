@@ -1,13 +1,13 @@
 import Control from '../../common/control';
 
 export default class AnswerPictureContainer extends Control {
-  onAnswerClick: ((answer) => void) | null = null;
+  onAnswerClick: ((answer: Control) => void) | null = null;
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'picture-container', '');
   }
 
-  async getRandomAnswerPicture(authorSet) {
+  getRandomAnswerPicture(authorSet): void {
     const artists = authorSet.sort(() => Math.random() - 0.5);
     for (const name of artists) {
       const answer = new Control(this.node, 'div', 'picture-image', name);

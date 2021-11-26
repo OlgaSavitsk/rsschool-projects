@@ -7,8 +7,6 @@ export default class Settings extends Control {
 
   timeSettings: TimeSettings;
 
-  volumeValue: any;
-
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'settings-container', '');
     this.node.insertAdjacentHTML('beforebegin', '<h2>settings</h2>');

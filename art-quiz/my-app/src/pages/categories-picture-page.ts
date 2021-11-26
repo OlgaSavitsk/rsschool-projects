@@ -48,7 +48,7 @@ export default class CategoriesPicturesPage extends Control {
         url,
         index + 1,
         catPicture.categories[index],
-        answer,
+        answer!,
       );
       card.onChangeCategoryQuestions = () => {
         this.questionsPicturesPage = new QuestionsPicturesPage(this.node, index);
@@ -56,10 +56,9 @@ export default class CategoriesPicturesPage extends Control {
     });
   }
 
-  // eslint-disable-next-line consistent-return
-  getLocalStorageAnswer(index: number): any {
-    const storageValuePicture = JSON.parse(localStorage.getItem('answers-picture')!) || [];
+  async getLocalStorageAnswer(index: number): Promise<number | undefined> {
     try {
+      const storageValuePicture = JSON.parse(localStorage.getItem('answers-picture')!) || [];
       this.correctAnswerNumber = storageValuePicture[index];
       return this.correctAnswerNumber.length;
     } catch (err) {

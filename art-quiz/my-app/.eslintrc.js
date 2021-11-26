@@ -35,6 +35,7 @@ module.exports = {
         ],
         "import/no-named-as-default": 0,
         "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
-        "no-console": "off"
+        "no-console": "off",
+        "consistent-return": 0
      }
   };

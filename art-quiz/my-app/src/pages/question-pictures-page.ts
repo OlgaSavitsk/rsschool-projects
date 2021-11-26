@@ -65,11 +65,11 @@ export default class QuestionsPicturesPage extends Control {
     this.getVolumeLocalStorage();
   }
 
-  getVolumeLocalStorage() {
+  getVolumeLocalStorage(): void {
     this.volumeValue = JSON.parse(localStorage.getItem('volume')!) || [];
   }
 
-  playAudio(url: string) {
+  playAudio(url: string): void {
     this.getVolumeLocalStorage();
     const audio = new Audio(url);
     audio.play();
@@ -81,9 +81,9 @@ export default class QuestionsPicturesPage extends Control {
     }
   }
 
-  static async getData() {
+  static async getData(): Promise<IImageModel[]> {
     const response = await fetch('images.json');
-    const categories = await response.json();
+    const categories: Array<IImageModel> = await response.json();
     return categories;
   }
 
@@ -141,7 +141,7 @@ export default class QuestionsPicturesPage extends Control {
     });
   }
 
-  async answerHandler(authorName: Control) {
+  async answerHandler(authorName: Control): Promise<void> {
     const correctAnswer = Array.from(this.correctAnswer.values()).map((item) => item);
     if (authorName.node.innerHTML === correctAnswer[0].imageNum) {
       authorName.node.classList.add('match');
@@ -159,7 +159,7 @@ export default class QuestionsPicturesPage extends Control {
     this.showModal();
   }
 
-  async showModal() {
+  async showModal(): Promise<void> {
     const correctAnsw = Array.from(this.correctAnswer.values()).map((item) => item);
     this.modal = new ModalImageInformation(this.node, this.isCorrect, correctAnsw[0]);
     await delay(MODAL_SHOW_DELAY);
@@ -175,7 +175,7 @@ export default class QuestionsPicturesPage extends Control {
     };
   }
 
-  async showModalImage() {
+  async showModalImage(): Promise<void> {
     this.timerValue = JSON.parse(localStorage.getItem('time')!) || [];
     if (this.timerValue.isTime === true) {
       this.headerQuestions.timer.initTimer();
@@ -193,13 +193,13 @@ export default class QuestionsPicturesPage extends Control {
     }
   }
 
-  clear() {
+  clear(): void {
     for (let i = 0; i < +this.setTime; i += 1) {
       clearTimeout(i);
     }
   }
 
-  async nextQuestion() {
+  async nextQuestion(): Promise<void> {
     this.headerQuestions.destroy();
     this.answer.destroy();
     this.footer.destroy();

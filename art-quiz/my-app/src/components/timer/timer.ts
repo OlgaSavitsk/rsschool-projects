@@ -16,7 +16,7 @@ export default class Timer extends Control {
     this.screenCount();
   }
 
-  screenCount() {
+  screenCount(): void {
     const min: number = Math.floor((this.secondCount % 3600) / 60);
     const sec = Math.floor(this.secondCount % 60);
     const screenMinutes = min < 10 ? `0${min}` : min;
@@ -26,13 +26,12 @@ export default class Timer extends Control {
     this.secondCount += 1;
   }
 
-  initTimer() {
+  initTimer(): void {
     this.screenCount();
   }
 
-  stopTimer() {
+  stopTimer(): void {
     this.secondCount = 0;
-    // clearInterval(this.stopWhatch);
     this.node.innerHTML = `<span class="timer-icon"></span>
         <span class="timer">00:00</span>`;
   }

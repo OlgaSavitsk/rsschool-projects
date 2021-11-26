@@ -5,7 +5,7 @@ export default class VolumeSettings extends Control {
 
   volumeContainer: Control<HTMLElement>;
 
-  volumeValue: any;
+  volumeValue!: string;
 
   volumeOffIcon: Control<HTMLElement>;
 
@@ -40,7 +40,7 @@ export default class VolumeSettings extends Control {
     this.getVolumeLocalStorage();
   }
 
-  getVolumeLocalStorage() {
+  getVolumeLocalStorage(): void {
     this.volumeValue = JSON.parse(localStorage.getItem('volume')!) || [];
     if (+this.volumeValue >= 0) {
       this.volumeRange.node.value = this.volumeValue;
@@ -48,7 +48,7 @@ export default class VolumeSettings extends Control {
     this.volumeRangeBgd();
   }
 
-  volumeRangeBgd() {
+  volumeRangeBgd(): void {
     const value = +this.volumeRange.node.value * 100;
     this.volumeRange.node.style.background = `linear-gradient(to right, #660033 0%, #660033 ${value}%, #E5E5E5 ${value}%, #E5E5E5 100%)`;
   }

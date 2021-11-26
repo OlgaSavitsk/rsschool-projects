@@ -44,14 +44,14 @@ export default class ScorePage extends Control {
   }
 
   async setCard(indexCategory: number) {
-    const splitArr = (arr, chunks) => [
+    const splitArr = (arr: IImageModel[], chunks: number) => [
       ...Array(chunks),
     ].map((_, c) => arr.filter((n, index) => index % chunks === c));
     await ScorePage.getData().then((res) => {
-      const newQuestion = splitArr(res, 24);
-      return newQuestion;
+      const twoArrayByCategory = splitArr(res, 24);
+      return twoArrayByCategory;
     }).then((res) => res[indexCategory]).then((category) => {
-      Object.values(category).map((cat) => {
+      Object.values(category).map((cat: IImageModel) => {
         const card = new ScoreCard(this.cardField.node, cat, this.indexCategory, false);
         return card;
       });

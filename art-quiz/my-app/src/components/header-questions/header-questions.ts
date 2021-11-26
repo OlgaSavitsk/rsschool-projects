@@ -3,7 +3,7 @@ import Logo from '../logo/logo';
 import Timer from '../timer/timer';
 
 export default class HeaderQuestions extends Control {
-  timer!: Timer;
+  timer: Timer;
 
   logo: Logo;
 
