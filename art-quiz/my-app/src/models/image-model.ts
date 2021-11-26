@@ -1,6 +1,6 @@
 export interface IImageModel {
-        author: string,
-        name: string,
-        year: string,
-        imageNum: number,
+  author: string,
+  name: string,
+  year: string,
+  imageNum: number,
 }

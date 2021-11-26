@@ -1,5 +1,5 @@
 export interface ICategoriesModel {
-    category: string;
-    categories: string[];
-    images: string[];
-  }
+  category: string;
+  categories: string[];
+  images: string[];
+}
