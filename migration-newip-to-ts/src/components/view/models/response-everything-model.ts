@@ -1,8 +1,10 @@
-interface IArticles {
-  source: {
-    id: string,
-    name: string
-  },
+export interface ISourceEverything {
+  id: string,
+  name: string
+}
+
+export interface IArticles {
+  source: ISourceEverything,
   author: string,
   title: string,
   description: string,
@@ -12,7 +14,7 @@ interface IArticles {
   content: string
 }
 
-export interface IResponseModel {
+export interface IResponseEverythingModel {
   status: string,
   totalResults: number,
   articles: IArticles[]
