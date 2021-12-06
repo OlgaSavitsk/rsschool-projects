@@ -25,35 +25,67 @@ class Loader {
 
   static errorHandler(res: Response): Response {
     if (!res.ok) {
-      if (res.status === 401 || res.status === 404) { console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`); }
-
+      if (res.status === 401 || res.status === 404) {
+        console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
+      }
       throw Error(res.statusText);
     }
-
     return res;
   }
 
   makeUrl(options: {}, endpoint: string): string {
     const urlOptions = { ...this.options, ...options };
-
     let url = `${this.baseLink}${endpoint}?`;
 
     Object.keys(urlOptions).forEach((key) => {
       url += `${key}=${urlOptions[key]}&`;
     });
-
     return url.slice(0, -1);
   }
 
-  load(method: string, endpoint: string, callback: { (data: any): void }, options = {}): void {
+  load<T extends IResponseSourceModel | IResponseEverythingModel>(
+    method: string,
+    endpoint: string,
+    callback: { (data: T): void },
+    options = {},
+  ): void {
     fetch(this.makeUrl(options, endpoint), { method })
-
       .then(Loader.errorHandler)
-
       .then((res: Response) => res.json())
-
       .then((data) => callback(data))
+      .catch((err: Error) => console.error(err));
+  }
 
+  getRespSearch(
+    { endpoint, options = {} },
+    callback = (data: IResponseEverythingModel) => {
+      if (!data) {
+        console.error('No callback for GET response');
+      }
+    },
+  ): void {
+    this.loadSearch('GET', endpoint, callback, options);
+  }
+
+  makeUrlSearch(options: {}, endpoint: string): string {
+    const urlOptions = { ...this.options, ...options };
+    const url = `${this.baseLink}${endpoint}?q=${urlOptions['q']}&apiKey=${urlOptions.apiKey}`;
+    return url;
+  }
+
+  loadSearch(
+    method: string,
+    endpoint: string,
+    callback: { (data: any): void },
+    options = {},
+  ): void {
+    fetch(this.makeUrlSearch(options, endpoint), { method })
+      .then(Loader.errorHandler)
+      .then((res: Response) => res.json())
+      .then((data) => {
+        callback(data);
+        console.log(data);
+      })
       .catch((err: Error) => console.error(err));
   }
 }

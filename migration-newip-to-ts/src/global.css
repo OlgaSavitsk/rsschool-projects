@@ -13,6 +13,94 @@ header h1 {
     font-weight: 800;
 }
 
+.search-block {
+    max-width: 570px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search-box{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search-input{
+    width: 396px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 12px;
+    color: #333333;
+    background: #EFEFEF;
+  }
+
+  .search-button{
+    text-align: center;
+    width: 80px;
+    height: 34px;
+    outline: none;
+    cursor: pointer;
+    background: #30c5ff;
+    border: none;
+    border-radius: 0px 4px 4px 0px;
+    font-size: 16px;
+    color: #FFFFFF;
+  }
+
+.footer {
+    min-width: 320px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.github {
+    margin: 0 10px;
+    margin-top: 6px;
+    display: block;
+    text-decoration: none;
+    width: 120px;
+    height: 100%;
+    padding-left: 45px;
+    background-image: url('./assets/svg/github.svg');
+    background-size: 35px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    line-height: 45px;
+    color: #30c5ff;
+    transition: .3s;
+}
+
+.school {
+    margin: 12px 10px;
+    display: block;
+    position: relative;
+    font-family: "Open Sans",sans-serif;
+    width: 20px;
+    height: 32px;
+    background-image: url('./assets/svg/rs_school.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-right: 135px;
+}
+
+.school-year {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 21px;
+    letter-spacing: -2px;
+    color: #30c5ff;
+    line-height: .9;
+    transition: .3s;
+}
+
 footer {
     height: 100px;
     display: flex;
