@@ -2,7 +2,7 @@ import { ISource } from '../models/response-sources-model';
 import './sources.css';
 
 class Sources {
-  draw(data: ISource[]): void {
+  static draw(data: ISource[]): void {
     const fragment = document.createDocumentFragment();
     const sourceItemTemp = document.querySelector('#sourceItemTemp');
 

@@ -6,7 +6,7 @@ import { IResponseSourceModel } from '../view/models/response-sources-model';
 class App {
   private controller: AppController;
 
-  private view: AppView;
+  public view: AppView;
 
   constructor() {
     this.controller = new AppController();
@@ -15,8 +15,8 @@ class App {
 
   start(): void {
     document.querySelector('.sources')!
-      .addEventListener('click', (e: Event) => this.controller.getNews(e, (data: IResponseEverythingModel) => this.view.drawNews(data)));
-    this.controller.getSources((data: IResponseSourceModel) => this.view.drawSources(data));
+      .addEventListener('click', (e: Event) => this.controller.getNews(e, (data: IResponseEverythingModel) => AppView.drawNews(data)));
+    this.controller.getSources((data: IResponseSourceModel) => AppView.drawSources(data));
   }
 }
 

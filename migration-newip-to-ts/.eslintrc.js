@@ -39,5 +39,7 @@ module.exports = {
         "no-console": "off",
         "consistent-return": 0,
         'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": ["error"]
      }
   };

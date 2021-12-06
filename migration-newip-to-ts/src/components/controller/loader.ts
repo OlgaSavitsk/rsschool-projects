@@ -1,4 +1,3 @@
-import { responseType } from '../../constants';
 import { IOptions } from '../view/models/options-model';
 import { IResponseEverythingModel } from '../view/models/response-everything-model';
 import { IResponseSourceModel } from '../view/models/response-sources-model';
@@ -16,7 +15,9 @@ class Loader {
   getResp<T extends IResponseSourceModel | IResponseEverythingModel>(
     { endpoint, options = {} },
     callback = (data: T) => {
-      console.error('No callback for GET response');
+      if (!data) {
+        console.error('No callback for GET response');
+      }
     },
   ): void {
     this.load('GET', endpoint, callback, options);

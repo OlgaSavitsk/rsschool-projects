@@ -1,8 +1,3 @@
-export interface IResponseSourceModel {
-  status: string,
-  sources: ISource[]
-}
-
 export interface ISource {
   id: string,
   name: string,
@@ -11,4 +6,9 @@ export interface ISource {
   category: string,
   language: string,
   country: string
+}
+
+export interface IResponseSourceModel {
+  status: string,
+  sources: ISource[]
 }

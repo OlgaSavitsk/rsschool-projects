@@ -14,7 +14,6 @@ class AppController extends AppLoader {
 
   getNews(e: Event, callback: ((data: IResponseEverythingModel) => void) | undefined): void {
     let target = <HTMLElement>e.target;
-    console.log(target.parentNode);
 
     const newsContainer = <HTMLElement>e.currentTarget;
 
