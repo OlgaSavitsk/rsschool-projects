@@ -1,20 +1,22 @@
 import AppController from '../controller/controller';
 import { AppView } from '../view/appView';
+import { IResponseEverythingModel } from '../view/models/response-everything-model';
+import { IResponseSourceModel } from '../view/models/response-sources-model';
 
 class App {
-  controller: AppController;
+  private controller: AppController;
 
-  view: AppView;
+  private view: AppView;
 
   constructor() {
     this.controller = new AppController();
     this.view = new AppView();
   }
 
-  start() {
+  start(): void {
     document.querySelector('.sources')!
-     .addEventListener('click', (e) => this.controller.getNews(e, (data) => this.view.drawNews(data)));
-    this.controller.getSources((data) => this.view.drawSources(data));
+      .addEventListener('click', (e: Event) => this.controller.getNews(e, (data: IResponseEverythingModel) => this.view.drawNews(data)));
+    this.controller.getSources((data: IResponseSourceModel) => this.view.drawSources(data));
   }
 }
 

@@ -14,7 +14,6 @@ export class AppView {
   }
 
   drawNews(data: IResponseEverythingModel): void {
-    console.log('data', data)
     const values = data?.articles ? data?.articles : [];
     this.news.draw(values);
   }

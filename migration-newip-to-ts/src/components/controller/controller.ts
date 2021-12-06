@@ -1,7 +1,9 @@
+import { IResponseEverythingModel } from '../view/models/response-everything-model';
+import { IResponseSourceModel } from '../view/models/response-sources-model';
 import AppLoader from './appLoader';
 
 class AppController extends AppLoader {
-  getSources(callback: (() => void) | undefined) {
+  getSources(callback: ((data: IResponseSourceModel) => void) | undefined): void {
     super.getResp(
       {
         endpoint: 'sources',
@@ -10,15 +12,17 @@ class AppController extends AppLoader {
     );
   }
 
-  getNews(e, callback) {
-    let { target } = e;
-    const newsContainer = e.currentTarget;
+  getNews(e: Event, callback: ((data: IResponseEverythingModel) => void) | undefined): void {
+    let target = <HTMLElement>e.target;
+    console.log(target.parentNode);
+
+    const newsContainer = <HTMLElement>e.currentTarget;
 
     while (target !== newsContainer) {
       if (target!.classList.contains('source__item')) {
-        const sourceId = target.getAttribute('data-source-id');
-        if (newsContainer.getAttribute('data-source') !== sourceId) {
-          newsContainer.setAttribute('data-source', sourceId);
+        const sourceId = target!.getAttribute('data-source-id');
+        if (newsContainer!.getAttribute('data-source') !== sourceId) {
+          newsContainer!.setAttribute('data-source', sourceId!);
           super.getResp(
             {
               endpoint: 'everything',
@@ -31,7 +35,7 @@ class AppController extends AppLoader {
         }
         return;
       }
-      target = target.parentNode;
+      target = target.parentNode as HTMLElement;
     }
   }
 }

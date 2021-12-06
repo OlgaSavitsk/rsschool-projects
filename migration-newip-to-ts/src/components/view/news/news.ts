@@ -10,12 +10,12 @@ class News {
 
     news.forEach((item: IArticles, idx: number) => {
       const newsClone = (<HTMLTemplateElement>newsItemTemp).content.cloneNode(true);
-      console.log(newsClone)
+      console.log(newsClone);
       if (idx % 2) (<HTMLElement>newsClone).querySelector('.news__item')!.classList.add('alt');
 
       (<HTMLElement>newsClone).querySelector<HTMLElement>('.news__meta-photo')!.style.backgroundImage = `url(${
         item.urlToImage || 'img/news_placeholder.jpg'
-      })`; 
+      })`;
       (<HTMLElement>newsClone).querySelector('.news__meta-author')!.textContent = item.author || item.source.name;
       (<HTMLElement>newsClone).querySelector('.news__meta-date')!.textContent = item.publishedAt
         .slice(0, 10)

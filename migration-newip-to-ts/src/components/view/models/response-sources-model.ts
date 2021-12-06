@@ -1,14 +1,14 @@
 export interface IResponseSourceModel {
-    status: string,
-    sources: ISource[]
+  status: string,
+  sources: ISource[]
 }
 
 export interface ISource {
-        id: string,
-        name: string,
-        description: string,
-        url: string,
-        category: string,
-        language: string,
-        country: string
+  id: string,
+  name: string,
+  description: string,
+  url: string,
+  category: string,
+  language: string,
+  country: string
 }

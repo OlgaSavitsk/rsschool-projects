@@ -1,7 +1,11 @@
-import { IOptions } from "../view/models/options-model";
+import { responseType } from '../../constants';
+import { IOptions } from '../view/models/options-model';
+import { IResponseEverythingModel } from '../view/models/response-everything-model';
+import { IResponseSourceModel } from '../view/models/response-sources-model';
 
 class Loader {
   public baseLink: string;
+
   public options: IOptions;
 
   constructor(baseLink: string, options: IOptions) {
@@ -9,9 +13,9 @@ class Loader {
     this.options = options;
   }
 
-  getResp(
+  getResp<T extends IResponseSourceModel | IResponseEverythingModel>(
     { endpoint, options = {} },
-    callback = () => {
+    callback = (data: T) => {
       console.error('No callback for GET response');
     },
   ): void {
@@ -29,19 +33,18 @@ class Loader {
   }
 
   makeUrl(options: {}, endpoint: string): string {
-    const urlOptions = { ...this.options,  ...options };
+    const urlOptions = { ...this.options, ...options };
 
     let url = `${this.baseLink}${endpoint}?`;
 
     Object.keys(urlOptions).forEach((key) => {
       url += `${key}=${urlOptions[key]}&`;
-
     });
 
     return url.slice(0, -1);
   }
 
-  load(method: string, endpoint: string, callback: { (data): void }, options = {}): void {
+  load(method: string, endpoint: string, callback: { (data: any): void }, options = {}): void {
     fetch(this.makeUrl(options, endpoint), { method })
 
       .then(Loader.errorHandler)

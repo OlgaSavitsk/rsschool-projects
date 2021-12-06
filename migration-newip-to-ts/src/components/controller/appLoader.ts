@@ -4,8 +4,8 @@ import Loader from './loader';
 class AppLoader extends Loader {
   constructor() {
     super(Links.baseUrl, {
-      apiKey: Links.apiKey
-  });
+      apiKey: Links.apiKey,
+    });
   }
 }
 
