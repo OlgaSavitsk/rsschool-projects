@@ -1,5 +1,7 @@
-// let app = new Application(document.body);
-let currentRouteId: number;
+import Toys from "./pages/toys";
+
+const app = new Toys(document.body);
+//let currentRouteId: number;
 
 /* const routes = [
   {

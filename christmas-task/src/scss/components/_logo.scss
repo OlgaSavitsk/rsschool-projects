@@ -1,0 +1,16 @@
+.logo {
+    margin: 0 auto;
+    transition: .3s;
+
+    img {
+        display: block;
+        width: 48px;
+        height: 60px;
+        object-fit: contain;
+    }
+}
+
+.logo:hover {
+    filter: invert(57%) sepia(100%) saturate(329%) hue-rotate(
+    141deg) brightness(89%) contrast(90%);
+}

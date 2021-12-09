@@ -1,4 +1,7 @@
-@import 'scss/vars';
+@import './scss/absrtacts/vars';
+@import './scss/components/logo';
+@import './scss/components/header';
+@import './scss/components/toys-page';
 
 * {
     box-sizing: border-box;
@@ -11,9 +14,8 @@ html {
 }
 
 body {
-    min-width: 320px;
+    min-width: 768px;
     min-height: 100vh;
-    margin: 50px 0;
     font-family: $font-main;
     font-weight: normal;
     font-size: 1.8rem;
@@ -22,7 +24,23 @@ body {
     transition: all 1s ease-in-out;
 }
 
-h2 {
+.page-container {
+    min-width: 100%;
+    min-height: calc(100vh - 140px);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* h2 {
     font-style: normal;
     font-weight: normal;
     font-size: 3.6rem;
@@ -203,20 +221,6 @@ h3 {
       } 
 }
 
-.answer:first-of-type {
-    border-bottom: 1px solid $gray;
-    //border-right: 1px solid $gray;
-}
-
-.answer:nth-of-type(2) {
-    border-bottom: 1px solid $gray;
-    border-left: 1px solid $gray;
-}
-
-.answer:last-of-type {
-    border-left: 1px solid $gray;
-}
-
 .modal-container {
     position: fixed;
     bottom: 80%;
@@ -278,7 +282,6 @@ h3 {
     border: none;
     border-radius: 50%;
     color: $white;
-    background: $gray;
     cursor: pointer;
     z-index: 1;
 }
@@ -310,10 +313,9 @@ h3 {
     border: none;
     border-radius: 50%;
     color: $white;
-    background: $gray;
     cursor: pointer;
     z-index: 1;
-}
+} */
 
 .footer {
     min-width: 320px;
