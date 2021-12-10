@@ -1,0 +1,49 @@
+.filter-slider {
+    height: 6px;
+    width: 270px;
+    background-color: $white;
+    margin: 0 20px;
+
+    .noUi-base, 
+    .noUi-connects {
+        position: relative;
+        height: 6px;
+    }
+
+    .noUi-origin, 
+    .noUi-connect {
+        will-change: transform;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        height: 10%;
+        width: 100%;
+        height: 6px;
+        transform-origin: 0 0;
+        transform-style: flat;
+    }
+
+    .noUi-connect {
+        background: #278D9F;
+        height: 100%;
+        width: 100%;
+    }
+
+    .noUi-handle {
+        position: absolute;
+        width: 22px;
+        height: 22px;
+        right: -11px;
+        top: -8px;
+        border-radius: 50%;
+        border: 1px solid #D9D9D9;
+        background-color: $white;
+        cursor: ew-resize;
+        backface-visibility: hidden;
+    }
+
+    .noUi-origin {
+        height: 0; 
+    }
+}

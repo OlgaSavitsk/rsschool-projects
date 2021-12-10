@@ -11,7 +11,6 @@ export default class Shape extends Control {
   async start() {
     const response = await fetch('filter-controls.json');
     const categories = await response.json();
-    console.log(Object.values(categories[0].shape))
     const [catPicture] = categories;
     const images = Object.values(catPicture.shape).map((name) => `svg/${name}`);
     images.map((url) => {

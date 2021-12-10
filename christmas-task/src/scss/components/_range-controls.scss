@@ -1,0 +1,29 @@
+@import './no-ui-slider';
+
+.year-slider, .count-slider {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.count, .year {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.count-slider {
+    margin-bottom: 35px;
+}
+
+output {
+    margin: 10px 0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 80px;
+    height: 40px;
+    backdrop-filter: blur(6px);
+    border-radius: 20px;
+    border: 1px solid $primary;
+}

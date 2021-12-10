@@ -1,13 +1,14 @@
 import Control from '../../common/control';
+import Filter from './filter';
+import RangeControl from './range';
+import SortControl from './sort';
 
 export default class Controls extends Control {
-  searchInput: Control<HTMLInputElement>;
-    favorite: Control<HTMLElement>;
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'controls', '');
-    this.searchInput = new Control(this.node, 'input', 'search', '')
-    this.favorite = new Control(this.node, 'div', 'favorite', '')
-    this.favorite.node.innerHTML = `<span>0</span>`
+    const filter = new Filter(this.node)
+    const range = new RangeControl(this.node)
+    const sort = new SortControl(this.node)
   }
 }

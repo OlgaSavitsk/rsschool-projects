@@ -1,0 +1,85 @@
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 63%;
+    justify-content: flex-start;
+    padding-bottom: 40px;
+
+    .card {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 304px;
+        height: 280px;
+        padding: 0;
+        padding-left: 10px;
+        border-radius: 10px;
+        border: 1px solid $primary;
+        background-color: rgba(31, 112, 127, .3);
+        backdrop-filter: $filter;
+        cursor: pointer;
+    }
+
+    .card-img {
+        width: 90px;
+        height: 112px;
+        object-fit: contain;
+        pointer-events: none;
+    }
+
+    .card-title {
+        width: 100%;
+        font-size: 20px;
+        font-stretch: condensed;
+        padding-left: 10px;
+        margin: 16px 0;
+    }
+
+    .card-description {
+        width: 195px;
+        margin-top: -20px;
+        padding-left: 10px;
+        pointer-events: none;
+        line-height: 1;
+        text-align: left;
+
+        p {
+            margin: 18px 0;
+        }
+
+        span {
+            margin-left: 7px;
+        }
+    }
+}
+
+.ribbon {
+    position: absolute;
+    top: 210px;
+    width: 80px;
+    height: 40px;
+    background: #24C5DB;
+    left: -8px;
+
+    &:before {
+        border-bottom: 8px solid #14455b;
+        border-left: 8px solid transparent;
+        top: -8px;
+    }
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        height: 0;
+        width: 0;
+    }
+
+    &:after {
+        border-top: 20px solid transparent;
+        border-bottom: 20px solid transparent;
+        border-left: 15px solid #24C5DB;
+        right: -15px;
+    }
+}

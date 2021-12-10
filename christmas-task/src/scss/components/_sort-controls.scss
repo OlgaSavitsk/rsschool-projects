@@ -1,0 +1,40 @@
+.sort-select {
+    appearance: none;
+    border: 0;
+    outline: 0;
+    width: 380px;
+    height: 40px;
+    padding: 5px 25px;
+    margin: 10px 0;
+    margin-bottom: 125px;
+    background-color: rgba(31, 112, 127, .3);
+    background-image: url(./assets/svg/arrow-down.svg);
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: 340px center;
+    backdrop-filter: $filter;
+    border-radius: 20px;
+    border: 1px solid $primary;
+    font-size: 2rem;
+    line-height: 28px;
+    color: #fff;
+    cursor: pointer;
+
+    option {
+        background-color: #183E42;
+    }
+}
+
+.reset {
+    width: 250px;
+    height: 40px;
+    margin: 10px 0;
+    border-radius: 20px;
+    border: 1px solid $primary;
+    background-color: rgba(31, 112, 127, .3);
+    backdrop-filter: $filter;
+    cursor: pointer;
+    color: $white;
+    font-size: 2rem;
+    font-weight: 400;
+}

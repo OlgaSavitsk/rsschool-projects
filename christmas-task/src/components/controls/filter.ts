@@ -1,8 +1,8 @@
-import Control from '../../../common/control';
-import Color from '../color-controls/color';
-import FavoriteContainer from '../favorite/favorite-container';
-import Shape from '../shape-controls/shape';
-import Size from '../size-controls/size';
+import Control from '../../common/control';
+import Color from './color-controls/color';
+import FavoriteContainer from './favorite/favorite-container';
+import Shape from './shape-controls/shape';
+import Size from './size-controls/size';
 
 export default class Filter extends Control {
 

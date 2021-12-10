@@ -12,7 +12,6 @@ export default class Size extends Control {
     const response = await fetch('filter-controls.json');
     const categories = await response.json();
     const [catPicture] = categories;
-    console.log(Object.values(catPicture.size))
     const sizes = Object.values(catPicture.size).map((size) => `${size}`);
     sizes.map((size) => {
        const sizeButton = new SizeButton(this.node, size)

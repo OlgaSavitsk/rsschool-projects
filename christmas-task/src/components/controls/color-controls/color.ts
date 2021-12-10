@@ -12,7 +12,6 @@ export default class Color extends Control {
     const response = await fetch('filter-controls.json');
     const categories = await response.json();
     const [catPicture] = categories;
-    console.log(Object.values(catPicture.color))
     const colors = Object.values(catPicture.color).map((color) => `${color}`);
     colors.map((color) => {
        const colorButton = new ColorButton(this.node, color)

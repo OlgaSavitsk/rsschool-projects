@@ -1,6 +1,9 @@
+import Footer from "./components/footer/footer";
+import Header from "./components/header/header";
 import Toys from "./pages/toys";
-
+const header = new Header(document.body)
 const app = new Toys(document.body);
+const footer = new Footer(document.body);
 //let currentRouteId: number;
 
 /* const routes = [
