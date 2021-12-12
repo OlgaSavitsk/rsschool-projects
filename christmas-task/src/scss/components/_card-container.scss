@@ -83,3 +83,12 @@
         right: -15px;
     }
 }
+
+.active .ribbon:after {
+    border-left: 15px solid #CBB77A;
+}
+
+.active .ribbon {
+    background: #CBB77A;
+}
+

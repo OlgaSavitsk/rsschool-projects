@@ -1,9 +1,13 @@
 import Footer from "./components/footer/footer";
-import Header from "./components/header/header";
 import Toys from "./pages/toys";
-const header = new Header(document.body)
+
 const app = new Toys(document.body);
 const footer = new Footer(document.body);
+
+export const getLocalStorageDate = () => {
+  const favoriteCount = JSON.parse(localStorage.getItem('favorite')!) || [];
+  return favoriteCount
+}
 //let currentRouteId: number;
 
 /* const routes = [

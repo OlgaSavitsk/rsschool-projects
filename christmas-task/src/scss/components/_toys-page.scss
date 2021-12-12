@@ -2,10 +2,12 @@
 @import './range-controls';
 @import './sort-controls';
 @import './card-container';
+@import './modal-error';
 
 .main-page {
     background-image: url(./assets/bg.jpg);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     column-gap: 30px;
     margin: 0 auto;
