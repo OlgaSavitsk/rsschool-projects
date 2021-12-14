@@ -1,4 +1,5 @@
 import Control from '../common/control';
+import SortServiceImplementaition from '../common/sort-service/sort.service';
 import Card from '../components/card-container/card';
 import Header from '../components/header/header';
 import MainToysContainer from '../components/main-toys-container/main-toys-container';
@@ -8,6 +9,7 @@ export default class Toys extends Control {
   container!: MainToysContainer;
   header: Header;
   control!: Control
+  sortService!: SortServiceImplementaition;
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'page-container main-page', '');

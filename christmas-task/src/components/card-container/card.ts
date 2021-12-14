@@ -1,4 +1,4 @@
-import { getLocalStorageDate } from '../..';
+import { getLocalStorageData } from '../..';
 import Control from '../../common/control';
 import { IToysModel } from '../../models/toys-model';
 import Ribbon from './ribbon';
@@ -21,6 +21,7 @@ export default class Card extends Control {
         <p>Размер:<span>${toy.size}</span></p>
         <p>Любимая:<span>${toy.favorite}</span></p>`
         const ribbon = new Ribbon(this.node)
+        //this.node.classList.add('hide')
     this.node.onclick = () => {
       if(this.node.classList.contains('active')) {
         this.node.classList.remove('active') 
@@ -34,7 +35,7 @@ export default class Card extends Control {
   }
 
   setCardStyle(): void {
-    getLocalStorageDate()
+    getLocalStorageData()
     .map(item => {
       if(this.node.getAttribute('data-num') === item) {
         this.node.classList.add('active')
@@ -43,7 +44,7 @@ export default class Card extends Control {
   }
 
   removeStyle() {
-    if(getLocalStorageDate().length === 20) {
+    if(getLocalStorageData().length === 20) {
       this.node.classList.remove('active')
     } 
   }

@@ -1,7 +1,9 @@
-import { getLocalStorageDate } from '../..';
+import { getLocalStorageData } from '../..';
 import Control from '../../common/control';
-import delay from '../../common/delay';
+import SortServiceImplementaition from '../../common/sort-service/sort.service';
+import SortService from '../../common/sort-service/sort.service';
 import { IToysModel } from '../../models/toys-model';
+import SortSelect from '../controls/sort-select';
 import Favorite from '../header-container/favorite';
 import HeaderControls from '../header-container/header-controls';
 import ModalError from '../modal-error/modal-error';
@@ -14,27 +16,22 @@ export default class CardContainer extends Control {
     favoriteSet!: Set<string>;
     isFavorite: boolean = false;
     modal!: ModalError;
+    sortService!: SortService
+    selectValue: any;
 
-  constructor(parentNode: HTMLElement) {
-    super(parentNode, 'div', 'card-container', '');
-    this.setToyCards()
+  constructor(parentNode: HTMLElement, values: Promise<IToysModel[]>) {
+    super(parentNode, 'div', 'card-container', ''); 
   }
 
-  async getData(): Promise<IToysModel[]> {
-    const response = await fetch('toys.json');
-    const toys: Array<IToysModel> = await response.json();
-    return toys;
-  }
-
-  setToyCards() {
-    this.getData().then(res => {
-      res.map((toy) => {
+  setToyCards(values) {
+    values.map((toy) => {
         this.card = new Card(this.node, toy)
+         this.card.node.style.left = '-304px'
         this.card.favoriteSelect = async() => {
-          const favoriteCount = getLocalStorageDate()
+          const favoriteCount = getLocalStorageData()
           this.favoriteSet = new Set(favoriteCount)
           this.favoriteSet.add(toy.num)   
-          let del = favoriteCount.find(item => item === toy.num)
+          let del = favoriteCount.find((item: string) => item === toy.num)
           this.favoriteSet.delete(del!)
           if(favoriteCount.length === 20 && toy.num !== del) {
             this.modal = new ModalError(this.node)
@@ -44,6 +41,5 @@ export default class CardContainer extends Control {
           localStorage.setItem('favorite', JSON.stringify([...this.favoriteSet]));
         } 
       })
-    })
   }
 }

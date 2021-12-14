@@ -1,13 +1,17 @@
+import SortServiceImplementaition from "./common/sort-service/sort.service";
 import Footer from "./components/footer/footer";
 import Toys from "./pages/toys";
+
+//const sortService = new SortServiceImplementaition();
 
 const app = new Toys(document.body);
 const footer = new Footer(document.body);
 
-export const getLocalStorageDate = () => {
+export const getLocalStorageData = () => {
   const favoriteCount = JSON.parse(localStorage.getItem('favorite')!) || [];
   return favoriteCount
 }
+
 //let currentRouteId: number;
 
 /* const routes = [
