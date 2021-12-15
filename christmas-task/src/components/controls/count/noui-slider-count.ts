@@ -4,6 +4,8 @@ import Control from '../../../common/control';
 export class NoUiSliderCount extends Control {
     node!: noUiSlider.Instance;
     onChange!: () => void
+    onSort!: () => void
+
     constructor(parentNode: HTMLElement) {
         super(parentNode, 'div', 'filter-slider', '');
         noUiSlider.create(this.node, {
@@ -14,8 +16,5 @@ export class NoUiSliderCount extends Control {
                 'max': 12
             }
         });
-        this.node.onclick = () => {
-            this.onChange()
-        }
     }
 }

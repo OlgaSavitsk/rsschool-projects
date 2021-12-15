@@ -1,5 +1,5 @@
 import Control from '../../common/control';
-import SortService from '../../common/sort-service/sort.service';
+import SortService from '../../common/services/sort.service';
 
 export default class SortSelect extends Control {
   option: Control<HTMLOptionElement>;

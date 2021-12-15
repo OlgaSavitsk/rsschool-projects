@@ -1,10 +1,12 @@
 import Control from '../../../common/control';
+import { IToysModel } from '../../../models/toys-model';
 import { NoUiSliderYear } from './noui-slider-year';
 
 export default class YearSlider extends Control {
   outputStart: Control<HTMLOutputElement>;
   outputEnd: Control<HTMLOutputElement>;
     slider: NoUiSliderYear;
+    onChange!: () => void
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'count-slider', '');
@@ -17,11 +19,19 @@ export default class YearSlider extends Control {
       this.outputStart.node,
       this.outputEnd.node
   ];
-    this.slider.onChange = () => {
-      this.slider.node.noUiSlider.on('update',  (values, handle) => {
-        snapValues[handle].value = Math.floor(values[handle]).toString();
-        snapValues[handle].value = Math.floor(values[handle]).toString();
-      })
-    }
+  this.node.onclick = () => {
+    this.slider.node.noUiSlider.on('update',  (values, handle) => {
+      snapValues[handle].value = Math.floor(values[handle]).toString();
+      snapValues[handle].value = Math.floor(values[handle]).toString();
+    })
+    this.onChange()
   }
+  }
+
+  rangeSortByYear(value: IToysModel[]): IToysModel[] {
+    const sorted = value.filter(item => {
+        return +item.year >= +this.outputStart.node.value && +item.year <= +this.outputEnd.node.value
+      })
+    return sorted
+  } 
 }

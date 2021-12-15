@@ -2,6 +2,8 @@ import Control from '../../../common/control';
 import ShapeButton from './shape-button';
 
 export default class Shape extends Control {
+  shape!: ShapeButton;
+  onSort!: () => void
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'shape', 'Форма :');
@@ -14,7 +16,10 @@ export default class Shape extends Control {
     const [catPicture] = categories;
     const images = Object.values(catPicture.shape).map((name) => `svg/${name}`);
     images.map((url) => {
-        const shape = new ShapeButton(this.node, url)
+        this.shape = new ShapeButton(this.node, url)
+        this.shape.node.onclick = () => {
+          this.onSort()
+        }
     }); 
   }
 }

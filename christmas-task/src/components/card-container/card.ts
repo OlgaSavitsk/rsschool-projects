@@ -20,8 +20,7 @@ export default class Card extends Control {
         <p>Цвет:<span>${toy.color}</span></p>
         <p>Размер:<span>${toy.size}</span></p>
         <p>Любимая:<span>${toy.favorite}</span></p>`
-        const ribbon = new Ribbon(this.node)
-        //this.node.classList.add('hide')
+        const ribbon = new Ribbon(this.node)     
     this.node.onclick = () => {
       if(this.node.classList.contains('active')) {
         this.node.classList.remove('active') 
@@ -36,7 +35,7 @@ export default class Card extends Control {
 
   setCardStyle(): void {
     getLocalStorageData()
-    .map(item => {
+    .map((item: string | null) => {
       if(this.node.getAttribute('data-num') === item) {
         this.node.classList.add('active')
       }

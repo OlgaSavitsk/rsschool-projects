@@ -3,7 +3,7 @@ import Control from '../../../common/control';
 
 export class NoUiSliderYear extends Control {
     node!: noUiSlider.Instance;
-    onChange!: () => void
+
     constructor(parentNode: HTMLElement) {
         super(parentNode, 'div', 'filter-slider', '');
         noUiSlider.create(this.node, {
@@ -14,8 +14,5 @@ export class NoUiSliderYear extends Control {
                 'max': 2020
             }
         });
-        this.node.onclick = () => {
-            this.onChange()
-        }
     }
 }

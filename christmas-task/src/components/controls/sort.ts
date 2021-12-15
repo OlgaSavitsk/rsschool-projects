@@ -1,5 +1,5 @@
 import Control from '../../common/control'
-import SortService from '../../common/sort-service/sort.service';
+import SortService from '../../common/services/sort.service';
 import SortSelect from './sort-select';
 
 export default class SortControl extends Control {

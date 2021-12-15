@@ -10,7 +10,6 @@ export default class SortServiceImplementaition {
     }
 
     static transformByName(value: IToysModel[], isDeskByName: IDesk): IToysModel[] {
-      console.log(isDeskByName)
       if (isDeskByName.isDeskName !== undefined) {
           let dm = isDeskByName.isDeskName ? 1 : -1
           const sorted = value.sort((a, b) => {

@@ -1,6 +1,7 @@
 import Control from "../../common/control";
-import SortServiceImplementaition from "../../common/sort-service/sort.service";
-import SortService from "../../common/sort-service/sort.service";
+import SortServiceImplementaition from "../../common/services/sort.service";
+import SortService from "../../common/services/sort.service";
+import { ToysDataModel } from "../../models/toys-data-model";
 import { IDesk, IToysModel } from "../../models/toys-model";
 import CardContainer from "../card-container/card-container";
 import Controls from "../controls/controls";
@@ -11,28 +12,43 @@ export default class MainToysContainer extends Control {
   sortService!: SortService
   selectValue: any;
   isSorted: boolean = false
+  isRangeCount: boolean = false
+  isRangeYear: boolean = false
   isDeskByName: boolean | undefined;
   isDeskByCount!: boolean | undefined
   desk!: IDesk
+  model: ToysDataModel;
+  sortedArr: IToysModel[] = []
+  data: IToysModel[];
 
-
-  constructor(parentNode: HTMLElement) {
+  constructor(parentNode: HTMLElement, data: IToysModel[]) {
     super(parentNode, 'div', 'main-container', '');
-    this.controls = new Controls(this.node)
+    this.data = data
+    this.controls = new Controls(this.node, data)
     this.selectValue = this.controls.sort.sortSelect
-    this.cardContainer = new CardContainer(this.node, this.getData())
+    this.cardContainer = new CardContainer(this.node, data)
     this.sortService = new SortServiceImplementaition()
+    this.model = new ToysDataModel()
     this.selectValue.onChange = () => {
-      this.isSorted = true
-      this.cardContainer.destroy()
-      this.cardContainer.card.node.classList.add('hide')
-      this.getValuesArray(this.isSorted)
-      this.cardContainer = new CardContainer(this.node, this.getData())
+      this.isSorted = true  
+      this.updateValue()
     }
-    this.getValuesArray(this.isSorted)
+    this.controls.range.countValue.countSlider.onChange = () => {
+      this.isRangeCount = true
+      this.updateValue()
+    }
+    this.controls.range.yearValue.yearSlider.onChange = () => {
+      this.isRangeYear = true
+      this.updateValue()
+    }
   }
 
-  sortCardByName() {
+  updateValue() {
+    this.cardContainer.destroy()
+    this.filterCard(this.data)
+  }
+
+  selectName(): IDesk {
     if(this.selectValue.node.value === 'sort-name-max') {
       this.isDeskByName = true
       this.isDeskByCount = undefined
@@ -56,21 +72,24 @@ export default class MainToysContainer extends Control {
     return desk
   }
 
-  async getData(): Promise<IToysModel[]> {
-    const response = await fetch('toys.json');
-    const toys: Array<IToysModel> = await response.json();
-    return toys;
-  }
-
-  getValuesArray(isSorted: boolean) {
-    return this.getData().then(res => {
-      if(isSorted === true) {
-        const sorted = SortServiceImplementaition.transformByName(res, this.sortCardByName()!)
-        this.cardContainer.setToyCards(sorted)
-      } else {
-        this.cardContainer.setToyCards(res)
-      }
-     
-    });
+  filterCard(data: IToysModel[]) {
+    let sortedArrCount;
+    let sortedArrYear 
+    if(this.isRangeCount === true || this.isRangeYear === true || this.isSorted === true) {
+      sortedArrCount = this.controls.range.countValue.countSlider.rangeSortByCount(data)
+      sortedArrYear = this.controls.range.yearValue.yearSlider.rangeSortByYear(data)
+      sortedArrYear.map(item => {
+        if(sortedArrCount.includes(item)) {
+          this.sortedArr.push(item) 
+        }
+      })
+    }
+    if(this.sortedArr.length < this.data.length && this.isSorted === true) {
+      this.sortedArr = SortServiceImplementaition.transformByName(this.sortedArr, this.selectName()!)
+    } else  if(this.isSorted === true) {
+      this.sortedArr = SortServiceImplementaition.transformByName(data, this.selectName()!)
+    } 
+    this.cardContainer = new CardContainer(this.node, this.sortedArr)
+    this.sortedArr!.splice(0, this.sortedArr!.length)
   } 
 }
