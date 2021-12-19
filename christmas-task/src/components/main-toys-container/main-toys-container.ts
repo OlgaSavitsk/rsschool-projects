@@ -34,7 +34,6 @@ export default class MainToysContainer extends Control {
     this.filterValueSet = new Set()
     this.controls = new Controls(this.node)
     this.selectValue = this.controls.sort.sortSelect
-    this.sortService = new SortServiceImplementaition()
     this.model = new ToysDataModel()
     this.rangeHandler(this.data)
     this.filterHandler(this.data)

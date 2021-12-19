@@ -48,6 +48,7 @@ nav {
 }
 
 .search {
+    position: relative;
     width: 380px;
     height: 40px;
     padding: 5px 25px;
@@ -58,11 +59,27 @@ nav {
     color: $white;
     font-size: 18px;
     background-color: rgba(31, 112, 127, .3);
-    background-image: url(./assets/svg/search.svg);
     background-size: 20px;
-    background-repeat: no-repeat;
-    background-position: 330px center;
     backdrop-filter: $filter;
+}
+
+.close {
+    position: absolute;
+    right: 110px;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    background-image: url(./assets/svg/search.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    cursor: pointer;
+}
+
+.error {
+    position: absolute;
+    bottom: -5px;
 }
 
 .favorite {

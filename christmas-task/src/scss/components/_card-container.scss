@@ -93,14 +93,14 @@
     background: #CBB77A;
 }
 
-/* .hide {
+.hide {
     opacity: 1;
     animation-name: a1;
     animation-duration: 2s;
     animation-fill-mode: forwards;
-} */
+} 
 
-.hide {
+/* .hide {
     //position: absolute;
     top: 0px;
     visibility: visible;
@@ -112,7 +112,7 @@
     transition-property: transform, opacity;
     opacity: 1;
     animation-name: a1;
-}
+} */
 
 @keyframes a1 {
     to {

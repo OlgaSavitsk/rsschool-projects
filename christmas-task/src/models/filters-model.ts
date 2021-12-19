@@ -31,8 +31,3 @@ export const filterObject: IFilter = {
     small: false,
     favorite: false,
 }
-
-  export interface ISelectFilter {
-    color: string[],
-    shape: string
-}
