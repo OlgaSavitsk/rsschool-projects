@@ -1,36 +1,11 @@
-import Footer from "./components/footer/footer";
-import { IToysModel } from "./models/toys-model";
-import Toys from "./pages/toys";
+import Application from "./application/aplication";
 
-export const getToysData = async() => {
-  const data = await loadToysData('toys.json')
-  console.log(data)
-  return data
-}
-
-const app = new Toys(document.body);
-const footer = new Footer(document.body);
+const app = new Application(document.body);
 
 export const getLocalStorageData = () => {
   const favoriteCount = JSON.parse(localStorage.getItem('favorite')!) || [];
   return favoriteCount
 }
-
-
-
-export const loadToysData = (url: string) => {
-  return fetch(url).then(res => res.json()).then((toysData: any) => {
-    const modelData = Object.keys(toysData).map(item => {
-      const toy = toysData[item];
-      return toy;
-    });
-    return modelData;
-  })
-}
-
-//getToysData()
-
-//loadToysData('toys.json')
 
 //let currentRouteId: number;
 

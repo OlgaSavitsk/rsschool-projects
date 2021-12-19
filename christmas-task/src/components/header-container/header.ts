@@ -1,5 +1,5 @@
 import Control from '../../common/control';
-import HeaderContainer from '../header-container/header-container';
+import HeaderContainer from './header-container';
 
 export default class Header extends Control {
   headerContainer: HeaderContainer;

@@ -1,18 +1,18 @@
 [
     {
       "shape": {
-        "шар": "ball.svg",
-        "колокольчик": "bell.svg",
-        "шишка": "cone.svg",
-        "снежинка": "snowflake.svg",
-        "фигурка": "toy.svg"
+        "ball": "ball.svg",
+        "bell": "bell.svg",
+        "cone": "cone.svg",
+        "snowflake": "snowflake.svg",
+        "toy": "toy.svg"
       },
       "color": {
-        "белый": "#fff",
-        "желтый": "#FDD700",
-        "красный": "#FD0000",
-        "синий": "#2199EB",
-        "зелёный": "#08AA05"
+        "white": "white",
+        "yellow": "yellow",
+        "red": "red",
+        "blue": "blue",
+        "green": "green"
       },
       "size": {
           "большой": "50px 50px",

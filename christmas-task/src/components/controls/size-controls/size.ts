@@ -1,20 +1,28 @@
+import { SIZE_FILTER } from '../../../common/constants/filter-constants';
 import Control from '../../../common/control';
 import SizeButton from './size-button';
 
 export default class Size extends Control {
+  onFilter!: (color: string) => void
+  isChecked: boolean = false;
+  scale: number;
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'size', 'Размер :');
-      this.start()
+    this.scale = 1.5
+      this.renderSizeButton()
   }
 
-  async start() {
-    const response = await fetch('filter-controls.json');
-    const categories = await response.json();
-    const [catPicture] = categories;
-    const sizes = Object.values(catPicture.size).map((size) => `${size}`);
-    sizes.map((size) => {
-       const sizeButton = new SizeButton(this.node, size)
+  renderSizeButton() {
+    const colors = Object.keys(SIZE_FILTER.value);
+    colors.map((size) => {
+      const sizeButton = new SizeButton(this.node, size)
+      sizeButton.node.style.transform = `scale(${this.scale -= 0.3})`
+      sizeButton.node.onclick = () => {
+        this.onFilter(size)         
+        this.isChecked = !this.isChecked; 
+        sizeButton.node.classList.toggle('select');
+      }    
     }); 
   }
 }

@@ -1,25 +1,25 @@
+import { SHAPE_FILTER } from '../../../common/constants/filter-constants';
 import Control from '../../../common/control';
 import ShapeButton from './shape-button';
 
 export default class Shape extends Control {
-  shape!: ShapeButton;
-  onSort!: () => void
+  onFilter!: (shape: string) => void
+  isChecked: boolean = false;
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'shape', 'Форма :');
-      this.start()
+    this.renderShape() 
   }
 
-  async start() {
-    const response = await fetch('filter-controls.json');
-    const categories = await response.json();
-    const [catPicture] = categories;
-    const images = Object.values(catPicture.shape).map((name) => `svg/${name}`);
-    images.map((url) => {
-        this.shape = new ShapeButton(this.node, url)
-        this.shape.node.onclick = () => {
-          this.onSort()
-        }
+  renderShape() {
+    const forms = Object.keys(SHAPE_FILTER.value).map((name) => name);
+    forms.map((shape) => {
+        const shapeButton = new ShapeButton(this.node, shape)  
+        shapeButton.node.onclick = () => {
+          this.onFilter(shape)         
+          this.isChecked = !this.isChecked; 
+          shapeButton.node.classList.toggle('select');
+        }  
     }); 
   }
 }

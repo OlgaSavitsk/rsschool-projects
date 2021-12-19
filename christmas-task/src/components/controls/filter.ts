@@ -1,32 +1,21 @@
 import Control from '../../common/control';
-import { IToysModel } from '../../models/toys-model';
-import Color from './color-controls/color';
-import FavoriteContainer from './favorite/favorite-container';
+import FavoriteContainer from './favorite-control/favorite-container';
 import Shape from './shape-controls/shape';
 import Size from './size-controls/size';
+import { Color } from './color-controls/color';
 
 export default class Filter extends Control {
   shapes: Shape;
-  color: Color;
-  size: Size;
+  colors: Color;
+  sizes: Size;
+  favorite: FavoriteContainer;
 
-  constructor(parentNode: HTMLElement, data: IToysModel[]) {
+  constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'filters', '');
     this.node.innerHTML = `<h2 class="control-title">Фильтры по значению</h2>`
     this.shapes = new Shape(this.node)
-    this.color = new Color(this.node)
-    this.size = new Size(this.node)
-    const favorite = new FavoriteContainer(this.node)
-    this.shapes.onSort=() => {
-      this.filtrByShape(data)
-    }
+    this.colors = new Color(this.node)
+    this.sizes = new Size(this.node)
+    this.favorite = new FavoriteContainer(this.node)
   }
-
-  filtrByShape(value: IToysModel[]): IToysModel[] {
-    const sorted = value.filter(item => {
-        return item.shape === 'шар'
-      })
-      console.log(sorted)
-    return sorted
-  } 
 }

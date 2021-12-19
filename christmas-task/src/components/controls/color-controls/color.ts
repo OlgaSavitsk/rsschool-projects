@@ -1,20 +1,25 @@
+import { COLOR_FILTER } from '../../../common/constants/filter-constants';
 import Control from '../../../common/control';
 import ColorButton from './color-button';
 
-export default class Color extends Control {
+export class Color extends Control {
+  onFilter!: (color: string) => void
+  isChecked: boolean = false;
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'color', 'Цвет :');
-      this.start()
+      this.renderColor()
   }
 
-  async start() {
-    const response = await fetch('filter-controls.json');
-    const categories = await response.json();
-    const [catPicture] = categories;
-    const colors = Object.values(catPicture.color).map((color) => `${color}`);
+  renderColor() {
+    const colors = Object.keys(COLOR_FILTER.value);
     colors.map((color) => {
-       const colorButton = new ColorButton(this.node, color)
+      const colorButton = new ColorButton(this.node, color)
+      colorButton.node.onclick = () => {
+        this.onFilter(color)         
+        this.isChecked = !this.isChecked; 
+        colorButton.node.classList.toggle('active');
+      }    
     }); 
   }
 }

@@ -1,5 +1,5 @@
 import Control from '../../common/control';
-import ButtonContinue from '../button-continue/button-continue';
+import ButtonContinue from './button-continue/button-continue';
 
 export default class ModalError extends Control {
   modalContainer: Control<HTMLElement>;

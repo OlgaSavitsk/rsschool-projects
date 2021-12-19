@@ -1,9 +1,5 @@
 import { IDesk, IToysModel } from '../../models/toys-model';
 
-export interface SortService {
-  transform(value: IToysModel[], isDesk: boolean): IToysModel[]
-}
-
 export default class SortServiceImplementaition {
 
     constructor() {
