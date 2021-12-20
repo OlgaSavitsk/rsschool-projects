@@ -7,7 +7,6 @@ export default class CountSlider extends Control {
   outputStart: Control<HTMLOutputElement>;
   outputEnd: Control<HTMLOutputElement>;
   onChange!: () => void
-  model: any;
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'count-slider', '');

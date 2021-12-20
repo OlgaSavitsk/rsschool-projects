@@ -1,8 +1,10 @@
-import { COLOR_FILTER, FAVORITE_FILTER, SHAPE_FILTER, SIZE_FILTER } from "../../common/constants/filter-constants";
+import { COLOR_FILTER, defaultFilterObject, FAVORITE_FILTER, IFilter, SHAPE_FILTER, SIZE_FILTER } from "../../common/constants/filter-constants";
 import Control from "../../common/control";
+import { FilterController } from "../../common/filter-controller";
 import { FilterService } from "../../common/services/filter.service";
 import SortServiceImplementaition from "../../common/services/sort.service";
 import SortService from "../../common/services/sort.service";
+import { StorageFilter } from "../../common/services/storage";
 import { ToysDataModel } from "../../models/toys-data-model";
 import { IDesk, IToysModel } from "../../models/toys-model";
 import CardContainer from "../card-container/card-container";
@@ -27,6 +29,8 @@ export default class MainToysContainer extends Control {
   filterData!: IToysModel[]
   filterValueArr: IToysModel[] = []
   filterValueSet: Set<IToysModel[]>;
+  setFilterVal: IToysModel[] | undefined;
+  storageFilter: StorageFilter;
 
   constructor(parentNode: HTMLElement, data: IToysModel[]) {
     super(parentNode, 'div', 'main-container', '');
@@ -34,7 +38,8 @@ export default class MainToysContainer extends Control {
     this.filterValueSet = new Set()
     this.controls = new Controls(this.node)
     this.selectValue = this.controls.sort.sortSelect
-    this.model = new ToysDataModel()
+    this.model = new ToysDataModel() 
+    this.storageFilter = new StorageFilter()
     this.rangeHandler(this.data)
     this.filterHandler(this.data)
   }
@@ -54,48 +59,42 @@ export default class MainToysContainer extends Control {
     }
   }
 
-  setFilterValue(data: IToysModel[]) {
-     this.filterValueArr = []
-     this.filterValue = data.filter((item, index) => {
-        for(let i = index+1; i<data.length; i++ ){
-          if(data[i].num === item.num) {
-          this.filterValueArr.push(data[i])
-           return true; 
-          }
-        }
-        return false;   
-      });
-      this.filterValue = this.filterValueArr.flat() 
-      if(this.filterValue.length === 0) {
-        this.filterValue = data
-      } 
-      this.cardContainer.destroy()
-      this.cardContainer = new CardContainer(this.node, this.filterValue)
-  }
-//при повторном клике на фильр, копии игрушек удаляются
-// и при обратном включении уже не фильтруются(при условии включенного фильтра из другой категории)
   toggleFilter(filter: { property: string; value: any }, param: string, data: IToysModel[]) {
+    FilterController.filters = filter
     this.filterValue = FilterService.sort(filter, param, data)
-  
+    console.log('filterValue-0', this.filterValue)
     if(this.params.includes(param)) { 
       this.params = this.params.filter(item => item !== param)
-      for(let i of this.filterValue) { 
-        this.filterData = this.filterData.filter((item => item.num !== i.num))
-        this.filterValueSet.clear()
-        this.filterValueSet.add(this.filterData) 
-      } 
+      FilterController.hide = this.filterValue
+      FilterController.add(this.filterValue)
+      this.setFilterVal = FilterController.remove()!.flat()
+      console.log('afterremove', this.setFilterVal)
     } else {
       this.params.push(param) 
-      this.filterValueSet.add(this.filterValue)
-      this.filterData = Array.from(this.filterValueSet).flat() 
+      FilterController.params = this.params
+      FilterController.filter(this.filterValue)
+      this.setFilterVal = FilterController.getData().flat()
     }
-    this.setFilterValue(this.filterData)
+   
+    Object.keys(defaultFilterObject).forEach(filter => {
+ 
+      if(this.params.includes(filter)) {
+        defaultFilterObject[filter] = filter
+      } else {
+        defaultFilterObject[filter] = false
+      }
+    })
+    StorageFilter.setData(defaultFilterObject)
+    
+    console.log('setFilterVal-1', this.setFilterVal)
+    this.cardContainer.destroy()
+    this.cardContainer = new CardContainer(this.node, this.setFilterVal)
   }
 
   favoriteSort(filter: { property: string; value: any }, param: string, data: IToysModel[]) {
     this.filterValue = FilterService.sort(filter, param, data)
     this.cardContainer.destroy()
-      this.cardContainer = new CardContainer(this.node, this.filterValue)
+    this.cardContainer = new CardContainer(this.node, this.filterValue)
   }
 
   selectName(): IDesk {
@@ -117,7 +116,8 @@ export default class MainToysContainer extends Control {
     }
     let desk: IDesk = {
       isDeskName: this.isDeskByName,
-      isDeskCount:  this.isDeskByCount
+      isDeskCount:  this.isDeskByCount,
+      select: this.selectValue.node.value
     }
     return desk
   }
@@ -137,12 +137,12 @@ export default class MainToysContainer extends Control {
     this.selectValue.onChange = () => {
       this.isSorted = true  
       this.cardContainer.destroy() 
-      this.setSortCard(data)
+      this.sortCard(data)
     }  
   }
 
   setSortCard(data: IToysModel[]) {
-    if(this.isRangeCount === true || this.isRangeYear === true || this.isSorted === true) {
+    if(this.isRangeCount === true || this.isRangeYear === true) {
       const sortedArrCount = this.controls.range.countValue.countSlider.rangeSortByCount(data)
       const sortedArrYear = this.controls.range.yearValue.yearSlider.rangeSortByYear(data)
       sortedArrYear.map((item: IToysModel) => {
@@ -156,7 +156,14 @@ export default class MainToysContainer extends Control {
     } else if(this.isSorted === true) {
       this.sortedArr = SortServiceImplementaition.transformByName(data, this.selectName()!)
     }
+    //this.cardContainer.destroy()
     this.cardContainer = new CardContainer(this.node, this.sortedArr)
     this.sortedArr!.splice(0, this.sortedArr!.length) 
   } 
+
+  sortCard(data) {
+    this.sortedArr = SortServiceImplementaition.transformByName(data, this.selectName()!)
+    this.cardContainer.destroy()
+    this.cardContainer = new CardContainer(this.node, this.sortedArr)
+  }
 }

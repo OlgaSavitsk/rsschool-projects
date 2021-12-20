@@ -12,4 +12,5 @@ export interface IToysModel {
 export interface IDesk {
     isDeskName: boolean | undefined,
     isDeskCount: boolean | undefined
+    select: string
   }
