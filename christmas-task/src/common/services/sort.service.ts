@@ -11,6 +11,7 @@ export default class SortServiceImplementaition {
     }
 
     static transformByName(value: IToysModel[], isDeskByName: IDesk): IToysModel[] {
+      console.log('value', value)
         defaultFilterObject.select = isDeskByName.select
         if(isDeskByName.isDeskCount === true) {
           defaultFilterObject.isDeskCount = true

@@ -41,24 +41,24 @@ import { IToysModel } from "../models/toys-model"
       }
 
       static getData() {
-        console.log('toys1', this.toys)
+        //console.log('toys1', this.toys)
           return this.filteredArr
       }
 
     static filter(value) {
       this.toys.push(value)
-        console.log('вход', this.toys.flat())
+        //console.log('вход', this.toys.flat())
         
         let val = this.toys.flat().filter((item, index) => {
             for(let i = index + 1; i < this.toys.flat().length; i++ ){ 
               if(this.toys.flat()[i].num === item.num) {  
-                console.log( `${index} is a duplicate of ${i}` );  
+               // console.log( `${index} is a duplicate of ${i}` );  
                return true; 
               }
             }
             return false;   
           });
-          console.log('toys2', val)
+          //console.log('toys2', val)
          
         /*  
          if(val.length !== 0) {

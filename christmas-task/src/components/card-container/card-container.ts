@@ -15,7 +15,7 @@ export default class CardContainer extends Control {
     this.data = data
     this.data.map((toy: IToysModel) => {
       this.card = new Card(this.node, toy)
-      this.card.favoriteSelect = async() => {
+      this.card.favoriteSelect = () => {
         const favoriteCount = getLocalStorageData()
         this.favoriteSet = new Set(favoriteCount)
         this.favoriteSet.add(toy.num)   
