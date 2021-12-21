@@ -4,7 +4,6 @@ import { FilterService } from "../../common/services/filter.service";
 import { RangeFilterService } from "../../common/services/range.service";
 import SortServiceImplementaition from "../../common/services/sort.service";
 import { StorageFilter } from "../../common/services/storage";
-import { ToysDataModel } from "../../models/toys-data-model";
 import { IDesk, IToysModel } from "../../models/toys-model";
 import CardContainer from "../card-container/card-container";
 import Controls from "../controls/controls";
@@ -19,67 +18,46 @@ export interface IDefaultFilters {
   year: string[],
 }
 
-export interface Filters {
-  shape: string[],
-  color: string[],
-  size: string[]
-}
-
-export interface FiltersRange {
-  count: string[],
-  year: string[],
-}
-
-export const filtersObj: Filters = {
-  shape: [],
-  color: [],
-  size: []
-}
-
-export const filtersRangeObj: FiltersRange = {
-  count: [],
-  year: [],
-}
-
 export const defaultFilters = {
     shape: ([] as string[]),
     color: ([] as string[]),
     size: ([] as string[]),
-    count: ([] as string[]),
-    year: ([] as string[]),
+    count: ['1', '12'],
+    year: ['1940', '2020'],
 }
 
 export default class MainToysContainer extends Control {
   cardContainer!: CardContainer;
   controls: Controls;
   selectValue: SortSelect;
-  isFilter: boolean = false
-  isRange: boolean = false
-  isRangeYear: boolean = false
   isDeskByName: boolean | undefined;
   isDeskByCount!: boolean | undefined
-  sortedArr: IToysModel[] = []
   data: IToysModel[];
   filterValue!: IToysModel[];
-  filterValueSet: Set<IToysModel[]>;
-  storageFilter: StorageFilter;
-  colorFilterArr: string[] = [];
-  sizeFilterArr: string[] = [];
-  shapeFilterArr: string[] = [];
-  countFilterArr: string[] = [];
-  yearFilterArr: string[] = [];
   sorted!: IToysModel[];
   modalError!: ModalError;
+  storageFilter: IDefaultFilters | undefined;
+  onSave: ((defaultFilters: IDefaultFilters) => void) | undefined
+  colorFilterArr: string[];
+  sizeFilterArr: string[];
+  shapeFilterArr: string[];
+  countFilterArr: string[];
+  yearFilterArr: string[];
 
-  constructor(parentNode: HTMLElement, data: IToysModel[]) {
+  constructor(parentNode: HTMLElement, data: IToysModel[], filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'main-container', '');
     this.data = data
-    this.filterValueSet = new Set()
-    this.controls = new Controls(this.node)
+    console.log('1', filterStorage)
+    const defaultFilters: IDefaultFilters = filterStorage
+    this.colorFilterArr = defaultFilters.color;
+    this.sizeFilterArr = defaultFilters.size;
+    this.shapeFilterArr = defaultFilters.shape;
+    this.countFilterArr = defaultFilters.count;
+    this.yearFilterArr = defaultFilters.year
+    //this.data = this.getFilterData(defaultFilters, this.data)
+    this.controls = new Controls(this.node, filterStorage)
     this.selectValue = this.controls.sort.sortSelect
-    this.cardContainer = new CardContainer(this.node, this.data)
-    this.storageFilter = new StorageFilter() 
-    console.log(StorageFilter.loadFromLocalStorage())
+    this.cardContainer = new CardContainer(this.node, this.getFilterData(defaultFilters, this.data))
     this.rangeHandler(this.data)
     this.filterHandler(this.data)
   }
@@ -112,15 +90,17 @@ export default class MainToysContainer extends Control {
     this.controls.filter.favorite.form.onFilter = (check) => { 
       this.favoriteSort(FAVORITE_FILTER, check, data)
     } 
-    //this.isFilter = true
   }
 
   applyFilter(data: IToysModel[]) {
-      defaultFilters.shape = this.shapeFilterArr,
-      defaultFilters.color = this.colorFilterArr,
-      defaultFilters.size = this.sizeFilterArr
-    //defaultFilters.filters = filtersObj
-    StorageFilter.setData(defaultFilters)
+    defaultFilters.shape = this.shapeFilterArr,
+    defaultFilters.color = this.colorFilterArr,
+    defaultFilters.size = this.sizeFilterArr
+    defaultFilters.count = this.countFilterArr,
+    defaultFilters.year = this.yearFilterArr
+    if(this.onSave) {
+      this.onSave(defaultFilters)
+    }
     this.getFilterData(defaultFilters, data)
     this.data = this.getFilterData(defaultFilters, data)
     console.log(this.data)
@@ -133,7 +113,8 @@ export default class MainToysContainer extends Control {
     return this.data
   }
 
-  getFilterData(defaultFilters: Filters, data: IToysModel[]) {
+  getFilterData(defaultFilters: IDefaultFilters, data: IToysModel[]) {
+    console.log('2', defaultFilters)
     return data.filter(item => {
       return Object.keys(defaultFilters).every(propertyName => {
         if(defaultFilters[propertyName].length === 0) {
@@ -148,7 +129,6 @@ export default class MainToysContainer extends Control {
         else {
           return item[propertyName].indexOf(defaultFilters[propertyName]) > -1
         } 
-        
       });
     })
   }
@@ -200,12 +180,21 @@ export default class MainToysContainer extends Control {
   }
 
   applyRangeFilter(data: IToysModel[]) {
-      defaultFilters.count = this.countFilterArr,
-      defaultFilters.year = this.yearFilterArr
-    StorageFilter.setData(defaultFilters)
+    defaultFilters.shape = this.shapeFilterArr,
+    defaultFilters.color = this.colorFilterArr,
+    defaultFilters.size = this.sizeFilterArr
+    defaultFilters.count = this.countFilterArr,
+    defaultFilters.year = this.yearFilterArr
+    if(this.onSave) {
+      this.onSave(defaultFilters)
+    }
     this.getFilterData(defaultFilters, data)
     this.data = this.getFilterData(defaultFilters, data)
     console.log('range', this.data)
+    if(this.data.length === 0) {
+      console.log('ok')
+      this.modalError = new ModalError(this.node, 'Извините, совпадений не обнаружено')
+    }
     this.cardContainer.destroy()
     this.cardContainer = new CardContainer(this.node, this.data)
     return this.data

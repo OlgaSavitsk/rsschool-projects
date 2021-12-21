@@ -1,13 +1,14 @@
 import noUiSlider from 'nouislider';
 import Control from '../../../common/control';
+import { IDefaultFilters } from '../../main-toys-container/main-toys-container';
 
 export class NoUiSliderYear extends Control {
     node!: noUiSlider.Instance;
 
-    constructor(parentNode: HTMLElement) {
+    constructor(parentNode: HTMLElement, filterStorage: IDefaultFilters) {
         super(parentNode, 'div', 'filter-slider', '');
         noUiSlider.create(this.node, {
-            start: [0, 2020],
+            start: [+filterStorage.year[0], +filterStorage.year[1]],
             connect: true,
             range: {
                 'min': 1940,

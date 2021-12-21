@@ -1,4 +1,5 @@
 import Control from '../../common/control';
+import { IDefaultFilters } from '../main-toys-container/main-toys-container';
 import Filter from './filter';
 import RangeControl from './range';
 import SortControl from './sort';
@@ -8,11 +9,10 @@ export default class Controls extends Control {
   filter: Filter;
   range: RangeControl;
 
-  constructor(parentNode: HTMLElement) {
+  constructor(parentNode: HTMLElement, filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'controls', '');
-    this.filter = new Filter(this.node)
-    this.range = new RangeControl(this.node)
+    this.filter = new Filter(this.node, filterStorage)
+    this.range = new RangeControl(this.node, filterStorage)
     this.sort = new SortControl(this.node)
   }
-
 }
