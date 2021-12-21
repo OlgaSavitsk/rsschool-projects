@@ -7,10 +7,11 @@ export default class ModalError extends Control {
 
   constructor(
     parentNode: HTMLElement,
+    message: string
   ) {
     super(parentNode, 'div', 'modal', '');
     this.modalContainer = new Control(this.node, 'div', 'modal-congratulation', '');
-    this.modalContainer.node.innerHTML = `<span class="congratulation-title">Извините, все слоты заполнены</span>`;
+    this.modalContainer.node.innerHTML = `<span class="congratulation-title">${message}</span>`;
     const modalButton = new ButtonContinue(this.node);
     this.modalContainer.node.insertAdjacentElement('beforeend', modalButton.node); 
     modalButton.onClick = () => {

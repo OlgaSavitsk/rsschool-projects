@@ -9,6 +9,7 @@ import { IDesk, IToysModel } from "../../models/toys-model";
 import CardContainer from "../card-container/card-container";
 import Controls from "../controls/controls";
 import SortSelect from "../controls/sort-select";
+import ModalError from "../modal-error/modal-error";
 
 export interface IDefaultFilters {
   shape: string[],
@@ -68,6 +69,7 @@ export default class MainToysContainer extends Control {
   countFilterArr: string[] = [];
   yearFilterArr: string[] = [];
   sorted!: IToysModel[];
+  modalError!: ModalError;
 
   constructor(parentNode: HTMLElement, data: IToysModel[]) {
     super(parentNode, 'div', 'main-container', '');
@@ -121,6 +123,11 @@ export default class MainToysContainer extends Control {
     StorageFilter.setData(defaultFilters)
     this.getFilterData(defaultFilters, data)
     this.data = this.getFilterData(defaultFilters, data)
+    console.log(this.data)
+    if(this.data.length === 0) {
+      console.log('ok')
+      this.modalError = new ModalError(this.node, 'Извините, совпадений не обнаружено')
+    }
     this.cardContainer.destroy()
     this.cardContainer = new CardContainer(this.node, this.data)
     return this.data
@@ -129,12 +136,10 @@ export default class MainToysContainer extends Control {
   getFilterData(defaultFilters: Filters, data: IToysModel[]) {
     return data.filter(item => {
       return Object.keys(defaultFilters).every(propertyName => {
-        //console.log(typeof(propertyName))
         if(defaultFilters[propertyName].length === 0) {
           return data
         } 
         if(propertyName === 'count' || propertyName === 'year') {
-          console.log('ok')
           return +item[propertyName] >= +defaultFilters[propertyName][0] && +item[propertyName] <= +defaultFilters[propertyName][1] 
         }
         if(defaultFilters[propertyName].length > 1) {
@@ -197,8 +202,6 @@ export default class MainToysContainer extends Control {
   applyRangeFilter(data: IToysModel[]) {
       defaultFilters.count = this.countFilterArr,
       defaultFilters.year = this.yearFilterArr
-  
-   // defaultFilters.filtersRange = filtersRangeObj
     StorageFilter.setData(defaultFilters)
     this.getFilterData(defaultFilters, data)
     this.data = this.getFilterData(defaultFilters, data)

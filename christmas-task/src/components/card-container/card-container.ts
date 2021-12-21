@@ -22,7 +22,7 @@ export default class CardContainer extends Control {
         let del = favoriteCount.find((item: string) => item === toy.num)
         this.favoriteSet.delete(del!)
         if(favoriteCount.length === 20 && toy.num !== del) {
-          this.modal = new ModalError(this.node)
+          this.modal = new ModalError(this.node, 'Извините, все слоты заполнены')
           this.favoriteSet.delete(toy.num)
         } 
         this.card.node.classList.remove('active')
