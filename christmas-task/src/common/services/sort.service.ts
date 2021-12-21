@@ -19,7 +19,7 @@ export default class SortServiceImplementaition {
         if(isDeskByName.isDeskName === true) {
           defaultFilterObject.isDeskName = true
         }
-      StorageFilter.setData(defaultFilterObject)
+     // StorageFilter.setData(defaultFilterObject)
       if (isDeskByName.isDeskName !== undefined) {
           let dm = isDeskByName.isDeskName ? 1 : -1
           const sorted = value.sort((a, b) => {

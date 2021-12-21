@@ -6,7 +6,7 @@ export default class CountSlider extends Control {
   slider: NoUiSliderCount;
   outputStart: Control<HTMLOutputElement>;
   outputEnd: Control<HTMLOutputElement>;
-  onChange!: () => void
+  onChange!: (startValue: string, endValue) => void
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'count-slider', '');
@@ -24,14 +24,7 @@ export default class CountSlider extends Control {
         snapValues[handle].value = Math.floor(values[handle]).toString();
         snapValues[handle].value = Math.floor(values[handle]).toString();
       })
-      this.onChange()
+      this.onChange(this.outputStart.node.value, this.outputEnd.node.value)
     }  
   }
-
-  rangeSortByCount(value: IToysModel[]): IToysModel[] {
-    const sorted = value.filter(item => {
-        return +item.count >= +this.outputStart.node.value && +item.count <= +this.outputEnd.node.value
-      })
-    return sorted
-  } 
 }

@@ -6,7 +6,7 @@ export default class YearSlider extends Control {
   outputStart: Control<HTMLOutputElement>;
   outputEnd: Control<HTMLOutputElement>;
     slider: NoUiSliderYear;
-    onChange!: () => void
+    onChange!: (startValue: string, endValue) => void
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'count-slider', '');
@@ -24,14 +24,7 @@ export default class YearSlider extends Control {
       snapValues[handle].value = Math.floor(values[handle]).toString();
       snapValues[handle].value = Math.floor(values[handle]).toString();
     })
-    this.onChange()
+    this.onChange(this.outputStart.node.value, this.outputEnd.node.value)
   }
   }
-
-  rangeSortByYear(value: IToysModel[]): IToysModel[] {
-    const sorted = value.filter(item => {
-        return +item.year >= +this.outputStart.node.value && +item.year <= +this.outputEnd.node.value
-      })
-    return sorted
-  } 
 }

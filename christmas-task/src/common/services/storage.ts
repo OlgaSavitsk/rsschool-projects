@@ -1,35 +1,37 @@
-import { defaultFilterObject, IFilter } from "../constants/filter-constants"
+import { defaultFilters, IDefaultFilters } from "../../components/main-toys-container/main-toys-container"
 
 export class StorageFilter {
-    settingsFilters: IFilter | undefined
   static storageFilter: any
-    static settingsFilters: IFilter
+    static settingsFilters: IDefaultFilters | undefined
 
     constructor() {}
 
-    loadFromLocalStorage() {
+    static loadFromLocalStorage() {
         const storageData = localStorage.getItem('filters')
+        
         const checkStorageData = (data: string | null) => {
+            console.log(data)
             return data
         }
         if(!checkStorageData(storageData)) {
-            this.settingsFilters = defaultFilterObject
+            StorageFilter.settingsFilters = defaultFilters
         } else {
-            const data: IFilter = JSON.parse(storageData!);
-            this.settingsFilters = data;
+            const data: IDefaultFilters = JSON.parse(storageData!);
+            StorageFilter.settingsFilters = data;
+            return data
         }
     }
 
-    getData() {
-        return JSON.parse(JSON.stringify(this.settingsFilters))
+    static getData() {
+        return JSON.parse(JSON.stringify(StorageFilter.settingsFilters))
     }
 
-    static setData(data: IFilter) {
+    static setData(data: IDefaultFilters) {
         StorageFilter.settingsFilters = data
         StorageFilter.saveToStorage()
     }
 
     static saveToStorage() {
-        localStorage.setItem('filters', JSON.stringify(this.settingsFilters))
+        localStorage.setItem('filters', JSON.stringify(StorageFilter.settingsFilters))
     }
 }
