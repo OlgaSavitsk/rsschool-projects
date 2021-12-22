@@ -1,6 +1,5 @@
 import { getLocalStorageData } from '../..';
 import Control from '../../common/control';
-import { FilterController } from '../../common/filter-controller';
 import { IToysModel } from '../../models/toys-model';
 import Ribbon from './ribbon';
 
@@ -39,11 +38,6 @@ export default class Card extends Control {
     .map((item: string | null) => {
       if(this.node.getAttribute('data-num') === item) {
         this.node.classList.add('active')
-      }
-    })
-    FilterController.hide?.forEach(card => {
-      if(toy.num === card.num) {
-        this.node.style.display = 'none'
       }
     })
   }

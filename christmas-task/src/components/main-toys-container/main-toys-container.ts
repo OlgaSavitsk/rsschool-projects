@@ -1,10 +1,9 @@
-import { COLOR_FILTER, FAVORITE_FILTER, SHAPE_FILTER, SIZE_FILTER } from "../../common/constants/filter-constants";
+import { COLOR_FILTER, FAVORITE_FILTER, Filters, SHAPE_FILTER, SIZE_FILTER } from "../../common/constants/filter-constants";
 import Control from "../../common/control";
 import { FilterService } from "../../common/services/filter.service";
 import { RangeFilterService } from "../../common/services/range.service";
 import SortServiceImplementaition from "../../common/services/sort.service";
-import { StorageFilter } from "../../common/services/storage";
-import { IDesk, IToysModel } from "../../models/toys-model";
+import { desk, IDesk, IToysModel } from "../../models/toys-model";
 import CardContainer from "../card-container/card-container";
 import Controls from "../controls/controls";
 import SortSelect from "../controls/sort-select";
@@ -30,8 +29,8 @@ export default class MainToysContainer extends Control {
   cardContainer!: CardContainer;
   controls: Controls;
   selectValue: SortSelect;
-  isDeskByName: boolean | undefined;
-  isDeskByCount!: boolean | undefined
+  isDeskByName!: boolean;
+  isDeskByCount!: boolean
   data: IToysModel[];
   filterValue!: IToysModel[];
   sorted!: IToysModel[];
@@ -47,19 +46,21 @@ export default class MainToysContainer extends Control {
   constructor(parentNode: HTMLElement, data: IToysModel[], filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'main-container', '');
     this.data = data
-    console.log('1', filterStorage)
     const defaultFilters: IDefaultFilters = filterStorage
+    const desk = this.getSelectValue()
+    this.data = this.getFilterData(defaultFilters, this.data)
     this.colorFilterArr = defaultFilters.color;
     this.sizeFilterArr = defaultFilters.size;
     this.shapeFilterArr = defaultFilters.shape;
     this.countFilterArr = defaultFilters.count;
     this.yearFilterArr = defaultFilters.year
-    //this.data = this.getFilterData(defaultFilters, this.data)
     this.controls = new Controls(this.node, filterStorage)
     this.selectValue = this.controls.sort.sortSelect
-    this.cardContainer = new CardContainer(this.node, this.getFilterData(defaultFilters, this.data))
+    this.cardContainer = new CardContainer(this.node, this.data)
     this.rangeHandler(this.data)
     this.filterHandler(this.data)
+    this.sortCard(desk)
+    this.selectValue.node.value = desk.select
   }
 
   filterHandler(data: IToysModel[]) {
@@ -103,9 +104,7 @@ export default class MainToysContainer extends Control {
     }
     this.getFilterData(defaultFilters, data)
     this.data = this.getFilterData(defaultFilters, data)
-    console.log(this.data)
     if(this.data.length === 0) {
-      console.log('ok')
       this.modalError = new ModalError(this.node, 'Извините, совпадений не обнаружено')
     }
     this.cardContainer.destroy()
@@ -114,7 +113,6 @@ export default class MainToysContainer extends Control {
   }
 
   getFilterData(defaultFilters: IDefaultFilters, data: IToysModel[]) {
-    console.log('2', defaultFilters)
     return data.filter(item => {
       return Object.keys(defaultFilters).every(propertyName => {
         if(defaultFilters[propertyName].length === 0) {
@@ -139,32 +137,34 @@ export default class MainToysContainer extends Control {
     this.cardContainer = new CardContainer(this.node, this.filterValue)
   }
 
-  selectName(): IDesk {
+  selectName() {
     if(this.selectValue.node.value === 'sort-name-max') {
-      this.isDeskByName = true
-      this.isDeskByCount = undefined
+      desk.isDeskName = true
+      desk.isDeskCount = undefined
     } 
     if(this.selectValue.node.value === 'sort-name-min')  {
-      this.isDeskByName = false
-      this.isDeskByCount = undefined
+      desk.isDeskName = false
+      desk.isDeskCount = undefined
     }
     if(this.selectValue.node.value === 'sort-count-max')  {
-      this.isDeskByCount = true
-      this.isDeskByName = undefined
+      desk.isDeskCount = true
+      desk.isDeskName = undefined
     }
     if(this.selectValue.node.value === 'sort-count-min')  {
-      this.isDeskByCount = false
-      this.isDeskByName = undefined
+      desk.isDeskCount = false
+      desk.isDeskName = undefined
     }
-    let desk: IDesk = {
-      isDeskName: this.isDeskByName,
-      isDeskCount:  this.isDeskByCount,
-      select: this.selectValue.node.value
-    }
-    return desk
+    desk.select = this.selectValue.node.value
+    localStorage.setItem('select', JSON.stringify(desk));
+    this.sortCard(desk)
   }
 
-  rangeHandler(data) {
+  getSelectValue() {
+    const selectValue = JSON.parse(localStorage.getItem('select')!) || [];
+    return selectValue
+  }
+
+  rangeHandler(data: IToysModel[]) {
     this.controls.range.countValue.countSlider.onChange = (start, end) => {
       this.countFilterArr = [start, end]
       this.applyRangeFilter(data)
@@ -175,7 +175,8 @@ export default class MainToysContainer extends Control {
     } 
     this.selectValue.onChange = () => {
       this.cardContainer.destroy() 
-      this.sortCard()
+     this.selectName()
+      
     }  
   }
 
@@ -190,9 +191,7 @@ export default class MainToysContainer extends Control {
     }
     this.getFilterData(defaultFilters, data)
     this.data = this.getFilterData(defaultFilters, data)
-    console.log('range', this.data)
     if(this.data.length === 0) {
-      console.log('ok')
       this.modalError = new ModalError(this.node, 'Извините, совпадений не обнаружено')
     }
     this.cardContainer.destroy()
@@ -200,19 +199,18 @@ export default class MainToysContainer extends Control {
     return this.data
   }
 
-  rangeSort(filtersRangeObj, data) {
+  rangeSort(filtersRangeObj: Filters, data: IToysModel[]) {
     let val = RangeFilterService.rangeSort(filtersRangeObj, data)
-    console.log('sort', this.data)
     this.data = val
     this.cardContainer.destroy()
     this.cardContainer = new CardContainer(this.node, this.data)
     return this.data
   }
 
-  sortCard() {
-    this.sorted = SortServiceImplementaition.transformByName(this.data, this.selectName()!)
-    this.data = this.sorted
+  sortCard(desk: IDesk | undefined) {
+    this.sorted = SortServiceImplementaition.transformByName(this.getFilterData(defaultFilters, this.data), desk!)
+   // this.data = this.sorted
     this.cardContainer.destroy()
-    this.cardContainer = new CardContainer(this.node, this.data)
+    this.cardContainer = new CardContainer(this.node, this.sorted)
   }
 }

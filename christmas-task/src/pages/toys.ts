@@ -14,6 +14,7 @@ export default class Toys extends Control {
   model: ToysDataModel;
   searchValue!: IToysModel[];
   filterStorage: StorageFilter;
+  searchService!: SearchService;
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'page-container main-page', '');
@@ -29,10 +30,12 @@ export default class Toys extends Control {
   private start() {
     let data = this.model.getData()
     this.container = new MainToysContainer(this.node, data, this.filterStorage.getData())
+    
     this.container.node.onclick = () => {
       let favoriteCount = JSON.parse(localStorage.getItem('favorite')!) || [];
       this.header.headerControls.favorite.node.innerHTML = `<span>${favoriteCount.length}</span>`
     } 
+    this.searchService = new SearchService(data)
     this.header.headerControls.onSearch = (val) => {
       this.searchValue = SearchService.search(val)
       if (this.searchValue.length === 0) {
@@ -49,6 +52,7 @@ export default class Toys extends Control {
           this.header.headerControls.errorField.node.innerHTML = "";
         }
       this.container.destroy()
+      this.container = new MainToysContainer(this.node, this.searchValue, this.filterStorage.getData())
     }
     this.settingsFilters()
   }

@@ -14,7 +14,6 @@ import { IToysModel } from "../../models/toys-model";
                 return item
             }
         })
-        console.log(filterVal)
         return filterVal
     }
   }

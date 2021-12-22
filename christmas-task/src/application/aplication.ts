@@ -6,7 +6,7 @@ export default class Application extends Control {
   toysPage: Toys;
 
   constructor(parentNode: HTMLElement) {
-    super(parentNode, 'dai', '', '');
+    super(parentNode, 'div', '', '');
     this.toysPage = new Toys(this.node)
     const footer = new Footer(document.body);
   }

@@ -7,7 +7,6 @@ import { Filters } from "../constants/filter-constants";
       static rangeSort(filtersRangeObj: Filters, data: IToysModel[]): IToysModel[] {
         return data.filter(item => {
             return Object.keys(filtersRangeObj).every(propertyName => {
-              console.log(item[propertyName], propertyName)
               if(filtersRangeObj[propertyName].length === 0) {
                 return data
               } else

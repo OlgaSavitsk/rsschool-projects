@@ -14,3 +14,9 @@ export interface IDesk {
     isDeskCount: boolean | undefined
     select: string
   }
+
+  export const desk: IDesk = {
+    isDeskName: false,
+    isDeskCount: false,
+    select: ''
+  } 

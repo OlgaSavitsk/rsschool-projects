@@ -1,5 +1,4 @@
 import { IDesk, IToysModel } from '../../models/toys-model';
-import { defaultFilterObject } from '../constants/filter-constants';
 import { StorageFilter } from './storage';
 
 export default class SortServiceImplementaition {
@@ -11,15 +10,6 @@ export default class SortServiceImplementaition {
     }
 
     static transformByName(value: IToysModel[], isDeskByName: IDesk): IToysModel[] {
-      console.log('value', value)
-        defaultFilterObject.select = isDeskByName.select
-        if(isDeskByName.isDeskCount === true) {
-          defaultFilterObject.isDeskCount = true
-        }
-        if(isDeskByName.isDeskName === true) {
-          defaultFilterObject.isDeskName = true
-        }
-     // StorageFilter.setData(defaultFilterObject)
       if (isDeskByName.isDeskName !== undefined) {
           let dm = isDeskByName.isDeskName ? 1 : -1
           const sorted = value.sort((a, b) => {

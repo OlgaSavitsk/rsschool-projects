@@ -137,3 +137,9 @@
     322deg) brightness(83%) contrast(88%);
 }
 
+@media (max-width: 768px) {
+        .filters, .range, .sort {
+            max-width: 400px;
+        }
+}
+

@@ -10,7 +10,6 @@ export class StorageFilter {
         const storageData = localStorage.getItem('filters')
         
         const checkStorageData = (data: string | null) => {
-            console.log(data)
             return data
         }
         if(!checkStorageData(storageData)) {

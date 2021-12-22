@@ -16,7 +16,6 @@ export default class YearSlider extends Control {
     this.outputStart = new Control(this.node, 'output', 'slider-output', '')
     this.slider = new NoUiSliderYear(this.node, filterStorage)
     this.outputEnd = new Control(this.node, 'output', 'slider-output', '')
-    console.log(this.filterStorage)
     this.outputStart.node.value = this.filterStorage.year[0].toString()
     this.outputEnd.node.value = this.filterStorage.year[1].toString()
     //this.outputStart.node.value = Math.floor(this.slider.node.noUiSlider.get()[0]).toString()
