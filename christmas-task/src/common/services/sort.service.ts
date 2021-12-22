@@ -1,13 +1,10 @@
-import { IDesk, IToysModel } from '../../models/toys-model';
-import { StorageFilter } from './storage';
+import { IDesk } from '../../models/select-model';
+import {  IToysModel } from '../../models/toys-model';
 
 export default class SortServiceImplementaition {
-    storageFilter: StorageFilter;
   static storageFilter: any;
 
-    constructor() {
-      this.storageFilter = new StorageFilter()
-    }
+    constructor() {}
 
     static transformByName(value: IToysModel[], isDeskByName: IDesk): IToysModel[] {
       if (isDeskByName.isDeskName !== undefined) {

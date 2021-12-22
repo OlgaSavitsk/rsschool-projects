@@ -8,7 +8,7 @@ import { IToysModel } from "../../models/toys-model";
         SearchService.data = data
       }
 
-    static search(val) {
+    static search(val: string): IToysModel[] {
         const filterVal = SearchService.data.filter(item => {
             if(item.name.toLowerCase().includes(val)) {
                 return item

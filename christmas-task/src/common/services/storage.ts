@@ -1,12 +1,11 @@
-import { defaultFilters, IDefaultFilters } from "../../components/main-toys-container/main-toys-container"
+import { defaultFilters, IDefaultFilters } from "../../models/default-filter-model"
 
 export class StorageFilter {
-  //static storageFilter: any
     filterStorage: IDefaultFilters | undefined
 
     constructor() {}
 
-    loadFromLocalStorage() {
+    public loadFromLocalStorage(): void  {
         const storageData = localStorage.getItem('filters')
         
         const checkStorageData = (data: string | null) => {
@@ -17,24 +16,23 @@ export class StorageFilter {
         } else {
             const data: IDefaultFilters = JSON.parse(storageData!);
             this.filterStorage = data;
-            //return data
         }
     }
 
-     getData() {
+    public getData(): IDefaultFilters {
         return JSON.parse(JSON.stringify(this.filterStorage))
     }
 
-     setData(data: IDefaultFilters) {
+    public setData(data: IDefaultFilters): void {
         this.filterStorage = data
         this.saveToStorage()
     }
 
-     saveToStorage() {
+    public saveToStorage(): void {
         localStorage.setItem('filters', JSON.stringify(this.filterStorage))
     }
 
-    removeStorage() {
+    public removeStorage(): void {
         localStorage.removeItem('filters')
     }
 }

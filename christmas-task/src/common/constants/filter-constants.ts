@@ -42,49 +42,5 @@ enum ConstantsFilter {
     COLOR_FILTER,
     SIZE_FILTER
   };
-
-export interface IFilter {
-    ball: boolean,
-    bell:boolean,
-    cone: boolean,
-    snowflake: boolean,
-    toy: boolean,
-    white: boolean,
-    yellow: boolean,
-    red: boolean,
-    blue: boolean,
-    green: boolean,
-    big: boolean,
-    medium: boolean,
-    small: boolean,
-    favorite: boolean
-    count: number,
-    year: number,
-    select: string
-    isDeskName: boolean,
-    isDeskCount: boolean
-}
-
-export const defaultFilterObject: IFilter = {
-    ball: false,
-    bell: false,
-    cone: false,
-    snowflake: false,
-    toy: false,
-    white: false,
-    yellow: false,
-    red: false,
-    blue: false,
-    green: false,
-    big: false,
-    medium: false,
-    small: false,
-    favorite: false,
-    count: 0,
-    year: 0,
-    select: "",
-    isDeskName: false,
-    isDeskCount: false
-}
   
 export default ConstantsFilter;

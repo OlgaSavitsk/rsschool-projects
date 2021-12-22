@@ -13,14 +13,7 @@ export default class Card extends Control {
     this.node.innerHTML = `<h2 class="card-title">${toy.name}</h2>
         <img class="card-img" src="./assets/toys/${toy.num}.png" alt="toy">`
     this.description = new Control(this.node, 'div', 'card-description', '')
-    this.description.node.innerHTML = `
-        <p class="count">Количество:</span>${toy.count}</span></p>
-        <p>Год покупки:<span>${toy.year}</span></p>
-        <p>Форма:<span>${toy.shape}</span></p>
-        <p>Цвет:<span>${toy.color}</span></p>
-        <p>Размер:<span>${toy.size}</span></p>
-        <p>Любимая:<span>${toy.favorite}</span></p>`
-        const ribbon = new Ribbon(this.node)  
+    const ribbon = new Ribbon(this.node)  
     this.node.onclick = () => {
       if(this.node.classList.contains('active')) {
         this.node.classList.remove('active') 
@@ -30,10 +23,11 @@ export default class Card extends Control {
       }
       this.favoriteSelect()
     }
-    this.setCardStyle(toy)
+    this.render(toy)
+    this.setCardStyle()
   }
 
-  setCardStyle(toy: IToysModel): void {
+  private setCardStyle(): void {
     getLocalStorageData()
     .map((item: string | null) => {
       if(this.node.getAttribute('data-num') === item) {
@@ -42,9 +36,18 @@ export default class Card extends Control {
     })
   }
 
-  removeStyle() {
+  public removeStyle(): void {
     if(getLocalStorageData().length === 20) {
       this.node.classList.remove('active')
     } 
+  }
+
+  public render(toy: IToysModel): void {
+   this.description.node.innerHTML = `<p class="count">Количество:</span>${toy.count}</span></p>
+   <p>Год покупки:<span>${toy.year}</span></p>
+   <p>Форма:<span>${toy.shape}</span></p>
+   <p>Цвет:<span>${toy.color}</span></p>
+   <p>Размер:<span>${toy.size}</span></p>
+   <p>Любимая:<span>${toy.favorite}</span></p>`
   }
 }

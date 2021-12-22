@@ -8,18 +8,18 @@ export class ToysDataModel {
         this.data = await this.loadToysData('toys.json')
         return this.data
     } 
+    
+    async loadToysData(url: string): Promise<IToysModel[]> {
+      const response: Response = await fetch(url);
+      const toysData: IToysModel[] = await response.json();
+      const modelData = Object.keys(toysData).map((key: string) => {
+        const toy = toysData[key];
+        return toy;
+      });
+      return modelData;
+    } 
 
-    loadToysData(url: string) {
-      return fetch(url).then(res => res.json()).then((toysData: any) => {
-        const modelData = Object.keys(toysData).map(item => {
-          const toy = toysData[item];
-          return toy;
-        });
-        return modelData;
-      })
-    }
-
-    getData() {
+    public getData(): IToysModel[] {
       return this.data
     }
 }

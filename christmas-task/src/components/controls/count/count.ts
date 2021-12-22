@@ -1,5 +1,5 @@
 import Control from '../../../common/control';
-import { IDefaultFilters } from '../../main-toys-container/main-toys-container';
+import { IDefaultFilters } from '../../../models/default-filter-model';
 import CountSlider from './count-slider';
 
 export default class Count extends Control {

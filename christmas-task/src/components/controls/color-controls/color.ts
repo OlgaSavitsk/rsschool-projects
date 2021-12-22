@@ -1,6 +1,6 @@
 import { COLOR_FILTER } from '../../../common/constants/filter-constants';
 import Control from '../../../common/control';
-import { IDefaultFilters } from '../../main-toys-container/main-toys-container';
+import { IDefaultFilters } from '../../../models/default-filter-model';
 import ColorButton from './color-button';
 
 export class Color extends Control {
@@ -14,7 +14,7 @@ export class Color extends Control {
     this.renderColor()
   }
 
-  renderColor() {
+  private renderColor(): void {
     const colors = Object.keys(COLOR_FILTER.value);
     colors.map((color) => {
       const colorButton = new ColorButton(this.node, color)

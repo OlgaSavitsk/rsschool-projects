@@ -1,6 +1,5 @@
 import Control from '../../../common/control';
-import { IToysModel } from '../../../models/toys-model';
-import { IDefaultFilters } from '../../main-toys-container/main-toys-container';
+import { IDefaultFilters } from '../../../models/default-filter-model';
 import { NoUiSliderCount } from './noui-slider-count';
 
 export default class CountSlider extends Control {

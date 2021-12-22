@@ -1,5 +1,5 @@
 import Control from '../../common/control';
-import { IDefaultFilters } from '../main-toys-container/main-toys-container';
+import { IDefaultFilters } from '../../models/default-filter-model';
 import Count from './count/count';
 import Year from './year/year';
 

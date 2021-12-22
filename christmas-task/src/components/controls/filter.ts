@@ -3,7 +3,7 @@ import FavoriteContainer from './favorite-control/favorite-container';
 import Shape from './shape-controls/shape';
 import Size from './size-controls/size';
 import { Color } from './color-controls/color';
-import { IDefaultFilters } from '../main-toys-container/main-toys-container';
+import { IDefaultFilters } from '../../models/default-filter-model';
 
 export default class Filter extends Control {
   shapes: Shape;

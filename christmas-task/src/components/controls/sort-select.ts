@@ -6,7 +6,6 @@ export default class SortSelect extends Control {
   isSelected: boolean = false
   sortService!: SortService
   node!: HTMLSelectElement
-  isDesk: boolean;
   onChange!: () => void
 
   constructor(parentNode: HTMLElement) {
@@ -19,7 +18,6 @@ export default class SortSelect extends Control {
     this.option.node.setAttribute('value', 'sort-count-max')
     this.option = new Control(this.node, 'option', '', 'По количеству по убыванию')
     this.option.node.setAttribute('value', 'sort-count-min')
-    this.isDesk = false 
     this.node.onchange = () => {
       this.onChange()
     }

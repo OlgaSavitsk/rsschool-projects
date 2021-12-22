@@ -1,6 +1,6 @@
 import { SHAPE_FILTER } from '../../../common/constants/filter-constants';
 import Control from '../../../common/control';
-import { IDefaultFilters } from '../../main-toys-container/main-toys-container';
+import { IDefaultFilters } from '../../../models/default-filter-model';
 import ShapeButton from './shape-button';
 
 export default class Shape extends Control {
@@ -10,13 +10,11 @@ export default class Shape extends Control {
 
   constructor(parentNode: HTMLElement, filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'shape', 'Форма :');
-    this.filterStorage = filterStorage
-      console.log('111', filterStorage.shape)
-  
+    this.filterStorage = filterStorage 
     this.renderShape() 
   }
 
-  renderShape() {
+  public renderShape(): void {
     const forms = Object.keys(SHAPE_FILTER.value).map((name) => name);
     forms.map((shape) => {
         const shapeButton = new ShapeButton(this.node, shape) 

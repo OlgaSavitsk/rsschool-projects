@@ -1,7 +1,6 @@
 import Control from '../../../common/control';
 
 export default class ShapeButton extends Control {
-  isChecked: boolean = false;
 
   constructor(parentNode: HTMLElement, shapeImage: string) {
     super(parentNode, 'button', '', '');

@@ -1,6 +1,6 @@
 import noUiSlider from 'nouislider';
 import Control from '../../../common/control';
-import { IDefaultFilters } from '../../main-toys-container/main-toys-container';
+import { IDefaultFilters } from '../../../models/default-filter-model';
 
 export class NoUiSliderYear extends Control {
     node!: noUiSlider.Instance;

@@ -1,6 +1,6 @@
 import { SIZE_FILTER } from '../../../common/constants/filter-constants';
 import Control from '../../../common/control';
-import { IDefaultFilters } from '../../main-toys-container/main-toys-container';
+import { IDefaultFilters } from '../../../models/default-filter-model';
 import SizeButton from './size-button';
 
 export default class Size extends Control {
@@ -16,7 +16,7 @@ export default class Size extends Control {
     this.renderSizeButton()
   }
 
-  renderSizeButton() {
+  public renderSizeButton(): void {
     const colors = Object.keys(SIZE_FILTER.value);
     colors.map((size) => {
       const sizeButton = new SizeButton(this.node, size)
