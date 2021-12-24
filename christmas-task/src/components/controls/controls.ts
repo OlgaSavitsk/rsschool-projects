@@ -5,11 +5,11 @@ import RangeControl from './range';
 import SortControl from './sort';
 
 export default class Controls extends Control {
-  sort: SortControl;
+  public sort: SortControl;
 
-  filter: Filter;
+  public filter: Filter;
 
-  range: RangeControl;
+  public range: RangeControl;
 
   constructor(parentNode: HTMLElement, filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'controls', '');

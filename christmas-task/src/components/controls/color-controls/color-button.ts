@@ -6,7 +6,7 @@ export default class ColorButton extends Control {
     this.setColorButton(color);
   }
 
-  public setColorButton(color: string): HTMLElement {
+  private setColorButton(color: string): HTMLElement {
     this.node.style.backgroundColor = `${color}`;
     this.node.setAttribute('data-filter', `${color}`);
     return this.node;

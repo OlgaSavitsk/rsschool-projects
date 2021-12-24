@@ -4,11 +4,11 @@ import { IDefaultFilters } from '@/models/default-filter-model';
 import SizeButton from './size-button';
 
 export default class Size extends Control {
-  onFilter!: (color: string) => void;
+  public onFilter!: (color: string) => void;
 
-  isChecked: boolean = false;
+  public isChecked: boolean = false;
 
-  scale: number;
+  private scale: number;
 
   constructor(parentNode: HTMLElement, public filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'size', 'Размер :');

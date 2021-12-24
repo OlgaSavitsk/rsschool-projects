@@ -1,7 +1,7 @@
 import { defaultFilters, IDefaultFilters } from '@/models/default-filter-model';
 
 export default class StorageFilter {
-  filterStorage: IDefaultFilters | undefined;
+  public filterStorage: IDefaultFilters | undefined;
 
   constructor() {}
 

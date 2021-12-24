@@ -3,7 +3,7 @@ import Control from '@/common/control';
 import { IDefaultFilters } from '@/models/default-filter-model';
 
 export default class NoUiSliderYear extends Control {
-  node!: noUiSlider.Instance;
+  public node!: noUiSlider.Instance;
 
   constructor(parentNode: HTMLElement, public filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'filter-slider', '');

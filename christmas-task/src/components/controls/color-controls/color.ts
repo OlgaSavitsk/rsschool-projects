@@ -4,9 +4,9 @@ import { IDefaultFilters } from '../../../models/default-filter-model';
 import ColorButton from './color-button';
 
 export default class Color extends Control {
-  onFilter!: (color: string) => void;
+  public onFilter!: (color: string) => void;
 
-  isChecked: boolean = false;
+  public isChecked: boolean = false;
 
   constructor(parentNode: HTMLElement, public filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'color', 'Цвет :');

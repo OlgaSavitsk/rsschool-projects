@@ -3,11 +3,7 @@ import Control from '@/common/control';
 import { IDefaultFilters } from '@/models/default-filter-model';
 
 export default class NoUiSliderCount extends Control {
-  node!: noUiSlider.Instance;
-
-  onChange!: () => void;
-
-  onSort!: () => void;
+  public node!: noUiSlider.Instance;
 
   constructor(parentNode: HTMLElement, filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'filter-slider', '');

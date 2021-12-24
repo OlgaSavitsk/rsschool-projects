@@ -3,9 +3,9 @@ import HeaderControls from './header-controls';
 import Navigation from './navigation';
 
 export default class Header extends Control {
-  headerContainer: Control<HTMLElement>;
+  public headerContainer: Control<HTMLElement>;
 
-  headerControls: HeaderControls;
+  public headerControls: HeaderControls;
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'header', 'header', '');

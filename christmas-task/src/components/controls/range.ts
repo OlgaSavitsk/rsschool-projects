@@ -4,9 +4,9 @@ import Count from './count/count';
 import Year from './year/year';
 
 export default class RangeControl extends Control {
-  countValue: Count;
+  public countValue: Count;
 
-  yearValue: Year;
+  public yearValue: Year;
 
   constructor(parentNode: HTMLElement, filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'range', '');

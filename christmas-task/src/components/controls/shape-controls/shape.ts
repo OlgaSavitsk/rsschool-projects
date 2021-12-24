@@ -4,9 +4,9 @@ import { IDefaultFilters } from '@/models/default-filter-model';
 import ShapeButton from './shape-button';
 
 export default class Shape extends Control {
-  onFilter!: (shape: string) => void;
+  public onFilter!: (shape: string) => void;
 
-  isChecked: boolean = false;
+  public isChecked: boolean = false;
 
   constructor(parentNode: HTMLElement, public filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'shape', 'Форма :');

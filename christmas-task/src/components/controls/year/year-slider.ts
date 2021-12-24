@@ -3,13 +3,13 @@ import { IDefaultFilters } from '@/models/default-filter-model';
 import NoUiSliderYear from './noui-slider-year';
 
 export default class YearSlider extends Control {
-  outputStart: Control<HTMLOutputElement>;
+  public outputStart: Control<HTMLOutputElement>;
 
-  outputEnd: Control<HTMLOutputElement>;
+  public outputEnd: Control<HTMLOutputElement>;
 
-  slider: NoUiSliderYear;
+  public slider: NoUiSliderYear;
 
-  onChange!: (startValue: string, endValue: string) => void;
+  public onChange!: (startValue: string, endValue: string) => void;
 
   constructor(parentNode: HTMLElement, public filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'count-slider', '');

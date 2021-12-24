@@ -1,7 +1,7 @@
 import Control from '../../common/control';
 
 export default class Logo extends Control {
-  onToggleToHome!: () => void;
+  public onToggleToHome!: () => void;
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'logo', '');

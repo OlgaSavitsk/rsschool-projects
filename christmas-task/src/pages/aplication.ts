@@ -3,7 +3,7 @@ import Footer from '@/components/footer/footer';
 import Toys from './toys';
 
 export default class Application extends Control {
-  toysPage: Toys;
+  public toysPage: Toys;
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', '', '');

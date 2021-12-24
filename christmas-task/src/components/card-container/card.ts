@@ -1,12 +1,14 @@
-import { getLocalStorageData } from '../..';
+//import { getLocalStorageData } from '../..';
 import Control from '@/common/control';
+import StorageFavorite from '@/common/services/storage-favorite.service';
 import { IToysModel } from '@/models/toys-model';
 import Ribbon from './ribbon';
 
 export default class Card extends Control {
-  description: Control<HTMLElement>;
+  public description: Control<HTMLElement>;
+  readonly ribbon: Ribbon
 
-  favoriteSelect!: () => void;
+  public favoriteSelect!: () => void;
 
   constructor(parentNode: HTMLElement, toy: IToysModel) {
     super(parentNode, 'div', 'card', '');
@@ -14,7 +16,8 @@ export default class Card extends Control {
     this.node.innerHTML = `<h2 class="card-title">${toy.name}</h2>
         <img class="card-img" src="./toys/${toy.num}.png" alt="toy">`;
     this.description = new Control(this.node, 'div', 'card-description', '');
-    const ribbon = new Ribbon(this.node);
+    this.ribbon = new Ribbon(this.node);
+    StorageFavorite.loadFromLocalStorage()
     this.node.onclick = () => {
       if (this.node.classList.contains('active')) {
         this.node.classList.remove('active');
@@ -29,7 +32,7 @@ export default class Card extends Control {
   }
 
   private setCardStyle(): void {
-    return getLocalStorageData()
+    StorageFavorite.getData()
       .map((item: string | null) => {
         if (this.node.getAttribute('data-num') === item) {
           this.node.classList.add('active');
@@ -37,8 +40,8 @@ export default class Card extends Control {
       });
   }
 
-  public removeStyle(): void {
-    if (getLocalStorageData().length === 20) {
+  private removeStyle(): void {
+    if (StorageFavorite.getData().length === 20) {
       this.node.classList.remove('active');
     }
   }

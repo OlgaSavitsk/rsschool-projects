@@ -2,15 +2,11 @@ import Control from '../../common/control';
 import SortService from '../../common/services/sort.service';
 
 export default class SortSelect extends Control {
-  option: Control<HTMLOptionElement>;
+  public option: Control<HTMLOptionElement>;
 
-  isSelected: boolean = false;
+  public node!: HTMLSelectElement;
 
-  sortService!: SortService;
-
-  node!: HTMLSelectElement;
-
-  onChange!: () => void;
+  public onChange!: () => void;
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'select', 'sort-select', '');

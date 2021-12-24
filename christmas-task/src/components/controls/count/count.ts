@@ -3,7 +3,7 @@ import { IDefaultFilters } from '../../../models/default-filter-model';
 import CountSlider from './count-slider';
 
 export default class Count extends Control {
-  countSlider: CountSlider;
+  public countSlider: CountSlider;
 
   constructor(parentNode: HTMLElement, filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'count', '');

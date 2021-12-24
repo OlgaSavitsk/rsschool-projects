@@ -14,39 +14,34 @@ import FilterService from '@/common/services/filter.service';
 import RangeFilterService from '@/common/services/range.service';
 
 export default class MainToysContainer extends Control {
-  cardContainer!: CardContainer;
+  public cardContainer!: CardContainer;
 
-  controls: Controls;
+  public controls: Controls;
 
-  selectValue: SortSelect;
+  public selectValue: SortSelect;
 
-  isDeskByName!: boolean;
+  public isDeskByName!: boolean;
 
-  isDeskByCount!: boolean;
+  public isDeskByCount!: boolean;
 
-  filterValue!: IToysModel[];
+  private sorted!: IToysModel[];
 
-  sorted!: IToysModel[];
+  private modalError!: ModalError;
 
-  modalError!: ModalError;
+  private colorFilterArr!: string[];
 
-  storageFilter: IDefaultFilters | undefined;
+  private sizeFilterArr!: string[];
 
-  colorFilterArr!: string[];
+  private shapeFilterArr!: string[];
 
-  sizeFilterArr!: string[];
+  private countFilterArr!: string[];
 
-  shapeFilterArr!: string[];
+  private yearFilterArr!: string[];
 
-  countFilterArr!: string[];
-
-  yearFilterArr!: string[];
-
-  onSave: ((defaultFilters: IDefaultFilters) => void) | undefined;
+  public onSave: ((defaultFilters: IDefaultFilters) => void) | undefined;
 
   constructor(parentNode: HTMLElement, public data: IToysModel[], public filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'main-container', '');
-   // const defaultFilters = filterStorage;
     this.data = FilterService.getFilterData(filterStorage, data);
     this.controls = new Controls(this.node, filterStorage);
     this.colorFilterArr = filterStorage.color;
@@ -94,7 +89,7 @@ export default class MainToysContainer extends Control {
     };
   }
 
-  public applyFilter(data: IToysModel[]): IToysModel[] {
+  private applyFilter(data: IToysModel[]): IToysModel[] {
     defaultFilters.shape = this.shapeFilterArr,
     defaultFilters.color = this.colorFilterArr,
     defaultFilters.size = this.sizeFilterArr;
@@ -112,7 +107,7 @@ export default class MainToysContainer extends Control {
     return this.data;
   }
 
-  public selectName(): void {
+  private selectName(): void {
     if (this.selectValue.node.value === 'sort-name-max') {
       desk.isDeskName = true;
       desk.isDeskCount = undefined;
@@ -134,12 +129,12 @@ export default class MainToysContainer extends Control {
     this.sortCard(desk);
   }
 
-  public getSelectValue(): IDesk {
+  private getSelectValue(): IDesk {
     const selectValue = JSON.parse(localStorage.getItem('select')!) || [];
     return selectValue;
   }
 
-  public rangeHandler(data: IToysModel[]): void {
+  private rangeHandler(data: IToysModel[]): void {
     this.controls.range.countValue.countSlider.onChange = (start, end) => {
       this.countFilterArr = [start, end];
       this.applyRangeFilter(data);
@@ -173,7 +168,7 @@ export default class MainToysContainer extends Control {
     return this.data;
   }
 
-  public rangeSort(filtersRangeObj: Filters, data: IToysModel[]): IToysModel[] {
+  private rangeSort(filtersRangeObj: Filters, data: IToysModel[]): IToysModel[] {
     const val = RangeFilterService.rangeSort(filtersRangeObj, data);
     this.data = val;
     this.cardContainer.destroy();
@@ -181,7 +176,7 @@ export default class MainToysContainer extends Control {
     return this.data;
   }
 
-  public sortCard(desk: IDesk | undefined): void {
+  private sortCard(desk: IDesk | undefined): void {
     this.sorted = SortServiceImplementaition.transformByName(FilterService.getFilterData(defaultFilters, this.data), desk!);
     this.cardContainer.destroy();
     this.cardContainer = new CardContainer(this.node, this.sorted);

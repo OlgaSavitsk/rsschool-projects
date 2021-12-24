@@ -1,6 +1,7 @@
 import Control from '@/common/control';
 import SearchService from '@/common/services/search.service';
 import StorageFilter from '@/common/services/storage';
+import StorageFavorite from '@/common/services/storage-favorite.service';
 import Header from '@/components/header-container/header';
 import MainToysContainer from '@/components/main-toys-container/main-toys-container';
 import { IDefaultFilters } from '@/models/default-filter-model';
@@ -14,19 +15,20 @@ type renderCardOptions = {
 }
 
 export default class Toys extends Control {
-  container!: MainToysContainer;
+  public container!: MainToysContainer;
 
-  header: Header;
+  public header: Header;
 
-  control!: Control;
+  public control!: Control;
 
-  model: ToysDataModel;
+  private model: ToysDataModel;
 
-  searchValue!: IToysModel[];
+  private searchValue!: IToysModel[];
 
-  filterStorage: StorageFilter;
+  public filterStorage: StorageFilter;
 
-  searchService!: SearchService;
+  public searchService!: SearchService;
+
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'page-container main-page', '');
@@ -34,16 +36,17 @@ export default class Toys extends Control {
     this.model = new ToysDataModel();
     this.filterStorage = new StorageFilter();
     this.filterStorage.loadFromLocalStorage();
+    StorageFavorite.loadFromLocalStorage()
     this.model.build().then((result) => {
       this.render();
     });
   }
 
-  private render() {
+  private render(): void {
     const data = this.model.getData();
     this.container = new MainToysContainer(this.node, data, this.filterStorage.getData());
     this.node.onclick = () => {
-      const favoriteCount = JSON.parse(localStorage.getItem('favorite')!) || [];
+      const favoriteCount = StorageFavorite.getData();
       this.header.headerControls.favorite.node.innerHTML = `<span>${favoriteCount.length}</span>`;
     };
     this.container.destroy();
@@ -52,7 +55,7 @@ export default class Toys extends Control {
     this.settingsFilters();
   }
 
-  settingsFilters() {
+  private settingsFilters(): void {
     this.container.onSave = (defaultFilters) => {
       this.filterStorage.setData(defaultFilters);
     };
@@ -72,7 +75,7 @@ export default class Toys extends Control {
     };
   }
 
-  search(data) {
+  private search(data: IToysModel[]): void {
     this.searchService = new SearchService(data);
     this.header.headerControls.onSearch = (val) => {
       this.searchValue = SearchService.search(val);

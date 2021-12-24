@@ -1,22 +1,24 @@
-import { getLocalStorageData } from '../..';
+//import { getLocalStorageData } from '../..';
 import Control from '@/common/control';
 import { IToysModel } from '@/models/toys-model';
 import ModalError from '../modal-error/modal-error';
 import Card from './card';
+import StorageFavorite from '@/common/services/storage-favorite.service';
 
 export default class CardContainer extends Control {
-  card!: Card;
+  public card!: Card;
 
-  favoriteSet!: Set<string>;
+  private favoriteSet!: Set<string>;
 
-  modal!: ModalError;
+  private modal!: ModalError;
 
   constructor(parentNode: HTMLElement, public data: IToysModel[]) {
     super(parentNode, 'div', 'card-container', '');
+    StorageFavorite.loadFromLocalStorage()
     this.data.map((toy: IToysModel) => {
       this.card = new Card(this.node, toy);
       this.card.favoriteSelect = () => {
-        const favoriteCount = getLocalStorageData();
+        const favoriteCount = StorageFavorite.getData();
         this.favoriteSet = new Set(favoriteCount);
         this.favoriteSet.add(toy.num);
         const del = favoriteCount.find((item: string) => item === toy.num);
@@ -26,7 +28,7 @@ export default class CardContainer extends Control {
           this.favoriteSet.delete(toy.num);
         }
         this.card.node.classList.remove('active');
-        localStorage.setItem('favorite', JSON.stringify([...this.favoriteSet]));
+        StorageFavorite.setData([...this.favoriteSet])
       };
     });
   }

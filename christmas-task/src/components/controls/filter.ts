@@ -6,13 +6,13 @@ import Shape from './shape-controls/shape';
 import Size from './size-controls/size';
 
 export default class Filter extends Control {
-  shapes: Shape;
+  public shapes: Shape;
 
-  colors: Color;
+  public colors: Color;
 
-  sizes: Size;
+  public sizes: Size;
 
-  favorite: FavoriteContainer;
+  public favorite: FavoriteContainer;
 
   constructor(parentNode: HTMLElement, filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'filters', '');

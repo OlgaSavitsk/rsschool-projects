@@ -3,7 +3,7 @@ import { IDefaultFilters } from '../../../models/default-filter-model';
 import YearSlider from './year-slider';
 
 export default class Year extends Control {
-  yearSlider: YearSlider;
+  public yearSlider: YearSlider;
 
   constructor(parentNode: HTMLElement, filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'count', '');

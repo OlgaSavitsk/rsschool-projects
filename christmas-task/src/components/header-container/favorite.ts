@@ -1,7 +1,7 @@
 import Control from '@/common/control';
+import StorageFavorite from '@/common/services/storage-favorite.service';
 
 export default class Favorite extends Control {
-  countFavotite: number = 0;
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'favorite', '');
@@ -9,7 +9,8 @@ export default class Favorite extends Control {
   }
 
   addToCart() {
-    const favoriteCount = JSON.parse(localStorage.getItem('favorite')!) || [];
+    StorageFavorite.loadFromLocalStorage()
+    const favoriteCount = StorageFavorite.getData();
     return favoriteCount.length;
   }
 }

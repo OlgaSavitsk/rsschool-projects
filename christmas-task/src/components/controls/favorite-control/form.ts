@@ -1,17 +1,16 @@
-import { FAVORITE_FILTER } from '@/common/constants/filter-constants';
 import Control from '@/common/control';
 import { IDefaultFilters } from '@/models/default-filter-model';
 
 export default class Form extends Control {
-  favoriteInput: Control<HTMLInputElement>;
+  private favoriteInput: Control<HTMLInputElement>;
 
-  favoriteLabel: Control<HTMLLabelElement>;
+  private favoriteLabel: Control<HTMLLabelElement>;
 
-  isChecked: boolean = false;
+  public isChecked: boolean = false;
 
-  checkValue!: string;
+  private checkValue!: string;
 
-  onFilter!: (check: string) => void;
+  public onFilter!: (check: string) => void;
 
   constructor(parentNode: HTMLElement, public filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'form', '');

@@ -2,15 +2,15 @@ import Control from '../../common/control';
 import Favorite from './favorite';
 
 export default class HeaderControls extends Control {
-  searchInput: Control<HTMLInputElement>;
+  public searchInput: Control<HTMLInputElement>;
 
-  favorite: Favorite;
+  public favorite: Favorite;
 
-  onSearch: ((val: string) => void) | undefined;
+  private val: string | undefined;
 
-  val: string | undefined;
+  public errorField: Control<HTMLElement>;
 
-  errorField: Control<HTMLElement>;
+  public onSearch: ((val: string) => void) | undefined;
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'header-controls', '');

@@ -3,13 +3,11 @@ import SortService from '../../common/services/sort.service';
 import SortSelect from './sort-select';
 
 export default class SortControl extends Control {
-  buttonReset: Control<HTMLButtonElement>;
+  public buttonReset: Control<HTMLButtonElement>;
 
-  onReset: (() => void) | undefined;
+  public onReset: (() => void) | undefined;
 
-  sortSelect: SortSelect;
-
-  sortService: SortService | undefined;
+  public sortSelect: SortSelect;
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'sort', '');
