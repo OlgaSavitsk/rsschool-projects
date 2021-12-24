@@ -1,19 +1,20 @@
-import { IToysModel } from "../../models/toys-model";
+import { IToysModel } from '@/models/toys-model';
 
- export class SearchService {
-     static data: IToysModel[];
-     static searchValueArr: IToysModel[] = []
+export default class SearchService {
+  static data: IToysModel[];
 
-      constructor(data: IToysModel[]) {
-        SearchService.data = data
-      }
+  static searchValueArr: IToysModel[] = [];
 
-    static search(val: string): IToysModel[] {
-        const filterVal = SearchService.data.filter(item => {
-            if(item.name.toLowerCase().includes(val)) {
-                return item
-            }
-        })
-        return filterVal
-    }
+  constructor(data: IToysModel[]) {
+    SearchService.data = data;
   }
+
+  static search(val: string): IToysModel[] {
+    const filterVal = SearchService.data.filter((item) => {
+      if (item.name.toLowerCase().includes(val)) {
+        return item;
+      }
+    });
+    return filterVal;
+  }
+}

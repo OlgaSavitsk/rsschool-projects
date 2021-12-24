@@ -1,6 +1,7 @@
 module.exports = {
-    extends: ['airbnb-base', 'airbnb-typescript/base', 'eslint-config-airbnb-base'],
-    //parser: "babel-eslint",
+    parser: "@typescript-eslint/parser",
+    plugins: ["@typescript-eslint"],
+    extends: ['airbnb-base/legacy', 'airbnb-typescript/base', 'eslint-config-airbnb-base'],
     env: {
             "browser": true,
             "es2021": true
@@ -17,7 +18,7 @@ module.exports = {
           "node": {
             "extensions": [".js", ".jsx", ".ts", ".tsx"]
           }
-        }
+        },
     },
     globals: {
       "NodeJS": true
@@ -27,15 +28,26 @@ module.exports = {
             "error",
             "ignorePackages",
             {
+               "": "never",
               "js": "never",
               "jsx": "never",
               "ts": "never",
-              "tsx": "never"
+              "tsx": "never",
+              "json": "never"
             }
         ],
         "import/no-named-as-default": 0,
         "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
         "no-console": "off",
-        "consistent-return": 0
+        "no-useless-constructor": "off",
+        "consistent-return": 0,
+        "import/no-unresolved": 0,
+        "no-empty-function": 0,
+        'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+        "no-shadow": "off",
+        '@typescript-eslint/no-empty-function': 'off',
+        "@typescript-eslint/no-shadow": ["error"],
+        "@typescript-eslint/no-useless-constructor": "off"
      }
   };

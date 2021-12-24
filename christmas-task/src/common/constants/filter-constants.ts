@@ -1,46 +1,38 @@
 export enum Filters {
-    shape,
-    color,
-    size,
-    favorite
+  shape,
+  color,
+  size,
+  favorite,
 }
 
 enum Shapes {
-    ball = 'шар',
-    bell = 'колокольчик',
-    cone = 'шишка',
-    snowflake = 'снежинка',
-    toy = 'фигурка'
+  ball = 'шар',
+  bell = 'колокольчик',
+  cone = 'шишка',
+  snowflake = 'снежинка',
+  toy = 'фигурка',
 }
 
 enum Colors {
-    white = 'белый',
-    yellow = 'желтый',
-    red = 'красный',
-    blue = 'синий',
-    green = 'зелёный'
+  white = 'белый',
+  yellow = 'желтый',
+  red = 'красный',
+  blue = 'синий',
+  green = 'зелёный',
 }
 
 enum Sizes {
-    big = 'большой',
-    medium = 'средний',
-    small = 'малый'
+  big = 'большой',
+  medium = 'средний',
+  small = 'малый',
 }
 
 enum Favorite {
-    true = 'да',
-    false = 'нет'
+  true = 'да',
+  false = 'нет',
 }
 
-export const SHAPE_FILTER = {property: Filters[0], value: Shapes}
-export const COLOR_FILTER = {property: Filters[1], value: Colors}
-export const SIZE_FILTER = {property: Filters[2], value: Sizes}
-export const FAVORITE_FILTER = {property: Filters[3], value: Favorite}
-
-enum ConstantsFilter {
-    SHAPE_FILTER,
-    COLOR_FILTER,
-    SIZE_FILTER
-  };
-  
-export default ConstantsFilter;
+export const SHAPE_FILTER = { property: Filters[0], value: Shapes };
+export const COLOR_FILTER = { property: Filters[1], value: Colors };
+export const SIZE_FILTER = { property: Filters[2], value: Sizes };
+export const FAVORITE_FILTER = { property: Filters[3], value: Favorite };

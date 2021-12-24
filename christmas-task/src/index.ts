@@ -1,13 +1,14 @@
-import Application from "./application/aplication";
+import './index.scss';
+import Application from './pages/aplication';
 
 const app = new Application(document.body);
 
 export const getLocalStorageData = () => {
   const favoriteCount = JSON.parse(localStorage.getItem('favorite')!) || [];
-  return favoriteCount
-}
+  return favoriteCount;
+};
 
-//let currentRouteId: number;
+// let currentRouteId: number;
 
 /* const routes = [
   {
@@ -107,4 +108,4 @@ selfCheck.selfCheck(); */
 
 console.log(`
 score 190/200
-- нету кнопки, которая очищаетlocalStorage`)
+- нету кнопки, которая очищаетlocalStorage`);

@@ -7,7 +7,7 @@ export default class Logo extends Control {
     super(parentNode, 'div', 'logo', '');
     this.node.innerHTML = `
         <a href="#">
-            <img src="./assets/svg/tree.svg" alt="">
+            <img src="./svg/tree.svg" alt="">
         </a>`;
     this.node.onclick = () => {
       this.onToggleToHome();

@@ -5,12 +5,12 @@
 @import './modal-error';
 
 .main-page {
-    background-image: url(./assets/bg.jpg);
     display: flex;
     flex-direction: column;
     justify-content: center;
     column-gap: 30px;
     margin: 0 auto;
+    background-image: url(./assets/svg/b.jpg);
 }
 
 .main-container {

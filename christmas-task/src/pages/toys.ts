@@ -1,50 +1,61 @@
-import Control from '../common/control';
-import { SearchService } from '../common/services/search.service';
-import { StorageFilter } from '../common/services/storage';
-import Header from '../components/header-container/header';
-import MainToysContainer from '../components/main-toys-container/main-toys-container';
-import { ToysDataModel } from '../models/toys-data-model';
-import { IToysModel } from '../models/toys-model';
+import Control from '@/common/control';
+import SearchService from '@/common/services/search.service';
+import StorageFilter from '@/common/services/storage';
+import Header from '@/components/header-container/header';
+import MainToysContainer from '@/components/main-toys-container/main-toys-container';
+import { IDefaultFilters } from '@/models/default-filter-model';
+import ToysDataModel from '@/models/toys-data-model';
+import { IToysModel } from '@/models/toys-model';
+
+type renderCardOptions = {
+  parentNode: HTMLElement, 
+  data: IToysModel[], 
+  filterStorage: IDefaultFilters
+}
 
 export default class Toys extends Control {
   container!: MainToysContainer;
+
   header: Header;
-  control!: Control
+
+  control!: Control;
+
   model: ToysDataModel;
+
   searchValue!: IToysModel[];
+
   filterStorage: StorageFilter;
+
   searchService!: SearchService;
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'page-container main-page', '');
-    this.model = new ToysDataModel()
-    this.filterStorage = new StorageFilter()
-    this.filterStorage.loadFromLocalStorage()
-    this.header = new Header(this.node)
-    this.model.build().then(result => {
-      this.start()
-    }) 
+    this.header = new Header(this.node);
+    this.model = new ToysDataModel();
+    this.filterStorage = new StorageFilter();
+    this.filterStorage.loadFromLocalStorage();
+    this.model.build().then((result) => {
+      this.render();
+    });
   }
 
-  private start() {
-    let data = this.model.getData()
-   
-    this.container = new MainToysContainer(this.node, data, this.filterStorage.getData())
-    console.log('storage', this.filterStorage.getData(), data)
-    this.container.node.onclick = () => {
-      let favoriteCount = JSON.parse(localStorage.getItem('favorite')!) || [];
-      this.header.headerControls.favorite.node.innerHTML = `<span>${favoriteCount.length}</span>`
-    } 
-    this.container.destroy()
-    this.container = new MainToysContainer(this.node, data, this.filterStorage.getData())
-    this.search(data)
-    this.settingsFilters()
+  private render() {
+    const data = this.model.getData();
+    this.container = new MainToysContainer(this.node, data, this.filterStorage.getData());
+    this.node.onclick = () => {
+      const favoriteCount = JSON.parse(localStorage.getItem('favorite')!) || [];
+      this.header.headerControls.favorite.node.innerHTML = `<span>${favoriteCount.length}</span>`;
+    };
+    this.container.destroy();
+    this.container = new MainToysContainer(this.node, data, this.filterStorage.getData());
+    this.search(data);
+    this.settingsFilters();
   }
 
   settingsFilters() {
     this.container.onSave = (defaultFilters) => {
-      this.filterStorage.setData(defaultFilters)
-    }
+      this.filterStorage.setData(defaultFilters);
+    };
     this.container.controls.sort.onReset = () => {
       const defaultFilters = {
         shape: ([] as string[]),
@@ -52,33 +63,34 @@ export default class Toys extends Control {
         size: ([] as string[]),
         count: ['1', '12'],
         year: ['1940', '2020'],
-      } 
-      this.filterStorage.setData(defaultFilters)
-      this.container.destroy()
-      this.container = new MainToysContainer(this.node, this.model.getData(), defaultFilters)
-     this.settingsFilters()
-    }
+        favorite: '',
+      };
+      this.filterStorage.setData(defaultFilters);
+      this.container.destroy();
+      this.container = new MainToysContainer(this.node, this.model.getData(), defaultFilters);
+      this.settingsFilters();
+    };
   }
 
   search(data) {
-    this.searchService = new SearchService(data)
+    this.searchService = new SearchService(data);
     this.header.headerControls.onSearch = (val) => {
-      this.searchValue = SearchService.search(val)
+      this.searchValue = SearchService.search(val);
       if (this.searchValue.length === 0) {
-        this.header.headerControls.errorField.node.innerHTML = 'Извините, совпадений не обнаружено'
+        this.header.headerControls.errorField.node.innerHTML = 'Извините, совпадений не обнаружено';
       } else {
-        this.header.headerControls.errorField.node.innerHTML = "";
+        this.header.headerControls.errorField.node.innerHTML = '';
       }
-        this.header.headerControls.searchInput.node.onblur = () => {
-          if (this.searchValue.length === 0) {
-            this.header.headerControls.errorField.node.innerHTML = 'Извините, совпадений не обнаружено'
-          }
-        };
-        this.header.headerControls.searchInput.node.onfocus = () => {
-          this.header.headerControls.errorField.node.innerHTML = "";
+      this.header.headerControls.searchInput.node.onblur = () => {
+        if (this.searchValue.length === 0) {
+          this.header.headerControls.errorField.node.innerHTML = 'Извините, совпадений не обнаружено';
         }
-      this.container.destroy()
-      this.container = new MainToysContainer(this.node, this.searchValue, this.filterStorage.getData())
-    }
+      };
+      this.header.headerControls.searchInput.node.onfocus = () => {
+        this.header.headerControls.errorField.node.innerHTML = '';
+      };
+      this.container.destroy();
+      this.container = new MainToysContainer(this.node, this.searchValue, this.filterStorage.getData());
+    };
   }
 }

@@ -1,16 +1,6 @@
 export class Control<NodeType extends HTMLElement = HTMLElement> {
   public node: NodeType;
 
-  _favoriteCount: number = 0;
-
-  get count (){
-    return this._favoriteCount;
-  }
-
-  set count(value){
-    this._favoriteCount = value;
-  }
-
   constructor(parentNode: HTMLElement | null, tagName = 'div', className = '', content = '') {
     const el = document.createElement(tagName);
     el.className = className;

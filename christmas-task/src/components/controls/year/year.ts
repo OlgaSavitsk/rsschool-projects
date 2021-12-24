@@ -7,7 +7,7 @@ export default class Year extends Control {
 
   constructor(parentNode: HTMLElement, filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'count', '');
-    this.node.innerHTML = `<span class="control-span">Год приобретения :</span>`
-    this.yearSlider = new YearSlider(this.node, filterStorage)
+    this.node.innerHTML = '<span class="control-span">Год приобретения :</span>';
+    this.yearSlider = new YearSlider(this.node, filterStorage);
   }
 }

@@ -14,8 +14,14 @@
     "experimentalDecorators": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist"
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+    "@/*": [
+        "src/*"
+    ],
+ }
   },
   "exclude": ["node_modules", "/"],
-  "include": ["src/**/*", "modules.d.ts", "nouislider.d.ts"]
+  "include": ["src/**/**/*", "src/common/moduls/images.d.ts", "src/common/moduls/sounds.d.ts", "nouislider.d.ts"]
 }

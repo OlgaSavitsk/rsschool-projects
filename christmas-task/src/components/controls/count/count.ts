@@ -7,7 +7,7 @@ export default class Count extends Control {
 
   constructor(parentNode: HTMLElement, filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'count', '');
-    this.node.innerHTML = `<span class="control-span">Количество экземпляров :</span>`
-    this.countSlider = new CountSlider(this.node, filterStorage)
+    this.node.innerHTML = '<span class="control-span">Количество экземпляров :</span>';
+    this.countSlider = new CountSlider(this.node, filterStorage);
   }
 }
