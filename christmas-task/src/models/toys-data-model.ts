@@ -6,7 +6,7 @@ export default class ToysDataModel {
   constructor() {}
 
   public async build(): Promise<IToysModel[]> {
-    this.data = await this.loadToysData('/toys.json');
+    this.data = await this.loadToysData('toys.json');
     return this.data;
   }
 

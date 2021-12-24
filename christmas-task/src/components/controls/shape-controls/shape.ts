@@ -8,9 +8,7 @@ export default class Shape extends Control {
 
   isChecked: boolean = false;
 
-  filterStorage: IDefaultFilters;
-
-  constructor(parentNode: HTMLElement, filterStorage: IDefaultFilters) {
+  constructor(parentNode: HTMLElement, public filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'shape', 'Форма :');
     this.filterStorage = filterStorage;
     this.renderShape();

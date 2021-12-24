@@ -8,11 +8,8 @@ export default class Color extends Control {
 
   isChecked: boolean = false;
 
-  filterStorage: IDefaultFilters;
-
-  constructor(parentNode: HTMLElement, filterStorage: IDefaultFilters) {
+  constructor(parentNode: HTMLElement, public filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'color', 'Цвет :');
-    this.filterStorage = filterStorage;
     this.renderColor();
   }
 

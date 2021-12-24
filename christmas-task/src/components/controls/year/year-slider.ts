@@ -11,11 +11,8 @@ export default class YearSlider extends Control {
 
   onChange!: (startValue: string, endValue: string) => void;
 
-  filterStorage: IDefaultFilters;
-
-  constructor(parentNode: HTMLElement, filterStorage: IDefaultFilters) {
+  constructor(parentNode: HTMLElement, public filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'count-slider', '');
-    this.filterStorage = filterStorage;
     this.outputStart = new Control(this.node, 'output', 'slider-output', '');
     this.slider = new NoUiSliderYear(this.node, filterStorage);
     this.outputEnd = new Control(this.node, 'output', 'slider-output', '');

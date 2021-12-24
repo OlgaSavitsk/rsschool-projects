@@ -24,8 +24,6 @@ export default class MainToysContainer extends Control {
 
   isDeskByCount!: boolean;
 
-  data: IToysModel[];
-
   filterValue!: IToysModel[];
 
   sorted!: IToysModel[];
@@ -46,30 +44,29 @@ export default class MainToysContainer extends Control {
 
   onSave: ((defaultFilters: IDefaultFilters) => void) | undefined;
 
-  constructor(parentNode: HTMLElement, data: IToysModel[], filterStorage: IDefaultFilters) {
+  constructor(parentNode: HTMLElement, public data: IToysModel[], public filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'main-container', '');
-    const defaultFilters = filterStorage;
-    this.data = FilterService.getFilterData(defaultFilters, data);
+   // const defaultFilters = filterStorage;
+    this.data = FilterService.getFilterData(filterStorage, data);
     this.controls = new Controls(this.node, filterStorage);
+    this.colorFilterArr = filterStorage.color;
+    this.sizeFilterArr = filterStorage.size;
+    this.shapeFilterArr = filterStorage.shape;
+    this.countFilterArr = filterStorage.count;
+    this.yearFilterArr = filterStorage.year;
     this.selectValue = this.controls.sort.sortSelect;
+    this.cardContainer = new CardContainer(this.node, this.data);
     const desk = this.getSelectValue();
     this.selectValue.node.value = desk.select;
-    this.cardContainer = new CardContainer(this.node, this.data);
-    this.colorFilterArr = defaultFilters.color;
-    this.sizeFilterArr = defaultFilters.size;
-    this.shapeFilterArr = defaultFilters.shape;
-    this.countFilterArr = defaultFilters.count;
-    this.yearFilterArr = defaultFilters.year;
-    this.rangeHandler(this.data);
-    this.filterHandler(this.data);
+    this.rangeHandler(data);
+    this.filterHandler(data);
     this.sortCard(desk);
   }
 
   public filterHandler(data: IToysModel[]): void {
     this.controls.filter.shapes.onFilter = (shape) => {
       if (this.shapeFilterArr.includes(SHAPE_FILTER.value[shape])) {
-        this.shapeFilterArr = this.shapeFilterArr
-          .filter((item) => item !== SHAPE_FILTER.value[shape]);
+        this.shapeFilterArr = this.shapeFilterArr.filter((item) => item !== SHAPE_FILTER.value[shape]);
       } else {
         this.shapeFilterArr.push(SHAPE_FILTER.value[shape]);
       }
@@ -77,8 +74,7 @@ export default class MainToysContainer extends Control {
     };
     this.controls.filter.colors.onFilter = (color) => {
       if (this.colorFilterArr.includes(COLOR_FILTER.value[color])) {
-        this.colorFilterArr = this.colorFilterArr
-          .filter((item) => item !== COLOR_FILTER.value[color]);
+        this.colorFilterArr = this.colorFilterArr.filter((item) => item !== COLOR_FILTER.value[color]);
       } else {
         this.colorFilterArr.push(COLOR_FILTER.value[color]);
       }

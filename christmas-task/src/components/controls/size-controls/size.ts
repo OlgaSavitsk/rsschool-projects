@@ -10,11 +10,8 @@ export default class Size extends Control {
 
   scale: number;
 
-  filterStorage: IDefaultFilters;
-
-  constructor(parentNode: HTMLElement, filterStorage: IDefaultFilters) {
+  constructor(parentNode: HTMLElement, public filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'size', 'Размер :');
-    this.filterStorage = filterStorage;
     this.scale = 1.5;
     this.renderSizeButton();
   }

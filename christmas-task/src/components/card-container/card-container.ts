@@ -11,11 +11,8 @@ export default class CardContainer extends Control {
 
   modal!: ModalError;
 
-  data: IToysModel[];
-
-  constructor(parentNode: HTMLElement, data: IToysModel[]) {
+  constructor(parentNode: HTMLElement, public data: IToysModel[]) {
     super(parentNode, 'div', 'card-container', '');
-    this.data = data;
     this.data.map((toy: IToysModel) => {
       this.card = new Card(this.node, toy);
       this.card.favoriteSelect = () => {

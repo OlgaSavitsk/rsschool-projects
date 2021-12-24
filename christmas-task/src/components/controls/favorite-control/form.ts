@@ -13,9 +13,7 @@ export default class Form extends Control {
 
   onFilter!: (check: string) => void;
 
-  filterStorage: IDefaultFilters;
-
-  constructor(parentNode: HTMLElement, filterStorage: IDefaultFilters) {
+  constructor(parentNode: HTMLElement, public filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'form', '');
     this.favoriteInput = new Control(this.node, 'input', 'favorite-input', '');
     this.favoriteInput.node.setAttribute('type', 'checkbox');
