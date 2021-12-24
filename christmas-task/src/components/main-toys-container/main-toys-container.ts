@@ -1,5 +1,5 @@
 import {
-  COLOR_FILTER, FAVORITE_FILTER, Filters, SHAPE_FILTER, SIZE_FILTER,
+  COLOR_FILTER, FAVORITE_FILTER, SHAPE_FILTER, SIZE_FILTER,
 } from '@/common/constants/filter-constants';
 import { IToysModel } from '@/models/toys-model';
 import { defaultFilters, IDefaultFilters } from '@/models/default-filter-model';
@@ -11,7 +11,6 @@ import Controls from '../controls/controls';
 import SortSelect from '../controls/sort-select';
 import ModalError from '../modal-error/modal-error';
 import FilterService from '@/common/services/filter.service';
-import RangeFilterService from '@/common/services/range.service';
 
 export default class MainToysContainer extends Control {
   public cardContainer!: CardContainer;
@@ -90,11 +89,13 @@ export default class MainToysContainer extends Control {
   }
 
   private applyFilter(data: IToysModel[]): IToysModel[] {
-    defaultFilters.shape = this.shapeFilterArr,
-    defaultFilters.color = this.colorFilterArr,
-    defaultFilters.size = this.sizeFilterArr;
-    defaultFilters.count = this.countFilterArr,
-    defaultFilters.year = this.yearFilterArr;
+    const defaultFilters = <IDefaultFilters> {
+      shape: this.shapeFilterArr,
+      color: this.colorFilterArr,
+      size: this.sizeFilterArr,
+      count: this.countFilterArr,
+      year: this.yearFilterArr
+    }
     if (this.onSave) {
       this.onSave(defaultFilters);
     }
@@ -150,29 +151,22 @@ export default class MainToysContainer extends Control {
   }
 
   public applyRangeFilter(data: IToysModel[]): IToysModel[] {
-    defaultFilters.shape = this.shapeFilterArr,
-    defaultFilters.color = this.colorFilterArr,
-    defaultFilters.size = this.sizeFilterArr;
-    defaultFilters.count = this.countFilterArr,
-    defaultFilters.year = this.yearFilterArr;
+    const defaultFilters = <IDefaultFilters> {
+      shape: this.shapeFilterArr,
+      color: this.colorFilterArr,
+      size: this.sizeFilterArr,
+      count: this.countFilterArr,
+      year: this.yearFilterArr
+    }
     if (this.onSave) {
       this.onSave(defaultFilters);
     }
-
     this.data = FilterService.getFilterData(defaultFilters, data);
     if (this.data.length === 0) {
       this.modalError = new ModalError(this.node, 'Извините, совпадений не обнаружено');
     }
     this.cardContainer.destroy();
     this.cardContainer = new CardContainer(this.node, FilterService.getFilterData(defaultFilters, data));
-    return this.data;
-  }
-
-  private rangeSort(filtersRangeObj: Filters, data: IToysModel[]): IToysModel[] {
-    const val = RangeFilterService.rangeSort(filtersRangeObj, data);
-    this.data = val;
-    this.cardContainer.destroy();
-    this.cardContainer = new CardContainer(this.node, this.data);
     return this.data;
   }
 
