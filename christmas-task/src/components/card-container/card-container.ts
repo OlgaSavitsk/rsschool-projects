@@ -10,7 +10,7 @@ export default class CardContainer extends Control {
 
   private favoriteSet!: Set<string>;
 
-  private modal!: ModalError;
+  public modal!: ModalError;
 
   constructor(parentNode: HTMLElement, public data: IToysModel[]) {
     super(parentNode, 'div', 'card-container', '');

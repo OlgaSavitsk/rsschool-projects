@@ -1,5 +1,5 @@
 import Control from '../../common/control';
-import Favorite from './favorite';
+import Favorite from './favorite-count';
 
 export default class HeaderControls extends Control {
   public searchInput: Control<HTMLInputElement>;

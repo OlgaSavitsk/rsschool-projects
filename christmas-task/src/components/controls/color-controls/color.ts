@@ -1,6 +1,6 @@
 import { COLOR_FILTER } from '@/common/constants/filter-constants';
 import Control from '@/common/control';
-import { IDefaultFilters } from '../../../models/default-filter-model';
+import { IDefaultFilters } from '@/models/default-filter-model';
 import ColorButton from './color-button';
 
 export default class Color extends Control {

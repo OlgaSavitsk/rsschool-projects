@@ -1,7 +1,7 @@
 import Control from '@/common/control';
 import StorageFavorite from '@/common/services/storage-favorite.service';
 
-export default class Favorite extends Control {
+export default class FavoriteCounter extends Control {
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'favorite', '');

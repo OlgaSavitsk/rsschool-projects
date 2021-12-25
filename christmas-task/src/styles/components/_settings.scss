@@ -1,0 +1,205 @@
+.settings {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    height: 100%;
+    width: 400px;
+    padding-top: 25px;
+}
+
+.audio {
+    width: 40px;
+    height: 40px;
+    margin-right: 40px;
+    background-image: url(./assets/svg/audio.svg);
+}
+
+.snow {
+    width: 40px;
+    height: 40px;
+    background-image: url(./assets/svg/snow.svg);
+}
+
+.menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    margin-bottom: 20px;
+}
+
+.menu-item {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+.tree-container::before {
+    content: "Выберите ёлку";
+    width: 100%;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 10px;
+    padding-left: 0;
+    text-transform: uppercase;
+}
+
+.tree-item {
+    width: 115px;
+    height: 115px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, .5);
+    background-size: auto 110px;
+    gap: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+.bg {
+    width: 65px;
+    height: 65px;
+    border: 1px solid #cccc;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, .5);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+.bg-container::before {
+    content: "Выберите фон";
+    width: 100%;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 10px;
+    padding-left: 0;
+    text-transform: uppercase;
+}
+
+.garland-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 360px;
+    height: 110px;
+}
+
+
+.garland-container:before {
+    content: "Гирлянда";
+    width: 100%;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 10px;
+    padding-left: 0;
+    text-transform: uppercase;
+}
+
+.garland-btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 250px;
+    padding: 10px;
+}
+
+.color-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+.garland-btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 250px;
+    padding: 10px;
+}
+
+.switch-container {
+        position: relative;
+        width: 85px;
+}
+
+.onoffswitch-checkbox {
+    display: none;
+}
+
+.onoffswitch-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid #999999;
+    border-radius: 20px;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+
+.onoffswitch-inner {
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+
+.onoffswitch-inner:before {
+    content: "Вкл";
+    padding-left: 12px;
+    background-color: #237E8F;
+    color: #FFFFFF;
+}
+
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    float: left;
+    width: 50%;
+    height: 30px;
+    padding: 0;
+    line-height: 30px;
+    font-size: 16px;
+    color: white;
+    font-weight: 600;
+    box-sizing: border-box;
+}
+
+.onoffswitch-inner:after {
+    content: "Выкл";
+    padding-right: 10px;
+    background-color: #EEEEEE;
+    color: #666;
+    text-align: right;
+}
+
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    float: left;
+    width: 50%;
+    height: 30px;
+    padding: 0;
+    line-height: 30px;
+    font-size: 16px;
+    color: white;
+    font-weight: 600;
+    box-sizing: border-box;
+}
+
+.onoffswitch-switch {
+    width: 26px;
+    margin: 2px;
+    background: #FFFFFF;
+    border: 2px solid #999999;
+    border-radius: 20px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 55px;
+    transition: all 0.3s ease-in 0s;
+}

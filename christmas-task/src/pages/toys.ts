@@ -14,7 +14,7 @@ type renderCardOptions = {
   filterStorage: IDefaultFilters
 }
 
-export default class Toys extends Control {
+export default class ToysPage extends Control {
   public container!: MainToysContainer;
 
   public header: Header;

@@ -13,7 +13,7 @@ export default class StorageFavorite {
       }
     }
   
-    static getData() {
+    static getData(): string[] {
       return JSON.parse(JSON.stringify(StorageFavorite.favoritseSet));
     }
   
