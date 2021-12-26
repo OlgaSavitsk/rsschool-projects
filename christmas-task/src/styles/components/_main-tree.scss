@@ -79,5 +79,28 @@
     height: 60px;
     width: 60px;
     object-fit: contain;
-    cursor: move;
+    z-index: 1000;
+    cursor: -webkit-grab;
+    cursor: grab;
 }
+
+.favorites-card-img:active {
+    cursor: -webkit-grabbing;
+    cursor: grabbing;
+}
+.disabled {
+    pointer-events: none;
+}
+
+.hold {
+    background: #8fd3f4;
+  }
+  
+.hide {
+    display: none;
+}
+
+.hovered {
+    border: 3px solid #ff85e4;
+    border-radius: 20px;
+  }
