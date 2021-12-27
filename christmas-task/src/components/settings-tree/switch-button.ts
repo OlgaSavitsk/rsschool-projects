@@ -5,26 +5,25 @@ export default class SwitchButton extends Control {
     switchLabel: Control<HTMLElement>;
     switchInner: Control<HTMLElement>;
     switch: Control<HTMLElement>;
+    isChecked!: boolean
+    onChecked!: (isChecked: boolean) => void
   
     constructor(parentNode: HTMLElement) {
       super(parentNode, 'div', 'switch-container', '');
-      this.switchInput = new Control(this.node, 'input', 'onoffswitch-checkbox', '');
+      this.switchLabel = new Control(this.node, 'label', 'switch', '');
+      this.switchInput = new Control(this.switchLabel.node, 'input', 'input', '');
       this.switchInput.node.setAttribute('type', 'checkbox');
       this.switchInput.node.setAttribute('id', 'onoffswitch');
-      this.switchLabel = new Control(this.node, 'label', 'onoffswitch-label', '');
       this.switchLabel.node.setAttribute('for', 'onoffswitch');
-      this.switchInner = new Control(this.switchLabel.node, 'div', 'onoffswitch-inner', '')
-      this.switch = new Control(this.switchLabel.node, 'div', 'onoffswitch-switch', '')
-
+      this.switch = new Control(this.switchLabel.node, 'span', 'slider', '')
+      this.switchInner = new Control(this.switchLabel.node, 'span', 'switch-inner', '')
       this.switchInput.node.onclick = () => {
-       /*  this.favoriteLabel.node.style.backgroundImage = 'url(./assets/svg/check.svg)';
-        this.isChecked = !this.isChecked;
-        this.checkValue = 'true';
-        if (!this.isChecked) {
-          this.checkValue = 'false';
-          this.favoriteLabel.node.style.backgroundImage = 'none';
+        if(this.isChecked === true) {
+          this.isChecked = false
+        } else {
+          this.isChecked = true
         }
-        this.onFilter(this.checkValue); */
+        this.onChecked(this.isChecked)
       };
     }
   }

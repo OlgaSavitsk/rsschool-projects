@@ -10,6 +10,8 @@ export default class SettingsControl extends Control {
     treesContainer: TreesContainer;
     bgContainer: BgContainer;
     garlandContainer: GarlandContainer;
+    onSnowClick: (() => void) | undefined
+    onSoundClick: (() => void) | undefined
   
     constructor(parentNode: HTMLElement) {
       super(parentNode, 'div', 'settings', '');
@@ -19,5 +21,15 @@ export default class SettingsControl extends Control {
       this.treesContainer = new TreesContainer(this.node)
       this.bgContainer = new BgContainer(this.node)
       this.garlandContainer = new GarlandContainer(this.node)
+      this.snowControl.node.onclick = () => {
+        if(this.onSnowClick){
+          this.onSnowClick()
+        }
+      }
+      this.audioControl.node.onclick = () => {
+        if(this.onSoundClick){
+          this.onSoundClick()
+        }
+      }
     }
 }

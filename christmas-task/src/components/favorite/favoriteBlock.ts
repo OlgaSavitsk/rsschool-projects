@@ -8,7 +8,7 @@ export default class FavoriteBlock extends Control {
     favorite!: Control<HTMLElement>;
     favoriteSlot!: FavoriteCard;
   
-    constructor(parentNode: HTMLElement, public favoriteCount: string[], public data: IToysModel[], public limit: ILimit) {
+    constructor(parentNode: HTMLElement, public favoriteCount: string[], public data: IToysModel[], public limit?: ILimit) {
       super(parentNode, 'div', 'favorites-aside', '');
       this.favoriteContainer = new Control(this.node, 'div', 'favorites-container', '')
       this.renderSlot()

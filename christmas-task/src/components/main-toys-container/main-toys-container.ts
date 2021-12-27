@@ -25,7 +25,7 @@ export default class MainToysContainer extends Control {
 
   private sorted!: IToysModel[];
 
-  private modalError!: ModalError;
+  public modalError!: ModalError;
 
   private colorFilterArr!: string[];
 

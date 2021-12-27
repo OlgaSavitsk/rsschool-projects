@@ -1,19 +1,25 @@
 import Control from '@/common/control';
 import Footer from '@/components/footer/footer';
+import Header from '@/components/header-container/header';
 import StartPage from './start';
 import Toys from './toys';
 import TreePage from './tree';
 
 export default class Application extends Control {
-  public toysPage: Toys;
-  public treePage: TreePage;
+ public toysPage!: Toys;
   public startPage: StartPage;
+  public header: Header;
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', '', '');
+    this.header = new Header(this.node);
     this.startPage = new StartPage(this.node)
-    this.treePage = new TreePage(this.node)
-    this.toysPage = new Toys(this.node);
-    const footer = new Footer(document.body);
+   const footer = new Footer(this.node);
+   this.startPage.toToyPage = () => {
+     this.header.destroy()
+     this.startPage.destroy()
+     footer.destroy()
+     this.toysPage = new Toys(this.node)
+   }
   }
 }

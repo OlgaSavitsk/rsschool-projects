@@ -18,7 +18,7 @@ export default class SlotImage extends Control {
   //onStart!: (node) => void
   
   
-    constructor(parentNode: HTMLElement, public num: string, index: number, public limit: ILimit) {
+    constructor(parentNode: HTMLElement, public num: string, index: number, public limit?: ILimit) {
       super(parentNode, 'img', 'favorites-card-img', '');
       this.node.setAttribute('src', `./toys/${num}.png`)
       this.node.setAttribute('draggable', 'true')
@@ -65,11 +65,11 @@ export default class SlotImage extends Control {
     } 
 
     returnToStart() { 
-      if(this.node.getBoundingClientRect().left <= this.limit.left) {
+      if(this.node.getBoundingClientRect().left <= this.limit!.left) {
         this.node.style.left = old.left
         this.node.style.top = old.top
       }
-      if(this.node.getBoundingClientRect().right >= this.limit.right) {
+      if(this.node.getBoundingClientRect().right >= this.limit!.right) {
         this.node.style.left = old.left
         this.node.style.top = old.top
       }

@@ -9,7 +9,7 @@ export default class FavoriteCard extends Control {
     slotImageArr!: IToysModel[];
     count: number;
   
-    constructor(parentNode: HTMLElement, public slotItem: IToysModel, public limit: ILimit) {
+    constructor(parentNode: HTMLElement, public slotItem: IToysModel, public limit?: ILimit) {
       super(parentNode, 'div', 'favorites-card', '');
       this.count = +slotItem.count
       this.favoriteCount = new Control(this.node, 'p', 'favorites-count', `${this.count}`)

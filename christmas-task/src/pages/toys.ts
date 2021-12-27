@@ -2,6 +2,7 @@ import Control from '@/common/control';
 import SearchService from '@/common/services/search.service';
 import StorageFilter from '@/common/services/storage';
 import StorageFavorite from '@/common/services/storage-favorite.service';
+import Footer from '@/components/footer/footer';
 import Header from '@/components/header-container/header';
 import MainToysContainer from '@/components/main-toys-container/main-toys-container';
 import { IDefaultFilters } from '@/models/default-filter-model';

@@ -1,0 +1,39 @@
+.snowflakes {
+    height: calc(100vh - 50px);
+    width: 800px;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    margin-left: -400px;
+    pointer-events: none;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.fa-snowflake {
+    display: inline-block;
+    width: 24px;
+    height: 6px;
+    animation: snowflakes linear forwards;
+    color: white;
+    position: absolute;
+}
+
+.fa-snowflake:nth-child(7n + 1) {
+    opacity: 0.6;
+    animation-delay: 1s;
+    animation-timing-function: ease-out;
+}
+
+.snowflakes i:nth-child(3n + 1) {
+    opacity: 0.4;
+   transform: scale(0.5);
+    animation-iteration-count: 45;
+    transform-origin: right -30px;
+}
+
+@keyframes snowflakes {
+    to {
+        transform: translateY(105vh);
+    }
+}
