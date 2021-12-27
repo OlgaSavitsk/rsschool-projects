@@ -3,26 +3,24 @@ import { ILimit } from "@/models/limit";
 import { IToysModel } from "@/models/toys-model";
 import FavoriteBlock from "../favorite/favoriteBlock";
 import MainTree from "../main-tree/main-tree";
+import { Multicolor } from "../settings-tree/garland-btns";
 import SettingsControl from "../settings-tree/settings";
 
 export default class MainTreeContainer extends Control {
     settingsControl: SettingsControl;
     mainBlock!: MainTree;
     favorite: FavoriteBlock;
+    garlandColor!: string
   
-    constructor(parentNode: HTMLElement, public favoriteCount: string[], public data: IToysModel[], num: string, bgNum: string, garlandColor: string) {
+    constructor(parentNode: HTMLElement, public favoriteCount: string[], public data: IToysModel[], num: string, bgNum: string, garlandColor: string, multicolor: Multicolor) {
       super(parentNode, 'div', 'main-container', '');
       this.settingsControl = new SettingsControl(this.node);
-      this.mainBlock = new MainTree(this.node, num, bgNum, garlandColor);
+      this.mainBlock = new MainTree(this.node, num, bgNum, garlandColor, multicolor);
       this.favorite = new FavoriteBlock(this.node, favoriteCount, data, this.getMainTreeSize());
-      this.settingsControl.garlandContainer.switchButton.onChecked = (isChecked) => {
-        console.log(isChecked)
-        if(isChecked === true) {
-          this.mainBlock.garland.node.classList.remove('hide')
-        } else {
-          this.mainBlock.garland.node.classList.add('hide')
-        }
-      }
+     this.mainBlock.imgOfTree.node.ondragover = (e) => {
+       e.preventDefault()
+       this.favorite.favoriteSlot.slotImage.moveAt(e)
+     }
     }
 
    getMainTreeSize() {

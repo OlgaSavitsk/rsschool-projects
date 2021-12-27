@@ -1,11 +1,13 @@
 import Control from "@/common/control";
+import SettingsStorage from "@/common/services/settings-storage";
 
 export default class Snowflake extends Control {
     snowflake!: Control<HTMLElement>;
+    settings: import("c:/Users/user/Documents/private-repo/olgasavitsk-JSFE2021Q3/christmas-task/src/models/settings-tree.model").ISettingsTree;
   
     constructor(parentNode: HTMLElement) {
       super(parentNode, 'div', 'snowflakes', '');
-     // this.renderSnowflake()
+      this.settings = SettingsStorage.getData()
     }
 
     public renderSnowflake(): void {

@@ -11,7 +11,6 @@
 .audio {
     width: 40px;
     height: 40px;
-    margin-right: 40px;
     background-image: url(./assets/svg/audio.svg);
 }
 
@@ -21,12 +20,17 @@
     background-image: url(./assets/svg/snow.svg);
 }
 
+.snow-audio {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .menu-container {
     display: flex;
     flex-wrap: wrap;
     gap: 7px;
     width: 100%;
-    justify-content: flex-start;
     align-items: flex-start;
     align-content: flex-start;
     margin-bottom: 20px;
@@ -123,6 +127,8 @@
     align-items: center;
     width: 250px;
     padding: 10px;
+    cursor: pointer;
+    pointer-events: none;
 }
 
 .switch-container {
@@ -188,15 +194,13 @@
     text-transform: uppercase;
     border-radius: inherit;
     transition: .15s ease-out;
-    width: 200%;
-    margin-left: -100%;
     transition: margin 0.3s ease-in 0s;
 
     &:before {
       content: "ВЫКЛ";
       position: absolute;
       bottom: 0;
-      padding-left: 10px;
+      left: 8px;
       color: #fff;
       opacity: 0;
     } 

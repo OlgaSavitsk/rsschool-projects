@@ -20,7 +20,7 @@ export default class FavoriteCard extends Control {
         this.slotImageArr = new Array(+this.slotItem.count)
         this.slotImageArr.fill(this.slotItem) 
         this.slotImageArr.map((toy: IToysModel, index: number) => {
-          this.slotImage = new SlotImage(this.node, toy.num, index, this.limit)  
+          this.slotImage = new SlotImage(this.node, toy.num, index, this.limit) 
       })     
     }
 }

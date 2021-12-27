@@ -1,10 +1,12 @@
 import Control from "@/common/control";
+import { Multicolor } from "../settings-tree/garland-btns";
 
 export default class Garland extends Control {
   max = 300
   a = 10;
+  ligth!: Control<HTMLElement>;
   
-    constructor(parentNode: HTMLElement, public garlandColor: string) {
+    constructor(parentNode: HTMLElement, public garlandColor: string, public multicolor: Multicolor) {
       super(parentNode, 'div', 'garland hide', '');
       console.log(garlandColor)
       this.renderGarland()
@@ -15,14 +17,15 @@ export default class Garland extends Control {
         let angle = 1.6 * i;
         var x = angle * Math.cos(angle) + 800 / 2;
         var y = angle * Math.sin(angle) - 300;
-        const ligth = new Control(this.node, 'span', 'dot sparkle', '')
-        ligth.node.style.setProperty('--i', `${i}`)
+        this.ligth = new Control(this.node, 'span', 'dot sparkle', '')
+        this.ligth.node.style.setProperty('--i', `${i}`)
         let size = 10;
-        ligth.node.style.width = size + "px";
-        ligth.node.style.height = size + "px";
-        ligth.node.style.left = x + "px";
-        ligth.node.style.top = y + "px";
-        ligth.node.style.background = `${this.garlandColor}`;
+        this.ligth.node.style.width = size + "px";
+        this.ligth.node.style.height = size + "px";
+        this.ligth.node.style.left = x + "px";
+        this.ligth.node.style.top = y + "px";
+        this.ligth.node.style.background = `${this.garlandColor}`;
         }
+        
       }
 }

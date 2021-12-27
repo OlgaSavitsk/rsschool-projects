@@ -5,7 +5,7 @@ export default class SettingsStorage {
     constructor() {}
   
     static loadFromLocalStorage(): void {
-      const storageData = localStorage.getItem('favorite');
+      const storageData = localStorage.getItem('settings-tree');
       const checkStorageData = (data: string | null) => data;
       if (!checkStorageData(storageData)) {
         SettingsStorage.settings = settingaTree;
@@ -15,7 +15,8 @@ export default class SettingsStorage {
       }
     }
   
-    static getData(): string[] {
+    static getData(): ISettingsTree {
+      console.log('store', JSON.parse(JSON.stringify(SettingsStorage.settings)))
       return JSON.parse(JSON.stringify(SettingsStorage.settings));
     }
   

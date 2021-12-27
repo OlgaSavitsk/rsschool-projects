@@ -20,8 +20,10 @@ export default class SwitchButton extends Control {
       this.switchInput.node.onclick = () => {
         if(this.isChecked === true) {
           this.isChecked = false
+          this.switchInput.node.removeAttribute('checked');
         } else {
           this.isChecked = true
+          this.switchInput.node.setAttribute('checked', 'checked');
         }
         this.onChecked(this.isChecked)
       };

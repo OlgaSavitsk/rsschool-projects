@@ -15,7 +15,7 @@ export default class SlotImage extends Control {
   topIndent = 0
   leftIndent = 0
   isReturn!: boolean
-  //onStart!: (node) => void
+  isActive!: boolean
   
   
     constructor(parentNode: HTMLElement, public num: string, index: number, public limit?: ILimit) {
@@ -23,16 +23,20 @@ export default class SlotImage extends Control {
       this.node.setAttribute('src', `./toys/${num}.png`)
       this.node.setAttribute('draggable', 'true')
       this.node.setAttribute('id', `${index+num}`)
+      this.node.setAttribute('dissabled', 'true')
       this.node.ondragstart = (e) => {
-        this.handleDragStart(e)
+        this.node.removeAttribute('dissabled')
         this.getCoords(e, this.node)
         this.moveAt(e)
       }
       this.node.ondragover = (e) => { 
-        e.preventDefault()
+        if(this.node.hasAttribute('dissabled')) {
+          return
+        }
         this.moveAt(e)
-      }
+      } 
       this.node.ondragend = () => { 
+        
         this.node.parentNode!.removeChild(this.node)
         this.node.ondragover = null;
         this.node.ondragstart = null;
@@ -42,11 +46,11 @@ export default class SlotImage extends Control {
       }
     }
 
-    handleDragStart(e) {
+   /*  handleDragStart(e) {
       e.dataTransfer.setData("text", this.node.id);
-  }
+  } */
  
-  getCoords(e: DragEvent, elem: HTMLElement) {
+  getCoords(e, elem: HTMLElement) {
       let toy = elem.getBoundingClientRect();
       this.topIndent = e.clientY - toy.top,
       this.leftIndent = e.clientX - toy.left
@@ -56,9 +60,7 @@ export default class SlotImage extends Control {
       };
     }
 
-    moveAt(e: DragEvent) {
-    // console.log(this.node.getBoundingClientRect().top, this.node.getBoundingClientRect().bottom)
-     // console.log(this.limit.top, this.limit.bottom)
+    moveAt(e) {
       this.node.style.left = e.pageX - this.leftIndent + 'px'
       this.node.style.top = e.pageY - this.topIndent + 'px'
      
@@ -68,10 +70,12 @@ export default class SlotImage extends Control {
       if(this.node.getBoundingClientRect().left <= this.limit!.left) {
         this.node.style.left = old.left
         this.node.style.top = old.top
+        this.node.setAttribute('dissabled', 'true')
       }
       if(this.node.getBoundingClientRect().right >= this.limit!.right) {
         this.node.style.left = old.left
         this.node.style.top = old.top
+        this.node.setAttribute('dissabled', 'true')
       }
     }
 }
