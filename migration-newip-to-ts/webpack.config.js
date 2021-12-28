@@ -43,12 +43,15 @@ const baseConfig = {
               },
         ],
     },
-    resolve: {
-        extensions: ['.ts', '.js'],
-    },
     output: {
         filename: 'index.js',
         path: path.resolve(__dirname, 'dist'),
+    },
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, 'src/components/'),
+      },  
+      extensions: ['', '.ts', '.js', 'json'],
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -58,7 +61,12 @@ const baseConfig = {
         new CleanWebpackPlugin(),
         new CopyWebpackPlugin({
           patterns: [{ from: './src/assets', to: 'assets' }],
-        })
+        }),
+        new webpack.DefinePlugin({
+          "process.env": {
+            API_KEY: JSON.stringify(process.env.API_KEY),
+          },
+        }),
     ],
 };
 

@@ -1,4 +1,5 @@
-import AppLoader from '../../controller/appLoader';
+
+import AppLoader from '@/controller/appLoader';
 import { IResponseEverythingModel } from '../models/response-everything-model';
 
 export default class SearchForm extends AppLoader {

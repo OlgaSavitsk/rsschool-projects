@@ -1,6 +1,6 @@
-import { IResponseEverythingModel } from '../view/models/response-everything-model';
-import { IResponseSourceModel } from '../view/models/response-sources-model';
-import AppLoader from './appLoader';
+import { IResponseEverythingModel } from "@/view/models/response-everything-model";
+import { IResponseSourceModel } from "@/view/models/response-sources-model";
+import AppLoader from "./appLoader";
 
 class AppController extends AppLoader {
   getSources(callback: ((data: IResponseSourceModel) => void) | undefined): void {

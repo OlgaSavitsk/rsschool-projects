@@ -1,5 +1,5 @@
-import { IArticles } from '../models/response-everything-model';
-import News from '../news/news';
+import { IArticles } from "../models/response-everything-model";
+import News from "../news/news";
 
 export default class SortService {
   static transform(value: IArticles[], isDesk: boolean): IArticles[] {

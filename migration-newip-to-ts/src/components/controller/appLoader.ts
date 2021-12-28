@@ -1,10 +1,14 @@
-import Links from '../../constants';
+
+import Links from '@/common/constants';
 import Loader from './loader';
+require("dotenv").config();
+
+const API_KEY = process.env.API_KEY;
 
 class AppLoader extends Loader {
   constructor() {
     super(Links.baseUrl, {
-      apiKey: Links.apiKey,
+      apiKey: API_KEY!,
     });
   }
 }

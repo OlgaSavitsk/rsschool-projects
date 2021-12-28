@@ -1,6 +1,6 @@
-import { IOptions } from '../view/models/options-model';
-import { IResponseEverythingModel } from '../view/models/response-everything-model';
-import { IResponseSourceModel } from '../view/models/response-sources-model';
+import { IOptions } from "@/view/models/options-model";
+import { IResponseEverythingModel } from "@/view/models/response-everything-model";
+import { IResponseSourceModel } from "@/view/models/response-sources-model";
 
 class Loader {
   public baseLink: string;
