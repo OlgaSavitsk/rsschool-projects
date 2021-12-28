@@ -6,33 +6,33 @@
     background-position: center;
     height: calc(100vh - 140px);
     min-height: 750px;
-    width: 800px;
+    max-width: 800px;
+    width: 100%;
     padding-bottom: 20px;
     overflow: hidden;
 }
 
 .main-tree {
     display: block;
-    width: 500px;
+    max-width: 500px;
+    width: 100%;
     height: 714px;
 }
 
 .favorites-aside {
     height: calc(100vh - 140px);
     min-height: 750px;
-    width: 400px;
+    max-width: 400px;
+    width: 100%;
 }
 
 .favorites-container, .favorites-decorate {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    align-content: flex-start;
-    gap: 10px;
+    justify-content: space-between;
+    gap: 7px;
     width: 100%;
     padding-top: 25px;
-    padding-left: 25px;
 }
 
 .favorites-container:before {

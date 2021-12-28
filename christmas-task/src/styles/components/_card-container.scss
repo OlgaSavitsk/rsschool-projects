@@ -100,20 +100,6 @@
     animation-fill-mode: forwards;
 } 
 
-/* .hide {
-    //position: absolute;
-    top: 0px;
-    visibility: visible;
-    will-change: transform;
-    left: 0px;
-    //transform: translate(304px, 0px) scale(1);
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-property: transform, opacity;
-    opacity: 1;
-    animation-name: a1;
-} */
-
 @keyframes a1 {
     to {
         opacity: 0;

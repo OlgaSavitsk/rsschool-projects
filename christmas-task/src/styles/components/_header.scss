@@ -104,3 +104,9 @@ nav {
         background-color: $primary;
     }
 }
+
+@media (max-width: 860px) {
+    nav {
+        column-gap: 0;
+    }
+}
