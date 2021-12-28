@@ -3,13 +3,11 @@ import Footer from "@/components/footer/footer";
 import Header from "@/components/header-container/header";
 
 export default class StartPage extends Control {
-    //header: Header;
     startButton: Control<HTMLButtonElement>;
     toToyPage!: () => void
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'page-container start-page', '');
-    //this.header = new Header(this.node);
     const ballFirst = new Control(this.node, 'div', 'ball f', '')
     const ballSecond = new Control(this.node, 'div', 'ball s', '')
     ballSecond.node.insertAdjacentHTML('afterend', '<h1 class="start-page-title">Новогодняя игра<span>«Наряди ёлку»</span></h1>')

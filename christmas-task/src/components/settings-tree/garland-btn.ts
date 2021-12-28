@@ -1,8 +1,8 @@
 import Control from "@/common/control";
-import { garlandBtns, Multicolor } from "./garland-btns";
+import { garlandBtns } from "./garland-btns";
 
 export default class GarlandButton extends Control {
-    constructor(parentNode: HTMLElement, bgColor: string | Multicolor) {
+    constructor(parentNode: HTMLElement, bgColor: string) {
       super(parentNode, 'div', 'color-btn', '');
       this.node.style.background = `${bgColor}`;
   }

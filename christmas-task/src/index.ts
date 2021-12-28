@@ -1,3 +1,4 @@
+import Footer from './components/footer/footer';
 import './index.scss';
 import Application from './pages/aplication';
 import ToysPage from './pages/toys';

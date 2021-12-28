@@ -1,6 +1,5 @@
 import Control from "@/common/control";
 import Garland from "../garland/garland";
-import { Multicolor } from "../settings-tree/garland-btns";
 import Snowflake from "../snowflake/snowflake";
 
 export default class MainTree extends Control {
@@ -10,11 +9,11 @@ export default class MainTree extends Control {
     snowflakes: Snowflake;
     garland: Garland;
   
-    constructor(parentNode: HTMLElement, num: string, bgNum: string, garlandColor: string, multicolor: Multicolor) {
+    constructor(parentNode: HTMLElement, num: string, bgNum: string, garlandColor: string) {
       super(parentNode, 'div', 'main-tree-container', '');
       this.node.style.backgroundImage = `url(./assets/bg/${bgNum}.jpg)`;
       this.snowflakes = new Snowflake(this.node)
-      this.garland = new Garland(this.node, garlandColor, multicolor)
+      this.garland = new Garland(this.node, garlandColor)
       this.map = new Control(this.node, 'map', '', '')
       this.map.node.setAttribute('name', 'image-map')
       this.area = new Control(this.map.node, 'area', '', '')
@@ -22,16 +21,5 @@ export default class MainTree extends Control {
       this.area.node.setAttribute('shape', 'poly')
       this.imgOfTree = new Control(this.node, 'img', 'main-tree', '')
       this.imgOfTree.node.setAttribute('src', `./assets/tree/${num}.png`);
-    }
-
-    onDragOver(event) {
-      event.preventDefault();
-    }
-  
-    drop(e) {
-      let draggedId = e.dataTransfer.getData("text")
-      let draggedEl = document.getElementById(draggedId);
-      this.area.node.append(draggedEl!);
-      e.dataTransfer.clearData();
     }
 }

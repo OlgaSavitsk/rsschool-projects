@@ -1,14 +1,12 @@
 import Control from "@/common/control";
-import { Multicolor } from "../settings-tree/garland-btns";
 
 export default class Garland extends Control {
   max = 300
   a = 10;
   ligth!: Control<HTMLElement>;
   
-    constructor(parentNode: HTMLElement, public garlandColor: string, public multicolor: Multicolor) {
+    constructor(parentNode: HTMLElement, public garlandColor: string) {
       super(parentNode, 'div', 'garland hide', '');
-      console.log(garlandColor)
       this.renderGarland()
     }
 
@@ -24,7 +22,9 @@ export default class Garland extends Control {
         this.ligth.node.style.height = size + "px";
         this.ligth.node.style.left = x + "px";
         this.ligth.node.style.top = y + "px";
-        this.ligth.node.style.background = `${this.garlandColor}`;
+        if(this.garlandColor === 'linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8)') {
+          this.ligth.node.classList.add('multicolor');
+        } else this.ligth.node.style.background = `${this.garlandColor}`;
         }
         
       }

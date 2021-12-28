@@ -44,9 +44,25 @@
     animation: 1.5s alternate 0s infinite blink;
   }
 
-  .hide {
-      display: none;
-  }
+.hide {
+    display: none;
+}
+
+.dot:nth-child(1n + 1).multicolor {
+    background: red;
+}
+
+.dot:nth-child(4n + 2).multicolor {
+    background: green;
+}
+
+.dot:nth-child(3n + 3).multicolor {
+    background: blue;
+}
+
+.dot:nth-child(6n + 4).multicolor {
+    background: yellow;
+} 
 
   @keyframes blink {
     0%, 

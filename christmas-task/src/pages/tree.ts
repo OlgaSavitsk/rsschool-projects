@@ -2,9 +2,10 @@ import Control from '@/common/control';
 import SettingsStorage from '@/common/services/settings-storage';
 import SoundService from '@/common/services/sound.service';
 import StorageFavorite from '@/common/services/storage-favorite.service';
+import Footer from '@/components/footer/footer';
 import Header from '@/components/header-container/header';
 import MainTreeContainer from '@/components/main-tree-container/main-tree-container';
-import { garlandBtns, Multicolor } from '@/components/settings-tree/garland-btns';
+import { garlandBtns } from '@/components/settings-tree/garland-btns';
 import { ISettingsTree, settingaTree } from '@/models/settings-tree.model';
 import ToysDataModel from '@/models/toys-data-model';
 
@@ -25,16 +26,15 @@ export default class TreePage extends Control {
     SettingsStorage.loadFromLocalStorage();
     StorageFavorite.loadFromLocalStorage()
     this.model.build().then((result) => {
-      this.render(garlandBtns.yellow, garlandBtns.multicolor);
+      this.render(garlandBtns.yellow);
     });
   }
 
-  private render(garlandColor: string, multicolor: Multicolor): void {
+  private render(garlandColor: string): void {
          const data = this.model.getData();
          this.settings = SettingsStorage.getData()
-    
         const favoriteCount = StorageFavorite.getData();
-        this.container = new MainTreeContainer(this.node, favoriteCount, data, this.settings!.tree, this.settings!.bg, garlandColor, multicolor);
+        this.container = new MainTreeContainer(this.node, favoriteCount, data, this.settings!.tree, this.settings!.bg, garlandColor);
         if(this.settings?.snow === true) {
           this.isSnow = true
           this.container.mainBlock.snowflakes.node.classList.remove('hide')
@@ -50,12 +50,12 @@ export default class TreePage extends Control {
         this.container.settingsControl.treesContainer.onChangeTree = (num) => {
           this.saveStorageSettings(num, this.settings!.bg)
           this.container.destroy()
-          this.render(garlandColor, multicolor)
+          this.render(garlandColor)
         }
         this.container.settingsControl.bgContainer.onChangeTree = (bgNum) => {
           this.saveStorageSettings(this.settings!.tree, bgNum)
           this.container.destroy()
-          this.render(garlandColor, multicolor)
+          this.render(garlandColor)
         }
         this.container.settingsControl.onSnowClick = () => {
           if(this.isSnow === true){
@@ -77,21 +77,7 @@ export default class TreePage extends Control {
             this.container.settingsControl.garlandContainer.garlandBtns.node.style.pointerEvents = 'none'
           }
         }
-        this.container.settingsControl.garlandContainer.garlandBtns.onGarlandColor = (garlandColor) => {  
-          this.container.destroy()
-          if(typeof(garlandColor) === 'string') {
-            this.render(garlandColor, multicolor)
-          }
-          this.container.mainBlock.garland.node.classList.remove('hide')
-          this.container.settingsControl.garlandContainer.garlandBtns.node.style.pointerEvents = 'auto' 
-        }
-        this.container.settingsControl.garlandContainer.garlandBtns.multiBtn.onGarlandMulticolorColor = (multicolor) => {  
-          console.log('0', multicolor)
-          this.container.destroy()
-          this.render(garlandColor, multicolor)
-          this.container.mainBlock.garland.node.classList.remove('hide')
-          this.container.settingsControl.garlandContainer.garlandBtns.node.style.pointerEvents = 'auto' 
-        }
+       
         this.container.settingsControl.onSoundClick = () => {
           if(this.isSound === true){
             this.isSound = false
@@ -107,9 +93,19 @@ export default class TreePage extends Control {
           SettingsStorage.setData(this.settings);
           SettingsStorage.removeStorage()
           this.container.destroy();
-          this.render(garlandColor, multicolor)
+          this.render(garlandColor)
         };
-        
+        this.renderGarlandColor()
+    }
+
+    renderGarlandColor() {
+      this.container.settingsControl.garlandContainer.garlandBtns.onGarlandColor = (garlandColor) => {  
+        this.container.destroy()
+        this.container = new MainTreeContainer(this.node, StorageFavorite.getData(), this.model.getData(), this.settings!.tree, this.settings!.bg, garlandColor);
+        this.container.mainBlock.garland.node.classList.remove('hide')
+        this.container.settingsControl.garlandContainer.garlandBtns.node.style.pointerEvents = 'auto' 
+        this.renderGarlandColor()
+      }
     }
 
     saveStorageSettings(num: string, bgNum: string) {
