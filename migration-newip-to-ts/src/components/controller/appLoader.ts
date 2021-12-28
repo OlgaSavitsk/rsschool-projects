@@ -1,9 +1,10 @@
 
 import Links from '@/common/constants';
 import Loader from './loader';
-require("dotenv").config();
+//require("dotenv").config();
 
 const API_KEY = process.env.API_KEY;
+console.log(API_KEY)
 
 class AppLoader extends Loader {
   constructor() {
