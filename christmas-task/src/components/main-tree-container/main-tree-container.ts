@@ -12,21 +12,23 @@ export default class MainTreeContainer extends Control {
     mainBlock!: MainTree;
     favorite: FavoriteBlock;
     garlandColor!: string
+    count!: number;
   
     constructor(parentNode: HTMLElement, public favoriteCount: string[], public data: IToysModel[], num: string, bgNum: string, garlandColor: string) {
       super(parentNode, 'div', 'main-container', '');
       this.settingsControl = new SettingsControl(this.node);
       this.mainBlock = new MainTree(this.node, num, bgNum, garlandColor);
-      this.favorite = new FavoriteBlock(this.node, favoriteCount, data, this.getMainTreeSize());
+      this.favorite = new FavoriteBlock(this.node, favoriteCount, data, this.count, this.getMainTreeSize());
       this.mainBlock.imgOfTree.node.ondragover = (e) => {
         this.dragOver(e)
-        console.log("over")
-        //this.favorite.favoriteSlot.slotImage.moveAt(e)
       }
       this.mainBlock.imgOfTree.node.ondrop = (e) => {
         this.drop(e)
-        console.log("drop")
-        //this.favorite.favoriteSlot.slotImage.moveAt(e)
+        this.count = this.favoriteCount.length - 1
+      }
+      this.mainBlock.area.node.ondragleave = (e) => {
+        console.log('leave')
+        this.favorite.favoriteSlot.slotImage.returnToStart()
       }
     }
 
@@ -39,7 +41,6 @@ export default class MainTreeContainer extends Control {
         .dataTransfer
         .getData('text');
         const draggableElement = document.getElementById(id);
-        //const dropzone = event.target;
         this.mainBlock.area.node.appendChild(draggableElement!);
         event
         .dataTransfer

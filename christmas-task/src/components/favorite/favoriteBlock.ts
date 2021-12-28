@@ -8,7 +8,7 @@ export default class FavoriteBlock extends Control {
     favorite!: Control<HTMLElement>;
     favoriteSlot!: FavoriteCard;
   
-    constructor(parentNode: HTMLElement, public favoriteCount: string[], public data: IToysModel[], public limit?: ILimit) {
+    constructor(parentNode: HTMLElement, public favoriteCount: string[], public data: IToysModel[], public count:number, public limit: ILimit) {
       super(parentNode, 'div', 'favorites-aside', '');
       this.favoriteContainer = new Control(this.node, 'div', 'favorites-container', '')
       this.renderSlot()
@@ -18,12 +18,12 @@ export default class FavoriteBlock extends Control {
       this.favoriteCount.map((slot: string) => {
         let slotItem = Object.values<IToysModel>(this.data).find((item: IToysModel) => item.num === slot)
         if(slotItem) {
-          this.favoriteSlot = new FavoriteCard(this.favoriteContainer.node, slotItem, this.limit)
+          this.favoriteSlot = new FavoriteCard(this.favoriteContainer.node, slotItem, this.count, this.limit)
         }
       })
       if(this.favoriteCount.length === 0){
         this.data.slice(0, 20).map(item => { 
-          this.favoriteSlot = new FavoriteCard(this.favoriteContainer.node, item, this.limit)
+          this.favoriteSlot = new FavoriteCard(this.favoriteContainer.node, item, this.count, this.limit)
         })
       }
     }

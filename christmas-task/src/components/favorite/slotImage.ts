@@ -14,6 +14,8 @@ const old: defaultPosition = {
 export default class SlotImage extends Control {
   topIndent = 0
   leftIndent = 0
+  offsetX: any;
+  offsetY: any;
   isReturn!: boolean
   isActive!: boolean
   
@@ -23,26 +25,14 @@ export default class SlotImage extends Control {
       this.node.setAttribute('src', `./toys/${num}.png`)
       this.node.setAttribute('draggable', 'true')
       this.node.setAttribute('id', `${index+num}`)
-      this.node.setAttribute('dissabled', 'true')
       this.node.ondragstart = (e) => {
         this.dragStart(e)
-        this.node.removeAttribute('dissabled')
-        this.getCoords(e, this.node)
-        this.moveAt(e)
+        this.getCoords(e)
       }
-      this.node.onmousemove = (e) => { 
-        if(this.node.hasAttribute('dissabled')) {
-          return
-        }
-        this.moveAt(e)
-      } 
-      this.node.ondragend = () => { 
-        this.node.onmousemove = null;
-        //this.node.ondragstart = null;
-      };
-      this.node.ondragend = () => {
+      this.node.ondragend = (e) => { 
+        this.dragEnd(e)
         this.returnToStart()
-      }
+      };
     }
 
     dragStart(event) {
@@ -51,14 +41,19 @@ export default class SlotImage extends Control {
         .setData('text', this.node.id);
     }
     
-  getCoords(e, elem: HTMLElement) {
-      let toy = elem.getBoundingClientRect();
-      this.topIndent = e.clientY - toy.top,
-      this.leftIndent = e.clientX - toy.left
+  getCoords(e) {
       const old = {
         left: this.node.offsetLeft,
         top: this.node.offsetTop
       };
+      this.offsetX = e.offsetX
+      this.offsetY = e.offsetY
+      
+    }
+
+    dragEnd(e) {
+      this.node.style.left = e.pageX - this.offsetX + 'px'
+      this.node.style.top = e.pageY - this.offsetY + 'px'
     }
 
     moveAt(e) {
@@ -66,7 +61,7 @@ export default class SlotImage extends Control {
       this.node.style.top = e.pageY - this.topIndent + 'px'
     } 
 
-    returnToStart() { 
+    public returnToStart() { 
       if(this.node.getBoundingClientRect().left <= this.limit!.left) {
         this.node.style.left = old.left
         this.node.style.top = old.top
