@@ -23,4 +23,5 @@ export default class FavoriteCard extends Control {
           this.slotImage = new SlotImage(this.node, toy.num, index, this.limit) 
       })     
     }
+
 }

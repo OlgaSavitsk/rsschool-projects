@@ -25,31 +25,32 @@ export default class SlotImage extends Control {
       this.node.setAttribute('id', `${index+num}`)
       this.node.setAttribute('dissabled', 'true')
       this.node.ondragstart = (e) => {
+        this.dragStart(e)
         this.node.removeAttribute('dissabled')
         this.getCoords(e, this.node)
         this.moveAt(e)
       }
-      this.node.ondragover = (e) => { 
+      this.node.onmousemove = (e) => { 
         if(this.node.hasAttribute('dissabled')) {
           return
         }
         this.moveAt(e)
       } 
       this.node.ondragend = () => { 
-        
-        this.node.parentNode!.removeChild(this.node)
-        this.node.ondragover = null;
-        this.node.ondragstart = null;
+        this.node.onmousemove = null;
+        //this.node.ondragstart = null;
       };
       this.node.ondragend = () => {
         this.returnToStart()
       }
     }
 
-   /*  handleDragStart(e) {
-      e.dataTransfer.setData("text", this.node.id);
-  } */
- 
+    dragStart(event) {
+      event
+        .dataTransfer
+        .setData('text', this.node.id);
+    }
+    
   getCoords(e, elem: HTMLElement) {
       let toy = elem.getBoundingClientRect();
       this.topIndent = e.clientY - toy.top,
@@ -63,7 +64,6 @@ export default class SlotImage extends Control {
     moveAt(e) {
       this.node.style.left = e.pageX - this.leftIndent + 'px'
       this.node.style.top = e.pageY - this.topIndent + 'px'
-     
     } 
 
     returnToStart() { 

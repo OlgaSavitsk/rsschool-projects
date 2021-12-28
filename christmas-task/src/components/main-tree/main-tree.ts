@@ -17,9 +17,10 @@ export default class MainTree extends Control {
       this.map = new Control(this.node, 'map', '', '')
       this.map.node.setAttribute('name', 'image-map')
       this.area = new Control(this.map.node, 'area', '', '')
-      this.area.node.setAttribute('coords', '243,6,163,123,102,202,68,264,32,318,39,354,49,376,42,402,15,449,5,523,-1,566,43,654,95,700,267,713,485,684,496,553,459,357,412,218,359,129,298,30,260,3')
+      this.area.node.setAttribute('coords', '232,6,89,245,14,424,14,588,83,668,226,707,402,687,494,575,469,445,418,226,299,39,266,2,489,0,493,244,495,461,495,607,492,709,379,711,160,712,3,709,-1,343,3,4')
       this.area.node.setAttribute('shape', 'poly')
       this.imgOfTree = new Control(this.node, 'img', 'main-tree', '')
       this.imgOfTree.node.setAttribute('src', `./assets/tree/${num}.png`);
+      this.imgOfTree.node.setAttribute('usemap', '#image-map');
     }
 }

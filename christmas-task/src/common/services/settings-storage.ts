@@ -16,7 +16,6 @@ export default class SettingsStorage {
     }
   
     static getData(): ISettingsTree {
-      console.log('store', JSON.parse(JSON.stringify(SettingsStorage.settings)))
       return JSON.parse(JSON.stringify(SettingsStorage.settings));
     }
   

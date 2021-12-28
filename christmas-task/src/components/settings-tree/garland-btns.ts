@@ -28,7 +28,6 @@ export default class GarlandBtns extends Control {
 
     public renderCard(): void {
         const garlandColors = Object.values(garlandBtns).map((name) => name);
-        console.log(garlandColors)
         garlandColors.map((bgColor) => {    
                 this.garlandBtn = new GarlandButton(this.node, bgColor)
                 this.garlandBtn.node.onclick = () => {

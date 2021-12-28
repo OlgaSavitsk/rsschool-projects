@@ -2,6 +2,7 @@ import Control from "@/common/control";
 import { ILimit } from "@/models/limit";
 import { IToysModel } from "@/models/toys-model";
 import FavoriteBlock from "../favorite/favoriteBlock";
+import SlotImage from "../favorite/slotImage";
 import Footer from "../footer/footer";
 import MainTree from "../main-tree/main-tree";
 import SettingsControl from "../settings-tree/settings";
@@ -18,10 +19,33 @@ export default class MainTreeContainer extends Control {
       this.mainBlock = new MainTree(this.node, num, bgNum, garlandColor);
       this.favorite = new FavoriteBlock(this.node, favoriteCount, data, this.getMainTreeSize());
       this.mainBlock.imgOfTree.node.ondragover = (e) => {
-        e.preventDefault()
-        this.favorite.favoriteSlot.slotImage.moveAt(e)
+        this.dragOver(e)
+        console.log("over")
+        //this.favorite.favoriteSlot.slotImage.moveAt(e)
+      }
+      this.mainBlock.imgOfTree.node.ondrop = (e) => {
+        this.drop(e)
+        console.log("drop")
+        //this.favorite.favoriteSlot.slotImage.moveAt(e)
       }
     }
+
+    dragOver(event) {
+      event.preventDefault();
+    }
+
+    drop(event) {
+      const id = event
+        .dataTransfer
+        .getData('text');
+        const draggableElement = document.getElementById(id);
+        //const dropzone = event.target;
+        this.mainBlock.area.node.appendChild(draggableElement!);
+        event
+        .dataTransfer
+        .clearData();
+    }
+    
 
    getMainTreeSize() {
       const limit = <ILimit> {
