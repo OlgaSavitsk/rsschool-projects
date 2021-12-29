@@ -5,16 +5,10 @@ import SortService from "./sort-by-date/sort-service";
 import Sources from "./sources/sources";
 
 export default class AppView {
-  private news: News;
-
-  private sources: Sources;
 
   static isDesk: boolean;
 
   constructor() {
-    this.news = new News();
-    this.sources = new Sources();
-    AppView.isDesk = false;
   }
 
   static drawNews(data: IResponseEverythingModel): void {

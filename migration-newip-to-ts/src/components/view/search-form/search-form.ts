@@ -3,7 +3,8 @@ import AppLoader from '@/controller/appLoader';
 import { IResponseEverythingModel } from '../models/response-everything-model';
 
 export default class SearchForm extends AppLoader {
-  getSearch(callback: ((data: IResponseEverythingModel) => void) | undefined) {
+
+  public getSearch(callback: ((data: IResponseEverythingModel) => void) | undefined) {
     const searchInput = document.querySelector('.search-input') as HTMLInputElement;
     const searchButton = document.querySelector('.search-button')!;
     searchButton.addEventListener('click', (e: Event) => {

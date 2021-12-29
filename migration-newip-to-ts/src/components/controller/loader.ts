@@ -1,26 +1,29 @@
-import { IOptions } from "@/view/models/options-model";
 import { IResponseEverythingModel } from "@/view/models/response-everything-model";
 import { IResponseSourceModel } from "@/view/models/response-sources-model";
+
+export type OptionsType = {
+  [apiKey: string]: string
+}
 
 class Loader {
   public baseLink: string;
 
-  public options: IOptions;
+  public options: { optionsProps: OptionsType; };
 
-  constructor(baseLink: string, options: IOptions) {
+  constructor({ baseLink, ...optionsProps}: {baseLink: string, optionsProps: OptionsType }) {
     this.baseLink = baseLink;
-    this.options = options;
+    this.options = optionsProps;
   }
 
-  getResp<T extends IResponseSourceModel | IResponseEverythingModel>(
-    { endpoint, options = {} },
+  public async getResp<T extends IResponseSourceModel | IResponseEverythingModel>(
+    { endpoint = '', options = {} },
     callback = (data: T) => {
       if (!data) {
         console.error('No callback for GET response');
       }
     },
-  ): void {
-    this.load('GET', endpoint, callback, options);
+  ): Promise<void> {
+    await this.load('GET', endpoint, callback, options);
   }
 
   static errorHandler(res: Response): Response {
@@ -33,31 +36,34 @@ class Loader {
     return res;
   }
 
-  makeUrl(options: {}, endpoint: string): string {
+  public makeUrl(options: {}, endpoint: string): string {
     const urlOptions = { ...this.options, ...options };
     let url = `${this.baseLink}${endpoint}?`;
-
-    Object.keys(urlOptions).forEach((key) => {
-      url += `${key}=${urlOptions[key]}&`;
+    
+    Object.values(urlOptions).forEach((key) => {
+      url += `apiKey=${key.apiKey}&`;
     });
     return url.slice(0, -1);
   }
 
-  load<T extends IResponseSourceModel | IResponseEverythingModel>(
+ public async load<T extends IResponseSourceModel | IResponseEverythingModel>(
     method: string,
     endpoint: string,
     callback: { (data: T): void },
     options = {},
-  ): void {
-    fetch(this.makeUrl(options, endpoint), { method })
-      .then(Loader.errorHandler)
-      .then((res: Response) => res.json())
-      .then((data) => callback(data))
-      .catch((err: Error) => console.error(err));
+  ): Promise<void> {
+    try {
+      let response: Response = await fetch(this.makeUrl(options, endpoint), { method });
+      Loader.errorHandler(response)
+      let sources = await response.json();
+      callback(sources)
+    } catch(err: unknown) { 
+      console.error(err);
+    }
   }
 
-  getRespSearch(
-    { endpoint, options = {} },
+  public getRespSearch(
+    { endpoint = '', options = {} },
     callback = (data: IResponseEverythingModel) => {
       if (!data) {
         console.error('No callback for GET response');
@@ -67,25 +73,27 @@ class Loader {
     this.loadSearch('GET', endpoint, callback, options);
   }
 
-  makeUrlSearch(options: {}, endpoint: string): string {
+  public makeUrlSearch(options: {}, endpoint: string) {
     const urlOptions = { ...this.options, ...options };
-    const url = `${this.baseLink}${endpoint}?q=${urlOptions['q']}&apiKey=${urlOptions.apiKey}`;
+    const url = `${this.baseLink}${endpoint}?q=${urlOptions}&apiKey=${urlOptions.optionsProps.apiKey}`;
     return url;
   }
 
-  loadSearch(
+ public async loadSearch(
     method: string,
     endpoint: string,
     callback: { (data: any): void },
     options = {},
-  ): void {
-    fetch(this.makeUrlSearch(options, endpoint), { method })
-      .then(Loader.errorHandler)
-      .then((res: Response) => res.json())
-      .then((data) => {
-        callback(data);
-      })
-      .catch((err: Error) => console.error(err));
+  ): Promise<void> {
+    try {
+      let response: Response = await fetch(this.makeUrlSearch(options, endpoint), { method });
+      Loader.errorHandler(response)
+      let sources = await response.json();
+      console.log(sources)
+      callback(sources)
+    } catch(err: unknown) { 
+      console.error(err);
+    } 
   }
 }
 
