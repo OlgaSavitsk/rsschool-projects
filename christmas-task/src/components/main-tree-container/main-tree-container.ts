@@ -22,13 +22,9 @@ export default class MainTreeContainer extends Control {
       this.mainBlock.imgOfTree.node.ondragover = (e) => {
         this.dragOver(e)
       }
-      this.mainBlock.imgOfTree.node.ondrop = (e) => {
+      this.mainBlock.area.node.ondrop = (e) => {
         this.drop(e)
         this.count = this.favoriteCount.length - 1
-      }
-      this.mainBlock.area.node.ondragleave = (e) => {
-        console.log('leave')
-        this.favorite.favoriteSlot.slotImage.returnToStart()
       }
     }
 
