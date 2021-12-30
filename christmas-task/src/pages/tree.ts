@@ -70,12 +70,23 @@ export default class TreePage extends Control {
         }
         this.container.settingsControl.garlandContainer.switchButton.onChecked = (isChecked) => {
           if(isChecked === true) {
+           // this.container.settingsControl.garlandContainer.switchButton.switchInput.node.removeAttribute('checked');
             this.container.mainBlock.garland.node.classList.remove('hide')
             this.container.settingsControl.garlandContainer.garlandBtns.node.style.pointerEvents = 'auto' 
           } else {
             this.container.mainBlock.garland.node.classList.add('hide')
             this.container.settingsControl.garlandContainer.garlandBtns.node.style.pointerEvents = 'none'
+           
           }
+        }
+        this.container.settingsControl.garlandContainer.garlandBtns.onGarlandColor = (garlandColor) => {  
+          this.container.destroy()
+          this.render(garlandColor)
+          this.container.settingsControl.garlandContainer.switchButton.switchInput.node.setAttribute('checked', 'checked');
+          this.container.settingsControl.garlandContainer.switchButton.isChecked = true
+          this.container.mainBlock.garland.node.classList.remove('hide')
+          this.container.settingsControl.garlandContainer.garlandBtns.node.style.pointerEvents = 'auto' 
+          //this.renderGarlandColor()
         }
        
         this.container.settingsControl.onSoundClick = () => {
@@ -95,7 +106,7 @@ export default class TreePage extends Control {
           this.container.destroy();
           this.render(garlandColor)
         };
-        this.renderGarlandColor()
+       // this.renderGarlandColor()
     }
 
     renderGarlandColor() {
