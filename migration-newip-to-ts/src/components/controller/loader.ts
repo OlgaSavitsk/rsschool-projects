@@ -1,16 +1,16 @@
-import { IResponseEverythingModel } from "@/view/models/response-everything-model";
-import { IResponseSourceModel } from "@/view/models/response-sources-model";
+import { IResponseEverythingModel } from '@/view/models/response-everything-model';
+import { IResponseSourceModel } from '@/view/models/response-sources-model';
 
 export type OptionsType = {
   [apiKey: string]: string
-}
+};
 
 class Loader {
   public baseLink: string;
 
   public options: { optionsProps: OptionsType; };
 
-  constructor({ baseLink, ...optionsProps}: {baseLink: string, optionsProps: OptionsType }) {
+  constructor({ baseLink, ...optionsProps }: { baseLink: string, optionsProps: OptionsType }) {
     this.baseLink = baseLink;
     this.options = optionsProps;
   }
@@ -39,25 +39,25 @@ class Loader {
   public makeUrl(options: {}, endpoint: string): string {
     const urlOptions = { ...this.options, ...options };
     let url = `${this.baseLink}${endpoint}?`;
-    
+
     Object.values(urlOptions).forEach((key) => {
       url += `apiKey=${key.apiKey}&`;
     });
     return url.slice(0, -1);
   }
 
- public async load<T extends IResponseSourceModel | IResponseEverythingModel>(
+  public async load<T extends IResponseSourceModel | IResponseEverythingModel>(
     method: string,
     endpoint: string,
     callback: { (data: T): void },
     options = {},
   ): Promise<void> {
     try {
-      let response: Response = await fetch(this.makeUrl(options, endpoint), { method });
-      Loader.errorHandler(response)
-      let sources = await response.json();
-      callback(sources)
-    } catch(err: unknown) { 
+      const response: Response = await fetch(this.makeUrl(options, endpoint), { method });
+      Loader.errorHandler(response);
+      const sources = await response.json();
+      callback(sources);
+    } catch (err: unknown) {
       console.error(err);
     }
   }
@@ -73,27 +73,26 @@ class Loader {
     this.loadSearch('GET', endpoint, callback, options);
   }
 
-  public makeUrlSearch(options: {}, endpoint: string) {
+  public makeUrlSearch(options: {}, endpoint: string): string {
     const urlOptions = { ...this.options, ...options };
-    const url = `${this.baseLink}${endpoint}?q=${urlOptions}&apiKey=${urlOptions.optionsProps.apiKey}`;
+    const url = `${this.baseLink}${endpoint}?q=${Object.values(options)}&apiKey=${urlOptions.optionsProps.apiKey}`;
     return url;
   }
 
- public async loadSearch(
+  public async loadSearch<T extends IResponseSourceModel | IResponseEverythingModel>(
     method: string,
     endpoint: string,
-    callback: { (data: any): void },
+    callback: { (data: T): void },
     options = {},
   ): Promise<void> {
     try {
-      let response: Response = await fetch(this.makeUrlSearch(options, endpoint), { method });
-      Loader.errorHandler(response)
-      let sources = await response.json();
-      console.log(sources)
-      callback(sources)
-    } catch(err: unknown) { 
+      const response: Response = await fetch(this.makeUrlSearch(options, endpoint), { method });
+      Loader.errorHandler(response);
+      const sources = await response.json();
+      callback(sources);
+    } catch (err: unknown) {
       console.error(err);
-    } 
+    }
   }
 }
 

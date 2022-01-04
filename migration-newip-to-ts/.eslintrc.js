@@ -1,6 +1,11 @@
 module.exports = {
     parser: "@typescript-eslint/parser",
     plugins: ["@typescript-eslint"],
+    /* extends: [
+      "plugin:import/errors",
+      "plugin:import/warnings",
+      "plugin:import/typescript",
+    ], */
     extends: ['airbnb-base/legacy', 'airbnb-typescript/base', 'eslint-config-airbnb-base'],
     env: {
             "browser": true,
@@ -8,35 +13,42 @@ module.exports = {
     },  
     parserOptions: {
       "project": './tsconfig.json',
+      "ecmaVersion": 2020,
+      "sourceType": "module"
     },
     settings: {
-        "import/extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "import/extensions": ["", ".ts", ".js", ".json"],
         "import/parsers": {
           "@typescript-eslint/parser": [".ts", ".tsx"]
         },
         "import/resolver": {
+          "typescript": {},
           "node": {
-            "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            "extensions": ["", ".ts", ".js", ".json"],
           }
         }
     },
     globals: {
       "NodeJS": true
     },
+    env: {
+      "es6": true,
+      "browser": true,
+  },
     rules: {
         "import/extensions": [
             "error",
             "ignorePackages",
             {
-              "js": "never",
-              "jsx": "never",
+              "": "never",
               "ts": "never",
-              "tsx": "never"
+              "js": "never",
+              "json": "never"
             }
         ],
         "import/no-named-as-default": 0,
         "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
-        "no-console": "off",
+        "no-console": 0,
         "consistent-return": 0,
         'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],
         "no-shadow": "off",

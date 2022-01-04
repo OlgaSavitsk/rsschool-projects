@@ -1,18 +1,21 @@
-import { IResponseEverythingModel } from "@/view/models/response-everything-model";
-import { IResponseSourceModel } from "@/view/models/response-sources-model";
-import AppLoader from "./appLoader";
+import { IResponseEverythingModel } from '@/view/models/response-everything-model';
+import { IResponseSourceModel } from '@/view/models/response-sources-model';
+import baseLink from '@/common/constants/constants';
+import Loader, { OptionsType } from './loader';
 
-export type KeyboardEvent =  {
-  target: HTMLElement,
-  currentTarget: HTMLElement,
+const optionsProps = <OptionsType> {
+  apiKey: process.env.API_KEY,
 };
 
-export type HTMLElementEvent<T extends HTMLElement> = Event & {
+export type EventTargetEvent<T extends HTMLElement> = Event & {
   target: T;
   currentTarget: T;
-}
+};
 
-class AppController extends AppLoader {
+export default class AppController extends Loader {
+  constructor() {
+    super({ baseLink, optionsProps });
+  }
   public getSources(callback: ((data: IResponseSourceModel) => void) | undefined): void {
     super.getResp(
       {
@@ -22,16 +25,19 @@ class AppController extends AppLoader {
     );
   }
 
-  public getNews(e: HTMLElementEvent<HTMLElement>, callback: ((data: IResponseEverythingModel) => void) | undefined): void {
+  public getNews(
+    e: EventTargetEvent<HTMLElement>,
+    callback: ((data: IResponseEverythingModel) => void) | undefined,
+  ): void {
     let { target } = e;
-    const newsContainer =  e.currentTarget;
+    const newsContainer = e.currentTarget;
 
     while (target !== newsContainer) {
       if (target.classList.contains('source__item')) {
         const sourceId = target.getAttribute('data-source-id');
         if (newsContainer.getAttribute('data-source') !== sourceId && sourceId) {
           (newsContainer.setAttribute('data-source', sourceId));
-          super.getResp(
+          super.getRespSearch(
             {
               endpoint: 'everything',
               options: {
@@ -43,9 +49,7 @@ class AppController extends AppLoader {
         }
         return;
       }
-       target = target.parentElement!;
+      target = target.parentElement!;
     }
   }
 }
-
-export default AppController;
