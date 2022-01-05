@@ -1,5 +1,5 @@
-import Control from '../../../common/control';
-import { IDefaultFilters } from '../../../models/default-filter-model';
+import Control from '@/common/components/control';
+import { IDefaultFilters } from '@/models/default-filter-model';
 import YearSlider from './year-slider';
 
 export default class Year extends Control {

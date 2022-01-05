@@ -1,4 +1,4 @@
-import Control from '@/common/control';
+import Control from '@/common/components/control';
 import Logo from '../logo/logo';
 
 export default class Navigation extends Control {

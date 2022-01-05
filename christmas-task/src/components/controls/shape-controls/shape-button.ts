@@ -1,4 +1,4 @@
-import Control from '../../../common/control';
+import Control from '@/common/components/control';
 
 export default class ShapeButton extends Control {
   constructor(parentNode: HTMLElement, shapeImage: string) {

@@ -1,5 +1,5 @@
+import Control from '@/common/components/control';
 import { COLOR_FILTER } from '@/common/constants/filter-constants';
-import Control from '@/common/control';
 import { IDefaultFilters } from '@/models/default-filter-model';
 import ColorButton from './color-button';
 
@@ -27,6 +27,7 @@ export default class Color extends Control {
         this.isChecked = !this.isChecked;
         colorButton.node.classList.toggle('active');
       };
+      return false;
     });
   }
 }

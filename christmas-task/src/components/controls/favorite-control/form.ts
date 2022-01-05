@@ -1,4 +1,4 @@
-import Control from '@/common/control';
+import Control from '@/common/components/control';
 import { IDefaultFilters } from '@/models/default-filter-model';
 
 export default class Form extends Control {

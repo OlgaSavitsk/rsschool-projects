@@ -1,4 +1,4 @@
-import Control from '@/common/control';
+import Control from '@/common/components/control';
 import SearchService from '@/common/services/search.service';
 import StorageFilter from '@/common/services/storage';
 import StorageFavorite from '@/common/services/storage-favorite.service';
@@ -9,11 +9,11 @@ import { IDefaultFilters } from '@/models/default-filter-model';
 import ToysDataModel from '@/models/toys-data-model';
 import { IToysModel } from '@/models/toys-model';
 
-type renderCardOptions = {
-  parentNode: HTMLElement, 
-  data: IToysModel[], 
+/* type RenderCardOptions = {
+  parentNode: HTMLElement,
+  data: IToysModel[],
   filterStorage: IDefaultFilters
-}
+}; */
 
 export default class ToysPage extends Control {
   public container!: MainToysContainer;
@@ -30,15 +30,14 @@ export default class ToysPage extends Control {
 
   public searchService!: SearchService;
 
-
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'page-container main-page', '');
     this.header = new Header(this.node);
     this.model = new ToysDataModel();
     this.filterStorage = new StorageFilter();
     this.filterStorage.loadFromLocalStorage();
-    StorageFavorite.loadFromLocalStorage()
-    this.model.build().then((result) => {
+    StorageFavorite.loadFromLocalStorage();
+    this.model.build().then(() => {
       this.render();
     });
   }
@@ -95,7 +94,11 @@ export default class ToysPage extends Control {
         this.header.headerControls.errorField.node.innerHTML = '';
       };
       this.container.destroy();
-      this.container = new MainToysContainer(this.node, this.searchValue, this.filterStorage.getData());
+      this.container = new MainToysContainer(
+        this.node,
+        this.searchValue,
+        this.filterStorage.getData(),
+      );
     };
   }
 }

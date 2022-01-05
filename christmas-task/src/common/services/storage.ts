@@ -3,8 +3,6 @@ import { defaultFilters, IDefaultFilters } from '@/models/default-filter-model';
 export default class StorageFilter {
   public filterStorage: IDefaultFilters | undefined;
 
-  constructor() {}
-
   public loadFromLocalStorage(): void {
     const storageData = localStorage.getItem('filters');
     const checkStorageData = (data: string | null) => data;
@@ -29,7 +27,7 @@ export default class StorageFilter {
     localStorage.setItem('filters', JSON.stringify(this.filterStorage));
   }
 
-  public removeStorage = (): void => {
+  public removeStorage(): void {
     localStorage.removeItem('filters');
-  };
+  }
 }

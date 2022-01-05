@@ -3,8 +3,6 @@ import { IToysModel } from './toys-model';
 export default class ToysDataModel {
   data!: Array<IToysModel>;
 
-  constructor() {}
-
   public async build(): Promise<IToysModel[]> {
     this.data = await this.loadToysData('toys.json');
     return this.data;

@@ -1,5 +1,5 @@
+import Control from '@/common/components/control';
 import { SIZE_FILTER } from '@/common/constants/filter-constants';
-import Control from '@/common/control';
 import { IDefaultFilters } from '@/models/default-filter-model';
 import SizeButton from './size-button';
 
@@ -31,6 +31,7 @@ export default class Size extends Control {
         this.isChecked = !this.isChecked;
         sizeButton.node.classList.toggle('select');
       };
+      return false;
     });
   }
 }

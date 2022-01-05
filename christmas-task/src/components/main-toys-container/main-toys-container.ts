@@ -5,12 +5,12 @@ import { IToysModel } from '@/models/toys-model';
 import { defaultFilters, IDefaultFilters } from '@/models/default-filter-model';
 import { desk, IDesk } from '@/models/select-model';
 import SortServiceImplementaition from '@/common/services/sort.service';
-import Control from '@/common/control';
+import Control from '@/common/components/control';
 import CardContainer from '../card-container/card-container';
 import Controls from '../controls/controls';
 import SortSelect from '../controls/sort-select';
-import ModalError from '../modal-error/modal-error';
 import FilterService from '@/common/services/filter.service';
+import ModalError from '../modal-error/modal-error';
 
 export default class MainToysContainer extends Control {
   public cardContainer!: CardContainer;
@@ -39,7 +39,13 @@ export default class MainToysContainer extends Control {
 
   public onSave: ((defaultFilters: IDefaultFilters) => void) | undefined;
 
-  constructor(parentNode: HTMLElement, public data: IToysModel[], public filterStorage: IDefaultFilters) {
+  desk: IDesk;
+
+  constructor(
+    parentNode: HTMLElement,
+    public data: IToysModel[],
+    public filterStorage: IDefaultFilters,
+  ) {
     super(parentNode, 'div', 'main-container', '');
     this.data = FilterService.getFilterData(filterStorage, data);
     this.controls = new Controls(this.node, filterStorage);
@@ -50,7 +56,7 @@ export default class MainToysContainer extends Control {
     this.yearFilterArr = filterStorage.year;
     this.selectValue = this.controls.sort.sortSelect;
     this.cardContainer = new CardContainer(this.node, this.data);
-    const desk = this.getSelectValue();
+    this.desk = this.getSelectValue();
     this.selectValue.node.value = desk.select;
     this.rangeHandler(data);
     this.filterHandler(data);
@@ -60,7 +66,8 @@ export default class MainToysContainer extends Control {
   public filterHandler(data: IToysModel[]): void {
     this.controls.filter.shapes.onFilter = (shape) => {
       if (this.shapeFilterArr.includes(SHAPE_FILTER.value[shape])) {
-        this.shapeFilterArr = this.shapeFilterArr.filter((item) => item !== SHAPE_FILTER.value[shape]);
+        this.shapeFilterArr = this.shapeFilterArr
+          .filter((item) => item !== SHAPE_FILTER.value[shape]);
       } else {
         this.shapeFilterArr.push(SHAPE_FILTER.value[shape]);
       }
@@ -68,7 +75,8 @@ export default class MainToysContainer extends Control {
     };
     this.controls.filter.colors.onFilter = (color) => {
       if (this.colorFilterArr.includes(COLOR_FILTER.value[color])) {
-        this.colorFilterArr = this.colorFilterArr.filter((item) => item !== COLOR_FILTER.value[color]);
+        this.colorFilterArr = this.colorFilterArr
+          .filter((item) => item !== COLOR_FILTER.value[color]);
       } else {
         this.colorFilterArr.push(COLOR_FILTER.value[color]);
       }
@@ -94,8 +102,8 @@ export default class MainToysContainer extends Control {
       color: this.colorFilterArr,
       size: this.sizeFilterArr,
       count: this.countFilterArr,
-      year: this.yearFilterArr
-    }
+      year: this.yearFilterArr,
+    };
     if (this.onSave) {
       this.onSave(defaultFilters);
     }
@@ -104,7 +112,10 @@ export default class MainToysContainer extends Control {
       this.modalError = new ModalError(this.node, 'Извините, совпадений не обнаружено');
     }
     this.cardContainer.destroy();
-    this.cardContainer = new CardContainer(this.node, FilterService.getFilterData(defaultFilters, data));
+    this.cardContainer = new CardContainer(
+      this.node,
+      FilterService.getFilterData(defaultFilters, data),
+    );
     return this.data;
   }
 
@@ -156,22 +167,29 @@ export default class MainToysContainer extends Control {
       color: this.colorFilterArr,
       size: this.sizeFilterArr,
       count: this.countFilterArr,
-      year: this.yearFilterArr
-    }
+      year: this.yearFilterArr,
+    };
     if (this.onSave) {
       this.onSave(defaultFilters);
     }
     this.data = FilterService.getFilterData(defaultFilters, data);
     if (this.data.length === 0) {
-      this.modalError = new ModalError(this.node, 'Извините, совпадений не обнаружено');
+      this.modalError = new ModalError(
+        this.node,
+        'Извините, совпадений не обнаружено',
+      );
     }
     this.cardContainer.destroy();
-    this.cardContainer = new CardContainer(this.node, FilterService.getFilterData(defaultFilters, data));
+    this.cardContainer = new CardContainer(
+      this.node,
+      FilterService.getFilterData(defaultFilters, data),
+    );
     return this.data;
   }
 
   private sortCard(desk: IDesk | undefined): void {
-    this.sorted = SortServiceImplementaition.transformByName(FilterService.getFilterData(defaultFilters, this.data), desk!);
+    this.sorted = SortServiceImplementaition
+      .transformByName(FilterService.getFilterData(defaultFilters, this.data), desk!);
     this.cardContainer.destroy();
     this.cardContainer = new CardContainer(this.node, this.sorted);
   }

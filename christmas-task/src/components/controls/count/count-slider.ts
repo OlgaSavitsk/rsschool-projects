@@ -1,5 +1,5 @@
-import Control from '../../../common/control';
-import { IDefaultFilters } from '../../../models/default-filter-model';
+import Control from '@/common/components/control';
+import { IDefaultFilters } from '@/models/default-filter-model';
 import NoUiSliderCount from './noui-slider-count';
 
 export default class CountSlider extends Control {

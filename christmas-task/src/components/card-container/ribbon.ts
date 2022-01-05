@@ -1,4 +1,4 @@
-import Control from '../../common/control';
+import { Control } from '@/common/components/control';
 
 export default class Ribbon extends Control {
   constructor(parentNode: HTMLElement) {

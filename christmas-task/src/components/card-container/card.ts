@@ -1,12 +1,12 @@
-//import { getLocalStorageData } from '../..';
-import Control from '@/common/control';
+import { Control } from '@/common/components/control';
 import StorageFavorite from '@/common/services/storage-favorite.service';
 import { IToysModel } from '@/models/toys-model';
 import Ribbon from './ribbon';
 
 export default class Card extends Control {
   public description: Control<HTMLElement>;
-  readonly ribbon: Ribbon
+
+  readonly ribbon: Ribbon;
 
   public favoriteSelect!: () => void;
 
@@ -17,7 +17,7 @@ export default class Card extends Control {
         <img class="card-img" src="./toys/${toy.num}.png" alt="toy">`;
     this.description = new Control(this.node, 'div', 'card-description', '');
     this.ribbon = new Ribbon(this.node);
-    StorageFavorite.loadFromLocalStorage()
+    StorageFavorite.loadFromLocalStorage();
     this.node.onclick = () => {
       if (this.node.classList.contains('active')) {
         this.node.classList.remove('active');
@@ -37,6 +37,7 @@ export default class Card extends Control {
         if (this.node.getAttribute('data-num') === item) {
           this.node.classList.add('active');
         }
+        return false;
       });
   }
 

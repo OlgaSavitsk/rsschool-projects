@@ -1,5 +1,4 @@
-import Control from '../../common/control';
-import SortService from '../../common/services/sort.service';
+import Control from '@/common/components/control';
 
 export default class SortSelect extends Control {
   public option: Control<HTMLOptionElement>;

@@ -1,5 +1,5 @@
+import Control from '@/common/components/control';
 import { SHAPE_FILTER } from '@/common/constants/filter-constants';
-import Control from '@/common/control';
 import { IDefaultFilters } from '@/models/default-filter-model';
 import ShapeButton from './shape-button';
 
@@ -28,6 +28,7 @@ export default class Shape extends Control {
         this.isChecked = !this.isChecked;
         shapeButton.node.classList.toggle('select');
       };
+      return false;
     });
   }
 }

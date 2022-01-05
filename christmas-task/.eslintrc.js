@@ -39,15 +39,14 @@ module.exports = {
         "import/no-named-as-default": 0,
         "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
         "no-console": "off",
-        "no-useless-constructor": "off",
         "consistent-return": 0,
         "import/no-unresolved": 0,
-        "no-empty-function": 0,
         'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],
         "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
         "no-shadow": "off",
-        '@typescript-eslint/no-empty-function': 'off',
         "@typescript-eslint/no-shadow": ["error"],
-        "@typescript-eslint/no-useless-constructor": "off"
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "class-methods-use-this": "off"
      }
   };

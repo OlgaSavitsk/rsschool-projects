@@ -1,4 +1,4 @@
-import Control from '../../common/control';
+import Control from '@/common/components/control';
 import ButtonContinue from './button-continue/button-continue';
 
 export default class ModalError extends Control {

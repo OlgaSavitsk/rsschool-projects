@@ -4,8 +4,6 @@ import { IToysModel } from '@/models/toys-model';
 export default class SortServiceImplementaition {
   static storageFilter: any;
 
-  constructor() {}
-
   static transformByName(value: IToysModel[], isDeskByName: IDesk): IToysModel[] {
     if (isDeskByName.isDeskName !== undefined) {
       const dm = isDeskByName.isDeskName ? 1 : -1;

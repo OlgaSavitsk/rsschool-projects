@@ -1,76 +1,75 @@
-import Control from "@/common/control";
-import { ILimit } from "@/models/limit";
+import Control from '@/common/components/control';
+import { ILimit } from '@/models/limit';
 
-interface defaultPosition {
+interface IDefaultPosition {
   left: string,
   top: string
 }
 
-const old: defaultPosition = {
+const old: IDefaultPosition = {
   left: '',
-  top: ''
-}
+  top: '',
+};
 
 export default class SlotImage extends Control {
-  topIndent = 0
-  leftIndent = 0
-  offsetX: any;
-  offsetY: any;
-  isReturn!: boolean
-  isActive!: boolean
-  
-  
-    constructor(parentNode: HTMLElement, public num: string, index: number, public limit?: ILimit) {
-      super(parentNode, 'img', 'favorites-card-img', '');
-      this.node.setAttribute('src', `./toys/${num}.png`)
-      this.node.setAttribute('draggable', 'true')
-      this.node.setAttribute('id', `${index+num}`)
-      this.node.ondragstart = (e) => {
-        this.dragStart(e)
-        this.getCoords(e)
-      }
-      this.node.ondragend = (e) => { 
-        this.dragEnd(e)
-        this.returnToStart()
-      };
-    }
+  private topIndent = 0;
 
-    dragStart(event) {
-      event
-        .dataTransfer
-        .setData('text', this.node.id);
-    }
-    
-  getCoords(e) {
-      const old = {
-        left: this.node.offsetLeft,
-        top: this.node.offsetTop
-      };
-      this.offsetX = e.offsetX
-      this.offsetY = e.offsetY
-      
-    }
+  private leftIndent = 0;
 
-    dragEnd(e) {
-      this.node.style.left = e.pageX - this.offsetX + 'px'
-      this.node.style.top = e.pageY - this.offsetY + 'px'
-    }
+  private offsetX!: number;
 
-    moveAt(e) {
-      this.node.style.left = e.pageX - this.leftIndent + 'px'
-      this.node.style.top = e.pageY - this.topIndent + 'px'
-    } 
+  private offsetY!: number;
 
-    public returnToStart() { 
-      if(this.node.getBoundingClientRect().left <= this.limit!.left) {
-        this.node.style.left = old.left
-        this.node.style.top = old.top
-        this.node.setAttribute('dissabled', 'true')
-      }
-      if(this.node.getBoundingClientRect().right >= this.limit!.right) {
-        this.node.style.left = old.left
-        this.node.style.top = old.top
-        this.node.setAttribute('dissabled', 'true')
-      }
+  constructor(parentNode: HTMLElement, public num: string, index: number, public limit?: ILimit) {
+    super(parentNode, 'img', 'favorites-card-img', '');
+    this.node.setAttribute('src', `./toys/${num}.png`);
+    this.node.setAttribute('draggable', 'true');
+    this.node.setAttribute('id', `${index + num}`);
+    this.node.ondragstart = (e) => {
+      this.dragStart(e);
+      this.getCoords(e);
+    };
+    this.node.ondragend = (e) => {
+      this.dragEnd(e);
+      this.returnToStart();
+    };
+  }
+
+  private dragStart(e: DragEvent): void {
+    if (e.dataTransfer) {
+      e.dataTransfer.setData('text', this.node.id);
     }
+  }
+
+  private getCoords(e: DragEvent): void {
+    const old: IDefaultPosition = {
+      left: this.node.offsetLeft.toString(),
+      top: this.node.offsetTop.toString(),
+    };
+    this.offsetX = e.offsetX;
+    this.offsetY = e.offsetY;
+  }
+
+  private dragEnd(e: DragEvent): void {
+    this.node.style.left = `${e.pageX - this.offsetX}px`;
+    this.node.style.top = `${e.pageY - this.offsetY}px`;
+  }
+
+  public moveAt(e: { pageX: number; pageY: number; }): void {
+    this.node.style.left = `${e.pageX - this.leftIndent}px`;
+    this.node.style.top = `${e.pageY - this.topIndent}px`;
+  }
+
+  public returnToStart(): void {
+    if (this.node.getBoundingClientRect().left <= this.limit!.left) {
+      this.node.style.left = old.left;
+      this.node.style.top = old.top;
+      this.node.setAttribute('dissabled', 'true');
+    }
+    if (this.node.getBoundingClientRect().right >= this.limit!.right) {
+      this.node.style.left = old.left;
+      this.node.style.top = old.top;
+      this.node.setAttribute('dissabled', 'true');
+    }
+  }
 }

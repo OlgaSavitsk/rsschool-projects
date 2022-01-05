@@ -1,4 +1,4 @@
-import Control from '@/common/control';
+import Control from '@/common/components/control';
 import { IDefaultFilters } from '@/models/default-filter-model';
 import Color from './color-controls/color';
 import FavoriteContainer from './favorite-control/favorite-container';

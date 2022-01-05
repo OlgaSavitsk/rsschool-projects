@@ -1,4 +1,4 @@
-import Control from '@/common/control';
+import Control from '@/common/components/control';
 import HeaderControls from './header-controls';
 import Navigation from './navigation';
 

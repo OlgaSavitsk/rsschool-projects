@@ -1,4 +1,4 @@
-import Control from '../../common/control';
+import Control from '@/common/components/control';
 import Favorite from './favorite-count';
 
 export default class HeaderControls extends Control {
