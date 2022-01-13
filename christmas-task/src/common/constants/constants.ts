@@ -5,7 +5,7 @@ const RANGE_SLIDER = {
 
 const COUNT_RANGE = ['1', '12'];
 const YEAR_RANGE = ['1940', '2020'];
-const FAVOURIRE = 'нет';
+const FAVOURIRE = ['нет'];
 
 const SORT_FILTER = {
   nameMax: 'nameMax',

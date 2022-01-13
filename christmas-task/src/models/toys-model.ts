@@ -1,5 +1,5 @@
 interface IToysKeys {
-  [key: string]: string | boolean;
+  [key: string]: string;
 }
 
 export interface IToysModel extends IToysKeys {
@@ -10,7 +10,7 @@ export interface IToysModel extends IToysKeys {
   shape: string,
   color: string,
   size: string,
-  favorite: boolean
+  favorite: string
 }
 
 interface IObjectKeys {

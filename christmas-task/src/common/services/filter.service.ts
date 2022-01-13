@@ -4,7 +4,7 @@ import { RANGE_SLIDER } from '../constants/constants';
 
 export default class FilterService {
   static getFilterData(defaultFilters: IDefaultFilters, data: IToysModel[]): IToysModel[] {
-    return data.filter((item: IToysModel) => Object.keys(defaultFilters).every((propertyName) => {
+    return data.filter((item: IToysModel) => Object.keys(defaultFilters).every((propertyName: string) => {
       if (defaultFilters[propertyName].length === 0) {
         return data;
       }
@@ -15,7 +15,7 @@ export default class FilterService {
       if (defaultFilters[propertyName].length > 1) {
         return defaultFilters[propertyName].includes(item[propertyName]);
       }
-      return (item[propertyName] as string).indexOf(defaultFilters[propertyName]) > -1;
+      return (defaultFilters[propertyName]).indexOf(item[propertyName]) > -1;
     }));
   }
 }

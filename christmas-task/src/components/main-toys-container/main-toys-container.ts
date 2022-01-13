@@ -32,7 +32,7 @@ export default class MainToysContainer extends Control {
 
   private yearFilterArr!: string[];
 
-  public favoriteValue!: string;
+  public favoriteValue!: string[];
 
   public onSave: ((defaultFilters: IDefaultFilters) => void) | undefined;
 
@@ -67,8 +67,8 @@ export default class MainToysContainer extends Control {
       this.filterHandler(data, size, SIZE_FILTER);
     };
     this.controls.filter.favorite.form.onFilter = (check) => {
-      console.log( defaultFilters.favorite);
-      this.favoriteValue = FAVORITE_FILTER.value[check];
+      console.log(defaultFilters.favorite);
+      filterArr.favorite.splice(0, 1, FAVORITE_FILTER.value[check]);
       this.applyFilter(data);
     };
   }
@@ -122,7 +122,7 @@ export default class MainToysContainer extends Control {
       size: filterArr.size,
       count: this.countFilterArr,
       year: this.yearFilterArr,
-      favorite: this.favoriteValue
+      favorite: filterArr.favorite,
     };
     if (this.onSave) {
       this.onSave(defaultFilters);

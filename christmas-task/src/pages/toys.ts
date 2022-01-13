@@ -68,7 +68,7 @@ export default class ToysPage extends Control {
         size: [],
         count: COUNT_RANGE,
         year: YEAR_RANGE,
-        favorite: '',
+        favorite: [],
       };
       this.filterStorage.setData(defaultFilters);
       this.filterStorage.saveToStorage(STORAGE_FILTERS_NAME);

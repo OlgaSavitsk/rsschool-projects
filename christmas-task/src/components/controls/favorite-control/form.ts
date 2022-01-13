@@ -21,7 +21,7 @@ export default class Form extends Control {
     this.favoriteLabel = new Control(this.node, 'label', 'favorite-input-label', '');
     this.favoriteLabel.node.setAttribute('for', 'checkbox');
     this.filterStorage = filterStorage;
-    if (this.filterStorage.favorite === 'да') {
+    if (this.filterStorage.favorite[0] === 'да') {
       this.isChecked = !this.isChecked;
       this.favoriteLabel.node.style.backgroundImage = `url(${FAVOURITE_LABEL_IMAGE})`;
     }

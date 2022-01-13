@@ -20,14 +20,45 @@ const STORAGE_OPTIONS: StorageOptions = {
 export default class StorageService {
   public favouritseSet!: string[] | IDefaultFilters | ISettingsTree;
 
+  private readonly useLocalStorage: boolean = false;
+
+  constructor() {
+    this.useLocalStorage = this.storageAvailable('localStorage');
+  }
+
+  private storageAvailable(type: string): boolean {
+    let storage;
+    try {
+      storage = (window)[type as keyof Window];
+      const key = '__storage_test__';
+      storage.setItem(key, key);
+      storage.removeItem(key);
+      return true;
+    } catch (e) {
+      return e instanceof DOMException && (
+        e.code === 22
+            || e.code === 1014
+            || e.name === 'QuotaExceededError'
+            || e.name === 'NS_ERROR_DOM_QUOTA_REACHED')
+            && (storage && storage.length !== 0);
+    }
+  }
+
   public loadFromLocalStorage<T extends string[]>(name: string): void {
-    const storageData = localStorage.getItem(name);
-    const checkStorageData = (data: string | null) => data;
+    const storageData = this.getItem(name);
+    const checkStorageData = (data: string | null | undefined) => data;
     if (!checkStorageData(storageData)) {
       this.favouritseSet = STORAGE_OPTIONS[name];
     } else {
       const data: T = JSON.parse(storageData!);
       this.favouritseSet = data;
+    }
+  }
+
+  private getItem(name: string): string | null | undefined {
+    if (this.useLocalStorage) {
+      const storageData = localStorage.getItem(name);
+      return storageData;
     }
   }
 

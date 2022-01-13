@@ -1,41 +1,39 @@
 import { COUNT_RANGE, FAVOURIRE, YEAR_RANGE } from '@/common/constants/constants';
 
-interface IObj {
-  [key: string]: string[] | string;
+interface IObjectKeys {
+  [key: string]: string[];
 }
 
-export interface IDefaultFilters extends Record<string, any> {
+export interface IDefaultFilters extends IObjectKeys {
   shape: string[],
   color: string[],
   size: string[]
   count: string[],
   year: string[],
-  favorite: string
+  favorite: string[]
 }
 
 export const defaultFilters: IDefaultFilters = {
-  shape: ([] as string[]),
-  color: ([] as string[]),
-  size: ([] as string[]),
+  shape: [],
+  color: [],
+  size: [],
   count: COUNT_RANGE,
   year: YEAR_RANGE,
-  favorite: FAVOURIRE,
+  favorite: [],
 };
-
-interface IObjectKeys {
-  [key: string]: string[];
-}
 
 interface FilterArr extends IObjectKeys {
   shape: string[],
   color: string[],
-  size: string[]
+  size: string[],
+  favorite: string[]
 }
 
 export const filterArr: FilterArr = {
   shape: [],
   color: [],
   size: [],
+  favorite: [],
 };
 
 interface IDefaultPosition {
