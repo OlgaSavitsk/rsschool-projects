@@ -18,9 +18,9 @@ export const garlandBtns = <GarlandBtn> {
 };
 
 export default class GarlandBtns extends Control {
-  garlandBtn!: GarlandButton;
+  public garlandBtn!: GarlandButton;
 
-  onGarlandColor!: (bgColor: string) => void;
+  public onGarlandColor!: (bgColor: string) => void;
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'garland-btns', '');

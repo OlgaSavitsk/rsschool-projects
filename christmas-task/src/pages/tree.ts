@@ -1,7 +1,7 @@
 import Control from '@/common/components/control';
-import SettingsStorage from '@/common/services/settings-storage';
+import { STORAGE_FAVOURITE_NAME, STORAGE_SETTINGS_NAME } from '@/common/constants/constants';
 import SoundService from '@/common/services/sound.service';
-import StorageFavorite from '@/common/services/storage-favorite.service';
+import StorageService from '@/common/services/storage.service';
 import Header from '@/components/header-container/header';
 import MainTreeContainer from '@/components/main-tree-container/main-tree-container';
 import { garlandBtns } from '@/components/settings-tree/garland-btns';
@@ -21,12 +21,21 @@ export default class TreePage extends Control {
 
   private settings: ISettingsTree | undefined;
 
+  private favouriteStorage: StorageService;
+
+  private audio!: SoundService;
+
+  private settingsStorage: StorageService;
+
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'page-container main-page', '');
     this.header = new Header(this.node);
     this.model = new ToysDataModel();
-    SettingsStorage.loadFromLocalStorage();
-    StorageFavorite.loadFromLocalStorage();
+    this.audio = new SoundService();
+    this.settingsStorage = new StorageService();
+    this.settingsStorage.loadFromLocalStorage(STORAGE_SETTINGS_NAME);
+    this.favouriteStorage = new StorageService();
+    this.favouriteStorage.loadFromLocalStorage(STORAGE_FAVOURITE_NAME);
     this.model.build().then(() => {
       this.settingsRender(garlandBtns.yellow);
     });
@@ -34,8 +43,8 @@ export default class TreePage extends Control {
 
   private settingsRender(garlandColor?: string): void {
     const data = this.model.getData();
-    this.settings = SettingsStorage.getData();
-    const favoriteCount = StorageFavorite.getData();
+    this.settings = this.settingsStorage.getData();
+    const favoriteCount = this.favouriteStorage.getData();
     this.container = new MainTreeContainer(
       this.node,
       favoriteCount,
@@ -44,6 +53,15 @@ export default class TreePage extends Control {
       this.settings!.bg,
       garlandColor!,
     );
+    this.setSettingsAfterLoading();
+    this.setSnowEventListener();
+    this.setSoundEventListener();
+    this.setResetEventListener(garlandColor);
+    this.treesHandler();
+    this.garlandHandler();
+  }
+
+  private setSettingsAfterLoading(): void {
     if (this.settings?.snow === true) {
       this.isSnow = true;
       this.container.mainBlock.snowflakes.node.classList.remove('hide');
@@ -53,9 +71,12 @@ export default class TreePage extends Control {
       if (this.settings?.sound === true) {
         this.settings.sound = false;
         this.isSound = true;
-        SoundService.playAudio();
+        this.audio.playAudio();
       }
     };
+  }
+
+  private setSnowEventListener(): void {
     this.container.settingsControl.onSnowClick = () => {
       if (this.isSnow === true) {
         this.isSnow = false;
@@ -67,25 +88,30 @@ export default class TreePage extends Control {
       }
       this.saveStorageSettings(this.settings!.tree, this.settings!.bg);
     };
+  }
+
+  private setSoundEventListener(): void {
     this.container.settingsControl.onSoundClick = () => {
       if (this.isSound === true) {
         this.isSound = false;
-        SoundService.pauseAudio();
+        this.audio.pauseAudio();
       } else {
         this.isSound = true;
-        SoundService.playAudio();
+        this.audio.playAudio();
       }
       this.saveStorageSettings(this.settings!.tree, this.settings!.bg);
     };
+  }
+
+  private setResetEventListener(garlandColor: string | undefined): void {
     this.container.settingsControl.onReset = () => {
       this.settings = settingaTree;
-      SettingsStorage.setData(this.settings);
-      SettingsStorage.removeStorage();
+      this.settingsStorage.setData(this.settings);
+      this.settingsStorage.saveToStorage(STORAGE_SETTINGS_NAME);
+      this.settingsStorage.removeStorage(STORAGE_SETTINGS_NAME);
       this.container.destroy();
       this.settingsRender(garlandColor);
     };
-    this.treesHandler();
-    this.garlandHandler();
   }
 
   private treesHandler(): void {
@@ -126,7 +152,7 @@ export default class TreePage extends Control {
       this.container.destroy();
       this.container = new MainTreeContainer(
         this.node,
-        StorageFavorite.getData(),
+        this.favouriteStorage.getData(),
         this.model.getData(),
         this.settings!.tree,
         this.settings!.bg,
@@ -145,6 +171,7 @@ export default class TreePage extends Control {
       snow: this.isSnow,
       sound: this.isSound,
     };
-    SettingsStorage.setData(settingsTree);
+    this.settingsStorage.setData(settingsTree);
+    this.settingsStorage.saveToStorage(STORAGE_SETTINGS_NAME);
   }
 }

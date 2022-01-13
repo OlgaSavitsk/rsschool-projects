@@ -1,16 +1,18 @@
 import { IToysModel } from '@/models/toys-model';
 
 export default class SearchService {
-  static data: IToysModel[];
+  private dataValue: IToysModel[] = [];
 
-  static searchValueArr: IToysModel[] = [];
-
-  constructor(data: IToysModel[]) {
-    SearchService.data = data;
+  get data() {
+    return this.dataValue;
   }
 
-  static search(val: string): IToysModel[] {
-    return SearchService.data.filter((item) => {
+  set data(value) {
+    this.dataValue = value;
+  }
+
+  public search(val: string): IToysModel[] {
+    return this.data.filter((item) => {
       if (item.name.toLowerCase().includes(val)) {
         return item;
       }

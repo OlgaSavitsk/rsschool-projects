@@ -39,6 +39,7 @@ module.exports = {
         "import/no-named-as-default": 0,
         "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
         "no-console": "off",
+        "class-methods-use-this": "off",
         "consistent-return": 0,
         "import/no-unresolved": 0,
         'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],

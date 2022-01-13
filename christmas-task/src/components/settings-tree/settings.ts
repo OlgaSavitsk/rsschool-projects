@@ -4,25 +4,25 @@ import GarlandContainer from './garland-container';
 import TreesContainer from './trees-container';
 
 export default class SettingsControl extends Control {
-  snowAudioContainer: Control<HTMLElement>;
+  private snowAudioContainer: Control<HTMLElement>;
 
-  audioControl: Control<HTMLElement>;
+  private audioControl: Control<HTMLElement>;
 
-  snowControl: Control<HTMLElement>;
+  private snowControl: Control<HTMLElement>;
 
-  treesContainer: TreesContainer;
+  public treesContainer: TreesContainer;
 
-  bgContainer: BgContainer;
+  public bgContainer: BgContainer;
 
-  garlandContainer: GarlandContainer;
+  public garlandContainer: GarlandContainer;
 
-  onSnowClick: (() => void) | undefined;
+  public onSnowClick: (() => void) | undefined;
 
-  onSoundClick: (() => void) | undefined;
+  public onSoundClick: (() => void) | undefined;
 
-  onReset: (() => void) | undefined;
+  public onReset: (() => void) | undefined;
 
-  buttonReset: Control<HTMLButtonElement>;
+  private buttonReset: Control<HTMLButtonElement>;
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'settings', '');
@@ -33,16 +33,28 @@ export default class SettingsControl extends Control {
     this.treesContainer = new TreesContainer(this.node);
     this.bgContainer = new BgContainer(this.node);
     this.garlandContainer = new GarlandContainer(this.node);
+    this.setSnowEventListener();
+    this.setAudioEventListener();
+    this.setResetEventListener();
+  }
+
+  private setSnowEventListener(): void {
     this.snowControl.node.onclick = () => {
       if (this.onSnowClick) {
         this.onSnowClick();
       }
     };
+  }
+
+  private setAudioEventListener(): void {
     this.audioControl.node.onclick = () => {
       if (this.onSoundClick) {
         this.onSoundClick();
       }
     };
+  }
+
+  private setResetEventListener(): void {
     this.buttonReset.node.onclick = () => {
       if (this.onReset) {
         this.onReset();

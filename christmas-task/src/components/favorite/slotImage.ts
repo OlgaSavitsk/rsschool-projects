@@ -1,15 +1,6 @@
 import Control from '@/common/components/control';
+import { old } from '@/models/default-filter-model';
 import { ILimit } from '@/models/limit';
-
-interface IDefaultPosition {
-  left: string,
-  top: string
-}
-
-const old: IDefaultPosition = {
-  left: '',
-  top: '',
-};
 
 export default class SlotImage extends Control {
   private topIndent = 0;
@@ -42,7 +33,7 @@ export default class SlotImage extends Control {
   }
 
   private getCoords(e: DragEvent): void {
-    const old: IDefaultPosition = {
+    const old = {
       left: this.node.offsetLeft.toString(),
       top: this.node.offsetTop.toString(),
     };

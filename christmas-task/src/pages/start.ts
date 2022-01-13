@@ -11,6 +11,10 @@ export default class StartPage extends Control {
     const ballSecond = new Control(this.node, 'div', 'ball s', '');
     ballSecond.node.insertAdjacentHTML('afterend', '<h1 class="start-page-title">Новогодняя игра<span>«Наряди ёлку»</span></h1>');
     this.startButton = new Control(this.node, 'button', 'switch-start-page', 'Начать');
+    this.setEventListener();
+  }
+
+  private setEventListener(): void {
     this.startButton.node.onclick = () => {
       this.toToyPage();
     };

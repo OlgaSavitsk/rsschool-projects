@@ -10,7 +10,6 @@ export default class Shape extends Control {
 
   constructor(parentNode: HTMLElement, public filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'shape', 'Форма :');
-    this.filterStorage = filterStorage;
     this.renderShape();
   }
 
@@ -23,12 +22,16 @@ export default class Shape extends Control {
       } else {
         shapeButton.node.classList.remove('select');
       }
-      shapeButton.node.onclick = () => {
-        this.onFilter(shape);
-        this.isChecked = !this.isChecked;
-        shapeButton.node.classList.toggle('select');
-      };
+      this.setEventListener(shapeButton, shape);
       return false;
     });
+  }
+
+  private setEventListener(shapeButton: ShapeButton, shape: string): void {
+    shapeButton.node.onclick = () => {
+      this.onFilter(shape);
+      this.isChecked = !this.isChecked;
+      shapeButton.node.classList.toggle('select');
+    };
   }
 }

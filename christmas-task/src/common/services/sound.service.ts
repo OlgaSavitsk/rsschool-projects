@@ -1,14 +1,17 @@
-import baseUrl from '../constants/app-links';
+import { audioLink } from '../constants/app-links';
 
 export default class SoundService {
-  static audio: HTMLAudioElement;
+  public audio: HTMLAudioElement;
 
-  static playAudio(): void {
-    SoundService.audio = new Audio(baseUrl);
-    SoundService.audio.play();
+  constructor() {
+    this.audio = new Audio(audioLink);
   }
 
-  static pauseAudio(): void {
-    SoundService.audio.pause();
+  public playAudio(): void {
+    this.audio.play();
+  }
+
+  public pauseAudio(): void {
+    this.audio.pause();
   }
 }

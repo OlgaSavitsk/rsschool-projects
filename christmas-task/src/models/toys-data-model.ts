@@ -1,4 +1,4 @@
-import { IToysModel } from './toys-model';
+import { IToysData, IToysModel } from './toys-model';
 
 export default class ToysDataModel {
   data!: Array<IToysModel>;
@@ -10,7 +10,7 @@ export default class ToysDataModel {
 
   loadToysData = async (url: string): Promise<IToysModel[]> => {
     const response: Response = await fetch(url);
-    const toysData: IToysModel[] = await response.json();
+    const toysData: IToysData = await response.json();
     const modelData = Object.keys(toysData).map((key: string) => {
       const toy = toysData[key];
       return toy;

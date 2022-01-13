@@ -1,14 +1,16 @@
 import { Control } from '@/common/components/control';
-import StorageFavorite from '@/common/services/storage-favorite.service';
+import { STORAGE_FAVOURITE_NAME } from '@/common/constants/constants';
+import StorageService from '@/common/services/storage.service';
 import { IToysModel } from '@/models/toys-model';
-import Ribbon from './ribbon';
 
 export default class Card extends Control {
   public description: Control<HTMLElement>;
 
-  readonly ribbon: Ribbon;
-
   public favoriteSelect!: () => void;
+
+  private favouriteStorage!: StorageService;
+
+  readonly ribbon: Control<HTMLElement>;
 
   constructor(parentNode: HTMLElement, toy: IToysModel) {
     super(parentNode, 'div', 'card', '');
@@ -16,23 +18,16 @@ export default class Card extends Control {
     this.node.innerHTML = `<h2 class="card-title">${toy.name}</h2>
         <img class="card-img" src="./toys/${toy.num}.png" alt="toy">`;
     this.description = new Control(this.node, 'div', 'card-description', '');
-    this.ribbon = new Ribbon(this.node);
-    StorageFavorite.loadFromLocalStorage();
-    this.node.onclick = () => {
-      if (this.node.classList.contains('active')) {
-        this.node.classList.remove('active');
-      } else {
-        this.node.classList.add('active');
-        this.removeStyle();
-      }
-      this.favoriteSelect();
-    };
+    this.ribbon = new Control(this.node, 'div', 'ribbon', '');
+    this.setEventListener();
     this.render(toy);
     this.setCardStyle();
   }
 
   private setCardStyle(): void {
-    StorageFavorite.getData()
+    this.favouriteStorage = new StorageService();
+    this.favouriteStorage.loadFromLocalStorage(STORAGE_FAVOURITE_NAME);
+    this.favouriteStorage.getData()
       .map((item: string | null) => {
         if (this.node.getAttribute('data-num') === item) {
           this.node.classList.add('active');
@@ -42,9 +37,21 @@ export default class Card extends Control {
   }
 
   private removeStyle(): void {
-    if (StorageFavorite.getData().length === 20) {
+    if (this.favouriteStorage.getData().length === 20) {
       this.node.classList.remove('active');
     }
+  }
+
+  private setEventListener(): void {
+    this.node.onclick = () => {
+      if (this.node.classList.contains('active')) {
+        this.node.classList.remove('active');
+      } else {
+        this.node.classList.add('active');
+        this.removeStyle();
+      }
+      this.favoriteSelect();
+    };
   }
 
   public render(toy: IToysModel): void {

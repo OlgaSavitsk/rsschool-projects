@@ -1,4 +1,5 @@
 import Control from '@/common/components/control';
+import { DELAY, SNOWFLAKE_INNER_WIDTH, SNOWFLAKE_TIME_INTERVAL } from '@/common/constants/constants';
 
 export default class Snowflake extends Control {
   private snowflake!: Control<HTMLElement>;
@@ -10,8 +11,8 @@ export default class Snowflake extends Control {
   public renderSnowflake(): void {
     setInterval(() => {
       this.snowflake = new Control(this.node, 'i', 'fas fa-snowflake', '');
-      this.snowflake.node.style.left = `${Math.random() * 800}px`;
-      this.snowflake.node.style.animationDuration = `${Math.random() * 5 + 5}s`;
+      this.snowflake.node.style.left = `${Math.random() * SNOWFLAKE_INNER_WIDTH}px`;
+      this.snowflake.node.style.animationDuration = `${Math.random() * SNOWFLAKE_TIME_INTERVAL + DELAY}s`;
     }, 100);
     setTimeout(() => {
       this.snowflake.destroy();

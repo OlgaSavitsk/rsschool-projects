@@ -22,12 +22,16 @@ export default class Color extends Control {
       } else {
         colorButton.node.classList.remove('active');
       }
-      colorButton.node.onclick = () => {
-        this.onFilter(color);
-        this.isChecked = !this.isChecked;
-        colorButton.node.classList.toggle('active');
-      };
+      this.setEventListener(colorButton.node, color);
       return false;
     });
+  }
+
+  private setEventListener(colorButton: HTMLElement, color: string): void {
+    colorButton.onclick = () => {
+      this.onFilter(color);
+      this.isChecked = !this.isChecked;
+      colorButton.classList.toggle('active');
+    };
   }
 }

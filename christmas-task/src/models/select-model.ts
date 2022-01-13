@@ -1,11 +1,19 @@
-export interface IDesk {
-  isDeskName: boolean | undefined,
-  isDeskCount: boolean | undefined
+interface IObj {
+  [key: string]: boolean | string;
+}
+
+export interface IDesk extends IObj {
+  nameMax: boolean,
+  nameMin: boolean,
+  countMax: boolean,
+  countMin: boolean,
   select: string
 }
 
 export const desk: IDesk = {
-  isDeskName: false,
-  isDeskCount: false,
+  nameMax: false,
+  nameMin: false,
+  countMax: false,
+  countMin: false,
   select: 'сортировать',
 };

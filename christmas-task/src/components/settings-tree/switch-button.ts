@@ -1,17 +1,17 @@
 import Control from '@/common/components/control';
 
 export default class SwitchButton extends Control {
-  switchInput: Control<HTMLElement>;
+  public switchInput: Control<HTMLElement>;
 
-  switchLabel: Control<HTMLElement>;
+  private switchLabel: Control<HTMLElement>;
 
-  switchInner: Control<HTMLElement>;
+  public switchInner: Control<HTMLElement>;
 
-  switch: Control<HTMLElement>;
+  public switch: Control<HTMLElement>;
 
-  isChecked!: boolean;
+  public isChecked!: boolean;
 
-  onChecked!: (isChecked: boolean) => void;
+  public onChecked!: (isChecked: boolean) => void;
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'switch-container', '');
@@ -22,6 +22,10 @@ export default class SwitchButton extends Control {
     this.switchLabel.node.setAttribute('for', 'onoffswitch');
     this.switch = new Control(this.switchLabel.node, 'span', 'slider', '');
     this.switchInner = new Control(this.switchLabel.node, 'span', 'switch-inner', '');
+    this.setEventListener();
+  }
+
+  private setEventListener(): void {
     this.switchInput.node.onclick = () => {
       if (this.isChecked === true) {
         this.isChecked = false;

@@ -1,4 +1,5 @@
 import Control from '@/common/components/control';
+import { DEFAULT_SCALE } from '@/common/constants/constants';
 import { SIZE_FILTER } from '@/common/constants/filter-constants';
 import { IDefaultFilters } from '@/models/default-filter-model';
 import SizeButton from './size-button';
@@ -12,7 +13,7 @@ export default class Size extends Control {
 
   constructor(parentNode: HTMLElement, public filterStorage: IDefaultFilters) {
     super(parentNode, 'div', 'size', 'Размер :');
-    this.scale = 1.5;
+    this.scale = DEFAULT_SCALE;
     this.renderSizeButton();
   }
 
@@ -26,12 +27,16 @@ export default class Size extends Control {
         sizeButton.node.classList.remove('select');
       }
       sizeButton.node.style.transform = `scale(${this.scale -= 0.3})`;
-      sizeButton.node.onclick = () => {
-        this.onFilter(size);
-        this.isChecked = !this.isChecked;
-        sizeButton.node.classList.toggle('select');
-      };
+      this.setEventListener(sizeButton, size);
       return false;
     });
+  }
+
+  private setEventListener(sizeButton: SizeButton, size: string): void {
+    sizeButton.node.onclick = () => {
+      this.onFilter(size);
+      this.isChecked = !this.isChecked;
+      sizeButton.node.classList.toggle('select');
+    };
   }
 }

@@ -1,4 +1,5 @@
 import Control from '@/common/components/control';
+import { MAX_FAVOURITE_COUNT } from '@/common/constants/constants';
 import { ILimit } from '@/models/limit';
 import { IToysModel } from '@/models/toys-model';
 import FavoriteCard from './favorite-card';
@@ -35,7 +36,7 @@ export default class FavoriteBlock extends Control {
       return false;
     });
     if (this.favoriteCount.length === 0) {
-      this.data.slice(0, 20).map((item) => {
+      this.data.slice(0, MAX_FAVOURITE_COUNT).map((item) => {
         this.favoriteSlot = new FavoriteCard(
           this.favoriteContainer.node,
           item,

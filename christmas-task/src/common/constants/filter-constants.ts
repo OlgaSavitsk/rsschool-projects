@@ -1,3 +1,7 @@
+interface IObj {
+  [key: string]: string[] | string;
+}
+
 export enum Filters {
   shape,
   color,
@@ -5,34 +9,34 @@ export enum Filters {
   favorite,
 }
 
-enum Shapes {
-  ball = 'шар',
-  bell = 'колокольчик',
-  cone = 'шишка',
-  snowflake = 'снежинка',
-  toy = 'фигурка',
-}
+const shapes: { [key: string]: string } = {
+  ball: 'шар',
+  bell: 'колокольчик',
+  cone: 'шишка',
+  snowflake: 'снежинка',
+  toy: 'фигурка',
+};
 
-enum Colors {
-  white = 'белый',
-  yellow = 'желтый',
-  red = 'красный',
-  blue = 'синий',
-  green = 'зелёный',
-}
+const colors: { [key: string]: string } = {
+  white: 'белый',
+  yellow: 'желтый',
+  red: 'красный',
+  blue: 'синий',
+  green: 'зелёный',
+};
 
-enum Sizes {
-  big = 'большой',
-  medium = 'средний',
-  small = 'малый',
-}
+const sizes: { [key: string]: string } = {
+  big: 'большой',
+  medium: 'средний',
+  small: 'малый',
+};
 
-enum Favorite {
-  true = 'да',
-  false = 'нет',
-}
+const favorite: { [key: string]: string } = {
+  true: 'да',
+  false: 'нет',
+};
 
-export const SHAPE_FILTER = { property: Filters[0], value: Shapes };
-export const COLOR_FILTER = { property: Filters[1], value: Colors };
-export const SIZE_FILTER = { property: Filters[2], value: Sizes };
-export const FAVORITE_FILTER = { property: Filters[3], value: Favorite };
+export const SHAPE_FILTER = { property: Filters.shape, value: shapes };
+export const COLOR_FILTER = { property: Filters.color, value: colors };
+export const SIZE_FILTER = { property: Filters.size, value: sizes };
+export const FAVORITE_FILTER = { property: Filters.favorite, value: favorite };

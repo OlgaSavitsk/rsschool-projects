@@ -1,11 +1,12 @@
 import Control from '@/common/components/control';
+import {
+  GARLAND_HEIGTH, GARLAND_WIDTH, LIGHTS_SPACING, LIGHT_SIZE, MAX_LIGHTS_COUNT,
+} from '@/common/constants/constants';
 
 export default class Garland extends Control {
-  private max = 300;
+  private lightSize = LIGHT_SIZE;
 
-  private a = 10;
-
-  public ligth!: Control<HTMLElement>;
+  public light!: Control<HTMLElement>;
 
   constructor(parentNode: HTMLElement, public garlandColor: string) {
     super(parentNode, 'div', 'garland hide', '');
@@ -13,20 +14,27 @@ export default class Garland extends Control {
   }
 
   public renderGarland(): void {
-    for (let i = 0; i < this.max; i += 1) {
-      const angle = 1.6 * i;
-      const x = angle * Math.cos(angle) + 800 / 2;
-      const y = angle * Math.sin(angle) - 300;
-      this.ligth = new Control(this.node, 'span', 'dot sparkle', '');
-      this.ligth.node.style.setProperty('--i', `${i}`);
-      const size = 10;
-      this.ligth.node.style.width = `${size}px`;
-      this.ligth.node.style.height = `${size}px`;
-      this.ligth.node.style.left = `${x}px`;
-      this.ligth.node.style.top = `${y}px`;
-      if (this.garlandColor === 'linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8)') {
-        this.ligth.node.classList.add('multicolor');
-      } else this.ligth.node.style.background = `${this.garlandColor}`;
+    for (let i = 0; i < MAX_LIGHTS_COUNT; i += 1) {
+      const angle = LIGHTS_SPACING * i;
+      const x = angle * Math.cos(angle) + GARLAND_WIDTH;
+      const y = angle * Math.sin(angle) - GARLAND_HEIGTH;
+      this.setLightsStyle(i, x, y);
     }
+  }
+
+  private setLightsStyle(i: number, x: number, y: number): void {
+    this.light = new Control(this.node, 'span', 'dot sparkle', '');
+    this.light.node.style.setProperty('--i', `${i}`);
+    this.light.node.style.width = `${this.lightSize}px`;
+    this.light.node.style.height = `${this.lightSize}px`;
+    this.light.node.style.left = `${x}px`;
+    this.light.node.style.top = `${y}px`;
+    this.setMulticolorGarland();
+  }
+
+  private setMulticolorGarland(): void {
+    if (this.garlandColor === 'linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8)') {
+      this.light.node.classList.add('multicolor');
+    } else this.light.node.style.background = `${this.garlandColor}`;
   }
 }

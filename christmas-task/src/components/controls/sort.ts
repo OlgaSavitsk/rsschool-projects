@@ -13,6 +13,10 @@ export default class SortControl extends Control {
     this.node.innerHTML = '<h2 class="control-title">Сортировка</h2>';
     this.sortSelect = new SortSelect(this.node);
     this.buttonReset = new Control(this.node, 'button', 'reset', 'Сброс фильтров');
+    this.setEventListener();
+  }
+
+  private setEventListener(): void {
     this.buttonReset.node.onclick = () => {
       if (this.onReset) {
         this.onReset();
