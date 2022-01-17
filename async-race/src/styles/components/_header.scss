@@ -1,0 +1,114 @@
+.header {
+    position: relative;
+    background-color: #121C1E;
+    z-index: 10;
+    width: 100%;
+}
+
+.header-container {
+    height: 70px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 60px;
+
+    a {
+        position: relative;
+        display: block;
+        font-family: $font-decor;
+        font-size: 20px;
+        color: #fff;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 20px;
+        transition: .3s;
+    }
+
+    a:hover {
+        color: #278D9F;
+    }
+}
+
+.active-link::after {
+    content: "";
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
+    height: 3px;
+    background-color: #278D9F;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.search {
+    position: relative;
+    width: 380px;
+    height: 40px;
+    padding: 5px 25px;
+    margin: 10px 0;
+    margin-right: 30px;
+    border-radius: 20px;
+    border: 1px solid $primary;
+    color: $white;
+    font-size: 18px;
+    background-color: rgba(31, 112, 127, .3);
+    background-size: 20px;
+    backdrop-filter: $filter;
+}
+
+.close {
+    position: absolute;
+    right: 110px;
+    bottom: 15px;
+    transform: translate(10px, 0px);
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+   // background-image: url(./assets/svg/search.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    cursor: pointer;
+}
+
+.error {
+    position: absolute;
+    bottom: -5px;
+}
+
+.favorite {
+    width: 48px;
+    height: 60px;
+   // background-image: url(./assets/svg/ball-2.svg);
+    background-size: 48px 60px;
+    background-position: left -8px;
+    background-repeat: no-repeat;
+    transition: .3s;
+
+    span {
+        display: inline-block;
+        min-width: 40px;
+        height: 40px;
+        margin-top: 9px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 40px;
+        font-size: 20px;
+        background-color: $primary;
+    }
+}
+
+@media (max-width: 860px) {
+    nav {
+        column-gap: 0;
+    }
+}

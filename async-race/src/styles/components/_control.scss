@@ -1,0 +1,29 @@
+.control {
+    background: #fcf7bd;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2), 0px 1px 18px rgba(0, 0, 0, 0.12),
+      0px 6px 10px rgba(0, 0, 0, 0.14);
+    border-radius: 2px;
+    border: solid 1px;
+    font-size: 12px;
+    color: #000000;
+    padding: 5px 7px;
+    margin: 5px 5px;
+    cursor: pointer;
+  }
+
+  .form-create {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    column-gap: 2rem;
+  }
+
+  .color-input {
+    border: none;
+  }
+
+  .panel-container {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }

@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "allowJs": true,
+    "checkJs": false,
+    "removeComments": true,
+    "downlevelIteration": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+    "@/*": [
+        "src/*"
+    ],
+ }
+  },
+  "exclude": ["node_modules", "/"],
+  "include": ["src/**/**/*", "src/common/moduls/images.d.ts", "src/common/moduls/sounds.d.ts", "nouislider.d.ts"]
+}
