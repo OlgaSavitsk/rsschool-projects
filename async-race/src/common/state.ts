@@ -10,7 +10,9 @@ export const state = {
     winnersPage: 1,
     sortBy: '',
     sortOrder: '',
-    animation: {}
+    animation: {
+        id: 0
+    }
 }
 
 /* export default {

@@ -1,12 +1,12 @@
 import Control from "@/common/components/control";
-import cell from "@/common/constants/constants";
+import { cell } from "@/common/constants/constants";
 import { IWinnerData } from "@/models/winner-model";
 
 export default class Table extends Control {
     thead: Control<HTMLElement>;
-    cell!: Control<HTMLElement>;
   tbody: Control<HTMLElement>;
   row!: Control<HTMLElement>;
+  cell!: Control<HTMLElement>;
   
     constructor(parentNode: HTMLElement, public data: IWinnerData) {
       super(parentNode, 'table', 'table', '');
