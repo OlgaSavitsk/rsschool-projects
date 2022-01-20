@@ -5,6 +5,6 @@ export interface ICar {
 }
 
 export interface ICarData {
-    items: ICar,
+    items: ICar[],
     count: string | null
 }

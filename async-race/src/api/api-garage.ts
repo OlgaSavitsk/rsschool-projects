@@ -1,14 +1,9 @@
 import { ICarData } from "@/models/car-model";
-import { garage } from "../constants/api-constants";
+import { garage } from "../common/constants/api-constants";
 
 export default class ApiServer  {
   //data!: ICarData;
   static data: ICarData;
-
-  /* public async build() {
-    ApiServer.data = await this.loadCarsData('1');
-    return ApiServer.data;
-  } */
 
   static async getCars(page: string, limit = 7): Promise<ICarData> {
     const queryParams: string[] = [

@@ -14,6 +14,10 @@ export default class FormCreate extends Control {
     this.inputColor.node.setAttribute('type', 'color');
     this.inputColor.node.setAttribute('value', '#ffffff');
     this.buttonCreate = new Control(this.node, 'button', 'button create-button', 'CREATE');
+    this.setEventListener()
+  }
+
+  private setEventListener(): void {
     this.buttonCreate.node.onclick = () => {
       if(this.onCreateCar) {
         this.onCreateCar(this.inputCreateName.node.value, this.inputColor.node.value)

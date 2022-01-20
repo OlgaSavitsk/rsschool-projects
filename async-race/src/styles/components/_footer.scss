@@ -1,0 +1,50 @@
+.footer {
+    min-width: 32rem;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    background-color: #121C1E;
+}
+
+.github {
+    margin: 0 10px;
+    margin-top: 6px;
+    display: block;
+    text-decoration: none;
+    width: 12rem;
+    height: 100%;
+    padding-left: 45px;
+    background-image: url('./assets/svg/github.svg');
+    background-size: 35px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    line-height: 45px;
+    color: $primary;
+    transition: .3s;
+}
+
+.school {
+    margin: 12px 10px;
+    display: block;
+    position: relative;
+    font-family: "Open Sans",sans-serif;
+    width: 20px;
+    height: 32px;
+    background-image: url('./assets/svg/rs_school.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-right: 135px;
+}
+
+.school-year {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 21px;
+    letter-spacing: -2px;
+    color: $primary;
+    line-height: .9;
+    transition: .3s;
+}

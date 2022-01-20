@@ -1,11 +1,10 @@
 import { ICar } from "./car-model";
 
 export interface IWinner {
-    index: string,
-    color: string,
-    name: string,
-    wins: string,
-    time: string
+    time: any;
+    name: string;
+    color: string;
+    id: string;
 }
 
 export interface IWinnerModel {

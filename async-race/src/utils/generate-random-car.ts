@@ -1,5 +1,5 @@
 import { ICar } from "@/models/car-model";
-import { LETTERS, MODELS_CAR, NAMES_CAR } from "../constants/constants";
+import { LETTERS, MODELS_CAR, NAMES_CAR } from "../common/constants/constants";
 
 export default class GenerateRandonCar {
     constructor() {}

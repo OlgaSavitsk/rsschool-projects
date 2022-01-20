@@ -28,11 +28,10 @@ export default class Table extends Control {
         this.row = new Control(this.tbody.node, 'tr', '', '')
         this.row.node.innerHTML = `
           <td>${winner.id}</td>
-          <td>color</td>
+          <td><div class="car-table" "background-color: ${winner.car.color}"></div></td>
           <td>${winner.car.name}</td>
           <td>${winner.wins}</td>
-          <td>${winner.time}</td>
-        `
+          <td>${winner.time}</td>`
    });
     }
   }

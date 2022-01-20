@@ -4,9 +4,9 @@ import FormUpdate from '../form-update/form-update';
 import PanelButtons from '../panel-buttons/panel-buttons';
 
 export default class GarageControls extends Control {
-  formCreate: FormCreate;
-    formUpdate: FormUpdate;
-  panelButtons: PanelButtons;
+  public formCreate: FormCreate;
+  public formUpdate: FormUpdate;
+  public panelButtons: PanelButtons;
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'controls-container', '');

@@ -11,11 +11,15 @@ export default class PaginationButtons extends Control {
       super(parentNode, 'div', 'pagination-container', '');
       this.prevButton = new Control(this.node, 'button', 'button menu-button', 'PREV');
       this.nextButton = new Control(this.node, 'button', 'button menu-button', 'NEXT');
-      this.nextButton.node.onclick = () => {
+      this.setEventListener()
+    }
+
+    private setEventListener(): void {
+        this.nextButton.node.onclick = () => {
           this.onNextPage()
       }
-      this.prevButton.node.onclick = () => {
-        this.onPrevPage()
-    }
+        this.prevButton.node.onclick = () => {
+          this.onPrevPage()
+      }
     }
   }
