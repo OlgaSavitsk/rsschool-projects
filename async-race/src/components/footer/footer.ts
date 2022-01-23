@@ -3,7 +3,7 @@ import Control from '@/common/components/control';
 export default class Footer extends Control {
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'footer', '');
-  this.renderInnerHTML()
+    this.renderInnerHTML();
   }
 
   renderInnerHTML() {

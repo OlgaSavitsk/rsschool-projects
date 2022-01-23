@@ -5,8 +5,8 @@ const engine = `${baseUrl}/engine`;
 const winners = `${baseUrl}/winners`;
 
 export {
-    baseUrl,
-    garage,
-    engine,
-    winners
-}
+  baseUrl,
+  garage,
+  engine,
+  winners,
+};

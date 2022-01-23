@@ -23,7 +23,8 @@ window.onpopstate = () => {
   currentRouteId = Number(window.location.hash.split('/')[1]);
   const currentRoutName = window.location.hash.slice(1);
   const routes = getAllRouts();
-  const currentRoute = Object.values(routes).find((value: { name: string; }) => value.name === currentRoutName);
+  const currentRoute = Object.values(routes)
+    .find((value: { name: string; }) => value.name === currentRoutName);
   if (!currentRoute) throw Error('CurrentRoute root element not found');
   while (document.body.firstElementChild) {
     document.body.removeChild(document.body.firstElementChild);
@@ -36,4 +37,4 @@ console.log(`
 182/190
 ( -8 ) Состояние просмотра должно сохраняться,
 когда пользователь переключается с одного представления на другое. 
-Не меняется только номер страницы.`)
+Не меняется только номер страницы.`);

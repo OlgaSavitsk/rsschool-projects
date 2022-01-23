@@ -1,16 +1,15 @@
 export interface ICar {
-    name: string,
-    color: string,
-    id: string
+  name: string,
+  color: string,
+  id: string
 }
 
 export interface ICarData {
-    items: ICar[],
-    count: string | null
+  items: ICar[],
+  count: string | null
 }
 
 export interface ICarCenterPosition {
-    x: number,
-    y: number
-  }
-  
+  x: number,
+  y: number
+}

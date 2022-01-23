@@ -1,14 +1,14 @@
 export interface IEngineModel {
-    velocity: number,
-    distance: number
+  velocity: number,
+  distance: number
 }
 
 export interface IDriveModeModel {
-    success: boolean
+  success: boolean
 }
 
 export interface IDrivingParam {
-    success: boolean,
-    id: string,
-    time: number
-  }
+  success: boolean,
+  id: string,
+  time: number
+}

@@ -1,26 +1,26 @@
-import { ICar } from "./car-model";
+import { ICar } from './car-model';
 
 export interface IWinner {
-    id: string | undefined,
-    wins: number,
-    time: number,
+  id: string | undefined,
+  wins: number,
+  time: number,
 }
 
 export interface IWinnerModel {
-    car: ICar
-    id: string,
-    wins: number,
-    time: number,
+  car: ICar
+  id: string,
+  wins: number,
+  time: number,
 }
 
 export interface IWinnerData {
-    items: IWinnerModel[],
-    count: string | null
+  items: IWinnerModel[],
+  count: string | null
 }
 
 export interface IWinnerParam {
-    color?: string,
-    name?: string,
-    id?: string,
-    time: number
+  color?: string,
+  name?: string,
+  id?: string,
+  time: number
 }
