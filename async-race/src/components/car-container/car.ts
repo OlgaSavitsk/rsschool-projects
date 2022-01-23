@@ -1,5 +1,5 @@
 import Control from "@/common/components/control";
-import AnimateControl from "@/utils/animate";
+import AnimateControl from "@/utils/animation";
 import { ICar } from "@/models/car-model";
 
 export default class Car extends Control {

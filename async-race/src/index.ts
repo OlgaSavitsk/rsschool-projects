@@ -31,3 +31,9 @@ window.onpopstate = () => {
   currentRoute.component();
   const footer = new Footer(document.body);
 };
+
+console.log(`
+182/190
+( -8 ) Состояние просмотра должно сохраняться,
+когда пользователь переключается с одного представления на другое. 
+Не меняется только номер страницы.`)

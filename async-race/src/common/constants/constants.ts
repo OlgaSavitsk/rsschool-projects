@@ -1,9 +1,9 @@
 const cell: { [key: string]: string } = {
-    number: 'Number',
-    car: 'Car',
-    name: 'Name',
-    wins: 'Wins',
-    time: 'Best time (second)',
+    number: 'number',
+    car: 'car',
+    name: 'name',
+    wins: 'wins',
+    time: 'time',
   };
 
   const MODELS_CAR = ['Tesla', 'Mercedes', 'Mazda', 'Land Rover', 'Audi', 'Bentley', 'Dacia', 'Honda'];

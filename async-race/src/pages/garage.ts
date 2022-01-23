@@ -1,68 +1,85 @@
-import ApiServer from "@/api/api-garage";
-import ApiWinnersServer from "@/api/api-winners";
 import Control from "@/common/components/control";
 import GenerateRandonCar from "@/utils/generate-random-car";
 import { state } from "@/common/state";
-import Footer from "@/components/footer/footer";
 import MainGarageContainer from "@/components/main-garage-container/main-garage-container";
 import RouterButtons from "@/components/router-buttons/router-buttons";
+import ApiGarage from "@/api/api-garage";
+import ApiWinner from "@/api/api-winners";
 
 export default class GaragePage extends Control {
   public mainGarageContainer!: MainGarageContainer;
-  private api: ApiServer;
-  private apiWinner: ApiWinnersServer;
-  generateRandomService: GenerateRandonCar;
+  public apiWinner: ApiWinner;
+  private generateRandomService: GenerateRandonCar;
 
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', 'page-container main-page', '');
-    this.api = new ApiServer() 
-    this.apiWinner = new ApiWinnersServer() 
+    this.apiWinner = new ApiWinner() 
     this.generateRandomService = new GenerateRandonCar()
     const header = new RouterButtons(this.node) 
     this.carsRender();
   }
 
   private async carsRender(): Promise<void> {
-    const data = await ApiServer.getCars(state.carsPage);
-    const mainGarageContainer = new MainGarageContainer(this.node, data)
-    mainGarageContainer.controls.formCreate.onCreateCar = async (name, color) => {
-      this.api.createCar({name, color})
-      mainGarageContainer.destroy()
-      this.carsRender()
+    const data = await ApiGarage.getCars(state.carsPage);
+    this.mainGarageContainer = new MainGarageContainer(this.node, data, this.apiWinner)
+    this.createCar()
+    this.removeCar()
+    this.updateCar()
+    this.paginationHandler()
+    this.generateRandomCar()
+  }
+
+  private createCar(): void {
+    this.mainGarageContainer.controls.formCreate.onCreateCar = async (name, color) => {
+      ApiGarage.instence.createCar({name, color})
+      this.rerenderCar()
     }
-    mainGarageContainer.garageContainer.onRemoveCar = async (id) => {
-      this.api.deleteCar(id)
-      this.apiWinner.deleteCar(id)
-      mainGarageContainer.destroy()
-      this.carsRender()
+  }
+
+  private removeCar(): void {
+    this.mainGarageContainer.garageContainer.onRemoveCar = async (id) => {
+      ApiGarage.instence.deleteCar(id)
+      this.rerenderCar()
     }
-    mainGarageContainer.garageContainer.onSelectCar = async (car) => {
-      mainGarageContainer.controls.formUpdate.inputUpdateName.node.value = car.name
-      mainGarageContainer.controls.formUpdate.inputColor.node.value = car.color
-      mainGarageContainer.controls.formUpdate.onUpdateCar = async (name, color) => {
-        this.api.updateCar(car.id, {name, color})
-        mainGarageContainer.destroy()
-        this.carsRender()
+  }
+
+  private updateCar(): void {
+    this.mainGarageContainer.garageContainer.onSelectCar = (car) => {
+      this.mainGarageContainer.controls.formUpdate.inputUpdateName.node.value = car.name
+      this.mainGarageContainer.controls.formUpdate.inputColor.node.value = car.color
+      this.mainGarageContainer.controls.formUpdate.onUpdateCar = async (name, color) => {
+        ApiGarage.instence.updateCar(car.id, {name, color})
+        this.rerenderCar()
       }
     }
-    mainGarageContainer.paginationButtons.onNextPage = () => {
-      console.log('next')
-      state.carsPage = (+state.carsPage + 1).toString()
-      mainGarageContainer.destroy()
-        this.carsRender()
+  }
+
+  private paginationHandler(): void {
+    this.mainGarageContainer.paginationButtons.onNextPage = async () => {
+      state.carsPage = state.carsPage + 1
+      this.rerenderCar()
     }
-    mainGarageContainer.paginationButtons.onPrevPage = () => {
-      console.log('next')
-      state.carsPage = (+state.carsPage - 1).toString()
-      mainGarageContainer.destroy()
-        this.carsRender()
+    this.mainGarageContainer.paginationButtons.onPrevPage = () => {
+      if(state.carsPage === 1) {
+        this.mainGarageContainer.paginationButtons.prevButton.node.disabled = true
+      } else {
+        state.carsPage = state.carsPage - 1
+        this.rerenderCar()
+      }
     }
-    mainGarageContainer.controls.panelButtons.onGenerateRandomCars = async () => {
+  }
+
+  private generateRandomCar(): void {
+    this.mainGarageContainer.controls.panelButtons.onGenerateRandomCars = async () => {
       const cars = this.generateRandomService.generateRandomCar()
-      await Promise.all(cars.map(async (car) => await this.api.createCar(car)))
-      mainGarageContainer.destroy()
-      this.carsRender()
+      await Promise.all(cars.map(async (car) => await ApiGarage.instence.createCar(car)))
+      this.rerenderCar()
     }
+  }
+
+  private rerenderCar(): void {
+    this.mainGarageContainer.destroy()
+    this.carsRender()
   }
 }

@@ -1,11 +1,11 @@
-import { ICarData } from "@/models/car-model";
+import { ICar, ICarData } from "@/models/car-model";
 import { garage } from "../common/constants/api-constants";
 
-export default class ApiServer  {
-  //data!: ICarData;
-  static data: ICarData;
+export default class ApiGarage  {
 
-  static async getCars(page: string, limit = 7): Promise<ICarData> {
+  static instence: ApiGarage = new ApiGarage()
+
+  static async getCars(page: number, limit = 7): Promise<ICarData> {
     const queryParams: string[] = [
         `_page=${page}`,
         `_limit=${limit}`,
@@ -17,11 +17,11 @@ export default class ApiServer  {
     }
   }
 
-  async getCar(id: string) {
-    await (await fetch(`${garage}/${id}`)).json()
+  static async getCar(id: string): Promise<ICar> {
+    return (await fetch(`${garage}/${id}`)).json()
   }
 
-  async createCar(body: any) {
+  public async createCar(body: any): Promise<void> {
     (await fetch(garage, {
       method: 'POST',
       body: JSON.stringify(body),
@@ -31,14 +31,14 @@ export default class ApiServer  {
     })).json()
   }
 
-  async deleteCar(id: string) {
+  public async deleteCar(id: string): Promise<void> {
     (await fetch(`${garage}/${id}`, {
       method: 'DELETE'
     })).json()
   }
 
-  async updateCar(id: string, body: any) {
-    (await fetch(`${garage}/${id}`, {
+  public async updateCar(id: string, body: any) {
+    return (await fetch(`${garage}/${id}`, {
       method: 'PUT',
       body: JSON.stringify(body),
       headers: {
@@ -46,5 +46,4 @@ export default class ApiServer  {
       } 
     })).json()
   }
-
 }

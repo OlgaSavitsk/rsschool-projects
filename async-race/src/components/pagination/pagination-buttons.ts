@@ -1,9 +1,8 @@
 import Control from "@/common/components/control";
-import { state } from "@/common/state";
 
 export default class PaginationButtons extends Control {
-    public prevButton: Control<HTMLElement>;
-    public nextButton: Control<HTMLElement>;
+    public prevButton: Control<HTMLButtonElement>;
+    public nextButton: Control<HTMLButtonElement>;
     public onNextPage!: () => void
     public onPrevPage!: () => void
   

@@ -1,65 +1,61 @@
 import { ICar } from "@/models/car-model";
-import { IWinnerData } from "@/models/winner-model";
+import { IWinner, IWinnerData, IWinnerModel } from "@/models/winner-model";
+import { json } from "stream/consumers";
 import { garage, winners } from "../common/constants/api-constants";
+import ApiGarage from "./api-garage";
 
 export interface IWinnerOptions {
-  page: string,
+  page: number,
   limit?: number,
   sort?: string,
   order?: string
 }
 
-export default class ApiWinnersServer  {
-  public data!: IWinnerData;
+export default class ApiWinner  {
 
-  getSortOrder(sort: any, order: any): string {
-    if (sort & order) return `&_sort=${sort}&_order=${order}` 
+  public getSortOrder({sort, order}: {sort?: string, order?: string}): string {
+    if (sort && order) return `&_sort=${sort}&_order=${order}` 
     return ''
   }
 
-  async getWinners({page, limit = 10, sort, order}: IWinnerOptions): Promise<any> {
-      const response = await fetch(`${winners}?_page=${page}&_limit=${limit}${this.getSortOrder(sort, order)}`)
+  public async getWinners({page, limit = 10, sort, order}: IWinnerOptions): Promise<IWinnerData> {
+      const response = await fetch(`${winners}?_page=${page}&_limit=${limit}${this.getSortOrder({sort, order})}`)
       const items = await response.json()
       return {
-        items: await Promise.all(items.map(async (winner: any) => ({...winner, car: await this.getCar(winner.id)}))),
+        items: await Promise.all(items.map(async (winner: any) => ({...winner, car: await ApiGarage.getCar(winner.id)}))),
         count: response.headers.get('X-Total-Count')
       }
   }
 
- /*  public async getWinners(): Promise<IWinnerData> {
-    this.data = await this.loadWinnersData({page: state.winnersPage, limit: 10, sort: state.sortBy, order: state.sortOrder});
-    return this.data;
-  } */
-
-  async getCar(id: string): Promise<ICar> {
-    return (await fetch(`${garage}/${id}`)).json()
-  }
-
-  async getWinner(id: string) {
+  public async getWinner(id: string | undefined): Promise<IWinner> {
     return (await fetch(`${winners}/${id}`)).json()
   }
 
-  async getWinnerStatus(id: string) {
+  public async getWinnerStatus(id: string | undefined): Promise<number> {
     return (await fetch(`${winners}/${id}`)).status
   }
 
-  async deleteCar(id: string) {
+  public async deleteCar(id: string): Promise<void> {
     (await fetch(`${winners}/${id}`, {
       method: 'DELETE'
     })).json()
   }
 
-  async createWinner(body: any) {
-    (await fetch(winners, {
+  public async createWinner(body: IWinner): Promise<IWinner> {
+    const response = await fetch(winners, {
       method: 'POST',
       body: JSON.stringify(body),
       headers: {
         'Content-Type': 'application/json'
       } 
-    })).json()
+    })
+    if(response.status === 500) {
+      throw new Error('Error: Insert failed, duplicate id')
+    } 
+    return response.json()
   }
 
-  async updateWinner(id: string, body: any) {
+  async updateWinner(id: string | undefined, body: IWinner): Promise<void> {
     (await fetch(`${winners}/${id}`, {
       method: 'PUT',
       body: JSON.stringify(body),
@@ -69,7 +65,7 @@ export default class ApiWinnersServer  {
     })).json()
   }
 
-  async saveWinner({id, time} : { id: string, time: number}): Promise<any> {
+  async saveWinner({id, time} : { id: string | undefined, time: number}): Promise<void> {
       const winnerStatus = await this.getWinnerStatus(id)
       if(winnerStatus === 404) {
         await this.createWinner({ id, wins: 1, time})

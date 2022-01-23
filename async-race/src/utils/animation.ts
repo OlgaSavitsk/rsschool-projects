@@ -1,17 +1,18 @@
+import { ICarCenterPosition } from "@/models/car-model";
+import { IDriveModeModel, IDrivingParam, IEngineModel } from "@/models/engine-model";
 import ApiEngine from "../api/api-engine";
 import Control from "../common/components/control";
-import { state } from "../common/state";
 
 export default class AnimateControl extends Control {
 
-  map: Map<any, any>;
+  map: Map<string, number>;
 
     constructor(parentNode: HTMLElement | null, tagName = 'div', className = '', content = '') {
       super(parentNode, tagName, className, content)
       this.map = new Map()
     }
 
-    getCenterPosition(element: HTMLElement) {
+    private getCenterPosition(element: HTMLElement): ICarCenterPosition {
         const {top, left, width, height} = element.getBoundingClientRect();
         return {
           x: left + width / 2,
@@ -19,7 +20,7 @@ export default class AnimateControl extends Control {
         };
       }
     
-      getDistanceBetweenElements(): number {
+      private getDistanceBetweenElements(): number {
         const aPosition = this.getCenterPosition(this.node);
           const bPosition = this.getCenterPosition(this.node.nextElementSibling as HTMLElement);
           return Math.sqrt(
@@ -28,7 +29,7 @@ export default class AnimateControl extends Control {
           );
       }
     
-      animation(distance: any, animationTime: number, i: any) {
+      private animation(distance: number, animationTime: number, i: string): Map<string, number> {
         let start: number | null = 0;
         const step = (timestamp: number) => {
           if (!start) start = timestamp;
@@ -43,23 +44,38 @@ export default class AnimateControl extends Control {
         return this.map
       }
 
-      async startDriving(id: string): Promise<any> {
-        const { velocity, distance } = await ApiEngine.startEngine(id)
+      public async startDriving(id: string): Promise<IDrivingParam> {
+        const { velocity, distance }  = await this.startEngine(id) as IEngineModel
         const time = Math.round(distance / velocity)
-        console.log('time', time)
         const htmlDistance = Math.floor(this.getDistanceBetweenElements()) 
         this.animation(htmlDistance, time, id)
-        const { success } = await ApiEngine.drive(id)
-        if (!success) {
-          window.cancelAnimationFrame(Object.fromEntries(this.map)[id])
-        } 
-        console.log('time2', time)
+        const { success } = await this.driveMode(id) as IDriveModeModel 
         return { success, id, time }
       } 
 
-      async stopDriving(id: string) {
+      private async startEngine(id: string): Promise<{velocity: number, distance: number} | void> {
+        try{
+          return await ApiEngine.startEngine(id)
+        } catch(err: unknown) {
+          console.error(err)
+        }
+      }
+
+      private async driveMode(id: string): Promise<IDriveModeModel | void> {
+        try{
+          return await ApiEngine.drive(id)
+        } catch(err) {
+          console.error(err)
+          if(err) {
+             window.cancelAnimationFrame(Object.fromEntries(this.map)[id])
+            return {success: false}
+          }
+        }
+      }
+
+      public async stopDriving(id: string): Promise<void> {
         await ApiEngine.stopEngine(id)
         this.node.style.transform = `translateX(0)`
-        if (state.animation) window.cancelAnimationFrame(Object.fromEntries(this.map)[id])
+        window.cancelAnimationFrame(Object.fromEntries(this.map)[id])
       }
 }

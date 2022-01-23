@@ -2,7 +2,6 @@ import { ICar } from "@/models/car-model";
 import { LETTERS, MODELS_CAR, NAMES_CAR } from "../common/constants/constants";
 
 export default class GenerateRandonCar {
-    constructor() {}
 
     private generateCarName(): string {
         const model = MODELS_CAR[Math.floor(Math.random() * MODELS_CAR.length)];

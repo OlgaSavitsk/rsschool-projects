@@ -8,3 +8,9 @@ export interface ICarData {
     items: ICar[],
     count: string | null
 }
+
+export interface ICarCenterPosition {
+    x: number,
+    y: number
+  }
+  
