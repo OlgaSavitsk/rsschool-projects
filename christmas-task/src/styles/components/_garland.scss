@@ -1,12 +1,12 @@
 
 .garland { 
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: flex-end;
     height: 100%;
     height: calc(100vh - 250px);
     width: 800px;
-    position: absolute;
     top: 130px;
     left: 50%;
     margin-left: -400px;

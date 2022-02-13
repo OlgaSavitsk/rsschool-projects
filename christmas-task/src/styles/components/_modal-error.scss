@@ -10,26 +10,26 @@
     left: 0;
     width: 100vw;
     height: 100vh;
+    min-height: calc(100vh - 140px);
     z-index: 10;
     background: rgba(22, 41, 41, 0.5);
     backdrop-filter: blur(3px);
-    min-height: calc(100vh - 140px);
 }
 
 .modal-congratulation {
-    padding: 50px 50px;
     position: fixed;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #121C1E;
-    border: solid 1px $primary;
-    border-radius: 10px;
     width: 700px;
     height: 300px;
     left: 50%;
     top: 50%;
+    padding: 50px 50px;
+    background: #121C1E;
+    border: solid 1px $primary;
+    border-radius: 10px;
     transform: translate(-350px, -150px);
     z-index: 100;
 

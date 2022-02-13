@@ -16,12 +16,12 @@
 }
 
 .control-title {
-    font-family: $font-decor;
     display: block;
-    font-weight: 400;
     height: 60px;
-    line-height: 60px;
     text-transform: uppercase;
+    font-family: $font-decor;
+    font-weight: 400;
+    line-height: 60px;
 }
 
 .shape {
@@ -29,15 +29,15 @@
     align-items: center;
 
     button {
-        background-image: url(./assets/svg/ball.svg);
-        margin-left: 20px;
         position: relative;
         width: 40px;
         height: 40px;
         margin: 10px 7px;
+        margin-left: 20px;
         border: 0;
         outline: 0;
         background-color: transparent;
+        background-image: url(./assets/svg/ball.svg);
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center center;
@@ -51,7 +51,6 @@
     align-items: center;
 
     button {
-        background-color: #FDD700;
         position: relative;
         width: 30px;
         height: 30px;
@@ -59,6 +58,7 @@
         border: 1px solid #278D9F;
         border-radius: 5px;
         outline: 0;
+        background-color: #FDD700;
         background-color: transparent;
         cursor: pointer;
         transition: .3s;
@@ -120,14 +120,14 @@
     display: flex;
     width: 30px;
     height: 30px;
-    background-position: center;
-    background-repeat: no-repeat;
-    backdrop-filter: blur(6px);
-    border: 1px solid #278D9F;
-    border-radius: 5px;
     padding: 0;
     margin: 0;
     margin-left: 20px;
+    border: 1px solid #278D9F;
+    background-position: center;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(6px);
+    border-radius: 5px;
     cursor: pointer;
     transition: .5s;
 }

@@ -44,12 +44,12 @@
 }
 
 .tree-container::before {
-    content: "Выберите ёлку";
+    content: $tree;
     width: 100%;
-    font-size: 20px;
-    font-weight: 400;
     padding: 10px;
     padding-left: 0;
+    font-size: 20px;
+    font-weight: 400;
     text-transform: uppercase;
 }
 
@@ -79,7 +79,7 @@
 }
 
 .bg-container::before {
-    content: "Выберите фон";
+    content: $bg;
     width: 100%;
     font-size: 20px;
     font-weight: 400;
@@ -98,7 +98,7 @@
 
 
 .garland-container:before {
-    content: "Гирлянда";
+    content: $garland;
     width: 100%;
     font-size: 20px;
     font-weight: 400;
@@ -162,8 +162,8 @@
   }
   
   .slider:before {
-    position: absolute;
     content: "";
+    position: absolute;
     height: 26px;
     width: 26px;
     left: 4px;
@@ -197,7 +197,7 @@
     transition: margin 0.3s ease-in 0s;
 
     &:before {
-      content: "ВЫКЛ";
+      content: $off;
       position: absolute;
       bottom: 0;
       left: 8px;
@@ -206,7 +206,7 @@
     } 
 
     &:after {
-      content: "ВКЛ";
+      content: $on;
       position: absolute;
       right: 15px;
       color: #fff;

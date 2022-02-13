@@ -12,7 +12,7 @@
     background-attachment: fixed;
 }
 
-.f {
+.first {
     width: 500px;
     height: 500px;
     left: calc(50% - 550px);
@@ -32,7 +32,7 @@
     background-color: #aaa;
 }
 
-.f:before {
+.first:before {
     top: -210px;
     left: calc(50% - 47px);
     width: 4px;
@@ -40,7 +40,7 @@
     width: 5px;
 }
 
-.s {
+.second {
     width: 300px;
     height: 300px;
     left: calc(50% + 150px);
@@ -48,10 +48,9 @@
     background-image: url(./assets/ball/2.png);
 }
 
-.s:before {
+.second:before {
     top: -205px;
     left: calc(50% - 32px);
-    width: 4px;
     height: 210px;
     width: 5px;
 }
@@ -68,18 +67,19 @@
     margin-top: 100px;
     color: #fff;
     font-weight: 400;
+    font-size: 48px;
     text-align: center;
     border: 3px solid #278D9F;
     border-radius: 25px;
     background-color: rgba(31, 112, 127, .3);
     backdrop-filter: blur(6px);
-    font-size: 48px;
 }
 
 .switch-start-page {
     position: relative;
     width: 320px;
     height: 60px;
+    margin-bottom: 130px;
     border: 3px solid #278D9F;
     border-radius: 30px;
     background-color: rgba(31, 112, 127, .3);
@@ -90,7 +90,6 @@
     cursor: pointer;
     transition: .3s;
     overflow: hidden;
-    margin-bottom: 130px;
     outline: 1px solid;
     outline-color: rgba(255, 255, 255, 0.5);
     outline-offset: 0px;
