@@ -224,7 +224,7 @@
   } 
 
   input:checked + .switch-inner {
-    opacity: 0 !important;
+    opacity: 0;
     background: black;
   }
   

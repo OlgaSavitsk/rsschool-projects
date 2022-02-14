@@ -3,7 +3,7 @@ import {
 } from '@/common/constants/filter-constants';
 import { IToysModel } from '@/models/toys-model';
 import { defaultFilters, filterArr, IDefaultFilters } from '@/models/default-filter-model';
-import { desk, IDesk } from '@/models/select-model';
+import { IDesk } from '@/models/select-model';
 import SortServiceImplementaition from '@/common/services/sort.service';
 import Control from '@/common/components/control';
 import CardContainer from '../card-container/card-container';
@@ -11,7 +11,7 @@ import Controls from '../controls/controls';
 import SortSelect from '../controls/sort-select';
 import FilterService from '@/common/services/filter.service';
 import ModalError from '../modal-error/modal-error';
-import { SORT_FILTER } from '@/common/constants/constants';
+import { desk, SORT_FILTER } from '@/common/constants/constants';
 
 export default class MainToysContainer extends Control {
   public cardContainer!: CardContainer;

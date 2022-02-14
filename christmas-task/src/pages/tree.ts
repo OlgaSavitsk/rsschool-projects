@@ -1,11 +1,11 @@
 import Control from '@/common/components/control';
-import { STORAGE_FAVOURITE_NAME, STORAGE_SETTINGS_NAME } from '@/common/constants/constants';
+import { settingaTree, STORAGE_FAVOURITE_NAME, STORAGE_SETTINGS_NAME } from '@/common/constants/constants';
 import SoundService from '@/common/services/sound.service';
 import StorageService from '@/common/services/storage.service';
 import Header from '@/components/header-container/header';
 import MainTreeContainer from '@/components/main-tree-container/main-tree-container';
 import { garlandBtns } from '@/components/settings-tree/garland-btns';
-import { ISettingsTree, settingaTree } from '@/models/settings-tree.model';
+import { ISettingsTree } from '@/models/settings-tree.model';
 import ToysDataModel from '@/models/toys-data-model';
 
 export default class TreePage extends Control {
@@ -62,13 +62,13 @@ export default class TreePage extends Control {
   }
 
   private setSettingsAfterLoading(): void {
-    if (this.settings?.snow === true) {
+    if (this.settings?.snow) {
       this.isSnow = true;
       this.container.mainBlock.snowflakes.node.classList.remove('hide');
       this.container.mainBlock.snowflakes.renderSnowflake();
     }
     this.container.node.onclick = () => {
-      if (this.settings?.sound === true) {
+      if (this.settings?.sound) {
         this.settings.sound = false;
         this.isSound = true;
         this.audio.playAudio();

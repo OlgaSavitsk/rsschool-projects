@@ -1,3 +1,5 @@
+import { IDesk } from "@/models/select-model";
+
 const RANGE_SLIDER = {
   count: 'count',
   year: 'year',
@@ -32,6 +34,25 @@ const SNOWFLAKE_INNER_WIDTH = 800;
 const DELAY = 5;
 const SNOWFLAKE_TIME_INTERVAL = 5;
 
+type TreeCardBg = string[];
+
+const treeCardBg = <TreeCardBg> ['1', '2', '3', '4', '5', '6'];
+
+const desk: IDesk = {
+  nameMax: false,
+  nameMin: false,
+  countMax: false,
+  countMin: false,
+  select: 'сортировать',
+};
+
+const settingaTree = {
+  sound: false,
+  snow: false,
+  tree: '1',
+  bg: '1',
+};
+
 export {
   STORAGE_FAVOURITE_NAME,
   STORAGE_FILTERS_NAME,
@@ -53,4 +74,7 @@ export {
   SNOWFLAKE_INNER_WIDTH,
   DELAY,
   SNOWFLAKE_TIME_INTERVAL,
+  treeCardBg,
+  desk,
+  settingaTree
 };

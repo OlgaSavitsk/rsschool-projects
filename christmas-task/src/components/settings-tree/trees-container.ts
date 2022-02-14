@@ -1,9 +1,6 @@
 import Control from '@/common/components/control';
+import { treeCardBg } from '@/common/constants/constants';
 import TreeCard from './tree-card';
-
-type TreeCardBg = string[];
-
-const treeCardBg = <TreeCardBg> ['1', '2', '3', '4', '5', '6'];
 
 export default class TreesContainer extends Control {
   public treesCard!: Control<HTMLElement>;

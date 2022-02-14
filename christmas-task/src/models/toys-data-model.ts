@@ -9,13 +9,18 @@ export default class ToysDataModel {
   }
 
   loadToysData = async (url: string): Promise<IToysModel[]> => {
-    const response: Response = await fetch(url);
-    const toysData: IToysData = await response.json();
-    const modelData = Object.keys(toysData).map((key: string) => {
-      const toy = toysData[key];
-      return toy;
-    });
-    return modelData;
+    try {
+      const response: Response = await fetch(url);
+      const toysData: IToysData = await response.json();
+      const modelData = Object.keys(toysData).map((key: string) => {
+        const toy = toysData[key];
+        return toy;
+      });
+      return modelData;
+    } catch(err) {
+      throw(err)
+    }
+    
   };
 
   public getData(): IToysModel[] {

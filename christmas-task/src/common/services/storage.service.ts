@@ -1,5 +1,6 @@
 import { defaultFilters, IDefaultFilters } from '@/models/default-filter-model';
-import { ISettingsTree, settingaTree } from '@/models/settings-tree.model';
+import { ISettingsTree } from '@/models/settings-tree.model';
+import { settingaTree } from '../constants/constants';
 
 interface IObjectKeys {
   [key: string]: string[] | IDefaultFilters | ISettingsTree;

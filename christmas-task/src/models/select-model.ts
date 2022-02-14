@@ -9,11 +9,3 @@ export interface IDesk extends IObj {
   countMin: boolean,
   select: string
 }
-
-export const desk: IDesk = {
-  nameMax: false,
-  nameMin: false,
-  countMax: false,
-  countMin: false,
-  select: 'сортировать',
-};
