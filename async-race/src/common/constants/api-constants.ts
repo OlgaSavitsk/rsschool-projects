@@ -1,4 +1,4 @@
-const baseUrl = 'http://127.0.0.1:3000';
+const baseUrl = 'https://race-async.herokuapp.com';
 
 const garage = `${baseUrl}/garage`;
 const engine = `${baseUrl}/engine`;
