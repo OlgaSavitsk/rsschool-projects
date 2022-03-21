@@ -475,6 +475,11 @@
     width: 100%;
   }
 
+  .tickets-modal {
+    top: calc(50vh - 228px);
+    left: calc(50vw - 210px);
+  }
+
   .card {
     width: 350px;
     padding: 0 15px 15px 10px;

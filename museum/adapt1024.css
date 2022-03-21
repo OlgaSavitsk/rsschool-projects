@@ -424,7 +424,7 @@
 
   .content-container {
     max-width: 700px;
-    width: 100%;
+    width: 70%;
     height: 440px;
   }
 
@@ -511,13 +511,16 @@
 
   .tickets-modal {
     height: 768px;
-    max-width: 1024px;
     width: 100%;
+    /* top: calc(50vh - 384px); */
+    left: calc(50vw - 512px); 
   }
 
   .modal-container {
     max-width: 970px;
     width: 100%;
+    margin: 0 auto;
+    left: calc(50vw - 512px);
   }
 
   .modal-content {

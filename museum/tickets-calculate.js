@@ -47,20 +47,7 @@ function calculate() {
         senior: countSenior.value,
       };
       localStorage.setItem("tickets", JSON.stringify(Tickets));
-      Array.from(ticketsTypeOption).forEach((element) => {
-        if (radio.previousSibling.nodeValue === element.value) {
-          element.setAttribute("selected", "selected");
-          element.previousElementSibling.removeAttribute("selected");
-          totalPriceForBasic.innerHTML = `${calculateForm(
-            countFormBasic,
-            radio.value
-          )} &euro;`;
-          totalPriceForSenior.innerHTML = `${calculateForm(
-            countFormSenior,
-            radio.value / 2
-          )} &euro;`;
-        }
-      });
+      setTotalCostForm(radio)
     }
     setNumberOfTickets();
   }
@@ -71,7 +58,7 @@ function setInfoTickets(totalSum) {
   countFormBasic.value = count.value;
   countFormSenior.value = countSenior.value;
   totalCost.innerText = `Total €${totalSum}`;
-  totalCostForm.innerHTML = `${totalSum}€`;
+  totalCostForm.innerText = `${totalSum}€`;
 }
 
 for (const input of inputs) {
@@ -105,23 +92,44 @@ function calculateForm(number, price) {
   return parseFloat(number.value * price);
 }
 
+function setTotalCostForm(radio) {
+  Array.from(ticketsTypeOption).forEach((element) => {
+    if (radio.previousSibling.nodeValue === element.value) {
+      element.setAttribute("selected", "selected");
+      element.previousElementSibling.removeAttribute("selected");
+      totalPriceForBasic.innerHTML = `${calculateForm(
+        countFormBasic,
+        radio.value
+      )} €`;
+      totalPriceForSenior.innerHTML = `${calculateForm(
+        countFormSenior,
+        radio.value / 2
+      )} €`;
+    }
+  });
+}
+
 function setCostOfFormTickets(e) {
   Array.from(ticketsTypeOption).forEach((element) => {
     if (e.target.value === element.value) {
       element.setAttribute("selected", "selected");
       typeCard.textContent = element.value;
-      priceFormBasic.innerHTML = `Basic 18+ (${element.dataset.cost}&euro;)`;
-      totalPriceForBasic.innerHTML = `${calculateForm(
-        countFormBasic,
-        element.dataset.cost
-      )} &euro;`;
-      priceFormSenior.innerHTML = `Senior 65+ (${
-        element.dataset.cost / 2
-      }&euro;)`;
-      totalPriceForSenior.innerHTML = `${calculateForm(
-        countFormSenior,
-        element.dataset.cost / 2
-      )} &euro;`;
+      priceFormBasic.forEach(priceBasic => {
+        priceBasic.innerHTML = `Basic 18+ (${element.dataset.cost}€)`;
+        totalPriceForBasic.innerHTML = `${calculateForm(
+          countFormBasic,
+          element.dataset.cost
+        )} €`;
+      })
+      priceFormSenior.forEach(priceSenior => {
+        priceSenior.innerHTML = `Senior 65+ (${
+          element.dataset.cost / 2
+        }€)`;
+        totalPriceForSenior.innerHTML = `${calculateForm(
+          countFormSenior,
+          element.dataset.cost / 2
+        )} €`;
+      })
     }
   });
 }
@@ -156,22 +164,22 @@ function setRadioType(storageValue) {
     }
     if (radio.checked) {
       Array.from(ticketsTypeOption).forEach((element) => {
-        if (radio.previousSibling.nodeValue === element.value) {
+        if (element.dataset.cost === storageValue.type) {
           element.setAttribute("selected", "selected");
           priceFormBasic.forEach((priceBasic) => {
-            priceBasic.innerHTML = `Basic 18+ (${element.dataset.cost}&euro;)`;
+            priceBasic.innerHTML = `Basic 18+ (${storageValue.type}€)`;
             totalPriceForBasic.innerHTML = `${calculateForm(
               countFormBasic,
-              element.dataset.cost
+              storageValue.type
             )} €`;
           });
           priceFormSenior.forEach((priceSenior) => {
             priceSenior.innerHTML = `Senior 65+ (${
-              element.dataset.cost / 2
-            }&euro;)`;
+              storageValue.type / 2
+            }€)`;
             totalPriceForSenior.innerHTML = `${calculateForm(
               countFormSenior,
-              element.dataset.cost / 2
+              storageValue.type / 2
             )} €`;
           });
           element.previousElementSibling.removeAttribute("selected");
@@ -231,6 +239,7 @@ ticketsSelect.addEventListener("change", function (e) {
 button.addEventListener("click", function () {
   modal.classList.add("move");
   opacity.classList.add("visible");
+  reloadData()
 });
 
 closeBtn.addEventListener("click", function () {
