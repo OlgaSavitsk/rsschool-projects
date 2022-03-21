@@ -1,569 +1,575 @@
 @media (max-width: 945px) {
-    .video-slider {
-        margin-top: 50px;
-    }
-    }
+  .video-slider {
+    margin-top: 50px;
+  }
+}
 
 @media (max-width: 768px) {
-    .logo {
-        height: 22px;
-    }
+  .logo {
+    height: 22px;
+  }
 
-    .container {
-        max-width: 728px;
-    }
-    .header-wrapper {
-        height: 110px;
-    }
-    .navigation {
-        display: none;
-    }
-      
-      .menu__btn {
-        top: 10%;
-        right: 3%;
-      }
-        .navigation {
-            display: block;
-            visibility: hidden;
-            width: 300px;
-            height: 100%;
-            padding: 80px 0;
-            transition-duration: 0.25s;
-            z-index: 10;
-        }
-        
-        .navbar_toggle {
-            position: relative;
-            display: block;
-            padding: 9px 10px;
-            border-color: #fff;
-            border-radius: 0;
-            position: fixed;
-            top: 50px;
-            right: 40px;
-            background-color: transparent;
-            background-image: none;
-            z-index: 2;
-            transition: all 0.3s ease-in-out;
-            cursor: pointer;
-        }
-    
-        .navigation-list {
-          flex-direction: column;
-        }
-    
-        .navbar-toggle span {
-            background: #333 !important;
-        }
-    
-        #menu_toggle:checked ~ .navigation {
-          visibility: visible;
-        }
+  .container {
+    max-width: 728px;
+    width: 100%;
+  }
+  .header-wrapper {
+    height: 110px;
+  }
+  .navigation {
+    display: none;
+  }
 
-        .section-title {
-            font-size: 40px;
-            margin-top: 50px;
-            text-align: center;
-            line-height: 60px;
-            margin: 0;
-        }
-       .unvisibled {
-           display: none;
-       }
-        p {
-            font-size: 20px;
-            text-align: center;
-            margin-top: 20px;
-        }
-        .project-image {
-            width: 728px;
-            height: 546px;
-        }
-        .welcome {
-            height: 860px;
-        }
+  .menu__btn {
+    top: 10%;
+    right: 3%;
+  }
+  .navigation {
+    display: block;
+    visibility: hidden;
+    width: 300px;
+    height: 100%;
+    padding: 80px 0;
+    transition-duration: 0.25s;
+    z-index: 10;
+  }
 
-        .welcome-wraper {
-            flex-direction: column;           
-        }
+  .navbar_toggle {
+    position: relative;
+    display: block;
+    padding: 9px 10px;
+    border-color: #fff;
+    border-radius: 0;
+    position: fixed;
+    top: 50px;
+    right: 40px;
+    background-color: transparent;
+    background-image: none;
+    z-index: 2;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+  }
 
-        .welcome-content {
-            height: 100%;
-        }
-        .dots-welcome {
-            width: 728px;
-            height: 104px;
-            justify-content: flex-end;
-            bottom: -3px;
-        }
+  .navigation-list {
+    flex-direction: column;
+  }
 
-        .dots-text {
-            margin-right: 45px;
-        }
+  .navbar-toggle span {
+    background: #333 !important;
+  }
 
-        .dots-slide-welcome {
-            margin-right: 24px;
-        }
+  #menu_toggle:checked ~ .navigation {
+    visibility: visible;
+  }
 
-        .right {
-            margin-right: 163px;
-        }
+  .section-title {
+    font-size: 40px;
+    margin-top: 50px;
+    text-align: center;
+    line-height: 60px;
+    margin: 0;
+  }
+  .unvisibled {
+    display: none;
+  }
+  p {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+  }
+  .project-image {
+    width: 728px;
+    height: 546px;
+  }
+  .welcome {
+    height: 860px;
+  }
 
-        .carousel {
-            display: flex;
-            flex-direction: column;
-            margin-top: 215px;
-            width: 728px;
-            min-height: 645px;
-            height: 100%;
-        }
+  .welcome-wraper {
+    flex-direction: column;
+  }
 
-        .slides-container:before {
-            width: 700px;
-            height: 546px;
-        }
+  .welcome-content {
+    height: 100%;
+  }
+  .dots-welcome {
+    max-width: 728px;
+    width: 100%;
+    height: 104px;
+    justify-content: flex-end;
+    bottom: -3px;
+  }
 
-        .item img {
-            width: 280px;
-            height: 180px;
-        }
+  .dots-text {
+    margin-right: 45px;
+  }
 
-        .item-title {
-            letter-spacing: 3px;
-            margin-top: 15px;
-            font-size: 22px;
-        }
+  .dots-slide-welcome {
+    margin-right: 24px;
+  }
 
-        .item-title:after {
-            width: 53%;
-            top: 36px;
-        }
+  .right {
+    margin-right: 163px;
+  }
 
-        .item-text {
-            text-align: left;
-            letter-spacing: -1px;
-            margin-top: 3px;
-        }
+  .carousel {
+    display: flex;
+    flex-direction: column;
+    margin-top: 215px;
+    max-width: 728px;
+    width: 100%;
+    min-height: 645px;
+    height: 100%;
+  }
 
-        .second-text {
-            letter-spacing: -2px;
-        }
+  .slides-container:before {
+    width: 700px;
+    height: 546px;
+  }
 
-        .section {
-            padding: 0 0 60px;
-        }
+  .item-title {
+    letter-spacing: 3px;
+    margin-top: 15px;
+    font-size: 22px;
+  }
 
-        #visiting {
-            padding-bottom: 83px;
-            height: 100%;
-        }
+  .item-title:after {
+    width: 53%;
+    top: 36px;
+  }
 
-        .title-visiting {
-            margin-top: 41px;
-            padding-bottom: 18px;
-            text-align: left;
-        }
+  .item-text {
+    text-align: left;
+    letter-spacing: -1px;
+    margin-top: 3px;
+  }
 
-        .visiting-content {
-            margin-top: 43px;
-        }
+  .second-text {
+    letter-spacing: -2px;
+  }
 
-        .items-container {         
-            padding-top: 39px;
-            row-gap: 43px;
-            max-width: 616px;
-            column-gap: 56px;
-        }
+  .section {
+    padding: 0 0 60px;
+  }
 
-        .spasing {
-            letter-spacing: 3px;
-        }
+  #visiting {
+    padding-bottom: 83px;
+    height: 100%;
+  }
 
-        .explore-content {
-            margin-top: 42px;
-        }
+  .title-visiting {
+    margin-top: 41px;
+    padding-bottom: 18px;
+    text-align: left;
+  }
 
-        .title-explore {
-            text-align: left;
-            padding-bottom: 22px;
-            margin-bottom: -17px;
-        }
+  .visiting-content {
+    margin-top: 43px;
+  }
 
-        .explore-text {
-            font-size: 20px;
-            margin-top: 0;
-        }
-        .hidden {
-            display: none;
-        }
+  .items-container {
+    padding-top: 39px;
+    row-gap: 43px;
+    max-width: 616px;
+    column-gap: 56px;
+    justify-content: center;
+  }
 
-        .explore-slider {
-            display: flex;
-            justify-content: center;
-        }
+  .spasing {
+    letter-spacing: 3px;
+  }
 
-        .explore-image {
-            max-width: 728px;
-            width: 100%;
-            height: 705px;
-        }
+  .explore-content {
+    margin-top: 42px;
+  }
 
-        .explore-section {
-            padding-bottom: 38px;
-        }
+  .title-explore {
+    text-align: left;
+    padding-bottom: 22px;
+    margin-bottom: -17px;
+  }
 
-        .progress {
-           /*  background: linear-gradient(to right, #710707 0%, #710707 31%, #fff 31%, #fff 100%);  */
-            position: absolute;
-            top: -2px;
-            width: 100%;
-            height: 5px;
-            max-width: 728px;
-        }
+  .explore-text {
+    font-size: 20px;
+    margin-top: 0;
+  }
+  .hidden {
+    display: none;
+  }
 
-        .progress-volume {
-            background: linear-gradient(to right, #710707 0%, #710707 40%, #fff 40%, #fff 100%);
-            height: 4px;
-            max-width: 486px;
-            width: 100%;
-        }
+  .explore-slider {
+    display: flex;
+    justify-content: center;
+  }
 
-        .progress::-webkit-slider-thumb {
-            width: 10px;
-            height: 10px;
-          }
+  .explore-image {
+    max-width: 728px;
+    width: 100%;
+    height: 705px;
+  }
 
-          .progress-volume::-webkit-slider-thumb {
-            width: 10px;
-            height: 10px;
-          }
+  .explore-section {
+    padding-bottom: 38px;
+  }
 
-        .progress-bar {
-            bottom: 0;
-            padding: 0;
-        }
+  .progress {
+    /*  background: linear-gradient(to right, #710707 0%, #710707 31%, #fff 31%, #fff 100%);  */
+    position: absolute;
+    top: -2px;
+    width: 100%;
+    height: 5px;
+    max-width: 728px;
+  }
 
-        .progress-bar_container {
-            max-width: 668px;
-            width: 100%;
-            height: 57px;
-        }
+  .progress-volume {
+    background: linear-gradient(
+      to right,
+      #710707 0%,
+      #710707 40%,
+      #fff 40%,
+      #fff 100%
+    );
+    height: 4px;
+    max-width: 486px;
+    width: 100%;
+  }
 
-        .disabled {
-            display: block;
-        }
+  .progress::-webkit-slider-thumb {
+    width: 10px;
+    height: 10px;
+  }
 
-        img {
-            width: 27px;
-        }
-        .video-content {
-            margin-top: 42px;
-            margin-bottom: 17px;
-        }
+  .progress-volume::-webkit-slider-thumb {
+    width: 10px;
+    height: 10px;
+  }
 
-        .main-video {
-            padding: 0px 0 53% 0;
-        }
+  .progress-bar {
+    bottom: 0;
+    padding: 0;
+  }
 
-        .main-iframe {
-            width: 728px;
-        }
+  .progress-bar_container {
+    max-width: 668px;
+    width: 100%;
+    height: 57px;
+  }
 
-        .slider-iframe {
-            width: 354px;
-            height: 199px;
-        }
+  .disabled {
+    display: block;
+  }
 
-        .slider {
-        margin-top: 20px;
-            display: flex;
+  img {
+    width: 27px;
+  }
+  .video-content {
+    margin-top: 42px;
+    margin-bottom: 17px;
+  }
+
+  .main-video {
+    padding: 0px 0 53% 0;
+  }
+
+  .main-iframe {
+    max-width: 728px;
+    width: 100%;
+  }
+
+  .slider-iframe {
+    width: 354px;
+    height: 199px;
+  }
+
+  .slider {
+    margin-top: 20px;
+    display: flex;
     transition: all ease 1s;
     transition-duration: 0ms;
-   /*  transform: translate3d(-1000px, 0px, 0px); */
     position: relative;
-    width: 1102px;
     z-index: 0;
     display: flex;
     transition-property: transform;
     box-sizing: content-box;
     column-gap: 20px;
-        }
-
-        .video-slider {
-        margin-top: 3px;
-            max-width: 728px;
-            width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-            overflow: hidden;
-            padding: 0;
-            z-index: 0;
-        }
-
-        .video-slide {
-            padding: 0 0 20.25% 0;
-        } 
-
-        .video-secrion {
-            padding-bottom: 55px;
-        }
-
-        .dots {
-            margin-top: -5px;
-        }
-
-        .galery {
-            padding-top: 0;
-            margin-top: 0;
-        }
-
-        .galery-title {
-            margin-top: 16px;
-            padding-top: 42px;
-            text-align: left;
-        }
-
-        .inner-container {
-            height: 3100px;
-            column-gap: 14px;
-        }
-
-        .picture {
-            max-width: 352px;
-            width: 100%;
-        }
-
-        .inner-container:after {
-          max-width: 984px;
-          width: 100%;
-          top: 855px;
-        }
-
-        .picture-container {
-            height: 1117px;
-        }
-
-        .inner-container:first-child {
-            margin-top: 15px;
-        }
-
-        .content-container {
-            max-width: 444px;
-            width: 100%;
-            height: 340px;
-        }
-
-        .tickets {
-            padding-bottom: 41px;
-        }
-
-        .tickets-content {
-            margin-top: 42px;
-        }
-
-        .tickets-image {
-            width: 100%;
-            height: 100%;
-        }
-
-        .amount {
-            width: 31%;
-            align-items: flex-start;
-        }
-
-        .count-subtitle {
-            margin: 36px 0 7px 4px;
-        }
-
-        .counter {
-            margin-bottom: -5px;
-        }
-
-        .total {
-            margin-top: 43px;
-            letter-spacing: 3px;
-        }
-
-        .tickets__button {
-            margin-top: 39px;
-        }
-
-        .parallax {
-            height: 300px;
-        }
-
-        .contacts-image {
-            margin-top: 32px;
-            width: calc(95vw);
-            height: calc(62vw);
-          }
-
-          .contacts-content {
-              margin-top: 38px;
-              display: flex;
-            flex-direction: column;
-          }
-
-          h5 {
-              font-size: 20px;
-              width: 65%;
-              line-height: 24px;
-              margin-bottom: 34px;
-          }
-
-          .adress {
-              width: 35%;
-          }
-
-          .adress-link {
-              font-size: 18px;
-              line-height: 36px;
-              margin: 0;
-              text-align: left;
-          }
-
-          .contacts-section {
-              padding-bottom: 66px;
-          }
-          .footer-container {
-            padding: 49px 0 41px;
-            flex-direction: column;
-          }
-
-          .footer-content {
-              gap: 98px;
-          }
-
-          .footer-list {
-              max-width: 393px;
-              width: 100%;
-            row-gap: 18px;
-            height: 171px;
-            column-gap: 184px;
-          }
-
-          .social {
-            margin-right: 90px;
-            display: flex;
-            padding-bottom: 0px;
-            justify-content: flex-end;
-        }
-
-          .footer-link {
-            font-size: 18px;
-          }
-
-          .footer-item {
-              padding: 2px 0;
-          }
-
-          .conf {
-              height: 100px;
-          }
-
-          .conf-container {
-              max-width: 728px;
-              margin-top: 37px;
-          }
-
-          .tickets-modal {
-            overflow-y: scroll;
-            height: 100vh;
-            width: 590px;
-            left: calc(50vw - 295px);
-            top: calc(50vh - 262.5px);
-          }
-
-          .madal-logo {
-              width: 80px;
-          }
-
-          .modal-container {
-              max-width: 590px;
-              flex-direction: column;
-          }
-
-          .modal-content {
-            max-width: 530px;
-            width: 100%;
-            margin: 79px auto 0;
-        }
-
-        .modal-subtitle {
-            margin-top: 17px;
-            text-align: left;
-            margin-bottom: 40px;
-        }
-
-        .date {
-            column-gap: 27px;
-        }
-
-        .date-input {
-            width: 199px;
-        }
-
-        .text {
-            width: 478px;
-        }
-
-        select[name="tickets"] { 
-            width: 529px;
-        }
-
-        .modal-count {
-            max-width: 498px;
-        }
-
-        .count-title-modal {
-            text-align: left;
-        }
-
-        .age {
-            margin-top: 14px;
-        }
-
-        .counter-modal {
-            margin-top: 17px;
-        }
-
-        .number {
-            font-size: 18px;
-        }
-
-        .card {
-            margin-top: 52px;
-            margin-left: 28px;
-        }
-
-        .card-cost {
-            margin-top: 13px;
-            max-width: 500px;
-        }
-
-        .card-content {
-            margin-left: 15px;
-        }
-
-        .inner-container {
-            padding-top: 23px;
-        }
-
-        .modal-card-image {
-            width: 151px;
-        }
-
-        .card-image {
-            margin-right: 16px;
-        }
-
-        .pay-form {
-            max-width: 500px;
-            margin-top: 16px;
-        }
-
-        .modal-button {
-            margin-right: 15px;
-        }
+    transform: translate(0);
   }
+
+  .video-slider {
+    margin-top: 3px;
+    max-width: 728px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    padding: 0;
+    z-index: 0;
+  }
+
+  .video-slide {
+    width: 354px;
+    padding: 0 0 2.25% 0;
+  }
+
+  .video-secrion {
+    padding-bottom: 55px;
+  }
+
+  .dots {
+    margin-top: -5px;
+  }
+
+  .galery {
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  .galery-title {
+    margin-top: 16px;
+    padding-top: 42px;
+    text-align: left;
+  }
+
+  .inner-container {
+    height: 3100px;
+    column-gap: 14px;
+  }
+
+  .picture {
+    max-width: 352px;
+    width: 100%;
+  }
+
+  .inner-container:after {
+    max-width: 728px;
+    width: 100%;
+    top: 855px;
+  }
+
+  .picture-container {
+    height: 1117px;
+  }
+
+  .inner-container:first-child {
+    margin-top: 15px;
+  }
+
+  .content-container {
+    max-width: 444px;
+    width: 100%;
+    height: 340px;
+  }
+
+  .tickets {
+    padding-bottom: 41px;
+  }
+
+  .tickets-content {
+    margin-top: 42px;
+  }
+
+  .tickets-image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .amount {
+    width: 31%;
+    align-items: flex-start;
+  }
+
+  .count-subtitle {
+    margin: 36px 0 7px 4px;
+  }
+
+  .counter {
+    margin-bottom: -5px;
+  }
+
+  .total {
+    margin-top: 43px;
+    letter-spacing: 3px;
+  }
+
+  .tickets__button {
+    margin-top: 39px;
+  }
+
+  .parallax {
+    height: 300px;
+  }
+
+  .contacts-image {
+    margin-top: 32px;
+    width: calc(50vw);
+    height: calc(30vw);
+  }
+
+  .contacts-content {
+    margin-top: 38px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  h5 {
+    font-size: 20px;
+    width: 65%;
+    line-height: 24px;
+    margin-bottom: 34px;
+  }
+
+  .adress {
+    width: 65%;
+  }
+
+  .adress-link {
+    font-size: 18px;
+    line-height: 36px;
+    margin: 0;
+    text-align: left;
+  }
+
+  .contacts-section {
+    padding-bottom: 66px;
+  }
+  .footer-container {
+    padding: 49px 0 41px;
+    flex-direction: column;
+  }
+
+  .footer-content {
+    gap: 98px;
+  }
+
+  .footer-list {
+    max-width: 393px;
+    width: 100%;
+    row-gap: 18px;
+    height: 171px;
+    column-gap: 184px;
+  }
+
+  .social {
+    margin-right: 90px;
+    display: flex;
+    padding-bottom: 0px;
+    justify-content: flex-end;
+  }
+
+  .footer-link {
+    font-size: 18px;
+  }
+
+  .footer-item {
+    padding: 2px 0;
+  }
+
+  .conf {
+    height: 100px;
+  }
+
+  .conf-container {
+    max-width: 728px;
+    margin-top: 37px;
+  }
+
+  .tickets-modal {
+    overflow-y: scroll;
+    height: 100vh;
+    width: 100%;
+  }
+
+  .madal-logo {
+    width: 80px;
+  }
+
+  .modal-container {
+    max-width: 590px;
+    flex-direction: column;
+  }
+
+  .modal-content {
+    max-width: 530px;
+    width: 100%;
+    margin: 79px auto 0;
+  }
+
+  .modal-subtitle {
+    margin-top: 17px;
+    text-align: left;
+    margin-bottom: 40px;
+  }
+
+  .date {
+    column-gap: 27px;
+  }
+
+  .date-input {
+    width: 199px;
+  }
+
+  .text {
+    max-width: 478px;
+    width: 100%;
+  }
+
+  select[name="tickets"] {
+    width: 529px;
+  }
+
+  .modal-count {
+    max-width: 498px;
+    width: 100%;
+  }
+
+  .count-title-modal {
+    text-align: left;
+  }
+
+  .age {
+    margin-top: 14px;
+  }
+
+  .counter-modal {
+    margin-top: 17px;
+  }
+
+  .number {
+    font-size: 18px;
+  }
+
+  .card {
+    margin-top: 52px;
+    margin-left: 28px;
+  }
+
+  .card-cost {
+    margin-top: 13px;
+    max-width: 500px;
+  }
+
+  .card-content {
+    margin-left: 15px;
+  }
+
+  .inner-container {
+    padding-top: 23px;
+  }
+
+  .modal-card-image {
+    width: 151px;
+  }
+
+  .card-image {
+    margin-right: 16px;
+  }
+
+  .pay-form {
+    max-width: 500px;
+    margin-top: 16px;
+  }
+
+  .modal-button {
+    margin-right: 15px;
+  }
+}
