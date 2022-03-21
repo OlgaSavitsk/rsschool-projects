@@ -1,549 +1,591 @@
-@media (max-width: 650px) {
-.footer-list {
+@media (max-width: 730px) {
+  .footer-list {
     column-gap: 20px;
-}
+  }
 
-.footer-content {
+  .footer-content {
     gap: 40px;
-}
+  }
 
-.amout {
+  .amout {
     width: 48%;
-}
-  
-.counter {
+  }
+
+  .counter {
     max-width: 90px;
-}
+  }
+
+  .explore-slider {
+    width: 70%;
+  }
+
+  .tickets-content {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 @media (max-width: 420px) {
-    .container {
-        max-width: 380px;
-    }
-    .header-wrapper {
-        height: 90px;
-    }
-
-    .logo {
-        width: 135px;
-        height: 28px;
-    }
-
-    .logo-title {
-        font-size: 16px;
-    }
-    .logo img {
-        width: 29px;
-        height: 26px;
-    }     
-      .menu__btn {
-        top: 8%;
-        right: 5%;
-      }
-        .navigation {
-            display: block;
-            visibility: hidden;
-            width: 300px;
-            height: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            padding: 80px 0;
-            background-color: #333;
-            opacity: 0.7;
-            transition-duration: 0.25s;
-            z-index: 10;
-        }
-        
-        .navbar_toggle {
-            position: relative;
-            display: block;
-            padding: 9px 10px;
-            border-color: #fff;
-            border-radius: 0;
-            position: fixed;
-            top: 50px;
-            right: 40px;
-            background-color: transparent;
-            background-image: none;
-            z-index: 2;
-            transition: all 0.3s ease-in-out;
-            cursor: pointer;
-        }
-    
-        .navigation-list {
-          flex-direction: column;
-        }
-    
-        .navbar-toggle span {
-            background: #333 !important;
-        }
-    
-        #menu_toggle:checked ~ .navigation {
-          visibility: visible;
-        }
-
-        .section-title {
-            font-size: 28px;
-            margin-top: 50px;
-            text-align: center;
-            line-height: 43px;
-            margin: 0;
-        }
-       .unvisibled {
-           display: none;
-       }
-        p {
-            font-size: 16px;
-            text-align: center;
-            margin-top: 17px;
-        }
-        .project-image {
-            width: 380px;
-            height: 285px;
-        }
-        .welcome {
-            height: 545px;
-        }
-
-        .welcome-wraper {
-            flex-direction: column;           
-        }
-
-        .welcome-content {
-            height: 100%;
-        }
-        .dots-welcome {
-            height: 80px;
-            justify-content: flex-end;
-            z-index: 10;
-            bottom: 23px;
-        }
-        .right {
-            margin-right: 75px;
-            padding-left: 14px;
-        }
-
-        .dots_button-welcome {
-            padding-left: 15px;
-        }
-
-        .dots_button-welcome svg {
-            width: 20px;
-            height: 8px;
-            padding-left: 0;
-        }
-
-        .dots-text {
-            font-size: 14px;
-            margin-right: 22px;
-        }
-
-        .dots-slide-welcome {
-            width: 7px;
-            height: 7px; 
-            margin-right: 10px;
-        }
-
-        .carousel {
-            display: flex;
-            flex-direction: column;
-            margin-top: 179px;
-            width: 380px;
-            min-height: 389px;
-            height: 100%;
-        }
-
-        .slides-container:before {
-            width: 380px;
-            height: 285px;
-        }
-
-        .item img {
-            width: 280px;
-            height: 180px;
-        }
-
-        .item-title {
-            letter-spacing: 5px;
-            margin-top: 12px;
-            font-size: 18px;
-            padding-bottom: 7px;
-        }
-
-        .item-title:after {
-            width: 53%;
-            top: 36px;
-        }
-
-        .item-text {
-            text-align: left;
-            letter-spacing: -1px;
-            margin-top: 3px;
-            font-size: 16px;
-            letter-spacing: 0;
-        }
-
-        .second-text {
-            letter-spacing: 0;
-        }
-
-        .section {
-            padding: 0 0 60px;
-        }
-
-        #visiting {
-            padding-bottom: 42px;
-            height: 100%;
-        }
-
-        .title-visiting {
-            margin-top: 38px;
-            padding-bottom: 18px;
-            letter-spacing: 5px;
-            text-align: left;
-        }
-
-        .visiting-content {
-            margin-top: 38px;
-        }
-
-        .items-container {  
-            justify-content: center;       
-            padding-top: 43px;
-            row-gap: 44px;
-            max-width: 616px;
-            column-gap: 56px;
-        }
-
-        .spasing {
-            letter-spacing: 5px;
-        }
-
-        .explore-content {
-            margin-top: 39px;
-        }
-
-        .title-explore {
-            text-align: left;
-            padding-bottom: 17px;
-            margin-bottom: -17px;
-        }
-
-        .explore-text {
-            font-size: 20px;
-            margin-top: 0;
-        }
-        .hidden {
-            display: none;
-        }
-
-        .explore-slider {
-            display: flex;
-            justify-content: center;
-        }
-
-        .explore-image {
-            max-width: 380px;
-            width: 100%;
-            height: 368px;
-        }
-
-        .explore-section {
-            padding-bottom: 40px;
-        }
-
-        .progress {
-           /*  background: linear-gradient(to right, #710707 0%, #710707 31%, #fff 31%, #fff 100%); */ 
-            position: absolute;
-            top: -2px;
-            width: 100%;
-            height: 5px;
-            max-width: 380px;
-        }
-
-        .progress-volume {
-            background: linear-gradient(to right, #710707 0%, #710707 40%, #fff 40%, #fff 100%);
-            height: 4px;
-            max-width: 200px;
-            width: 100%;
-        }
-
-        .progress::-webkit-slider-thumb {
-            width: 10px;
-            height: 10px;
-          }
-
-          .progress-volume::-webkit-slider-thumb {
-            width: 10px;
-            height: 10px;
-          }
-
-        .progress-bar {
-            height: 54px;
-            bottom: 0;
-        }
-
-        .disabled {
-            display: block;
-        }
-
-        img {
-            width: 18px;
-        }
-        .video-content {
-            margin-top: 35px;
-            margin-bottom: 17px;
-        }
-
-        .main-video {
-            padding: 0px 0 60% 0;
-        }
-
-        .main-iframe {
-            width: 380px;
-            height: 226px;
-        }
-
-        .slider-iframe {
-            width: 180px;
-            height: 101px;
-        }
-
-        .slider {
-            margin-top: 20px;
-                display: flex;
-        transition: all ease 1s;
-        transition-duration: 0ms;
-       /*  transform: translate3d(-1000px, 0px, 0px); */
-        position: relative;
-        width: 585px;
-        column-gap: 16px;
-        z-index: 0;
-        display: flex;
-        transition-property: transform;
-        box-sizing: content-box;
-            }
-    
-            .video-slider {
-                margin-top: 19px;
-                max-width: 380px;
-                width: 100%;
-                height: 100%;
-                margin-left: auto;
-                margin-right: auto;
-                overflow: hidden;
-                padding: 0;
-                z-index: 0;
-            }
-    
-            .video-slide {
-                width: 110%;
-                padding: 0 0 18.25% 0;
-            } 
-
-        .video-secrion {
-            padding-bottom: 6px;
-        }
-
-        .dots {
-            margin-top: 33px;
-            gap: 20px;
-        }
-
-        .dots-slide {
-            width: 8px;
-            height: 8px;
-        }
-
-        .galery {
-            padding-top: 0;
-            margin-top: 0;
-        }
-
-        .galery-title {
-            margin-top: 16px;
-            padding-top: 42px;
-            text-align: left;
-        }
-
-        .inner-container {
-            height: 2300px;
-            column-gap: 12px;
-            margin-top: 12px;
-        }
-
-        .picture {
-            max-width: 178px;
-            width: 100%;
-        }
-
-        .inner-container:after {
-          max-width: 984px;
-          width: 100%;
-          top: 855px;
-        }
-
-        .picture-container {
-            height: 677px;
-        }
-
-        .inner-container:first-child {
-            margin-top: 12px;
-        }
-
-        .content-container {
-            max-width: 380px;
-            width: 100%;
-            height: 160px;
-        }
-
-        .tickets {
-            padding-bottom: 41px;
-        }
-
-        .tickets-content {
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-top: 40px;
-           ;
-        }
-
-        .amount {
-            margin-top: 33px;
-            max-width: 175px;
-            width: 100%;
-            align-items: center;
-        }
-
-        .amount-title {
-            font-size: 16px;
-        }
-
-        .tickets-image {
-            width: 100%;
-            height: 100%;
-        }
-
-        .count-subtitle {
-            font-size: 16px;
-            margin: 10px 0 11px 0px;
-        }
-
-        .counter {
-            margin-bottom: 6px;
-            max-width: 167px;
-            width: 100%;
-        }
-
-        .total {
-            margin-top: 26px;
-            font-size: 16px;
-            letter-spacing: 0;
-        }
-
-        .tickets__button {
-            margin-top: 33px;
-            font-size: 16px;
-        }
-
-        .parallax {
-            height: 300px;
-        }
-
-        .contacts-image {
-            margin-top: 32px;
-            width: calc(90vw);
-            height: calc(62vw);
-          }
-
-          .contacts-content {
-              margin-top: 38px;
-              display: flex;
-            flex-direction: column;
-          }
-
-          h5 {
-              font-size: 16px;
-              width: 58%;
-              line-height: 21px;
-              margin-bottom: 29px;
-          }
-
-          .adress {
-              width: 59%;
-          }
-
-          .adress-link {
-              font-size: 16px;
-              line-height: 36px;
-              margin: 0;
-              text-align: left;
-          }
-
-          .contacts-section {
-              padding-bottom: 24px;
-          }
-          .footer-container {
-            padding: 35px 0 14px;
-            flex-direction: column;
-          }
-
-          .footer-content {
-              gap: 28px;
-              flex-direction: column;
-          }
-
-          .footer-list {
-            max-width: 380px;
-            width: 100%;
-            row-gap: 18px;
-            height: 86px;
-            column-gap: 89px;
-          }
-
-          .social {
-            margin-right: 0;
-            width: 260px;
-            display: flex;
-            padding-bottom: 0px;
-            margin: 31px auto;
-            margin-bottom: 26px;
-        }
-
-        .social-list {
-            gap: 5px;
-        }
-
-          .footer-link {
-            font-size: 16px;
-          }
-
-          .footer-item {
-              padding: 2px 0;
-          }
-
-          .conf {
-              height: 100px;
-          }
-
-          .conf-text {
-              font-size: 16px;
-          }
-
-          .conf-container {
-              max-width: 380px;
-              margin-top: 37px;
-          }
-
-          .rss {
-              display: none;
-          }
+  .container {
+    max-width: 380px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .header-wrapper {
+    height: 90px;
   }
 
-  @media (max-width: 400px) {
-    .footer-list {
-        column-gap: 6px;
-        }
-    }
+  .logo {
+    width: 135px;
+    height: 28px;
+  }
+
+  .logo-title {
+    font-size: 16px;
+  }
+  .logo img {
+    width: 29px;
+    height: 26px;
+  }
+  .menu__btn {
+    top: 8%;
+    right: 5%;
+  }
+  .navigation {
+    display: block;
+    visibility: hidden;
+    width: 300px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 80px 0;
+    background-color: #333;
+    opacity: 0.7;
+    transition-duration: 0.25s;
+    z-index: 10;
+  }
+
+  .navbar_toggle {
+    position: relative;
+    display: block;
+    padding: 9px 10px;
+    border-color: #fff;
+    border-radius: 0;
+    position: fixed;
+    top: 50px;
+    right: 40px;
+    background-color: transparent;
+    background-image: none;
+    z-index: 2;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+  }
+
+  .navigation-list {
+    flex-direction: column;
+  }
+
+  .navbar-toggle span {
+    background: #333 !important;
+  }
+
+  #menu_toggle:checked ~ .navigation {
+    visibility: visible;
+  }
+
+  .section-title {
+    font-size: 28px;
+    margin-top: 50px;
+    text-align: center;
+    line-height: 43px;
+    margin: 0;
+  }
+  .unvisibled {
+    display: none;
+  }
+  p {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 17px;
+  }
+  .project-image {
+    width: 380px;
+    height: 285px;
+  }
+  .welcome {
+    height: 545px;
+  }
+
+  .welcome-wraper {
+    flex-direction: column;
+  }
+
+  .welcome-content {
+    height: 100%;
+  }
+  .dots-welcome {
+    height: 80px;
+    justify-content: flex-end;
+    z-index: 10;
+    bottom: 23px;
+  }
+  .right {
+    margin-right: 75px;
+    padding-left: 14px;
+  }
+
+  .dots_button-welcome {
+    padding-left: 15px;
+  }
+
+  .dots_button-welcome svg {
+    width: 20px;
+    height: 8px;
+    padding-left: 0;
+  }
+
+  .dots-text {
+    font-size: 14px;
+    margin-right: 22px;
+  }
+
+  .dots-slide-welcome {
+    width: 7px;
+    height: 7px;
+    margin-right: 10px;
+  }
+
+  .carousel {
+    display: flex;
+    flex-direction: column;
+    margin-top: 179px;
+    width: 380px;
+    min-height: 389px;
+    height: 100%;
+  }
+
+  .carousel:after {
+    display: none;
+  }
+
+  .slides-container:before {
+    width: 380px;
+    height: 285px;
+  }
+
+  .item img {
+    width: 280px;
+    height: 180px;
+  }
+
+  .item-title {
+    letter-spacing: 5px;
+    margin-top: 12px;
+    font-size: 18px;
+    padding-bottom: 7px;
+  }
+
+  .item-title:after {
+    width: 53%;
+    top: 36px;
+  }
+
+  .item-text {
+    text-align: left;
+    letter-spacing: -1px;
+    margin-top: 3px;
+    font-size: 16px;
+    letter-spacing: 0;
+  }
+
+  .second-text {
+    letter-spacing: 0;
+  }
+
+  .section {
+    padding: 0 0 60px;
+  }
+
+  #visiting {
+    padding-bottom: 42px;
+    height: 100%;
+  }
+
+  .title-visiting {
+    margin-top: 38px;
+    padding-bottom: 18px;
+    letter-spacing: 5px;
+    text-align: left;
+  }
+
+  .visiting-content {
+    margin-top: 38px;
+  }
+
+  .items-container {
+    justify-content: center;
+    padding-top: 43px;
+    row-gap: 44px;
+    max-width: 616px;
+    column-gap: 56px;
+  }
+
+  .spasing {
+    letter-spacing: 5px;
+  }
+
+  .explore-content {
+    margin-top: 39px;
+  }
+
+  .title-explore {
+    text-align: left;
+    padding-bottom: 17px;
+    margin-bottom: -17px;
+  }
+
+  .explore-text {
+    font-size: 20px;
+    margin-top: 0;
+  }
+  .hidden {
+    display: none;
+  }
+
+  .explore-slider {
+    display: flex;
+    justify-content: center;
+  }
+
+  .explore-image {
+    max-width: 380px;
+    width: 100%;
+    height: 368px;
+  }
+
+  .explore-section {
+    padding-bottom: 40px;
+  }
+
+  .progress {
+    position: absolute;
+    top: -2px;
+    width: 100%;
+    height: 5px;
+    max-width: 380px;
+  }
+
+  .progress-volume {
+    background: linear-gradient(
+      to right,
+      #710707 0%,
+      #710707 40%,
+      #fff 40%,
+      #fff 100%
+    );
+    height: 4px;
+    max-width: 200px;
+    width: 100%;
+  }
+
+  .progress::-webkit-slider-thumb {
+    width: 10px;
+    height: 10px;
+  }
+
+  .progress-volume::-webkit-slider-thumb {
+    width: 10px;
+    height: 10px;
+  }
+
+  .progress-bar {
+    height: 54px;
+    bottom: 0;
+  }
+
+  .disabled {
+    display: block;
+  }
+
+  img {
+    width: 18px;
+  }
+  .video-content {
+    margin-top: 35px;
+    margin-bottom: 17px;
+  }
+
+  .main-video {
+    padding: 0px 0 60% 0;
+  }
+
+  .main-iframe {
+    width: 380px;
+    height: 226px;
+  }
+
+  .slider-iframe {
+    width: 180px;
+    height: 101px;
+  }
+
+  .slider {
+    margin-top: 20px;
+    display: flex;
+    transition: all ease 1s;
+    transition-duration: 0ms;
+    position: relative;
+    column-gap: 16px;
+    z-index: 0;
+    display: flex;
+    transition-property: transform;
+    box-sizing: content-box;
+  }
+
+  .video-slider {
+    margin-top: 19px;
+    max-width: 380px;
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    padding: 0;
+    z-index: 0;
+  }
+
+  .video-slide {
+    width: 180px;
+  }
+
+  .video-secrion {
+    padding-bottom: 6px;
+  }
+
+  .dots {
+    margin-top: 33px;
+    gap: 20px;
+  }
+
+  .dots-slide {
+    width: 8px;
+    height: 8px;
+  }
+
+  .galery {
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  .galery-title {
+    margin-top: 16px;
+    padding-top: 42px;
+    text-align: left;
+  }
+
+  .inner-container {
+    height: 2300px;
+    column-gap: 12px;
+    margin-top: 12px;
+  }
+
+  .picture {
+    max-width: 178px;
+    width: 100%;
+  }
+
+  .inner-container:after {
+    max-width: 984px;
+    width: 100%;
+    top: 855px;
+  }
+
+  .picture-container {
+    height: 677px;
+  }
+
+  .inner-container:first-child {
+    margin-top: 12px;
+  }
+
+  .content-container {
+    max-width: 380px;
+    width: 100%;
+    height: 160px;
+  }
+
+  .tickets {
+    padding-bottom: 41px;
+  }
+
+  .tickets-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  .amount {
+    margin-top: 33px;
+    max-width: 175px;
+    width: 100%;
+    align-items: center;
+  }
+
+  .amount-title {
+    font-size: 16px;
+  }
+
+  .tickets-image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .count-subtitle {
+    font-size: 16px;
+    margin: 10px 0 11px 0px;
+  }
+
+  .counter {
+    margin-bottom: 6px;
+    max-width: 167px;
+    width: 100%;
+  }
+
+  .total {
+    margin-top: 26px;
+    font-size: 16px;
+    letter-spacing: 0;
+  }
+
+  .tickets__button {
+    margin-top: 33px;
+    font-size: 16px;
+  }
+
+  .text {
+    max-width: 330px;
+    width: 100%;
+  }
+
+  .modal-count {
+    max-width: 350px;
+    width: 100%;
+  }
+
+  .tickets-modal {
+    top: calc(50vh - 228px);
+    left: calc(50vw - 210px);
+  }
+
+  .card {
+    width: 350px;
+    padding: 0 15px 15px 10px;
+    margin-left: 0;
+  }
+
+  .date-input {
+    font-size: 12px;
+  }
+
+  .parallax {
+    height: 300px;
+  }
+
+  .contacts-image {
+    margin-top: 32px;
+    width: calc(80vw);
+    height: calc(50vw);
+  }
+
+  .contacts-content {
+    margin-top: 38px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  h5 {
+    font-size: 16px;
+    width: 58%;
+    line-height: 21px;
+    margin-bottom: 29px;
+  }
+
+  .adress {
+    width: 59%;
+  }
+
+  .adress-link {
+    font-size: 16px;
+    line-height: 36px;
+    margin: 0;
+    text-align: left;
+  }
+
+  .contacts-section {
+    padding-bottom: 24px;
+  }
+  .footer-container {
+    padding: 35px 0 14px;
+    flex-direction: column;
+  }
+
+  .footer-content {
+    gap: 28px;
+    flex-direction: column;
+  }
+
+  .footer-list {
+    max-width: 380px;
+    width: 100%;
+    row-gap: 18px;
+    height: 86px;
+    column-gap: 89px;
+  }
+
+  .social {
+    margin-right: 0;
+    width: 260px;
+    display: flex;
+    padding-bottom: 0px;
+    margin: 31px auto;
+    margin-bottom: 26px;
+  }
+
+  .social-list {
+    gap: 5px;
+  }
+
+  .footer-link {
+    font-size: 16px;
+  }
+
+  .footer-item {
+    padding: 2px 0;
+  }
+
+  .conf {
+    height: 100px;
+  }
+
+  .conf-text {
+    font-size: 16px;
+  }
+
+  .conf-container {
+    max-width: 380px;
+    margin-top: 37px;
+  }
+
+  .rss {
+    display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .footer-list {
+    column-gap: 6px;
+  }
+}
