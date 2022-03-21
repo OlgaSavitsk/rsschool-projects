@@ -5,12 +5,6 @@ const timeCard = document.querySelector(".card-text.time");
 const inputName = document.querySelector('input[type="text"]');
 const inputsInfo = document.querySelectorAll(".date-input.text");
 
-var el = document.createElement("label");
-el.id = "notify";
-el.setAttribute("for", "text");
-el.style.display = "none";
-console.log(el);
-
 const regExp = {
   name: {
     reg: /^[a-zA-Zа-яА-Я\s]{3,15}$/,
@@ -26,19 +20,28 @@ const regExp = {
   },
 };
 
+function createErrorElement() {
+  const el = document.createElement("label");
+  el.id = "notify";
+  el.setAttribute("for", "text");
+  el.style.display = "none";
+  return el;
+}
+
 function validateName(input, reg, error) {
   if (!input.value.match(reg)) {
     input.style.borderColor = "red";
-    input.insertAdjacentElement("afterend", el);
-    el.style.display = "block";
-    el.innerText = error;
+    const errorEl = createErrorElement()
+    input.insertAdjacentElement("afterend", errorEl);
+    errorEl.style.display = "block";
+    errorEl.innerText = error;
     if (input.value === "") {
       input.style.borderColor = "#030303";
-      el.style.display = "none";
+      errorEl.style.display = "none";
     }
   } else {
     input.style.borderColor = "#030303";
-    el.style.display = "none";
+    errorEl.style.display = "none";
   }
 }
 
