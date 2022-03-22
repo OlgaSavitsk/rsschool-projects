@@ -48,20 +48,6 @@ function calculate() {
       };
       localStorage.setItem("tickets", JSON.stringify(Tickets));
       setTotalCostForm(radio)
-      Array.from(ticketsTypeOption).forEach((element) => {
-        if (radio.previousSibling.nodeValue === element.value) {
-          element.setAttribute("selected", "selected");
-          element.previousElementSibling.removeAttribute("selected");
-          totalPriceForBasic.innerHTML = `${calculateForm(
-            countFormBasic,
-            radio.value
-          )} &euro;`;
-          totalPriceForSenior.innerHTML = `${calculateForm(
-            countFormSenior,
-            radio.value / 2
-          )} &euro;`;
-        }
-      });
     }
     setNumberOfTickets();
   }
@@ -73,7 +59,6 @@ function setInfoTickets(totalSum) {
   countFormSenior.value = countSenior.value;
   totalCost.innerText = `Total €${totalSum}`;
   totalCostForm.innerText = `${totalSum}€`;
-  totalCostForm.innerHTML = `${totalSum}€`;
 }
 
 for (const input of inputs) {
