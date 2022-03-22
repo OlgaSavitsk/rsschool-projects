@@ -479,8 +479,13 @@
 
   .tickets-modal {
     overflow-y: scroll;
+<<<<<<< HEAD
     width: 100%;
     top: calc(50vh - 227px);
+=======
+    height: 100vh;
+    width: 100%;
+>>>>>>> 6203ec3cfebdaf8c898f79c1866f78b87b26016d
   }
 
   .madal-logo {
