@@ -140,8 +140,7 @@
   }
 
   .navigation-list {
-    max-width: 122px;
-    width: 100%;
+    width: 122px;
     justify-content: center;
     margin: 0 auto;
   }
@@ -212,6 +211,12 @@
   .welcome-content {
     height: 525px;
   }
+
+  .welcome_wrapper {
+    max-width: 984px;
+    width: 100%;
+  }
+
   .dots-welcome {
     width: 700px;
     bottom: 0;
@@ -512,6 +517,7 @@
   .tickets-modal {
     height: 768px;
     width: 100%;
+    /* top: calc(50vh - 384px); */
     left: calc(50vw - 512px); 
   }
 

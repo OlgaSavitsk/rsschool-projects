@@ -53,18 +53,7 @@
     right: 5%;
   }
   .navigation {
-    display: block;
-    visibility: hidden;
-    width: 300px;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding: 80px 0;
-    background-color: #333;
-    opacity: 0.7;
-    transition-duration: 0.25s;
-    z-index: 10;
+    z-index: 100;
   }
 
   .navbar_toggle {
