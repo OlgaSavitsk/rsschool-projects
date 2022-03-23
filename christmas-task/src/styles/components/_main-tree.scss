@@ -7,13 +7,20 @@
     min-height: 750px;
     max-width: 800px;
     width: 100%;
-    background-size: cover;
-    background-position: center;
+    
     padding-bottom: 20px;
     overflow: hidden;
 }
 
+.bg-tree {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
 .main-tree {
+    position: absolute;
     display: block;
     max-width: 500px;
     width: 100%;

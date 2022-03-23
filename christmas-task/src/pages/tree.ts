@@ -4,6 +4,8 @@ import SoundService from '@/common/services/sound.service';
 import StorageService from '@/common/services/storage.service';
 import Header from '@/components/header-container/header';
 import MainTreeContainer from '@/components/main-tree-container/main-tree-container';
+import BgTree from '@/components/main-tree/bg';
+import MainTree from '@/components/main-tree/main-tree';
 import { garlandBtns } from '@/components/settings-tree/garland-btns';
 import { ISettingsTree } from '@/models/settings-tree.model';
 import ToysDataModel from '@/models/toys-data-model';
@@ -38,6 +40,7 @@ export default class TreePage extends Control {
     this.favouriteStorage.loadFromLocalStorage(STORAGE_FAVOURITE_NAME);
     this.model.build().then(() => {
       this.settingsRender(garlandBtns.yellow);
+      this.treesHandler();
     });
   }
 
@@ -52,12 +55,11 @@ export default class TreePage extends Control {
       this.settings!.tree,
       this.settings!.bg,
       garlandColor!,
-    );
+    ); 
     this.setSettingsAfterLoading();
     this.setSnowEventListener();
     this.setSoundEventListener();
     this.setResetEventListener(garlandColor);
-    this.treesHandler();
     this.garlandHandler();
   }
 
@@ -117,13 +119,14 @@ export default class TreePage extends Control {
   private treesHandler(): void {
     this.container.settingsControl.treesContainer.onChangeTree = (num) => {
       this.saveStorageSettings(num, this.settings!.bg);
-      this.container.destroy();
-      this.settingsRender();
+      this.container.mainBlock.imgOfTree.destroy(); 
+      this.container.mainBlock.imgOfTree = new Control(this.container.mainBlock.node, 'img', 'main-tree', '');
+      this.container.mainBlock.imgOfTree.node.setAttribute('src', `./assets/tree/${num}.png`);
     };
     this.container.settingsControl.bgContainer.onChangeTree = (bgNum) => {
       this.saveStorageSettings(this.settings!.tree, bgNum);
-      this.container.destroy();
-      this.settingsRender();
+      this.container.mainBlock.treeBg.destroy();
+      this.container.mainBlock.treeBg = new BgTree(this.container.mainBlock.node, bgNum);
     };
   }
 

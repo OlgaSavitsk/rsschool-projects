@@ -28,6 +28,22 @@
     padding: 20px;
 }
 
+@media (max-width: 1400px) {
+    .main-container {
+       flex-wrap: wrap-reverse;
+    }  
+
+    .settings {
+        justify-content: center;
+        order: 1;
+        max-width: 100%;
+    }
+
+    .menu-container {
+        justify-content: center;
+    }
+}
+
 @media (max-width: 768px) {
     .main-container {
         display: flex;
@@ -42,6 +58,14 @@
       
       .main-tree-container {
         order:1;
+      }
+
+      .settings {
+          order: 0;
+      }
+
+      .favorites-aside {
+          min-height: 600px;
       }
 }
 

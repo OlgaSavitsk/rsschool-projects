@@ -1,6 +1,7 @@
 import Control from '@/common/components/control';
 import Garland from '../garland/garland';
 import Snowflake from '../snowflake/snowflake';
+import BgTree from './bg';
 
 export default class MainTree extends Control {
   public imgOfTree: Control<HTMLImageElement>;
@@ -12,10 +13,12 @@ export default class MainTree extends Control {
   public snowflakes: Snowflake;
 
   public garland: Garland;
+  treeBg: BgTree;
+  
 
   constructor(parentNode: HTMLElement, num: string, bgNum: string, garlandColor: string) {
     super(parentNode, 'div', 'main-tree-container', '');
-    this.node.style.backgroundImage = `url(./assets/bg/${bgNum}.jpg)`;
+    this.treeBg = new BgTree(this.node, bgNum)
     this.snowflakes = new Snowflake(this.node);
     this.garland = new Garland(this.node, garlandColor);
     this.map = new Control(this.node, 'map', '', '');
