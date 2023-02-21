@@ -1,2 +1,5 @@
 # olgasavitsk-JSFE2021Q3
-Private repository for @olgasavitsk
+Technology:
+TypeScript, HTML, SASS, Webpack
+
+[Deploy](https://olgasavitsk-christmastree-c3d661.netlify.app)
